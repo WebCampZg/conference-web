@@ -18,10 +18,10 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('about', models.CharField(max_length=140)),
                 ('biography', models.CharField(max_length=2048)),
-                ('speaker_experience', models.CharField(max_length=255)),
+                ('speaker_experience', models.CharField(max_length=255, null=True, blank=True)),
                 ('image', models.ImageField(upload_to=b'applicant_images')),
-                ('twitter_handle', models.CharField(max_length=50)),
-                ('github_username', models.CharField(max_length=50)),
+                ('twitter_handle', models.CharField(max_length=50, null=True, blank=True)),
+                ('github_username', models.CharField(max_length=50, null=True, blank=True)),
             ],
             options={
             },
@@ -34,6 +34,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=50)),
             ],
             options={
+                'ordering': ['pk'],
             },
             bases=(models.Model,),
         ),
@@ -70,6 +71,7 @@ class Migration(migrations.Migration):
                 ('name', models.CharField(max_length=20)),
             ],
             options={
+                'ordering': ['pk'],
             },
             bases=(models.Model,),
         ),
