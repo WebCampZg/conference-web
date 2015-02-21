@@ -85,3 +85,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'people.User'
+
+MEDIA_ROOT = os.getenv('MEDIA_ROOT')
+MEDIA_URL = '/media/'
