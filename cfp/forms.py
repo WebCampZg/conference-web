@@ -1,5 +1,12 @@
 from django import forms
 from cfp.models import AudienceSkillLevel, TShirtSize
+from people.models import User
+
+
+def validate_email_uniqueness(value):
+    user_cnt = User.objects.filter(email=value).count()
+    if (user_cnt > 0):
+        raise forms.ValidationError('Email address already exists')
 
 
 class PaperApplicationForm(forms.Form):
@@ -10,7 +17,7 @@ class PaperApplicationForm(forms.Form):
                                          help_text='Which skill level is this talk most appropriate for?')
     first_name = forms.CharField()
     last_name = forms.CharField()
-    email = forms.EmailField()
+    email = forms.EmailField(validators=[validate_email_uniqueness, ])
     about_applicant = forms.CharField(help_text='Describe yourself in 140 characters or less.', label='About you')
     biography = forms.CharField(help_text=('Who are you? Where have you worked? What are your professional interests? '
                                            'This will be used on our web site if you\'re chosen. Up to 10 sentances.'),
