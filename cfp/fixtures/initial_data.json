@@ -1,0 +1,93 @@
+[
+    {
+        "pk": 10,
+        "model": "cfp.audienceskilllevel",
+        "fields": {
+            "name": "Elementary"
+        }
+    },
+    {
+        "pk": 20,
+        "model": "cfp.audienceskilllevel",
+        "fields": {
+            "name": "Intermediate"
+        }
+    },
+    {
+        "pk": 30,
+        "model": "cfp.audienceskilllevel",
+        "fields": {
+            "name": "Advanced"
+        }
+    },
+    {
+        "pk": 1,
+        "model": "cfp.tshirtsize",
+        "fields": {
+            "name": "Female XS"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "cfp.tshirtsize",
+        "fields": {
+            "name": "Female S"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "cfp.tshirtsize",
+        "fields": {
+            "name": "Female M"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "cfp.tshirtsize",
+        "fields": {
+            "name": "Female L"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "cfp.tshirtsize",
+        "fields": {
+            "name": "Female XL"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "cfp.tshirtsize",
+        "fields": {
+            "name": "Male S"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "cfp.tshirtsize",
+        "fields": {
+            "name": "Male M"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "cfp.tshirtsize",
+        "fields": {
+            "name": "Male L"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "cfp.tshirtsize",
+        "fields": {
+            "name": "Male XL"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "cfp.tshirtsize",
+        "fields": {
+            "name": "Male XXL"
+        }
+    }
+]
