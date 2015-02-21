@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from conferenceweb import settings
 from django.db import models
 
 
@@ -10,23 +10,29 @@ class CallForPaper(models.Model):
 class TShirtSize(models.Model):
     name = models.CharField(max_length=20)
 
+    def __unicode__(self):
+        return self.name
+
     class Meta:
         ordering = ['pk', ]
 
 
 class Applicant(models.Model):
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     about = models.CharField(max_length=140)
     biography = models.CharField(max_length=2048)
-    speaker_experience = models.CharField(max_length=255)
+    speaker_experience = models.CharField(max_length=255, null=True, blank=True)
     image = models.ImageField(upload_to='applicant_images')
     tshirt_size = models.ForeignKey(TShirtSize)
-    twitter_handle = models.CharField(max_length=50)
-    github_username = models.CharField(max_length=50)
+    twitter_handle = models.CharField(max_length=50, null=True, blank=True)
+    github_username = models.CharField(max_length=50, null=True, blank=True)
 
 
 class AudienceSkillLevel(models.Model):
     name = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return self.name
 
     class Meta:
         ordering = ['pk', ]
