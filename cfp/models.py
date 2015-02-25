@@ -6,6 +6,9 @@ class CallForPaper(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=1024)
 
+    def __unicode__(self):
+        return self.title
+
 
 class TShirtSize(models.Model):
     name = models.CharField(max_length=20)
@@ -27,6 +30,9 @@ class Applicant(models.Model):
     twitter_handle = models.CharField(max_length=50, null=True, blank=True)
     github_username = models.CharField(max_length=50, null=True, blank=True)
 
+    def __unicode__(self):
+        return self.user.get_full_name()
+
 
 class AudienceSkillLevel(models.Model):
     name = models.CharField(max_length=50)
@@ -45,3 +51,6 @@ class PaperApplication(models.Model):
     about = models.CharField(max_length=255)
     abstract = models.CharField(max_length=1024)
     skill_level = models.ForeignKey(AudienceSkillLevel)
+
+    def __unicode__(self):
+        return u'{0} - {1}'.format(self.applicant.user.get_full_name(), self.title)
