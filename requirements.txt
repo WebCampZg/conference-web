@@ -1,1 +1,12 @@
+Django==1.7.4
+Jinja2==2.7.3
+MarkupSafe==0.23
+Pillow==2.7.0
+PyYAML==3.11
+binaryornot==0.3.0
+cookiecutter==0.9.1
+dj-database-url==0.3.0
+mock==1.0.1
+psycopg2==2.6
 wheel==0.23.0
+wsgiref==0.1.2
