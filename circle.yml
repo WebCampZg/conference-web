@@ -1,0 +1,10 @@
+machine:
+    python:
+        version: 2.7.8
+    environment:
+        DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
+        PYTHONPATH: $PWD:$PYTHONPATH
+        DJANGO_SETTINGS_MODULE: conferenceweb.settings
+        MEDIA_ROOT: $PWD/media
+        MEDIA_URL: /media/
+        SECRET_KEY: 'smthng'
