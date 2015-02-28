@@ -1,0 +1,72 @@
+[
+    {
+        "pk": 1,
+        "model": "people.tshirtsize",
+        "fields": {
+            "name": "Female XS"
+        }
+    },
+    {
+        "pk": 2,
+        "model": "people.tshirtsize",
+        "fields": {
+            "name": "Female S"
+        }
+    },
+    {
+        "pk": 3,
+        "model": "people.tshirtsize",
+        "fields": {
+            "name": "Female M"
+        }
+    },
+    {
+        "pk": 4,
+        "model": "people.tshirtsize",
+        "fields": {
+            "name": "Female L"
+        }
+    },
+    {
+        "pk": 5,
+        "model": "people.tshirtsize",
+        "fields": {
+            "name": "Female XL"
+        }
+    },
+    {
+        "pk": 6,
+        "model": "people.tshirtsize",
+        "fields": {
+            "name": "Male S"
+        }
+    },
+    {
+        "pk": 7,
+        "model": "people.tshirtsize",
+        "fields": {
+            "name": "Male M"
+        }
+    },
+    {
+        "pk": 8,
+        "model": "people.tshirtsize",
+        "fields": {
+            "name": "Male L"
+        }
+    },
+    {
+        "pk": 9,
+        "model": "people.tshirtsize",
+        "fields": {
+            "name": "Male XL"
+        }
+    },
+    {
+        "pk": 10,
+        "model": "people.tshirtsize",
+        "fields": {
+            "name": "Male XXL"
+        }
+    }
+]

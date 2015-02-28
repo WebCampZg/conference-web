@@ -33,6 +33,16 @@ class UserManager(BaseUserManager):
                                  **extra_fields)
 
 
+class TShirtSize(models.Model):
+    name = models.CharField(max_length=20)
+
+    def __unicode__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['pk', ]
+
+
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
@@ -44,6 +54,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         help_text=_('Designates whether this user should be treated as '
                     'active. Unselect this instead of deleting accounts.'))
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
+
+    github = models.CharField(max_length=39, blank=True, null=True)
+    twitter = models.CharField(max_length=20, blank=True, null=True)
+    tshirt_size = models.ForeignKey(TShirtSize, blank=True, null=True)
 
     objects = UserManager()
 
