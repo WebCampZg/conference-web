@@ -97,3 +97,4 @@ def _update_session_after_password_change(sender, request, user, **kwargs):
     Django 1.7 session is invalidated after password change if using a custom password_change view
     '''
     update_session_auth_hash(request, user)
+
