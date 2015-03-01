@@ -43,3 +43,16 @@ output/*/index.html
 docs/_build
 .env
 .idea/
+
+# settings
+/project/settings/local.*
+/project/settings/prod.*
+/project/settings/secret.*
+
+# static and media
+/project/static/
+/project/media/
+
+# requirements
+/requirements/local.txt
+
