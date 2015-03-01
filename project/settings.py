@@ -1,5 +1,5 @@
 """
-Django settings for conferenceweb project.
+Django settings for conference web project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -83,9 +83,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 
-ROOT_URLCONF = 'conferenceweb.urls'
+ROOT_URLCONF = 'project.urls'
 
-WSGI_APPLICATION = 'conferenceweb.wsgi.application'
+WSGI_APPLICATION = 'project.wsgi.application'
 
 
 # Database

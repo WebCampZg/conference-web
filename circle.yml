@@ -4,7 +4,7 @@ machine:
     environment:
         DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
         PYTHONPATH: $PWD:$PYTHONPATH
-        DJANGO_SETTINGS_MODULE: conferenceweb.settings
+        DJANGO_SETTINGS_MODULE: project.settings
         MEDIA_ROOT: $PWD/media
         MEDIA_URL: /media/
         SECRET_KEY: 'smthng'
