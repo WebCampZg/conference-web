@@ -1,54 +1,86 @@
-from django.http.response import Http404
-from django.shortcuts import render
-from django.views.generic.edit import FormView
+from braces.views._access import LoginRequiredMixin, UserPassesTestMixin
+from django.core.exceptions import PermissionDenied
+from django.core.urlresolvers import reverse
+from django.http.response import HttpResponse, Http404
+from django.views.generic.edit import CreateView, UpdateView
 from cfp.forms import PaperApplicationForm
 from cfp.models import Applicant, PaperApplication, CallForPaper
-from people.models import User
 
 
-class PaperApplicationView(FormView):
+class PaperApplicationBaseView(LoginRequiredMixin):
+    model = PaperApplication
     form_class = PaperApplicationForm
-    template_name = 'cfp/paper_application.html'
+    template_name = 'cfp/paperapplication_form.html'
 
     def dispatch(self, request, *args, **kwargs):
-        self.cfp_id = kwargs['cfp_id']
-        if not CallForPaper.objects.filter(pk=self.cfp_id).exists():
-            raise Http404()
-        return super(PaperApplicationView, self).dispatch(request, *args, **kwargs)
+        self.cfp = CallForPaper.objects.get(pk=kwargs['cfp_id'])
+        return super(PaperApplicationBaseView, self).dispatch(request, *args, **kwargs)
+
+
+    def get_context_data(self, **kwargs):
+        c = super(PaperApplicationBaseView, self).get_context_data(**kwargs)
+        c['cfp_active'] = self.cfp.is_active()
+        return c
 
     def form_valid(self, form):
+        if not self.cfp.is_active():
+            return HttpResponse('Cfp is not active', status=403)
+        applicant = self._build_or_update_applicant(form)
+        form.instance.applicant_id = applicant.pk
+        form.instance.cfp_id = self.cfp.pk
 
-        applicant = self._build_user(form)
-        self._build_application(form, applicant)
+        return super(PaperApplicationBaseView, self).form_valid(form)
 
-        return super(PaperApplicationView, self).form_valid(form)
+    def get_initial(self):
+        initial = super(PaperApplicationBaseView, self).get_initial()
+        try:
+            applicant = self.request.user.applicant
+            initial.update({
+                'about_applicant': applicant.about,
+                'biography': applicant.biography,
+                'speaker_experience': applicant.speaker_experience,
+                'image': applicant.image,
+            })
+        except Applicant.DoesNotExist:
+            pass
 
-    def _build_user(self, form):
-        user = User.objects.create_user(email=form.cleaned_data['email'],
-                                        first_name=form.cleaned_data['first_name'],
-                                        last_name=form.cleaned_data['last_name'])
+        return initial
 
+    def _build_or_update_applicant(self, form):
+        user = self.request.user
         args = {
             'user': user,
             'about': form.cleaned_data['about_applicant'],
             'biography': form.cleaned_data['biography'],
             'speaker_experience': form.cleaned_data['speaker_experience'],
             'image': form.cleaned_data['image'],
-            'tshirt_size': form.cleaned_data['tshirt_size'],
-            'twitter_handle': form.cleaned_data['twitter_handle'],
-            'github_username': form.cleaned_data['github_username'],
         }
-        applicant = Applicant.objects.create(**args)
+
+        applicant, created = Applicant.objects.update_or_create(user=user, defaults=args)
         return applicant
 
-    def _build_application(self, form, applicant):
-        args = {
-            'applicant': applicant,
-            'title': form.cleaned_data['title'],
-            'about': form.cleaned_data['about'],
-            'abstract': form.cleaned_data['abstract'],
-            'skill_level': form.cleaned_data['skill_level'],
-            'cfp_id': self.cfp_id
-        }
-        application = PaperApplication.objects.create(**args)
-        return application
+    def get_success_url(self):
+        return reverse('user_profile')
+
+
+class PaperApplicationCreateView(PaperApplicationBaseView, CreateView):
+    pass
+
+
+class PaperApplicationUpdateView(PaperApplicationBaseView, UpdateView):
+    def dispatch(self, request, *args, **kwargs):
+        self._check_allowed(request.user)
+        return super(PaperApplicationUpdateView, self).dispatch(request, *args, **kwargs)
+
+    def _check_allowed(self, user):
+        allow = False
+        application = self.get_object()
+        try:
+            if application.applicant_id == user.applicant.pk:
+                allow = True
+        except Applicant.DoesNotExist:
+            pass
+
+        if not allow:
+            raise Http404()
+

@@ -1,0 +1,9 @@
+<h2>Text about applications being closed or applications opened until May 31st 2015</h2>
+{% if cfp_active %}
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+</form>
+{% else %}
+<p>Call for papers is not active.</p>
+{% endif %}

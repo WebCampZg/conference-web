@@ -10,12 +10,13 @@ urlpatterns = patterns('',
 
     url(r'^cfp/', include('cfp.urls')),
     url(r'^admin/', include(admin.site.urls)),
+    (r'^accounts/', include('allauth.urls')),
+    url(r'^accounts/profile/', UserProfileView.as_view(), name='user_profile'),
+
 )
 
 if settings.DEBUG:
     urlpatterns += patterns('',
         (r'^media/(?P<path>.*)$', 'django.views.static.serve',
         {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
-        (r'^accounts/', include('allauth.urls')),
-        url(r'^accounts/profile/', UserProfileView.as_view(), name='user_profile'),
     )

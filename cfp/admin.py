@@ -1,6 +1,6 @@
 from django.contrib import admin
+from cfp.models import CallForPaper, PaperApplication
 
-# Register your models here.
-from cfp.models import CallForPaper
 
 admin.site.register(CallForPaper)
+admin.site.register(PaperApplication)
