@@ -1,6 +1,9 @@
+from allauth.account.signals import password_changed
+from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.models import AbstractUser, BaseUserManager, AbstractBaseUser, PermissionsMixin
 from django.core.mail import send_mail
 from django.db import models
+from django.dispatch.dispatcher import receiver
 from django.utils.translation import ugettext as _
 from django.utils import timezone
 
@@ -86,3 +89,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
+
+
+@receiver(password_changed, dispatch_uid='KeepAuthAfterPasswordChange')
+def _update_session_after_password_change(sender, request, user, **kwargs):
+    '''
+    Django 1.7 session is invalidated after password change if using a custom password_change view
+    '''
+    update_session_auth_hash(request, user)
