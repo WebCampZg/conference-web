@@ -56,3 +56,6 @@ docs/_build
 # requirements
 /requirements/local.txt
 
+# prod
+/gunicorn_config.py
+/gunicorn.pid
