@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <title>WebCamp &mdash; Zagreb 2015.</title>
+
+    <link href="/static/stylesheets/site.css" rel="stylesheet" type="text/css" />
+    <script src="/static/javascripts/all.js" type="text/javascript"></script>
+    {% block extra_head %}
+    {% endblock %}
+  </head>
+
+  <body class="index">
+    {% if messages %}
+        <div>
+          <strong>Messages:</strong>
+          <ul>
+        {% for message in messages %}
+        <li>{{message}}</li>
+        {% endfor %}
+          </ul>
+        </div>
+    {% endif %}
+
+    {% block content %}
+    {% endblock content %}
+
+    {% block footer %}
+    <div class="footer">
+        <div class="narrow-wrap social-icons">
+            <a href="https://www.facebook.com/WebCampZg" target="_blank"><svg width="51" height="50" viewBox="0 0 51 50" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g class="icon"><g><path d="M25.19 0C11.375 0 .175 11.193.175 25s11.2 25 25.015 25c13.816 0 25.016-11.193 25.016-25S39.006 0 25.19 0zm7.404 14.708h-3.496c-1.234 0-1.49.505-1.49 1.78v3.084h4.986l-.48 5.412h-4.507v16.17h-6.46v-16.1h-3.36V19.57h3.36v-4.316c0-4.05 2.167-6.166 6.974-6.166h4.474v5.618z"/></g></g></g></svg></a>
+            <a href="https://twitter.com/webcampzg" target="_blank"><svg width="51" height="50" viewBox="0 0 51 50" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g class="icon"><g><path d="M25.016 0C11.2 0 0 11.193 0 25s11.2 25 25.016 25c13.816 0 25.016-11.193 25.016-25S38.832 0 25.016 0zm12.58 20.692c.367 8.156-5.72 17.25-16.49 17.25-3.277 0-6.327-.962-8.894-2.607 3.078.363 6.15-.49 8.59-2.4-2.54-.048-4.683-1.724-5.42-4.028.908.174 1.803.123 2.62-.1-2.79-.56-4.717-3.07-4.654-5.757.782.434 1.677.695 2.628.725-2.584-1.726-3.316-5.136-1.796-7.742 2.862 3.51 7.137 5.817 11.96 6.06-.847-3.628 1.906-7.12 5.65-7.12 1.67 0 3.178.703 4.236 1.83 1.322-.26 2.563-.743 3.685-1.407-.433 1.354-1.353 2.49-2.55 3.208 1.173-.14 2.29-.452 3.332-.913-.778 1.164-1.762 2.185-2.895 3.002z"/></g></g></g></svg></a>
+            <a href="https://github.com/webcampzg" target="_blank"><svg width="51" height="50" viewBox="0 0 51 50" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><g class="icon"><g><path d="M25.81 0C11.994 0 .794 11.477.794 25.633c0 11.324 7.167 20.934 17.108 24.322 1.25.238 1.654-.555 1.654-1.233V43.95c-6.96 1.552-8.408-3.023-8.408-3.023-1.136-2.964-2.777-3.753-2.777-3.753-2.27-1.59.172-1.558.172-1.558 2.512.182 3.835 2.643 3.835 2.643 2.23 3.916 5.85 2.784 7.28 2.13.224-1.658.872-2.788 1.588-3.428-5.558-.647-11.396-2.846-11.396-12.67 0-2.798.976-5.084 2.576-6.878-.26-.647-1.116-3.254.24-6.784 0 0 2.1-.688 6.88 2.628 1.998-.567 4.138-.853 6.264-.863 2.125.01 4.268.296 6.266.863 4.776-3.316 6.872-2.628 6.872-2.628 1.363 3.53.505 6.137.247 6.784 1.604 1.794 2.575 4.08 2.575 6.88 0 9.845-5.853 12.012-11.423 12.647.896.796 1.717 2.358 1.717 4.748v7.034c0 .682.4 1.48 1.67 1.23 9.934-3.393 17.09-12.997 17.09-24.32C50.825 11.478 39.625 0 25.81 0z"/></g></g></g></svg></a>
+        </div>
+        <div class="copyright wide-wrap">
+            &copy; WebCamp Zagreb 2012 &mdash; 2015
+        </div>
+    </div>
+    {% endblock footer %}
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-35198834-2', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    {% block extra_body %}
+    {% endblock extra_body %}
+  </body>
+</html>
