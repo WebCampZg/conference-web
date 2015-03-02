@@ -1,2 +1,4 @@
 -r base.txt
 
+gunicorn==19.2.1
+
