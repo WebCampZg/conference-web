@@ -8,7 +8,7 @@ DOCKER_POSTGRES_TAG=9.3
 
 
 .PHONY: all test coverage clean requirements requirements-dev setup-test \
-	docker-check db db-data-dir db-db db-user db-user-grant db-restore db-prompt
+	docker-check db db-data-dir db-db db-user db-user-grant db-restore db-prompt migrate
 
 all: coverage
 
@@ -66,6 +66,9 @@ lint:
 docker-check:
 	@command -v docker >/dev/null 2>&1 || \
 		{ echo >&2 "Docker needs to be installed and on your PATH.  Aborting."; exit 1; }
+
+migrate:
+	docker-compose run web /bin/bash -c "python manage.py migrate"
 
 db-data-dir: docker-check
 	@if [ ! -d $(DATA_DIR)/postgresql ]; then \
