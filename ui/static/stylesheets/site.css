@@ -1,0 +1,215 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+/* line 3, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+html {
+  box-sizing: border-box; }
+
+/* line 6, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+/* line 10, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+body {
+  font-family: 'Lato', sans-serif;
+  border: 20px solid white;
+  margin: 0; }
+
+/* line 16, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+.wide-wrap {
+  max-width: 1180px;
+  margin: 0 auto; }
+
+/* line 21, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+.narrow-wrap {
+  max-width: 780px;
+  margin: 0 auto; }
+
+/* line 26, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+.header {
+  padding-bottom: 150px;
+  background: url(/static/images/header_image.jpg);
+  background-size: cover;
+  background-position: 50% 50%;
+  color: white;
+  position: relative; }
+  /* line 33, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+  .header h1 {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 180px;
+    height: 180px;
+    margin: 0 0 20px;
+    position: relative; }
+    /* line 41, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+    .header h1 img {
+      width: 180px;
+      height: 180px;
+      top: 0;
+      left: 0;
+      position: absolute; }
+  /* line 50, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+  .header .pixel-elements {
+    position: relative;
+    top: 46px;
+    max-width: 990px;
+    overflow: hidden;
+    margin: 0 auto -105px; }
+    /* line 56, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+    .header .pixel-elements img {
+      height: 105px; }
+    /* line 59, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+    .header .pixel-elements .left-pixels {
+      float: left; }
+    /* line 63, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+    .header .pixel-elements .right-pixels {
+      float: right; }
+
+/* line 69, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+.punchline-date-location-wrap {
+  text-align: center; }
+  /* line 71, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+  .punchline-date-location-wrap .punchline {
+    font-size: 42px;
+    line-height: 1; }
+  /* line 76, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+  .punchline-date-location-wrap hr {
+    width: 180px;
+    margin: 25px auto;
+    border: none;
+    border-top: 1px solid white; }
+  /* line 83, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+  .punchline-date-location-wrap .date-location {
+    font-size: 50px; }
+    /* line 85, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+    .punchline-date-location-wrap .date-location small {
+      font-size: 22px;
+      display: block; }
+
+/* line 92, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+.blog-post-wrap {
+  position: relative;
+  font-size: 16px;
+  margin-top: -80px; }
+  /* line 96, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+  .blog-post-wrap h2 {
+    color: #F16C5B;
+    font-size: 24px;
+    height: 50px;
+    line-height: 50px;
+    margin: 0 0 25px 0; }
+  /* line 103, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+  .blog-post-wrap .bg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 80px;
+    bottom: 80px;
+    background: #342134; }
+  /* line 111, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+  .blog-post-wrap .narrow-wrap {
+    background: #342134;
+    position: relative;
+    padding: 25px;
+    color: #ddd; }
+  .blog-post-wrap a {
+    color: #F16C5B;
+    text-decoration: none;
+  }
+
+/* line 119, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+.buy-tickets-wrap {
+  background: url(/static/images/bg_tickets_image.jpg);
+  background-size: cover;
+  background-position: 50% 50%;
+  margin-top: -80px;
+  padding: 150px 0 0;
+  text-align: center;
+  color: white; }
+  /* line 127, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+  .buy-tickets-wrap h3 {
+    margin: 0;
+    font-size: 30px; }
+  /* line 131, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+  .buy-tickets-wrap .buy-tickets {
+    display: block;
+    border: 1px solid white;
+    height: 75px;
+    width: 325px;
+    text-align: center;
+    line-height: 75px;
+    color: white;
+    margin: 35px auto 20px;
+    text-decoration: none;
+    font-size: 36px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    border-radius: 40px; }
+    /* line 145, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+    .buy-tickets-wrap .buy-tickets:hover {
+      background: white;
+      color: #070011; }
+  /* line 150, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+  .buy-tickets-wrap .middle-pixels {
+    width: 164px;
+    margin: 0 auto -1px;
+    display: block; }
+  .buy-tickets-wrap .sponsor-link {
+    margin-bottom: 40px; }
+  .buy-tickets-wrap .sponsor-link a {
+    color: white; }
+
+/* line 157, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+.newsletter-wrap {
+  background: #f4f4f4;
+  padding: 125px; }
+  /* line 160, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+  .newsletter-wrap .form-wrap {
+    height: 70px; }
+    /* line 162, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+    .newsletter-wrap .form-wrap .email {
+      border: 1px solid #342134;
+      border-right: none;
+      width: 70%;
+      display: block;
+      float: left;
+      height: 70px;
+      padding: 0 15px;
+      font-size: 24px;
+      background: #f4f4f4; }
+    /* line 173, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+    .newsletter-wrap .form-wrap .button {
+      width: 30%;
+      background: #342134;
+      float: right;
+      height: 70px;
+      color: white;
+      font-size: 24px;
+      border: none;
+      cursor: pointer; }
+      /* line 182, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+      .newsletter-wrap .form-wrap .button:hover {
+        background: #F16C5B; }
+
+/* line 188, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+.footer {
+  background: #342134;
+  padding: 55px 0 0; }
+  /* line 191, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+  .footer .copyright {
+    color: #F16C5B;
+    height: 55px;
+    line-height: 55px;
+    text-align: center; }
+  /* line 197, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+  .footer .social-icons {
+    text-align: center; }
+    /* line 199, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+    .footer .social-icons a {
+      display: inline-block;
+      margin: 0 5px; }
+      /* line 202, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+      .footer .social-icons a .icon {
+        fill: #F16C5B; }
+      /* line 206, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
+      .footer .social-icons a:hover .icon {
+        fill: white; }

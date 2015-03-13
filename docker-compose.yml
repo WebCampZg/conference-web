@@ -1,0 +1,15 @@
+web:
+  build: ./
+  command: python manage.py runserver 0.0.0.0:8000
+  volumes:
+    - ./:/code
+  links:
+    - db
+  ports:
+    - "8000:8000"
+
+db:
+    image: denibertovic/postgres:9.3
+    volumes:
+        - ./__data/postgresql:/var/lib/postgresql/
+
