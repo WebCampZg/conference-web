@@ -213,3 +213,8 @@ body {
       /* line 206, /Users/retro/Projects/webcamp-2015/source/stylesheets/site.scss */
       .footer .social-icons a:hover .icon {
         fill: white; }
+
+        .embed-wrap {
+            height: 600px;
+            border: 1px solid #f4f4f4;
+        }
