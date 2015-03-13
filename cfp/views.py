@@ -13,7 +13,7 @@ class PaperApplicationBaseView(LoginRequiredMixin):
     template_name = 'cfp/cfp_form.html'
 
     def dispatch(self, request, *args, **kwargs):
-        self.cfp = CallForPaper.objects.get(pk=kwargs['cfp_id'])
+        self.cfp = CallForPaper.objects.get(pk=kwargs.get('pk') or 1)
         return super(PaperApplicationBaseView, self).dispatch(request, *args, **kwargs)
 
 
