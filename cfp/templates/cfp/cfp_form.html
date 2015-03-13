@@ -1,0 +1,180 @@
+{% extends 'ui/base.html' %}
+{% block title %}CFP{% endblock %}
+{% block content %}
+
+    <header class="Header Hero Hero--cfp" role="banner">
+        <div class="Hero-inner">
+            <div class="Wrapper Wrapper--wide">
+                <h1 class="Header-title">
+                    <a href="/"><i class="Header-logo Icon Icon--logo">WebCamp Zagreb 2015.</i></a>
+                </h1>
+            </div>
+            <div class="Punchline">
+                <div class="Wrapper Wrapper--narrow">
+                    <h2 class="Punchline-info">2015 Application form</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="Intro">
+        <div class="Wrapper Wrapper--narrow">
+            <div class="Passage">
+                <h2 class="Intro-title">Submit your talk for WebCamp Zagreb 2015.</h2>
+                <div class="Intro-body">
+                    <ul>
+                        <li>Conference takes place on Saturday, 4th October 2014 in Zagreb.</li>
+                        <li>All talks are 25 minutes, including 5 minutes for Q&A.</li>
+                        <li>Prior experience is not a prerequisite, we welcome first timers.</li>
+                        <li>Talks may be in English or Croatian, but we’d be extra happy if you choose to speak in English.</li>
+                        <li>Multiple talk submissions are welcome.</li>
+                        <li>First 30 submissions get free tickets.</li>
+                    </ul>
+                    <p>For more details see the conference web site <a href="http://2015.webcampzg.org">http://2015.webcampzg.org</a>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="CFP">
+        <div class="Wrapper Wrapper--wide">
+
+            <form method="post" enctype="multipart/form-data" class="Form">{% csrf_token %}
+
+                <div class="CFP-grid">
+                    <div class="CFP-gridItem CFP-talk">
+
+                        <fieldset class="Form-fieldset">
+                            <legend class="Form-legend">Talk</legend>
+
+                            <div class="Form-item">
+                                <label class="Form-label" for="">Title <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                <p class="Form-fieldDesc">
+                                    The title of your talk. Please keep it short and catchy.
+                                </p>
+                                <div class="Form-field">
+                                    <input type="text" class="Field Field--text" required="required" name="title"
+                                            {% if form.title.value %}value="{{ form.title.value }}"{% endif %}/>
+                                </div>
+                            </div>
+
+                            <div class="Form-item">
+                                <label class="Form-label" for="">What it’s about <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                <p class="Form-fieldDesc">
+                                    Describe your talk in 140 characters or less.
+                                </p>
+                                <div class="Form-field">
+                                    <textarea class="Field Field--text" name="about" rows="5" required="required">
+                                        {% if form.about.value %}value="{{ form.about.value }}"{% endif %}
+                                    </textarea>
+                                </div>
+                            </div>
+
+                            <div class="Form-item">
+                                <label class="Form-label" for="">Abstract <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                <p class="Form-fieldDesc">
+                                    You may go in more depth here. Up to 10 sentences, please.
+                                </p>
+                                <div class="Form-field">
+                                    <textarea class="Field Field--text" rows="5" name="abstract" required="required">
+                                        {% if form.abstract.value %}value="{{ form.abstract.value }}"{% endif %}
+                                    </textarea>
+                                </div>
+                            </div>
+
+                            <div class="Form-item">
+                                <label class="Form-label" for="">Audience level <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                <p class="Form-fieldDesc">
+                                    Which skill level is this talk mos appropriate for?
+                                </p>
+                                <ul class="FieldCollection">
+                                    <li class="FieldCollection-item">
+                                        <label for="test11" class="Form-label Form-label--asField">
+                                            <input id="test11" type="radio" name="skill_level" value="10" class="Field Field--radio" />
+                                            <span class="Form-labelCaption">Elementary</span>
+                                        </label>
+                                    </li>
+                                    <li class="FieldCollection-item">
+                                        <label for="test22" class="Form-label Form-label--asField">
+                                            <input id="test22" type="radio" name="skill_level" value="20" class="Field Field--radio" />
+                                            <span class="Form-labelCaption">Intermediate</span>
+                                        </label>
+                                    </li>
+                                    <li class="FieldCollection-item">
+                                        <label for="test33" class="Form-label Form-label--asField">
+                                            <input id="test33" type="radio" name="skill_level" value="30" class="Field Field--radio" />
+                                            <span class="Form-labelCaption">Advanced</span>
+                                        </label>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </fieldset>
+
+                    </div>
+                    <div class="CFP-gridItem CFP-speaker">
+
+                        <fieldset class="Form-fieldset">
+                            <legend class="Form-legend">Speaker</legend>
+
+                            <div class="Form-item">
+                                <label class="Form-label" for="">About you <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                <p class="Form-fieldDesc">
+                                    Describe yourself in 140 characters or less.
+                                </p>
+                                <div class="Form-field">
+                                    <textarea class="Field Field--text" rows="5" name="about_applicant" required="required">
+                                        {% if form.about_applicant.value %}value="{{ form.about_applicant.value }}"{% endif %}
+                                    </textarea>
+                                </div>
+                            </div>
+
+                            <div class="Form-item">
+                                <label class="Form-label" for="">Biography <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                <p class="Form-fieldDesc">
+                                    Who are you? Where have you worked? What are your professional interests? This will be used on our web site if you’re chosen. Up to 10 sentences.
+                                </p>
+                                <div class="Form-field">
+                                    <textarea class="Field Field--text" name="biography" rows="5" required="required">
+                                        {% if form.biography.value %}value="{{ form.biography.value }}"{% endif %}
+                                    </textarea>
+                                </div>
+                            </div>
+
+                            <div class="Form-item">
+                                <label class="Form-label" for="">Speakers experiences <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                <p class="Form-fieldDesc">
+                                    If you’ve given talks at other events, please list them
+                                </p>
+                                <div class="Form-field">
+                                    <textarea class="Field Field--text" name="speaker_experience" rows="5" required="required">
+                                        {% if form.speaker_experience.value %}value="{{ form.speaker_experience.value }}"{% endif %}
+                                    </textarea>
+                                </div>
+                            </div>
+
+                            <div class="Form-item">
+                                <label class="Form-label" for="">Image <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                <p class="Form-fieldDesc">
+                                    Please upload your picture which we may use four our website and materials. Make it
+                                    square, PNG and at least 400x400px.
+                                </p>
+                                <div class="Form-field">
+                                    <input id="id_image" name="image" type="file" required="required">
+                                </div>
+                            </div>
+
+                        </fieldset>
+
+                    </div>
+                </div>
+
+                <div class="Form-actions">
+                    <button type="submit" class="Button Button--alpha Form-action Form-action--submit">Submit</button>
+                </div>
+
+            </form>
+
+        </div>
+    </section>
+{% endblock %}

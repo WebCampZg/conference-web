@@ -1,0 +1,29 @@
+{% extends 'ui/base.html' %}
+{% block title %}Sign Up success{% endblock %}
+{% block body_class %}Page Page--login Page--stickyFooter{% endblock %}
+
+{% block content %}
+    <header class="Header" role="banner">
+        <div class="Wrapper Wrapper--wide">
+            <h1 class="Header-title u-textCenter">
+                <a href="/"><i class="Header-logo Icon Icon--logo">WebCamp Zagreb 2015.</i></a>
+            </h1>
+        </div>
+    </header>
+
+    <main role="main" class="Page-content Aligner">
+        <div class="Wrapper Wrapper--narrow Aligner-item">
+            <section class="UserAccess UserAccess--signupSuccess">
+
+                <p class="UserAccess-successMessage u-textCenter">Thanks! <br />Check your e-mail and verify account!</p>
+                <div class="UserAccess-constrainer">
+                    <a href="/accounts/login/" class="Button Button--beta">Login</a>
+                    <p class="UserAccess-resendVerification u-textRight">Didn’t get verification e-mail? Please
+                        contact us.</p>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+{% endblock %}

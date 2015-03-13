@@ -1,0 +1,64 @@
+{% extends 'ui/base.html' %}
+{% block body_class %}Page Page--login Page--stickyFooter{% endblock %}
+{% block title %}Login{% endblock %}
+{% block content %}
+
+    <header class="Header" role="banner">
+        <div class="Wrapper Wrapper--wide">
+            <h1 class="Header-title u-textCenter">
+                <a href="/"><i class="Header-logo Icon Icon--logo">WebCamp Zagreb 2015.</i></a>
+            </h1>
+        </div>
+    </header>
+
+    <main role="main" class="Page-content Aligner">
+        <div class="Wrapper Wrapper--narrow Aligner-item">
+            <section class="UserAccess UserAccess--login">
+                <div class="UserAccess-constrainer">
+
+                    <form action="." method="post" class="Form Form--beta">{% csrf_token %}
+
+                        <fieldset class="Form-fieldset">
+                            <legend class="Form-legend">Login</legend>
+
+                            <div class="Form-item">
+                                <label class="Form-label" for="">E-mail <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                <div class="Form-field">
+                                    <input type="text" name="login" class="Field Field--text" required="required"
+                                           {% if form.login.value %}value="{{ form.login.value }}"{% endif %} />
+                                </div>
+                            </div>
+
+                            <div class="Form-item">
+                                <label class="Form-label" for="">Password <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                <div class="Form-field">
+                                    <input type="password" name="password" class="Field Field--text"
+                                           required="required"/>
+                                </div>
+                            </div>
+
+                            <div class="Form-item">
+                                <label for="test1" class="Form-label Form-label--asField">
+                                    <input id="test1" type="checkbox" name="test" value="0" class="Field Field--radio" />
+                                    <span class="Form-labelCaption">Remember me</span>
+                                </label>
+                            </div>
+
+                            <div class="Form-actions">
+                                <button type="submit" class="Button Button--beta Form-action Form-action--submit">Login</button>
+                            </div>
+
+                            <div class="UserAccess-accessHelp u-textRight">
+                                <a href="#">Forgot password?</a>
+                            </div>
+
+                        </fieldset>
+
+                    </form>
+
+                </div>
+            </section>
+        </div>
+    </main>
+
+{% endblock %}

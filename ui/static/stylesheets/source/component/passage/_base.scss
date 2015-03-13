@@ -1,0 +1,49 @@
+/**
+ * =============================================================================
+ * Passage
+ * =============================================================================
+ */
+
+
+.Passage {
+
+    .left {
+        float:left; margin:0 1em 1em 0;
+    }
+
+    .right {
+        float:right; margin:0 0 1em 1em;
+    }
+
+    img {
+        vertical-align:baseline;
+    }
+
+    p, ul, ol, h1, h2, h3, h4 {
+        margin:1em 0;
+
+        &:first-child {
+            margin-top:0;
+        }
+
+        &:last-child {
+            margin-bottom:0;
+        }
+    }
+
+    ul, ol {
+        padding-left:2em;
+    }
+
+    ul {
+        list-style-type:disc;
+    }
+
+    ol {
+        list-style-type:decimal;
+    }
+
+    li {
+        list-style-type:inherit;
+    }
+}

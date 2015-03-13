@@ -1,0 +1,29 @@
+/**
+ * =============================================================================
+ * Field collection
+ * =============================================================================
+ */
+
+.FieldCollection {
+    overflow:hidden;
+    margin-top:-0.4em; margin-bottom:-0.4em;
+
+    &-item {
+        float:left;
+        width:percentage(1/2);
+        padding:0.4em 0.7em;
+
+        &:nth-child(2n+1) {
+            padding-left:0;
+        }
+
+        &:nth-child(2n+2) {
+            padding-right:0;
+        }
+    }
+
+    .Form-label,
+    .Form-labelCaption {
+        display:block;
+    }
+}

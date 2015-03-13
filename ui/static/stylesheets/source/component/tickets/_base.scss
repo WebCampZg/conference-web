@@ -1,0 +1,62 @@
+/**
+ * =============================================================================
+ * Tickets
+ * =============================================================================
+ */
+
+.Tickets {
+    position:relative;
+    background:url(/static/images/hero-tickets.jpg);
+    background-size:cover;
+    background-position:50% 50%;
+    margin-top:calc(-130px - 4em);
+    padding:10em 1rem 1em;
+    text-align:center;
+    color:#fff;
+
+    &-title {
+        margin-bottom:0.5em;
+        font-size:2em; line-height:1.1;
+    }
+
+    &-cta {
+        display:inline-block;
+        border:1px solid #fff;
+        margin:1em auto 1em;
+        padding:0 1em;
+        border-radius:40px;
+        font-size:2.3em; line-height:70px;
+        text-align:center; text-decoration:none;
+        color:#fff;
+        transition:all 0.07s ease-in-out;
+        transition-property:background, color;
+
+        &:hover {
+            color:$color-alpha;
+            background:#fff;
+            text-decoration:none;
+        }
+    }
+
+    &-sponsorLink {
+        margin-bottom:2em;
+
+        a {
+            color:#fff;
+        }
+    }
+
+    @media screen and (min-width:$bp-beta) {
+        margin-top:calc(-100px - 4em);
+        padding-bottom:76px;
+
+        &:after {
+            content:'';
+            position:absolute; bottom:-1px; left:50%;
+            transform:translateX(-50%);
+            width:164px; height:76px;
+            background-image:inline('/static/images/icons/pixels-middle.png');
+            background-size:cover;
+        }
+    }
+}

@@ -1,0 +1,32 @@
+/**
+ * =============================================================================
+ * User access (login, registration)
+ * =============================================================================
+ */
+
+.UserAccess {
+    margin:1.5rem 0;
+    padding:0 1rem;
+    font-size:0.9em;
+    color:#fff;
+
+    .Form-legend {
+        width:4.5em;
+    }
+
+    .Button {
+        width:100%;
+    }
+
+    &-constrainer {
+
+        @media screen and (min-width:500px) {
+            max-width:380px;
+            margin-left:auto; margin-right:auto;
+        }
+    }
+
+    &-accessHelp {
+        margin-top:1em;
+    }
+}

@@ -1,0 +1,67 @@
+/**
+ * =============================================================================
+ * Intro
+ * =============================================================================
+ */
+
+.Intro {
+    position:relative; z-index:10;
+    margin-top:-80px; margin-bottom:4em;
+
+    &:before {
+        content:'';
+        position:absolute; left:0; right:0; top:80px; bottom:80px;
+        background:$color-alpha;
+    }
+
+    &-title {
+        color:$color-gamma;
+        font-size:1.4em;
+    }
+
+    .Wrapper--narrow {
+        position:relative;
+        padding:1rem;
+        color:#ddd;
+        background:$color-alpha;
+
+        @media screen and (min-width:$bp-alpha) {
+            padding:2em;
+        }
+    }
+}
+
+/**
+ * Flair elements (pixels)
+ * -----------------------------------------------------------------------------
+ */
+
+.Intro {
+
+    .Wrapper--narrow {
+
+        @media screen and (min-width:1040px) {
+
+            &:before,
+            &:after {
+                content:'';
+                position:absolute; top:-30px;
+                background-size:cover;
+            }
+
+            &:before {
+                right:100%;
+                width:155px; height:110px;
+                margin-right:-43px;
+                background-image:inline('/static/images/icons/pixels-left.svg');
+            }
+
+            &:after {
+                left:100%;
+                width:141px; height:110px;
+                margin-left:-33px;
+                background-image:inline('/static/images/icons/pixels-right.svg');
+            }
+        }
+    }
+}

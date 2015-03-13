@@ -1,5 +1,5 @@
 from django import forms
-from cfp.models import AudienceSkillLevel, PaperApplication
+from cfp.models import PaperApplication
 from django.utils.translation import ugettext as _
 
 

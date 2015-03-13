@@ -1,0 +1,41 @@
+/**
+ * =============================================================================
+ * Globals
+ * =============================================================================
+ */
+
+html {
+    line-height:1.5;
+}
+
+html, select, button,
+input, textarea {
+    font-size:100%; font-family:Lato, sans-serif;
+    color:$color-base;
+}
+
+abbr[title] {
+    border-bottom:0;
+}
+
+body {
+    background:$color-gray-alpha;
+
+    @media screen and (min-width:$bp-alpha) {
+        border:10px solid #fff;
+    }
+
+    @media screen and (min-width:$bp-beta) {
+        border-width:20px;
+    }
+}
+
+a {
+    display:inline-block;
+    color:$color-gamma;
+    text-decoration:none;
+
+    &:hover {
+        text-decoration:underline;
+    }
+}

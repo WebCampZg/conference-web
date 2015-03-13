@@ -1,0 +1,54 @@
+/**
+ * =============================================================================
+ * Hero images
+ * =============================================================================
+ */
+
+.Hero {
+    position:relative;
+    overflow:hidden;
+    padding-bottom:100px;
+
+    @media screen and (min-width:$bp-alpha) {
+        padding-bottom:120px;
+    }
+
+    @media screen and (min-width:$bp-beta) {
+        padding-bottom:150px;
+    }
+
+    &:before {
+        content:'';
+        position:absolute; left:-10px; top:-10px; right:-10px; bottom:-10px;
+        background-repeat:no-repeat;
+        background-position:50% 50%;
+        background-size:cover;
+        filter:blur(3px);
+        transition:filter 0.3s ease-in-out;
+    }
+
+    &:hover {
+
+        &:before {
+            filter:blur(0px);
+        }
+    }
+
+    &-inner {
+        position:relative; z-index:10;
+    }
+
+    &--main {
+
+        &:before {
+            background-image:url('/static/images/hero-main.jpg');
+        }
+    }
+
+    &--cfp {
+
+        &:before {
+            background-image:url('/static/images/hero-cfp.jpg');
+        }
+    }
+}

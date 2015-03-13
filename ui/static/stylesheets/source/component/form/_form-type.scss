@@ -1,0 +1,71 @@
+/**
+ * =============================================================================
+ * Form, standard
+ * =============================================================================
+ */
+
+.Form--alpha {
+
+}
+
+/**
+ * =============================================================================
+ * Form, light on dark
+ * =============================================================================
+ */
+
+.Form--beta {
+
+    a {
+        color:#fff;
+
+        &:hover,
+        &:focus {
+            color:$color-gamma;
+        }
+    }
+
+    .Form {
+
+        &-legend {
+            border-bottom-color:#fff;
+            color:#fff;
+        }
+
+        &-label {
+            color:#fff;
+        }
+    }
+
+    .Field {
+        border-color:#fff;
+        transition:box-shadow 0.15s ease-in-out;
+
+        &:focus {
+            box-shadow:0 0 0 5px rgba(#fff, 0.2);
+        }
+    }
+
+    .Form-label--asField {
+
+        .Field {
+
+            &:checked + .Form-labelCaption {
+                color:$color-alpha;
+                background:#fff;
+            }
+        }
+
+        .Form-labelCaption {
+            border-color:#fff;
+            background:transparent;
+        }
+    }
+
+    .VanityField {
+
+        &:before {
+            left:0; top:0; bottom:0;
+        }
+    }
+}

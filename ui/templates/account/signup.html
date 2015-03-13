@@ -1,0 +1,114 @@
+{% extends 'ui/base.html' %}
+{% block title %}Sign Up{% endblock %}
+{% block body_class %}Page Page--login Page--stickyFooter{% endblock %}
+{% block content %}
+    <header class="Header" role="banner">
+        <div class="Wrapper Wrapper--wide">
+            <h1 class="Header-title u-textCenter">
+                <a href="/"><i class="Header-logo Icon Icon--logo">WebCamp Zagreb 2015.</i></a>
+            </h1>
+        </div>
+    </header>
+
+    <main role="main" class="Page-content Aligner">
+        <div class="Wrapper Wrapper--narrow Aligner-item">
+            <section class="UserAccess UserAccess--signup">
+                <form action="" method="post" class="Form Form--beta">{% csrf_token %}
+                    {{ form.non_field_errors }}
+                    {{ form.errors }}
+                    <fieldset class="Form-fieldset">
+                        <legend class="Form-legend">Sign Up</legend>
+
+                        <div class="UserAccess-grid">
+                            <div class="UserAccess-gridItem">
+
+                                <div class="Form-item">
+                                    <label class="Form-label" for="">E-mail address <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                    <div class="Form-field">
+                                        <input type="email" class="Field Field--text" required="required" name="email"
+                                               {% if form.email.value %}value="{{ form.email.value }}"{% endif %}/>
+                                    </div>
+                                </div>
+
+                                <div class="Form-item">
+                                    <label class="Form-label" for="">First name <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                    <div class="Form-field">
+                                        <input type="text" name="first_name" class="Field Field--text" required="required"
+                                               {% if form.first_name.value %}value="{{ form.first_name.value }}"{% endif %}/>
+                                    </div>
+                                </div>
+
+                                <div class="Form-item">
+                                    <label class="Form-label" for="">Last name <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                    <div class="Form-field">
+                                        <input type="text" name="last_name" class="Field Field--text" required="required"
+                                                {% if form.last_name.value %}value="{{ form.last_name.value }}"{% endif %}/>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="UserAccess-gridItem">
+
+                                <div class="Form-item">
+                                    <label class="Form-label" for="">T-shirt size <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                    <div class="Form-field">
+                                        <span class="Select">
+                                            <select class="Field Field--select" name="tshirt_size" required="required"
+                                                {% if form.tshirt_size.value %}value="{{ form.tshirt_size.value }}"{% endif %}/>>
+                                                {% for value, text in form.tshirt_size.field.choices %}
+                                                    <option value="{{ value }}">{{ text }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="Form-item">
+                                    <label class="Form-label" for="">Twitter handle <span class="Form-shortDesc">(without the @)</span></label>
+                                    <div class="Form-field">
+                                        <div class="VanityField VanityField--twitter">
+                                            <input type="text" name="twitter" class="Field Field--text"
+                                                    {% if form.twitter.value %}value="{{ form.twitter.value }}"{% endif %}/>/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="Form-item">
+                                    <label class="Form-label" for="">GitHub username <span class="Form-shortDesc">(not URL, only username)</span></label>
+                                    <div class="Form-field">
+                                        <div class="VanityField VanityField--github">
+                                            <input type="text" name="github" class="Field Field--text"
+                                                   {% if form.github.value %}value="{{ form.github.value }}"{% endif %}/>/>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="Form-item">
+                                    <label class="Form-label" for="">Password <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                    <div class="Form-field">
+                                        <input type="password" name="password1" class="Field Field--text" required="required"/>
+                                    </div>
+                                </div>
+
+                                <div class="Form-item">
+                                    <label class="Form-label" for="">Repeated password <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                    <div class="Form-field">
+                                        <input type="password" name="password2" class="Field Field--text" required="required"/>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="Form-actions">
+                            <button type="submit" class="Button Button--beta Form-action Form-action--submit">Sign Up</button>
+                        </div>
+
+                    </fieldset>
+
+                </form>
+
+            </section>
+        </div>
+    </main>
+{% endblock %}

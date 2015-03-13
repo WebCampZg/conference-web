@@ -1,0 +1,49 @@
+/**
+ * Global styling reset, use with and after Normalize and with caution!
+ * Goes best with screen display.
+ */
+
+/**
+ * Reset styling for all elements.
+ */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, hr,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+button, textarea, select,
+article, aside, figure, footer, header, main,
+hgroup, menu, nav, section, menu,
+time, mark, audio, video {
+    margin:0; padding:0; border:0;
+}
+
+/**
+ * Differentiate styling for input elements.
+ *
+ * We won’t reset any border for input elements since default styling is very
+ * sensitive to OS-specific settings.
+ *
+ * Be sure to change it for your project-specific styles!
+ */
+input {
+    margin:0; padding:0;
+}
+
+/**
+ * Reset leading for `html`.
+ */
+html {
+    line-height:1;
+}
+
+/**
+ * Remove styling for lists.
+ */
+ol, ul, li {
+    list-style:none;
+}

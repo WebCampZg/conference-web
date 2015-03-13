@@ -10,7 +10,7 @@ from cfp.models import Applicant, PaperApplication, CallForPaper
 class PaperApplicationBaseView(LoginRequiredMixin):
     model = PaperApplication
     form_class = PaperApplicationForm
-    template_name = 'cfp/paperapplication_form.html'
+    template_name = 'cfp/cfp_form.html'
 
     def dispatch(self, request, *args, **kwargs):
         self.cfp = CallForPaper.objects.get(pk=kwargs['cfp_id'])

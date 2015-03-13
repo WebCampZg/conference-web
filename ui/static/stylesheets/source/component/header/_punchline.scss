@@ -1,0 +1,77 @@
+/**
+ * =============================================================================
+ * Punchline
+ * =============================================================================
+ */
+
+.Punchline {
+    margin-top:2em;
+    padding:0 1rem;
+    font-size:0.6em;
+    text-align:center;
+
+    &-info {
+        font-size:3em; font-weight:500; line-height:1.1;
+        letter-spacing:-0.05em;
+    }
+
+    @media screen and (min-width:$bp-alpha) {
+        margin-top:4em;
+    }
+
+    @media screen and (min-width:$bp-beta) {
+        font-size:0.8em;
+    }
+
+    @media screen and (min-width:$bp-gamma) {
+        font-size:1em;
+    }
+}
+
+/**
+ * Punchline event info
+ * -----------------------------------------------------------------------------
+ */
+
+.Punchline {
+
+    &-event {
+        position:relative;
+        margin-top:2.3em;
+        line-height:1.2;
+
+        &:before {
+            content:'';
+            position:absolute; bottom:100%; left:50%;
+            transform:translateX(-50%);
+            width:180px; height:1px;
+            margin-bottom:0.5em;
+            background:#fff;
+        }
+    }
+
+    &-date {
+        white-space:nowrap;
+        font-size:2.8em;
+        letter-spacing:-0.05em;
+
+        @media screen and (min-width:$bp-alpha) {
+            font-size:3.3em;
+        }
+    }
+
+    &-location {
+        margin-top:0.6em;
+        font-size:1.5em;
+
+        @media screen and (min-width:$bp-beta) {
+            margin-top:0.2em;
+        }
+    }
+
+    &-sep {
+        margin:0 0.3em;
+        opacity:0.5;
+        letter-spacing:-0.05em;
+    }
+}

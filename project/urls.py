@@ -5,7 +5,8 @@ from people.views import UserProfileView
 
 urlpatterns = patterns('',
 
-    url(r'^', include('ui.urls')),
+    url(r'^$', 'ui.views.index'),
+    url(r'^signup/success/$', 'ui.views.signup_success'),
     url(r'^cfp/', include('cfp.urls')),
     url(r'^admin/', include(admin.site.urls)),
     (r'^accounts/', include('allauth.urls')),

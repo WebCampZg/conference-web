@@ -1,0 +1,59 @@
+/**
+ * =============================================================================
+ * Form
+ * =============================================================================
+ */
+
+.Form {
+    font-size:0.9em;
+
+    &-legend {
+        display:block; width:100%;
+        margin-bottom:0.8em;
+        font-size:1.9em; font-weight:700;
+        border-bottom:4px solid $color-alpha;
+        color:$color-alpha;
+
+        &:before {
+            content:'\003e\0020';
+        }
+
+        @media screen and (min-width:$bp-beta) {
+            font-size:2.5em;
+        }
+    }
+
+    &-item {
+        margin-bottom:1em;
+
+        &:last-child {
+            margin-bottom:0;
+        }
+    }
+
+    &-label {
+        display:inline-block;
+        margin-bottom:0.2em;
+        font-size:1.4em;
+        color:$color-alpha;
+    }
+
+    &-requiredFlag {
+        font-weight:700;
+        color:$color-gamma;
+    }
+
+    &-fieldDesc,
+    &-shortDesc {
+        font-size:80%; font-style:italic;
+    }
+
+    &-fieldDesc {
+        margin-bottom:0.7em;
+        color:$color-beta;
+    }
+
+    @media screen and (min-width:$bp-beta) {
+        font-size:1em;
+    }
+}

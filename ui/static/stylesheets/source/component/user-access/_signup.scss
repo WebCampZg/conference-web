@@ -1,0 +1,26 @@
+/**
+ * =============================================================================
+ * Signup form
+ * =============================================================================
+ */
+
+.UserAccess--signup {
+
+    @media screen and (min-width:$bp-gamma) {
+
+        .UserAccess {
+
+            &-grid {
+                display:flex;
+            }
+
+            &-gridItem {
+                flex:0 0 50%;
+
+                &:first-child {
+                    padding-right:1.5em;
+                }
+            }
+        }
+    }
+}

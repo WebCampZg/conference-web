@@ -1,0 +1,53 @@
+/**
+ * =============================================================================
+ * Icon
+ * =============================================================================
+ */
+
+.Icon {
+    @include Icon;
+}
+
+/**
+ * =============================================================================
+ * Logo
+ * =============================================================================
+ */
+
+.Icon--logo {
+    width:180px; height:181px;
+    background-image:inline('/static/images/svg/logo.svg');
+}
+
+/**
+ * =============================================================================
+ * Social icons
+ * =============================================================================
+ */
+
+.Icon {
+
+    &--social {
+        width:50px; height:50px;
+    }
+
+    &--facebook {
+        background-image:inline('/static/images/svg/facebook.svg');
+    }
+
+    &--twitter {
+        background-image:inline('/static/images/svg/twitter.svg');
+    }
+
+    &--github {
+        background-image:inline('/static/images/svg/github.svg');
+    }
+
+    &--googlePlus {
+        background-image:inline('/static/images/svg/google-plus.svg');
+    }
+
+    &--linkedin {
+        background-image:inline('/static/images/svg/linkedin.svg');
+    }
+}

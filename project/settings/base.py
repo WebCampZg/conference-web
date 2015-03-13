@@ -61,11 +61,12 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
+    'ui',
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
 
-    'ui',
     'people',
     'cfp',
 )
@@ -183,6 +184,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
