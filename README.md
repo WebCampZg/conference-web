@@ -7,9 +7,10 @@
 
 ### The Vagrant option
 
-First install Vagrant:
+First install Vagrant and Ansible:
 
 http://docs.vagrantup.com/v2/installation/
+http://docs.ansible.com/intro_installation.html#installing-the-control-machine
 
 Create the workspace and clone the web and devops repo
 
