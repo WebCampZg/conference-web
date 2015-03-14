@@ -5,6 +5,8 @@ from django.utils.translation import ugettext_lazy as _
 
 from tinymce.models import HTMLField
 
+from .choices import TALK_DURATIONS
+
 
 class CallForPaper(models.Model):
     title = models.CharField(max_length=50)
@@ -52,6 +54,12 @@ class PaperApplication(models.Model):
                                 verbose_name=_('Abstract'))
     skill_level = models.ForeignKey(AudienceSkillLevel, verbose_name=_('Audience level'),
                                     help_text=_('Which skill level is this talk most appropriate for?'))
+    duration = models.CharField(
+            choices=TALK_DURATIONS,
+            max_length=255,
+            default=TALK_DURATIONS.NOT_SPECIFIED,
+            verbose_name=_('Talk Duration Slot'),
+            help_text=_('What talk duration slot would you like?'))
 
     def __unicode__(self):
         return u'{0} - {1}'.format(self.applicant.user.get_full_name(), self.title)
