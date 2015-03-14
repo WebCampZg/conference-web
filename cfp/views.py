@@ -2,7 +2,6 @@ from braces.views._access import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponse, Http404
-from django.shortcuts import get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView
 from cfp.forms import PaperApplicationForm
 from cfp.models import Applicant, PaperApplication, CallForPaper
@@ -14,8 +13,9 @@ class PaperApplicationBaseView(LoginRequiredMixin):
     template_name = 'cfp/cfp_form.html'
 
     def dispatch(self, request, *args, **kwargs):
-        self.cfp = get_object_or_404(CallForPaper, pk=kwargs.get('pk'))
+        self.cfp = CallForPaper.objects.get(pk=kwargs.get('pk') or 1)
         return super(PaperApplicationBaseView, self).dispatch(request, *args, **kwargs)
+
 
     def get_context_data(self, **kwargs):
         c = super(PaperApplicationBaseView, self).get_context_data(**kwargs)
