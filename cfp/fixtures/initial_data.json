@@ -19,5 +19,16 @@
         "fields": {
             "name": "Advanced"
         }
+    },
+    {
+    "fields": {
+        "begin_date": "2015-03-16",
+        "description": "<ul>\r\n<li>Conference takes place on Saturday, 3rd of October, in Zagreb.</li>\r\n<li>Talks are either 25 or 45 minutes, including 5 minutes for Q&amp;A.</li>\r\n<li>Prior experience is not a prerequisite, we welcome first timers.</li>\r\n<li>Talks must be in English.</li>\r\n<li>Multiple talk submissions are welcome.</li>\r\n</ul>\r\n<p><strong>Our speaker package includes:</strong></p>\r\n<ul>\r\n<li>Full conference pass</li>\r\n<li>2 complimentary hotel nights for speakers remote to the area</li>\r\n<li>Lunch and other activities included in the regular conference</li>\r\n<li>Speakers dinner on October 2nd</li>\r\n<li>A goodie bag with a speaker's T-shirt and other swag</li>\r\n</ul>",
+        "end_date": "2015-06-30",
+        "title": "CFP 2015"
+    },
+    "model": "cfp.callforpaper",
+    "pk": 1
     }
+
 ]
