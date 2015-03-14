@@ -63,6 +63,7 @@ INSTALLED_APPS = (
 
     'ui',
 
+    'tinymce',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -217,3 +218,25 @@ BASE_LOGGING = {
 
 LOGGING = BASE_LOGGING
 # TODO: add sentry for exception handling
+
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': "advanced",
+    'theme_advanced_toolbar_location': "top",
+    'theme_advanced_resizing': True,
+    'plugins': 'table,contextmenu,paste,autoresize,media,lists,style',
+    'paste_text_sticky': True,
+    'paste_text_sticky_default': True,
+    'paste_retain_style_properties': 'font-weight,font-style',  # preserve bold and italic text
+    'paste_remove_styles': True,
+    'paste_remove_styles_if_webkit': True,
+    'paste_text_linebreaktype': 'p',
+    'paste_remove_spans': True,
+    'paste_strip_class_attributes': True,
+    'content_css': STATIC_URL + 'admin/tinymce.css',
+    'theme_advanced_buttons1': str("style,bold,italic,underline,separator,"
+        "bullist,separator,separator,undo,redo,image,link"),
+    'theme_advanced_buttons2': "cleanup,lists,pasteword,table,contextmenu,media,code",
+    'theme_advanced_buttons3': "",
+}
+
+
