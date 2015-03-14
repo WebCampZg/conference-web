@@ -40,16 +40,7 @@
                         <fieldset class="Form-fieldset">
                             <legend class="Form-legend">Talk</legend>
 
-                            <div class="Form-item">
-                                <label class="Form-label" for="">Title <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
-                                <p class="Form-fieldDesc">
-                                    The title of your talk. Please keep it short and catchy.
-                                </p>
-                                <div class="Form-field">
-                                    <input type="text" class="Field Field--text" required="required" name="title"
-                                            {% if form.title.value %}value="{{ form.title.value }}"{% endif %}/>
-                                </div>
-                            </div>
+                            {% include "partials/form-field.html" with field=form.title %}
 
                             <div class="Form-item">
                                 <label class="Form-label" for="">What it’s about <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
