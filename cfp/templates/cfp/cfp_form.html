@@ -11,7 +11,7 @@
             </div>
             <div class="Punchline">
                 <div class="Wrapper Wrapper--narrow">
-                    <h2 class="Punchline-info">2015 Application form</h2>
+                    <h2 class="Punchline-info">{{ cfp_title }}</h2>
                 </div>
             </div>
         </div>
@@ -20,17 +20,10 @@
     <section class="Intro">
         <div class="Wrapper Wrapper--narrow">
             <div class="Passage">
-                <h2 class="Intro-title">Submit your talk for WebCamp Zagreb 2015.</h2>
+                <h2 class="Intro-title">Submit your talk for WebCamp Zagreb {{ current_year }}.</h2>
                 <div class="Intro-body">
-                    <ul>
-                        <li>Conference takes place on Saturday, 4th October 2014 in Zagreb.</li>
-                        <li>All talks are 25 minutes, including 5 minutes for Q&A.</li>
-                        <li>Prior experience is not a prerequisite, we welcome first timers.</li>
-                        <li>Talks may be in English or Croatian, but we’d be extra happy if you choose to speak in English.</li>
-                        <li>Multiple talk submissions are welcome.</li>
-                        <li>First 30 submissions get free tickets.</li>
-                    </ul>
-                    <p>For more details see the conference web site <a href="http://2015.webcampzg.org">http://2015.webcampzg.org</a>.</p>
+                    {{ cfp_description|safe }}
+    <p>For more details see the conference web site <a href="http://2015.webcampzg.org">http://2015.webcampzg.org</a>.</p>
                 </div>
             </div>
         </div>

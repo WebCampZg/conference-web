@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from braces.views._access import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
@@ -16,15 +18,17 @@ class PaperApplicationBaseView(LoginRequiredMixin):
         self.cfp = CallForPaper.objects.get(pk=kwargs.get('pk') or 1)
         return super(PaperApplicationBaseView, self).dispatch(request, *args, **kwargs)
 
-
     def get_context_data(self, **kwargs):
         c = super(PaperApplicationBaseView, self).get_context_data(**kwargs)
         c['cfp_active'] = self.cfp.is_active()
+        c['cfp_title'] = self.cfp.title
+        c['cfp_description'] = self.cfp.description
+        c['current_year'] = datetime.now().year
         return c
 
     def form_valid(self, form):
         if not self.cfp.is_active():
-            return HttpResponse('Cfp is not active', status=403)
+            return HttpResponse('CFP is not active anymore.', status=403)
         applicant = self._build_or_update_applicant(form)
         form.instance.applicant_id = applicant.pk
         form.instance.cfp_id = self.cfp.pk

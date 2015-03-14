@@ -3,10 +3,12 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
+from tinymce.models import HTMLField
+
 
 class CallForPaper(models.Model):
     title = models.CharField(max_length=50)
-    description = models.CharField(max_length=1024)
+    description = HTMLField()
     begin_date = models.DateField()
     end_date = models.DateField(blank=True, null=True)
 
