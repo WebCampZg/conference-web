@@ -34,7 +34,7 @@
  * -----------------------------------------------------------------------------
  */
 
-.Button--alpha {
+@mixin Button--alpha {
     border:1px solid $color-alpha;
     color:#fff;
     background:$color-alpha;
@@ -43,6 +43,10 @@
     &:focus {
         background:$color-gamma;
     }
+}
+
+.Button--alpha {
+    @include Button--alpha;
 }
 
 .Button--beta {

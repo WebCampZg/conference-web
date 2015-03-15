@@ -47,11 +47,11 @@
         }
     }
 
-    .Form-label--asField {
+    .Togglable {
 
         > input {
 
-            &:checked + .Form-labelCaption {
+            &:checked + .Togglable-caption {
                 color:$color-alpha;
                 background:#fff;
             }
@@ -59,19 +59,19 @@
             &:hover,
             &:focus {
 
-                & + .Form-labelCaption {
+                & + .Togglable-caption {
                     border-color:#fff;
                     background:rgba(#fff, 0.2);
                 }
 
-                &:checked + .Form-labelCaption {
+                &:checked + .Togglable-caption {
                     color:$color-alpha;
                     background:#fff;
                 }
             }
         }
 
-        .Form-labelCaption {
+        .Togglable-caption {
             border-color:#fff;
             background:transparent;
         }

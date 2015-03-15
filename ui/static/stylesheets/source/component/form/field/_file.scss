@@ -1,0 +1,30 @@
+/**
+ * =============================================================================
+ * File input
+ * =============================================================================
+ */
+
+@mixin field-file-base {
+    border:none; border-radius:0;
+    box-shadow:none;
+    font-size:inherit; font-family:inherit;
+    cursor:pointer;
+    outline:0;
+    -webkit-appearance:none;
+}
+
+.Field--file {
+
+    > input {
+        @include field-file-base;
+        @include field-base;
+        @include field-text-base;
+
+        &::-webkit-file-upload-button {
+            @include field-file-base;
+            @include Button--alpha;
+            margin:calc(-#{map-get($field-base-dimensions, spacing)} - 1px); margin-right:0;
+            padding:map-get($field-base-dimensions, spacing);
+        }
+    }
+}

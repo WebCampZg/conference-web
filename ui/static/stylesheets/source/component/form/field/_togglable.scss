@@ -4,29 +4,28 @@
  * =============================================================================
  */
 
-.Form-label--asField {
+.Togglable {
     position:relative;
-    font-size:1em;
-    margin-bottom:0;
+    display:inline-block;
+    color:$color-alpha;
 
     > input {
         position:absolute; left:0; top:0;
         opacity:0;
 
-        &:checked + .Form-labelCaption {
+        &:checked + .Togglable-caption {
             color:#fff;
             background:$color-alpha;
         }
 
-        &:hover + .Form-labelCaption,
-        &:focus + .Form-labelCaption {
+        &:hover + .Togglable-caption,
+        &:focus + .Togglable-caption {
             border-color:$color-gamma;
         }
     }
 
-    .Form-labelCaption {
+    &-caption {
         @include field-base;
-        display:block;
         text-align:center;
     }
 }
