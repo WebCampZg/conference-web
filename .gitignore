@@ -62,3 +62,6 @@ docs/_build
 
 # vagrant
 /.vagrant
+
+# node
+/node_modules
