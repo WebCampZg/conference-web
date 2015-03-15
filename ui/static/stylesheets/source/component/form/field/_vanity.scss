@@ -9,7 +9,7 @@
 
     &:before,
     &:after {
-        position:absolute; left:0; top:0; bottom:0;
+        position:absolute; left:0; top:0; bottom:0; z-index:10;
         width:50px;
         pointer-events:none;
     }
@@ -28,6 +28,18 @@
 
     .Field > input {
         padding-left:calc(50px + #{map-get($field-base-dimensions, spacing)});
+    }
+
+    .Field.is-invalid {
+
+        > input {
+            padding-left:calc(50px + #{map-get($field-base-dimensions, spacing)} + 10px);
+        }
+
+        &:before {
+            top:0; bottom:0; left:0;
+            margin-left:50px;
+        }
     }
 }
 

@@ -3,13 +3,17 @@
 {% else %}
 <div class="Form-item">
     <label class="Form-label" for="{{ field.id }}">{{ field.label }} {% if field.field.required %}<abbr class="Form-requiredFlag" title="Required field">*</abbr>{% endif %}</label>
+    {% if field.help_text %}
     <p class="Form-fieldDesc">
         {{ field.help_text|safe }}
     </p>
+    {% endif %}
     <div class="Form-field">
+        {% if vanity_field %}<div class="VanityField VanityField--{{ vanity_field }}">{% endif %}
         <div class="Field Field--{{ field_type }} {% if field.errors %} is-invalid {% endif %}">
             {{ field }}
         </div>
+        {% if vanity_field %}</div>{% endif %}
         {% for error in field.errors %}
             <p class="Form-fieldError">{{ error }}</p>
         {% endfor %}

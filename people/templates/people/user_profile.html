@@ -13,9 +13,42 @@
     <main role="main" class="Page-content Aligner">
         <div class="Wrapper Wrapper--narrow Aligner-item">
             <section class="UserAccess UserAccess--signup">
+                <form method="post" class="Form Form--beta">{% csrf_token %}
+                    <fieldset class="Form-fieldset">
+                        <legend class="Form-legend">Profile</legend>
 
-                {% include "partials/form.html" with form=form %}
+                        {% if form.errors %}
+                        <div class="Form-errors">
+                            <div class="Passage">
+                                <p>Please fix the errors below:</p>
+                                {{form.non_field_errors}}
+                            </div>
+                        </div>
+                        {% endif %}
 
+                        <div class="UserAccess-grid">
+                            <div class="UserAccess-gridItem">
+
+                                {% include "partials/form-field.html" with field=form.email field_type="text" %}
+                                {% include "partials/form-field.html" with field=form.first_name field_type="text" %}
+                                {% include "partials/form-field.html" with field=form.last_name field_type="text" %}
+
+                            </div>
+                            <div class="UserAccess-gridItem">
+
+                                {% include "partials/form-field.html" with field=form.tshirt_size field_type="text" %}
+                                {% include "partials/form-field.html" with field=form.github field_type="text" vanity_field="github" %}
+                                {% include "partials/form-field.html" with field=form.twitter field_type="text" vanity_field="twitter" %}
+
+                            </div>
+                        </div>
+
+                        <div class="Form-actions">
+                            <button type="submit" class="Button Button--alpha Form-action Form-action--submit">Submit</button>
+                        </div>
+
+                    </fieldset>
+                </form>
             </section>
         </div>
     </main>
