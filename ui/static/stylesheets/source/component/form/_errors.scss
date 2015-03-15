@@ -1,0 +1,13 @@
+/**
+ * =============================================================================
+ * Form errors
+ * =============================================================================
+ */
+
+.Form-errors {
+    margin-bottom:1em;
+    padding:1em;
+    font-size:1.1em;
+    border:1px solid darken($color-gamma, 10%);
+    background:rgba($color-gamma, 0.6);
+}

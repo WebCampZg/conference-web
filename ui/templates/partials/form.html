@@ -1,10 +1,12 @@
 <form method="post" enctype="multipart/form-data" class="Form">{% csrf_token %}
 
     {% if form.errors %}
-        <div class="message message-form message-danger">
+    <div class="Form-errors">
+        <div class="Passage">
             <p>Please fix the errors below:</p>
-            <p>{{form.non_field_errors}}</p>
+            {{form.non_field_errors}}
         </div>
+    </div>
     {% endif %}
 
     <div class="CFP-grid">

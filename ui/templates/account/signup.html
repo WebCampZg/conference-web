@@ -14,10 +14,15 @@
         <div class="Wrapper Wrapper--narrow Aligner-item">
             <section class="UserAccess UserAccess--signup">
                 <form action="" method="post" class="Form Form--beta">{% csrf_token %}
-                    {{ form.non_field_errors }}
-                    {{ form.errors }}
                     <fieldset class="Form-fieldset">
                         <legend class="Form-legend">Sign Up</legend>
+
+                        <div class="Form-errors">
+                            <div class="Passage">
+                                {{ form.non_field_errors }}
+                                {{ form.errors }}
+                            </div>
+                        </div>
 
                         <div class="UserAccess-grid">
                             <div class="UserAccess-gridItem">
@@ -49,6 +54,20 @@
                                             <input type="text" id="last_name" name="last_name" required="required"
                                                     {% if form.last_name.value %}value="{{ form.last_name.value }}"{% endif %}/>
                                         </div>
+                                    </div>
+                                </div>
+
+                                <div class="Form-item">
+                                    <label class="Form-label" for="password1">Password <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                    <div class="Form-field">
+                                        <div class="Field Field--text"><input type="password" id="password1" name="password1" required="required"/></div>
+                                    </div>
+                                </div>
+
+                                <div class="Form-item">
+                                    <label class="Form-label" for="password2">Repeated password <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                    <div class="Form-field">
+                                        <div class="Field Field--text"><input type="password" id="password2" name="password2" required="required"/></div>
                                     </div>
                                 </div>
 
@@ -92,20 +111,6 @@
                                                        {% if form.github.value %}value="{{ form.github.value }}"{% endif %}/>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <div class="Form-item">
-                                    <label class="Form-label" for="password1">Password <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
-                                    <div class="Form-field">
-                                        <div class="Field Field--text"><input type="password" id="password1" name="password1" required="required"/></div>
-                                    </div>
-                                </div>
-
-                                <div class="Form-item">
-                                    <label class="Form-label" for="password2">Repeated password <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
-                                    <div class="Form-field">
-                                        <div class="Field Field--text"><input type="password" id="password2" name="password2" required="required"/></div>
                                     </div>
                                 </div>
 
