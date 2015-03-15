@@ -1,0 +1,8 @@
+{% for sponsor in sponsors %}
+
+Name: <a href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">{{ sponsor.name }}</a> <br />
+About: {{ sponsor.about|safe }}
+<hr />
+
+{% endfor %}
+

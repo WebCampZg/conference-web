@@ -1,0 +1,10 @@
+{% for job in jobs %}
+
+Title: {{ job.title }}<br />
+About: {{ job.text|safe }}
+URL: {{ job.url }} <br />
+By: {{ job.sponsor }}
+<hr />
+
+{% endfor %}
+
