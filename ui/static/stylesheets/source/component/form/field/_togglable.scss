@@ -1,0 +1,32 @@
+/**
+ * =============================================================================
+ * Togglable field (checkbox/radio)
+ * =============================================================================
+ */
+
+.Form-label--asField {
+    position:relative;
+    font-size:1em;
+    margin-bottom:0;
+
+    .Field {
+        position:absolute; left:0; top:0;
+        opacity:0;
+
+        &:checked + .Form-labelCaption {
+            color:#fff;
+            background:$color-alpha;
+        }
+
+        &:hover + .Form-labelCaption,
+        &:focus + .Form-labelCaption {
+            border-color:$color-gamma;
+        }
+    }
+
+    .Form-labelCaption {
+        @include field-base;
+        display:block;
+        text-align:center;
+    }
+}
