@@ -40,90 +40,12 @@
                         <fieldset class="Form-fieldset">
                             <legend class="Form-legend">Talk</legend>
 
-                            <div class="Form-item">
-                                <label class="Form-label" for="title">Title <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
-                                <p class="Form-fieldDesc">
-                                    The title of your talk. Please keep it short and catchy.
-                                </p>
-                                <div class="Form-field">
-                                    <div class="Field Field--text">
-                                        <input type="text" id="title" required="required" name="title"
-                                                {% if form.title.value %}value="{{ form.title.value }}"{% endif %}/>
-                                    </div>
-                                </div>
-                            </div>
+                            {% include "partials/form-field.html" with field=form.title  field_type="text" %}
+                            {% include "partials/form-field.html" with field=form.about  field_type="text" %}
+                            {% include "partials/form-field.html" with field=form.abstract  field_type="text" %}
+                            {% include "partials/form-field.html" with field=form.skill_level %}
 
-                            <div class="Form-item">
-                                <label class="Form-label" for="about">What it’s about <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
-                                <p class="Form-fieldDesc">
-                                    Describe your talk in 140 characters or less.
-                                </p>
-                                <div class="Form-field">
-                                    <div class="Field Field--text">
-                                        <textarea id="about" name="about" rows="5" required="required">{% if form.about.value %}value="{{ form.about.value }}"{% endif %}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="Form-item">
-                                <label class="Form-label" for="abstract">Abstract <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
-                                <p class="Form-fieldDesc">
-                                    You may go in more depth here. Up to 10 sentences, please.
-                                </p>
-                                <div class="Form-field">
-                                    <div class="Field Field--text">
-                                        <textarea rows="5" id="abstract" name="abstract" required="required">{% if form.abstract.value %}value="{{ form.abstract.value }}"{% endif %}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="Form-item">
-                                <span class="Form-label">Audience level <abbr class="Form-requiredFlag" title="Required field">*</abbr></span>
-                                <p class="Form-fieldDesc">
-                                    Which skill level is this talk most appropriate for?
-                                </p>
-                                <ul class="FieldCollection">
-                                    <li class="FieldCollection-item">
-                                        <label for="skill_level_1" class="Togglable">
-                                            <input id="skill_level_1" type="radio" name="skill_level" value="10" />
-                                            <span class="Togglable-caption">Elementary</span>
-                                        </label>
-                                    </li>
-                                    <li class="FieldCollection-item">
-                                        <label for="skill_level_2" class="Togglable">
-                                            <input id="skill_level_2" type="radio" name="skill_level" value="20" />
-                                            <span class="Togglable-caption">Intermediate</span>
-                                        </label>
-                                    </li>
-                                    <li class="FieldCollection-item">
-                                        <label for="skill_level_3" class="Togglable">
-                                            <input id="skill_level_3" type="radio" name="skill_level" value="30" />
-                                            <span class="Togglable-caption">Advanced</span>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="Form-item">
-                                <span class="Form-label">Talk Duration slot <abbr class="Form-requiredFlag" title="Required field">*</abbr></span>
-                                <p class="Form-fieldDesc">
-                                    What talk duration slot would like?
-                                </p>
-                                <ul class="FieldCollection">
-                                    <li class="FieldCollection-item">
-                                        <label for="duration_1" class="Togglable">
-                                            <input id="duration_1" type="radio" name="skill_level" value="25" />
-                                            <span class="Togglable-caption">25 Minutes</span>
-                                        </label>
-                                    </li>
-                                    <li class="FieldCollection-item">
-                                        <label for="duration_2" class="Togglable">
-                                            <input id="duration_2" type="radio" name="skill_level" value="45" />
-                                            <span class="Togglable-caption">45 Minutes</span>
-                                        </label>
-                                    </li>
-                                </ul>
-                            </div>
+                            {% include "partials/form-field.html" with field=form.duration %}
 
                         </fieldset>
 
@@ -133,52 +55,10 @@
                         <fieldset class="Form-fieldset">
                             <legend class="Form-legend">Speaker</legend>
 
-                            <div class="Form-item">
-                                <label class="Form-label" for="about_applicant">About you <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
-                                <p class="Form-fieldDesc">
-                                    Describe yourself in 140 characters or less.
-                                </p>
-                                <div class="Form-field">
-                                    <div class="Field Field--text">
-                                        <textarea id="about_applicant" rows="5" name="about_applicant" required="required">{% if form.about_applicant.value %}value="{{ form.about_applicant.value }}"{% endif %}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="Form-item">
-                                <label class="Form-label" for="biography">Biography <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
-                                <p class="Form-fieldDesc">
-                                    Who are you? Where have you worked? What are your professional interests? This will be used on our web site if you’re chosen. Up to 10 sentences.
-                                </p>
-                                <div class="Form-field">
-                                    <div class="Field Field--text">
-                                        <textarea id="biography" name="biography" rows="5" required="required">{% if form.biography.value %}value="{{ form.biography.value }}"{% endif %}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="Form-item">
-                                <label class="Form-label" for="speaker_experience">Speakers experiences <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
-                                <p class="Form-fieldDesc">
-                                    If you’ve given talks at other events, please list them
-                                </p>
-                                <div class="Form-field">
-                                    <div class="Field Field--text">
-                                        <textarea id="speaker_experience" name="speaker_experience" rows="5" required="required">{% if form.speaker_experience.value %}value="{{ form.speaker_experience.value }}"{% endif %}</textarea>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="Form-item">
-                                <label class="Form-label" for="id_image">Image <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
-                                <p class="Form-fieldDesc">
-                                    Please upload your picture which we may use for our website and materials. Make it
-                                    square, PNG and at least 400&#215;400px.
-                                </p>
-                                <div class="Form-field">
-                                    <div class="Field Field--file"><input id="id_image" name="image" type="file" required="required"></div>
-                                </div>
-                            </div>
+                            {% include "partials/form-field.html" with field=form.about_applicant field_type="text" %}
+                            {% include "partials/form-field.html" with field=form.biography field_type="text" %}
+                            {% include "partials/form-field.html" with field=form.speaker_experience field_type="text" %}
+                            {% include "partials/form-field.html" with field=form.image field_type="file" %}
 
                         </fieldset>
 
