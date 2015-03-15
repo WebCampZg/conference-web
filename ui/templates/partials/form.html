@@ -15,7 +15,7 @@
             <fieldset class="Form-fieldset">
                 {% for field in form  %}
 
-                    {% include "partials/form-field.html" with field=field %}
+                    {% include "partials/form-field.html" with field=field field_type="text" %}
 
                 {% endfor %}
             </fieldset>

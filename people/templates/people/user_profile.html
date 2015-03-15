@@ -13,19 +13,8 @@
     <main role="main" class="Page-content Aligner">
         <div class="Wrapper Wrapper--narrow Aligner-item">
             <section class="UserAccess UserAccess--signup">
-                <form method="post" class="Form Form--beta">{% csrf_token %}
-                    <fieldset class="Form-fieldset">
-                        <legend class="Form-legend">Profile</legend>
 
-                        <form method="post">
-                            {{ form.as_p }}
-                            <input type="submit" value="Save">
-                        </form>
-                        <a href="{% url 'account_change_password' %}">Change password</a>
-
-                    </fieldset>
-
-                </form>
+                {% include "partials/form.html" with form=form %}
 
             </section>
         </div>
