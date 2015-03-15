@@ -5,6 +5,7 @@
  */
 
 .Field--text {
+    position:relative;
 
     > input,
     > select,
@@ -18,6 +19,22 @@
 
         &::placeholder {
             color:$color-base;
+        }
+    }
+
+    &.is-invalid {
+
+        > input,
+        > select,
+        > textarea {
+            padding-left:calc(#{map-get($field-base-dimensions, spacing)} + 10px);
+        }
+
+        &:before {
+            content:'';
+            position:absolute; left:1px; top:1px; bottom:1px;
+            width:10px;
+            background:$color-delta;
         }
     }
 }

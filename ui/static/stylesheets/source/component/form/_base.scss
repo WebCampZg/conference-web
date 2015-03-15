@@ -53,6 +53,11 @@
         color:$color-beta;
     }
 
+    &-fieldError {
+        margin-top:0.2em;
+        color:$color-delta;
+    }
+
     @media screen and (min-width:$bp-beta) {
         font-size:1em;
     }

@@ -5,6 +5,7 @@
  */
 
 .Field--file {
+    position:relative;
 
     > input {
         @include field-file-base;
@@ -17,6 +18,23 @@
             @include Button--alpha;
             margin:calc(-#{map-get($field-base-dimensions, spacing)} - 1px); margin-right:0;
             padding:map-get($field-base-dimensions, spacing);
+        }
+    }
+
+    &.is-invalid {
+
+        > input {
+
+            &::-webkit-file-upload-button {
+                padding-left:calc(#{map-get($field-base-dimensions, spacing)} + 10px);
+            }
+        }
+
+        &:before {
+            content:'';
+            position:absolute; left:1px; top:1px; bottom:1px;
+            width:10px;
+            background:$color-delta;
         }
     }
 }
