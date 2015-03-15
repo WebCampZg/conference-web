@@ -23,26 +23,32 @@
                             <div class="UserAccess-gridItem">
 
                                 <div class="Form-item">
-                                    <label class="Form-label" for="">E-mail address <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                    <label class="Form-label" for="email">E-mail address <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
                                     <div class="Form-field">
-                                        <input type="email" class="Field Field--text" required="required" name="email"
-                                               {% if form.email.value %}value="{{ form.email.value }}"{% endif %}/>
+                                        <div class="Field Field--text">
+                                            <input type="email" id="email" required="required" name="email"
+                                                   {% if form.email.value %}value="{{ form.email.value }}"{% endif %}/>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="Form-item">
-                                    <label class="Form-label" for="">First name <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                    <label class="Form-label" for="first_name">First name <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
                                     <div class="Form-field">
-                                        <input type="text" name="first_name" class="Field Field--text" required="required"
-                                               {% if form.first_name.value %}value="{{ form.first_name.value }}"{% endif %}/>
+                                        <div class="Field Field--text">
+                                            <input type="text" id="first_name" name="first_name" required="required"
+                                                   {% if form.first_name.value %}value="{{ form.first_name.value }}"{% endif %}/>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="Form-item">
-                                    <label class="Form-label" for="">Last name <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                    <label class="Form-label" for="last_name">Last name <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
                                     <div class="Form-field">
-                                        <input type="text" name="last_name" class="Field Field--text" required="required"
-                                                {% if form.last_name.value %}value="{{ form.last_name.value }}"{% endif %}/>
+                                        <div class="Field Field--text">
+                                            <input type="text" id="last_name" name="last_name" required="required"
+                                                    {% if form.last_name.value %}value="{{ form.last_name.value }}"{% endif %}/>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -50,50 +56,56 @@
                             <div class="UserAccess-gridItem">
 
                                 <div class="Form-item">
-                                    <label class="Form-label" for="">T-shirt size <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                    <label class="Form-label" for="tshirt_size">T-shirt size <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
                                     <div class="Form-field">
-                                        <span class="Select">
-                                            <select class="Field Field--select" name="tshirt_size" required="required"
-                                                {% if form.tshirt_size.value %}value="{{ form.tshirt_size.value }}"{% endif %}/>>
-                                                {% for value, text in form.tshirt_size.field.choices %}
-                                                    <option value="{{ value }}">{{ text }}</option>
-                                                {% endfor %}
-                                            </select>
-                                        </span>
+                                        <div class="Select">
+                                            <div class="Field Field--text">
+                                                <select id="tshirt_size" name="tshirt_size" required="required"
+                                                    {% if form.tshirt_size.value %}value="{{ form.tshirt_size.value }}"{% endif %}/>
+                                                    {% for value, text in form.tshirt_size.field.choices %}
+                                                        <option value="{{ value }}">{{ text }}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="Form-item">
-                                    <label class="Form-label" for="">Twitter handle <span class="Form-shortDesc">(without the @)</span></label>
+                                    <label class="Form-label" for="twitter">Twitter handle <span class="Form-shortDesc">(without the @)</span></label>
                                     <div class="Form-field">
                                         <div class="VanityField VanityField--twitter">
-                                            <input type="text" name="twitter" class="Field Field--text"
-                                                    {% if form.twitter.value %}value="{{ form.twitter.value }}"{% endif %}/>/>
+                                            <div class="Field Field--text">
+                                                <input type="text" id="twitter" name="twitter"
+                                                        {% if form.twitter.value %}value="{{ form.twitter.value }}"{% endif %}/>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="Form-item">
-                                    <label class="Form-label" for="">GitHub username <span class="Form-shortDesc">(not URL, only username)</span></label>
+                                    <label class="Form-label" for="github">GitHub username <span class="Form-shortDesc">(not URL, only username)</span></label>
                                     <div class="Form-field">
                                         <div class="VanityField VanityField--github">
-                                            <input type="text" name="github" class="Field Field--text"
-                                                   {% if form.github.value %}value="{{ form.github.value }}"{% endif %}/>/>
+                                            <div class="Field Field--text">
+                                                <input type="text" id="github" name="github"
+                                                       {% if form.github.value %}value="{{ form.github.value }}"{% endif %}/>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="Form-item">
-                                    <label class="Form-label" for="">Password <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                    <label class="Form-label" for="password1">Password <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
                                     <div class="Form-field">
-                                        <input type="password" name="password1" class="Field Field--text" required="required"/>
+                                        <div class="Field Field--text"><input type="password" id="password1" name="password1" required="required"/></div>
                                     </div>
                                 </div>
 
                                 <div class="Form-item">
-                                    <label class="Form-label" for="">Repeated password <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                    <label class="Form-label" for="password2">Repeated password <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
                                     <div class="Form-field">
-                                        <input type="password" name="password2" class="Field Field--text" required="required"/>
+                                        <div class="Field Field--text"><input type="password" id="password2" name="password2" required="required"/></div>
                                     </div>
                                 </div>
 

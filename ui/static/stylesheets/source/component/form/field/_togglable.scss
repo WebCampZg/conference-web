@@ -1,0 +1,31 @@
+/**
+ * =============================================================================
+ * Togglable field (checkbox/radio)
+ * =============================================================================
+ */
+
+.Togglable {
+    position:relative;
+    display:inline-block;
+    color:$color-alpha;
+
+    > input {
+        position:absolute; left:0; top:0;
+        opacity:0;
+
+        &:checked + .Togglable-caption {
+            color:#fff;
+            background:$color-alpha;
+        }
+
+        &:hover + .Togglable-caption,
+        &:focus + .Togglable-caption {
+            border-color:$color-gamma;
+        }
+    }
+
+    &-caption {
+        @include field-base;
+        text-align:center;
+    }
+}

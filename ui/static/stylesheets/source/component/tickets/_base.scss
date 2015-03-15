@@ -6,7 +6,7 @@
 
 .Tickets {
     position:relative;
-    background:url(/static/images/hero-tickets.jpg);
+    background:url('/static/images/hero-tickets.jpg');
     background-size:cover;
     background-position:50% 50%;
     margin-top:calc(-130px - 4em);
@@ -23,9 +23,9 @@
         display:inline-block;
         border:1px solid #fff;
         margin:1em auto 1em;
-        padding:0 1em;
+        padding:0.3em 1.5em;
         border-radius:40px;
-        font-size:2.3em; line-height:70px;
+        font-size:2.3em; font-weight:700;
         text-align:center; text-decoration:none;
         color:#fff;
         transition:all 0.07s ease-in-out;
@@ -55,7 +55,7 @@
             position:absolute; bottom:-1px; left:50%;
             transform:translateX(-50%);
             width:164px; height:76px;
-            background-image:inline('/static/images/icons/pixels-middle.png');
+            background-image:inline('/static/images/pixels-middle.png');
             background-size:cover;
         }
     }

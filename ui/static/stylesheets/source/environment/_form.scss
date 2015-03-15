@@ -1,0 +1,43 @@
+/**
+ * =============================================================================
+ * Form
+ * =============================================================================
+ */
+
+$field-base-dimensions: (
+    spacing: 0.8em,
+    font-size: 1.1em
+);
+
+@mixin field-base {
+    display:block;
+    padding:map-get($field-base-dimensions, spacing);
+    font-size:map-get($field-base-dimensions, font-size);
+    border:1px solid $color-alpha; border-radius:0;
+    background:#fff;
+    transition:all 0.07s ease-in-out;
+    transition-property:border-color, background, color;
+    outline:0;
+
+    &:focus {
+        border-color:$color-gamma;
+    }
+}
+
+@mixin field-text-base {
+    width:100%;
+    -webkit-appearance:none;
+
+    @media screen and (max-width:$bp-alpha - 1) {
+        font-size:1rem;
+    }
+}
+
+@mixin field-file-base {
+    border:none; border-radius:0;
+    box-shadow:none;
+    font-size:inherit; font-family:inherit;
+    cursor:pointer;
+    outline:0;
+    -webkit-appearance:none;
+}

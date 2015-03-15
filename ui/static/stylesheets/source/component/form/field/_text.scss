@@ -1,0 +1,23 @@
+/**
+ * =============================================================================
+ * Textual field
+ * =============================================================================
+ */
+
+.Field--text {
+
+    > input,
+    > select,
+    > textarea {
+        @include field-base;
+        @include field-text-base;
+
+        &:invalid {
+            box-shadow:none;
+        }
+
+        &::placeholder {
+            color:$color-base;
+        }
+    }
+}

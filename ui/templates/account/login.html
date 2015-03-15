@@ -14,7 +14,7 @@
     <main role="main" class="Page-content Aligner">
         <div class="Wrapper Wrapper--narrow Aligner-item">
             <section class="UserAccess UserAccess--login">
-                <div class="UserAccess-constrainer">
+                <div class="UserAccess-constrain">
 
                     <form action="." method="post" class="Form Form--beta">{% csrf_token %}
 
@@ -22,25 +22,29 @@
                             <legend class="Form-legend">Login</legend>
 
                             <div class="Form-item">
-                                <label class="Form-label" for="">E-mail <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                <label class="Form-label" for="login">E-mail <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
                                 <div class="Form-field">
-                                    <input type="text" name="login" class="Field Field--text" required="required"
-                                           {% if form.login.value %}value="{{ form.login.value }}"{% endif %} />
+                                    <div class="Field Field--text">
+                                        <input type="text" id="login" name="login" required="required"
+                                               {% if form.login.value %}value="{{ form.login.value }}"{% endif %} />
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="Form-item">
-                                <label class="Form-label" for="">Password <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
+                                <label class="Form-label" for="password">Password <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
                                 <div class="Form-field">
-                                    <input type="password" name="password" class="Field Field--text"
-                                           required="required"/>
+                                    <div class="Field Field--text">
+                                        <input type="password" id="password" name="password"
+                                               required="required"/>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="Form-item">
-                                <label for="test1" class="Form-label Form-label--asField">
-                                    <input id="test1" type="checkbox" name="remember" value="0" class="Field Field--radio" />
-                                    <span class="Form-labelCaption">Remember me</span>
+                                <label for="remember_me" class="Togglable">
+                                    <input id="remember_me" type="checkbox" name="remember" value="0" />
+                                    <span class="Togglable-caption">Remember me</span>
                                 </label>
                             </div>
 
@@ -48,7 +52,7 @@
                                 <button type="submit" class="Button Button--beta Form-action Form-action--submit">Login</button>
                             </div>
 
-                            <div class="UserAccess-accessHelp u-textRight">
+                            <div class="UserAccess-accessHelp">
                                 <a href="#">Forgot password?</a>
                             </div>
 

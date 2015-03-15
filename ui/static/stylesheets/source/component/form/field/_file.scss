@@ -1,0 +1,22 @@
+/**
+ * =============================================================================
+ * File input
+ * =============================================================================
+ */
+
+.Field--file {
+
+    > input {
+        @include field-file-base;
+        @include field-base;
+        @include field-text-base;
+
+        &::-webkit-file-upload-button {
+            @include field-file-base;
+            @include Button;
+            @include Button--alpha;
+            margin:calc(-#{map-get($field-base-dimensions, spacing)} - 1px); margin-right:0;
+            padding:map-get($field-base-dimensions, spacing);
+        }
+    }
+}

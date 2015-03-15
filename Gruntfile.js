@@ -15,7 +15,7 @@ module.exports = function ( grunt ) {
                     ]
                 },
                 files: {
-                    'static/stylesheets/site.css': 'static/stylesheets/source/index.scss'
+                    'ui/static/stylesheets/site.css': 'ui/static/stylesheets/source/index.scss'
                 }
             }
         },
@@ -27,10 +27,10 @@ module.exports = function ( grunt ) {
                     restructuring: false
                 },
                 files: {
-                    'static/stylesheets/site.css': [
+                    'ui/static/stylesheets/site.css': [
                         'node_modules/normalize.css/normalize.css',
                         'node_modules/rationalize.css/dist/rationalize.css',
-                        'static/stylesheets/site.css'
+                        'ui/static/stylesheets/site.css'
                     ]
                 }
             }
@@ -43,18 +43,20 @@ module.exports = function ( grunt ) {
                     processors: [
                         require('autoprefixer-core')({ browsers: ['last 2 version'] }).postcss,
                         require('pixrem')(),
-                        require('postcss-assets')(),
+                        require('postcss-assets')({
+                            basePath: 'ui'
+                        }),
                     ]
                 },
-                src: 'static/stylesheets/site.css',
-                dest: 'static/stylesheets/site.css'
+                src: 'ui/static/stylesheets/site.css',
+                dest: 'ui/static/stylesheets/site.css'
             }
         },
 
         ttf2woff: {
             dist: {
-                src: ['static/fonts/*.ttf'],
-                dest: 'static/fonts/'
+                src: ['ui/static/fonts/*.ttf'],
+                dest: 'ui/static/fonts/'
             }
         },
 
@@ -70,29 +72,21 @@ module.exports = function ( grunt ) {
                 },
                 files: [{
                     expand: true,
-                    cwd: 'static/images/',
+                    cwd: 'ui/static/images/',
                     src: [
-                        '**/*.{png,jpg,gif,svg}'
+                        '**/*.{png,jpg,gif,svg}',
                     ],
-                    dest: 'static/images/'
+                    dest: 'ui/static/images/'
                 }]
             }
         },
 
         watch: {
             css: {
-                files: ['static/stylesheets/source/**/*.scss'],
+                files: ['ui/static/stylesheets/source/**/*.scss'],
                 tasks: ['css'],
                 options: {
                     spawn: false
-                }
-            }
-        },
-
-        connect: {
-            dev: {
-                options: {
-                    open: true
                 }
             }
         },
@@ -102,7 +96,7 @@ module.exports = function ( grunt ) {
                 options: {
                     logConcurrentOutput: true
                 },
-                tasks: ['watch:css', 'connect:dev:keepalive']
+                tasks: ['watch:css']
             }
         }
 
@@ -110,9 +104,14 @@ module.exports = function ( grunt ) {
 
     require('load-grunt-tasks')(grunt);
 
-    grunt.registerTask('default', ['imagemin','css']);
-    grunt.registerTask('css', ['sass','cssmin','postcss']);
     grunt.registerTask('font', ['ttf2woff']);
-    grunt.registerTask('dev', ['default','concurrent']);
+    grunt.registerTask('css', ['sass','postcss','cssmin']);
+    grunt.registerTask('static', function () {
+        var tasks = ['css'];
+        if ( grunt.option('watch') ) {
+            tasks.push('concurrent');
+        }
+        grunt.task.run(tasks);
+    });
 
 };
