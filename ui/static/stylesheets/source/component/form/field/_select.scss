@@ -4,27 +4,14 @@
  * =============================================================================
  */
 
-.Select {
+.Field > select {
     display:block;
-    position:relative;
-
-    .Field > select {
-        line-height:normal;
-        text-align:center;
-        -webkit-appearance:none;
-           -moz-appearance:none;
-                appearance:none;
-    }
-
-    &:after {
-        font-size:map-get($field-base-dimensions, font-size);
-        content:'';
-        position:absolute; right:map-get($field-base-dimensions, spacing); top:50%;
-        transform:translateY(-50%);
-        width:22px; height:22px;
-        background-image:inline('/static/images/arrow-down.svg');
-        background-repeat:no-repeat;
-        background-position:50% 50%;
-        background-size:contain;
-    }
+    line-height:normal;
+    background-image:inline('/static/images/arrow-down.svg');
+    background-repeat:no-repeat;
+    background-position:right map-get($field-base-dimensions, spacing) top 50%;
+    background-size:22px 22px;
+    -webkit-appearance:none;
+       -moz-appearance:none;
+            appearance:none;
 }
