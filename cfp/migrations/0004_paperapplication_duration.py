@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='paperapplication',
             name='duration',
-            field=models.CharField(default=b'not-specified', help_text='What talk duration slot would you like?', max_length=255, verbose_name='Talk Duration Slot', choices=[(b'not-specified', b'Whichever slot I can get.'), (b'25', b'25 Minutes'), (b'45', b'45 Minutes')]),
+            field=models.CharField(default=b'25', help_text='What talk duration slot would you like?', max_length=255, verbose_name='Talk Duration Slot', choices=[(b'25', b'25 Minutes'), (b'45', b'45 Minutes')]),
             preserve_default=True,
         ),
     ]

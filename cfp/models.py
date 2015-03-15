@@ -57,7 +57,7 @@ class PaperApplication(models.Model):
     duration = models.CharField(
             choices=TALK_DURATIONS,
             max_length=255,
-            default=TALK_DURATIONS.NOT_SPECIFIED,
+            default=TALK_DURATIONS.MIN_25,
             verbose_name=_('Talk Duration Slot'),
             help_text=_('What talk duration slot would you like?'))
 

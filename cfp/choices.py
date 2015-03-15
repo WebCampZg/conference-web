@@ -1,8 +1,7 @@
 from model_utils import Choices
 
 TALK_DURATIONS = Choices(
-    ('not-specified', 'NOT_SPECIFIED', 'Whichever slot I can get.'),
-    ('25', '25', '25 Minutes'),
-    ('45', '45', '45 Minutes'),
+    ('25', 'MIN_25', '25 Minutes'),
+    ('45', 'MIN_45', '45 Minutes'),
 )
 
