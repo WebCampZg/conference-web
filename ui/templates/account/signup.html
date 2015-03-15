@@ -16,13 +16,14 @@
                 <form action="" method="post" class="Form Form--beta">{% csrf_token %}
                     <fieldset class="Form-fieldset">
                         <legend class="Form-legend">Sign Up</legend>
-
+                        {% if form.errors %}
                         <div class="Form-errors">
                             <div class="Passage">
                                 {{ form.non_field_errors }}
                                 {{ form.errors }}
                             </div>
                         </div>
+                        {% endif %}
 
                         <div class="UserAccess-grid">
                             <div class="UserAccess-gridItem">
