@@ -52,15 +52,15 @@
             &:before {
                 right:100%;
                 width:155px; height:110px;
-                margin-right:-43px;
-                background-image:inline('/static/images/pixels-left.svg');
+                margin-right:-46px;
+                background-image:inline('/static/images/pixels-left.png');
             }
 
             &:after {
                 left:100%;
                 width:141px; height:110px;
                 margin-left:-33px;
-                background-image:inline('/static/images/pixels-right.svg');
+                background-image:inline('/static/images/pixels-right.png');
             }
         }
     }

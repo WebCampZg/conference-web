@@ -1,6 +1,6 @@
 /**
  * =============================================================================
- * Field base
+ * Form
  * =============================================================================
  */
 
@@ -31,4 +31,13 @@ $field-base-dimensions: (
     @media screen and (max-width:$bp-alpha - 1) {
         font-size:1rem;
     }
+}
+
+@mixin field-file-base {
+    border:none; border-radius:0;
+    box-shadow:none;
+    font-size:inherit; font-family:inherit;
+    cursor:pointer;
+    outline:0;
+    -webkit-appearance:none;
 }

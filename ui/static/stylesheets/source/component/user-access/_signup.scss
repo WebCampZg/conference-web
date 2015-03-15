@@ -15,10 +15,10 @@
             }
 
             &-gridItem {
-                flex:0 0 50%;
+                flex:0 0 percentage(1/2);
 
                 &:first-child {
-                    padding-right:1.5em;
+                    padding-right:3em;
                 }
             }
         }

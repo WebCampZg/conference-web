@@ -106,6 +106,12 @@ module.exports = function ( grunt ) {
 
     grunt.registerTask('font', ['ttf2woff']);
     grunt.registerTask('css', ['sass','postcss','cssmin']);
-    grunt.registerTask('serve', ['css','concurrent']);
+    grunt.registerTask('static', function () {
+        var tasks = ['css'];
+        if ( grunt.option('watch') ) {
+            tasks.push('concurrent');
+        }
+        grunt.task.run(tasks);
+    });
 
 };

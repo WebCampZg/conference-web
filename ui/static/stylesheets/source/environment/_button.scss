@@ -1,0 +1,27 @@
+/**
+ * =============================================================================
+ * Button
+ * =============================================================================
+ */
+
+@mixin Button {
+    display:inline-block;
+    border-radius:0;
+    font-weight:700;
+    text-align:center;
+    transition:all 0.07s ease-in-out;
+    transition-property:background, color;
+    outline:0;
+    text-decoration:none;
+}
+
+@mixin Button--alpha {
+    border:1px solid $color-alpha;
+    color:#fff;
+    background:$color-alpha;
+
+    &:hover,
+    &:focus {
+        background:$color-gamma;
+    }
+}
