@@ -1,0 +1,8 @@
+{% for post in posts %}
+
+Title: <a href="{% url 'blog_view_post' slug=post.slug %}">{{ post.title }}</a><br />
+Lead: {{ post.lead|safe }}
+<hr />
+
+{% endfor %}
+
