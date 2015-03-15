@@ -28,49 +28,11 @@
                         <div class="UserAccess-grid">
                             <div class="UserAccess-gridItem">
 
-                                <div class="Form-item">
-                                    <label class="Form-label" for="email">E-mail address <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
-                                    <div class="Form-field">
-                                        <div class="Field Field--text">
-                                            <input type="email" id="email" required="required" name="email"
-                                                   {% if form.email.value %}value="{{ form.email.value }}"{% endif %}/>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="Form-item">
-                                    <label class="Form-label" for="first_name">First name <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
-                                    <div class="Form-field">
-                                        <div class="Field Field--text">
-                                            <input type="text" id="first_name" name="first_name" required="required"
-                                                   {% if form.first_name.value %}value="{{ form.first_name.value }}"{% endif %}/>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="Form-item">
-                                    <label class="Form-label" for="last_name">Last name <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
-                                    <div class="Form-field">
-                                        <div class="Field Field--text">
-                                            <input type="text" id="last_name" name="last_name" required="required"
-                                                    {% if form.last_name.value %}value="{{ form.last_name.value }}"{% endif %}/>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="Form-item">
-                                    <label class="Form-label" for="password1">Password <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
-                                    <div class="Form-field">
-                                        <div class="Field Field--text"><input type="password" id="password1" name="password1" required="required"/></div>
-                                    </div>
-                                </div>
-
-                                <div class="Form-item">
-                                    <label class="Form-label" for="password2">Repeated password <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
-                                    <div class="Form-field">
-                                        <div class="Field Field--text"><input type="password" id="password2" name="password2" required="required"/></div>
-                                    </div>
-                                </div>
+                                {% include "partials/form-field.html" with field=form.email  field_type="text" %}
+                                {% include "partials/form-field.html" with field=form.first_name  field_type="text" %}
+                                {% include "partials/form-field.html" with field=form.last_name  field_type="text" %}
+                                {% include "partials/form-field.html" with field=form.password1  field_type="text" %}
+                                {% include "partials/form-field.html" with field=form.password2  field_type="text" %}
 
                             </div>
                             <div class="UserAccess-gridItem">

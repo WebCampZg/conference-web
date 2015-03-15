@@ -21,28 +21,11 @@
                         <fieldset class="Form-fieldset">
                             <legend class="Form-legend">Login</legend>
 
-                            <div class="Form-item">
-                                <label class="Form-label" for="login">E-mail <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
-                                <div class="Form-field">
-                                    <div class="Field Field--text">
-                                        <input type="text" id="login" name="login" required="required"
-                                               {% if form.login.value %}value="{{ form.login.value }}"{% endif %} />
-                                    </div>
-                                </div>
-                            </div>
+                            {% include "partials/form-field.html" with field=form.login  field_type="text" %}
+                            {% include "partials/form-field.html" with field=form.password  field_type="text" %}
 
                             <div class="Form-item">
-                                <label class="Form-label" for="password">Password <abbr class="Form-requiredFlag" title="Required field">*</abbr></label>
-                                <div class="Form-field">
-                                    <div class="Field Field--text">
-                                        <input type="password" id="password" name="password"
-                                               required="required"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="Form-item">
-                                <label for="remember_me" class="Togglable">
+                                    <label for="remember_me" class="Togglable">
                                     <input id="remember_me" type="checkbox" name="remember" value="0" />
                                     <span class="Togglable-caption">Remember me</span>
                                 </label>
