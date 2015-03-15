@@ -16,12 +16,12 @@
 }
 
 @mixin Button--alpha {
-    border:1px solid $color-alpha;
+    border:1px solid $color-brand-alpha;
     color:#fff;
-    background:$color-alpha;
+    background:$color-brand-alpha;
 
     &:hover,
     &:focus {
-        background:$color-gamma;
+        background:$color-brand-beta;
     }
 }

@@ -13,14 +13,14 @@ $field-base-dimensions: (
     display:block;
     padding:map-get($field-base-dimensions, spacing);
     font-size:map-get($field-base-dimensions, font-size);
-    border:1px solid $color-alpha; border-radius:0;
+    border:1px solid $color-brand-alpha; border-radius:0;
     background:#fff;
     transition:all 0.07s ease-in-out;
     transition-property:border-color, background, color;
     outline:0;
 
     &:focus {
-        border-color:$color-gamma;
+        border-color:$color-brand-beta;
     }
 }
 

@@ -11,8 +11,8 @@
         display:block; width:100%;
         margin-bottom:0.8em;
         font-size:1.9em; font-weight:700;
-        border-bottom:4px solid $color-alpha;
-        color:$color-alpha;
+        border-bottom:4px solid $color-brand-alpha;
+        color:$color-brand-alpha;
 
         &:before {
             content:'\003e\0020';
@@ -31,12 +31,12 @@
         display:inline-block;
         margin-bottom:0.2em;
         font-size:1.4em;
-        color:$color-alpha;
+        color:$color-brand-alpha;
     }
 
     &-requiredFlag {
         font-weight:700;
-        color:$color-gamma;
+        color:$color-brand-beta;
     }
 
     &-fieldDesc,
@@ -46,12 +46,12 @@
 
     &-fieldDesc {
         margin-bottom:0.7em;
-        color:$color-beta;
+        color:$color-gray-alpha;
     }
 
     &-fieldError {
         margin-top:0.2em;
-        color:$color-delta;
+        color:$color-error-alpha;
     }
 
     @media screen and (min-width:$bp-beta) {

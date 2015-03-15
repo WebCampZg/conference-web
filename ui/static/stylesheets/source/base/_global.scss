@@ -19,7 +19,7 @@ abbr[title] {
 }
 
 body {
-    background:$color-gray-alpha;
+    background:$color-gray-beta;
 
     @media screen and (min-width:$bp-alpha) {
         border:10px solid #fff;
@@ -32,7 +32,7 @@ body {
 
 a {
     display:inline-block;
-    color:$color-gamma;
+    color:$color-brand-beta;
     text-decoration:none;
 
     &:hover {

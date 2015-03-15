@@ -11,11 +11,11 @@
     &:before {
         content:'';
         position:absolute; left:0; right:0; top:80px; bottom:80px;
-        background:$color-alpha;
+        background:$color-brand-alpha;
     }
 
     &-title {
-        color:$color-gamma;
+        color:$color-brand-beta;
         font-size:1.4em;
     }
 
@@ -23,7 +23,7 @@
         position:relative;
         padding:1rem;
         color:#ddd;
-        background:$color-alpha;
+        background:$color-brand-alpha;
 
         @media screen and (min-width:$bp-alpha) {
             padding:2em;

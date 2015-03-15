@@ -21,7 +21,7 @@
 
         &:hover,
         &:focus {
-            color:$color-gamma;
+            color:$color-brand-beta;
         }
     }
 
@@ -52,7 +52,7 @@
         > input {
 
             &:checked + .Togglable-caption {
-                color:$color-alpha;
+                color:$color-brand-alpha;
                 background:#fff;
             }
 
@@ -65,7 +65,7 @@
                 }
 
                 &:checked + .Togglable-caption {
-                    color:$color-alpha;
+                    color:$color-brand-alpha;
                     background:#fff;
                 }
             }

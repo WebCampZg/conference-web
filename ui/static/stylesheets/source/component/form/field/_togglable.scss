@@ -7,7 +7,7 @@
 .Togglable {
     position:relative;
     display:inline-block;
-    color:$color-alpha;
+    color:$color-brand-alpha;
 
     > input {
         position:absolute; left:0; top:0;
@@ -15,12 +15,12 @@
 
         &:checked + .Togglable-caption {
             color:#fff;
-            background:$color-alpha;
+            background:$color-brand-alpha;
         }
 
         &:hover + .Togglable-caption,
         &:focus + .Togglable-caption {
-            border-color:$color-gamma;
+            border-color:$color-brand-beta;
         }
     }
 
