@@ -4,19 +4,17 @@
  * =============================================================================
  */
 
-.Field {
-
-    &--select {
-        @include field-base-text;
-        line-height:normal;
-        text-align:center;
-        -webkit-appearance:none;
-    }
-}
-
 .Select {
     display:block;
     position:relative;
+
+    .Field > select {
+        line-height:normal;
+        text-align:center;
+        -webkit-appearance:none;
+           -moz-appearance:none;
+                appearance:none;
+    }
 
     &:after {
         font-size:map-get($field-base-dimensions, font-size);

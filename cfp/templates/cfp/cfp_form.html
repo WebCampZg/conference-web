@@ -46,8 +46,10 @@
                                     The title of your talk. Please keep it short and catchy.
                                 </p>
                                 <div class="Form-field">
-                                    <input type="text" class="Field Field--text" required="required" name="title"
-                                            {% if form.title.value %}value="{{ form.title.value }}"{% endif %}/>
+                                    <div class="Field Field--text">
+                                        <input type="text" required="required" name="title"
+                                                {% if form.title.value %}value="{{ form.title.value }}"{% endif %}/>
+                                    </div>
                                 </div>
                             </div>
 
@@ -57,9 +59,11 @@
                                     Describe your talk in 140 characters or less.
                                 </p>
                                 <div class="Form-field">
-                                    <textarea class="Field Field--text" name="about" rows="5" required="required">
-                                        {% if form.about.value %}value="{{ form.about.value }}"{% endif %}
-                                    </textarea>
+                                    <div class="Field Field--text">
+                                        <textarea name="about" rows="5" required="required">
+                                            {% if form.about.value %}value="{{ form.about.value }}"{% endif %}
+                                        </textarea>
+                                    </div>
                                 </div>
                             </div>
 
@@ -69,9 +73,11 @@
                                     You may go in more depth here. Up to 10 sentences, please.
                                 </p>
                                 <div class="Form-field">
-                                    <textarea class="Field Field--text" rows="5" name="abstract" required="required">
-                                        {% if form.abstract.value %}value="{{ form.abstract.value }}"{% endif %}
-                                    </textarea>
+                                    <div class="Field Field--text">
+                                        <textarea rows="5" name="abstract" required="required">
+                                            {% if form.abstract.value %}value="{{ form.abstract.value }}"{% endif %}
+                                        </textarea>
+                                    </div>
                                 </div>
                             </div>
 
@@ -83,19 +89,19 @@
                                 <ul class="FieldCollection">
                                     <li class="FieldCollection-item">
                                         <label for="skill_level_1" class="Form-label Form-label--asField">
-                                            <input id="skill_level_1" type="radio" name="skill_level" value="10" class="Field Field--radio" />
+                                            <input id="skill_level_1" type="radio" name="skill_level" value="10" />
                                             <span class="Form-labelCaption">Elementary</span>
                                         </label>
                                     </li>
                                     <li class="FieldCollection-item">
                                         <label for="skill_level_2" class="Form-label Form-label--asField">
-                                            <input id="skill_level_2" type="radio" name="skill_level" value="20" class="Field Field--radio" />
+                                            <input id="skill_level_2" type="radio" name="skill_level" value="20" />
                                             <span class="Form-labelCaption">Intermediate</span>
                                         </label>
                                     </li>
                                     <li class="FieldCollection-item">
                                         <label for="skill_level_3" class="Form-label Form-label--asField">
-                                            <input id="skill_level_3" type="radio" name="skill_level" value="30" class="Field Field--radio" />
+                                            <input id="skill_level_3" type="radio" name="skill_level" value="30" />
                                             <span class="Form-labelCaption">Advanced</span>
                                         </label>
                                     </li>
@@ -110,13 +116,13 @@
                                 <ul class="FieldCollection">
                                     <li class="FieldCollection-item">
                                         <label for="duration_1" class="Form-label Form-label--asField">
-                                            <input id="duration_1" type="radio" name="skill_level" value="25" class="Field Field--radio" />
+                                            <input id="duration_1" type="radio" name="skill_level" value="25" />
                                             <span class="Form-labelCaption">25 Minutes</span>
                                         </label>
                                     </li>
                                     <li class="FieldCollection-item">
                                         <label for="duration_2" class="Form-label Form-label--asField">
-                                            <input id="duration_2" type="radio" name="skill_level" value="45" class="Field Field--radio" />
+                                            <input id="duration_2" type="radio" name="skill_level" value="45" />
                                             <span class="Form-labelCaption">45 Minutes</span>
                                         </label>
                                     </li>
@@ -137,9 +143,11 @@
                                     Describe yourself in 140 characters or less.
                                 </p>
                                 <div class="Form-field">
-                                    <textarea class="Field Field--text" rows="5" name="about_applicant" required="required">
-                                        {% if form.about_applicant.value %}value="{{ form.about_applicant.value }}"{% endif %}
-                                    </textarea>
+                                    <div class="Field Field--text">
+                                        <textarea rows="5" name="about_applicant" required="required">
+                                            {% if form.about_applicant.value %}value="{{ form.about_applicant.value }}"{% endif %}
+                                        </textarea>
+                                    </div>
                                 </div>
                             </div>
 
@@ -149,9 +157,11 @@
                                     Who are you? Where have you worked? What are your professional interests? This will be used on our web site if you’re chosen. Up to 10 sentences.
                                 </p>
                                 <div class="Form-field">
-                                    <textarea class="Field Field--text" name="biography" rows="5" required="required">
-                                        {% if form.biography.value %}value="{{ form.biography.value }}"{% endif %}
-                                    </textarea>
+                                    <div class="Field Field--text">
+                                        <textarea name="biography" rows="5" required="required">
+                                            {% if form.biography.value %}value="{{ form.biography.value }}"{% endif %}
+                                        </textarea>
+                                    </div>
                                 </div>
                             </div>
 
@@ -161,9 +171,11 @@
                                     If you’ve given talks at other events, please list them
                                 </p>
                                 <div class="Form-field">
-                                    <textarea class="Field Field--text" name="speaker_experience" rows="5" required="required">
-                                        {% if form.speaker_experience.value %}value="{{ form.speaker_experience.value }}"{% endif %}
-                                    </textarea>
+                                    <div class="Field Field--text">
+                                        <textarea name="speaker_experience" rows="5" required="required">
+                                            {% if form.speaker_experience.value %}value="{{ form.speaker_experience.value }}"{% endif %}
+                                        </textarea>
+                                    </div>
                                 </div>
                             </div>
 

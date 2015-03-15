@@ -4,10 +4,16 @@
  * =============================================================================
  */
 
-.Field {
+.Field--text {
 
-    &--text {
-        @include field-base-text;
+    > input,
+    > select,
+    > textarea {
+        @include field-base;
+        display:block;
+        width:100%;
+        border-radius:0;
+        outline:0;
 
         &:invalid {
             box-shadow:none;

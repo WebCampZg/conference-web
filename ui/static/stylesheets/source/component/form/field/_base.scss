@@ -21,11 +21,3 @@ $field-base-dimensions: (
         border-color:$color-gamma;
     }
 }
-
-@mixin field-base-text {
-    @include field-base;
-    display:block;
-    width:100%;
-    border-radius:0;
-    outline:0;
-}

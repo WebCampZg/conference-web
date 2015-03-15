@@ -26,7 +26,7 @@
         transform:translateY(-50%);
     }
 
-    .Field {
+    .Field > input {
         padding-left:calc(50px + #{map-get($field-base-dimensions, spacing)});
     }
 }
