@@ -53,7 +53,10 @@
                             </div>
 
                             <div class="UserAccess-accessHelp">
-                                <a href="#">Forgot password?</a>
+                                <a href="{% url 'account_reset_password' %}">Forgot password?</a>
+                            </div>
+                            <div class="UserAccess-accessHelp">
+                                <a href="{% url 'account_signup' %}">Don't have an account yet? Sign up here!</a>
                             </div>
 
                         </fieldset>
