@@ -53,7 +53,6 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -61,9 +60,13 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
+    'tinymce',
+    'grappelli',
+    'filebrowser',
+    'django.contrib.admin',
+
     'ui',
 
-    'tinymce',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -71,7 +74,58 @@ INSTALLED_APPS = (
     'people',
     'cfp',
     'blog',
+    'sponsors',
+    'jobs',
 )
+
+
+MEDIA_ROOT = os.getenv('MEDIA_ROOT', ABS_PATH('media'))
+
+GRAPPELLI_ADMIN_TITLE = 'Webcamp'
+# GRAPPELLI_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
+FILEBROWSER_MEDIA_ROOT = MEDIA_ROOT
+
+FILEBROWSER_EXTENSIONS = {
+    'Folder': [''],
+    'Image': ['.jpg', '.JPG', '.JPEG', '.jpeg', '.gif', '.png', '.tif', '.tiff'],
+    'Video': ['.mov', '.wmv', '.mpeg', '.mpg', '.avi', '.rm'],
+    'Document': ['.pdf', '.doc', '.rtf', '.txt', '.xls', '.csv'],
+    'Audio': ['.mp3', '.mp4', '.wav', '.aiff', '.midi', '.m4p'],
+    'Code': ['.html', '.py', '.js', '.css']
+}
+
+FILEBROWSER_SELECT_FORMATS = {
+    'File': ['Folder', 'Document'],
+    'Image': ['Folder', 'Image'],
+    'Media': ['Video', 'Sound'],
+    'Document': ['Document'],
+    # for TinyMCE we can also define lower-case items
+    'image': ['Image'],
+    'file': ['Folder', 'Image', 'Document'],
+}
+
+FILEBROWSER_VERSIONS = {
+    'fb_thumb': {'verbose_name': 'Admin Thumbnail', 'width': 60, 'height': 60,
+        'opts': 'crop upscale'},
+    'thumbnail': {'verbose_name': 'Thumbnail (140px)', 'width': 140,
+        'height': '', 'opts': ''},
+    'small': {'verbose_name': 'Small (80x60px)', 'width': 80,
+        'height': '60', 'opts': 'crop'},
+    'medium': {'verbose_name': 'Medium (100px)', 'width': 100,
+        'height': '', 'opts': ''},
+    'semibig': {'verbose_name': 'SemiBig (420px)', 'width': 420,
+        'height': '', 'opts': ''},
+    'big': {'verbose_name': 'Big (465px)', 'width': 465, 'height': '', 'opts': ''},
+}
+
+# Versions available within the Admin-Interface.
+FILEBROWSER_ADMIN_VERSIONS = ['thumbnail', 'small', 'medium', 'semibig', 'big']
+
+# Which Version should be used as Admin-thumbnail.
+FILEBROWSER_ADMIN_THUMBNAIL = 'fb_thumb'
+
+FILEBROWSER_DEFAULT_SORTING_BY = 'filename_lower'
+
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -141,7 +195,6 @@ STATIC_ROOT = ABS_PATH('static')
 
 AUTH_USER_MODEL = 'people.User'
 
-MEDIA_ROOT = os.getenv('MEDIA_ROOT', ABS_PATH('media'))
 MEDIA_URL = '/media/'
 
 
