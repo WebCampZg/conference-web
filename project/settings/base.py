@@ -70,6 +70,7 @@ INSTALLED_APPS = (
 
     'people',
     'cfp',
+    'blog',
 )
 
 MIDDLEWARE_CLASSES = (
