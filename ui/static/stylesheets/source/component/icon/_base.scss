@@ -16,7 +16,7 @@
 
 .Icon--logo {
     width:180px; height:181px;
-    background-image:inline('static/images/logo.svg');
+    background-image:inline('/static/images/logo.svg');
 }
 
 /**
@@ -32,22 +32,22 @@
     }
 
     &--facebook {
-        background-image:inline('static/images/icons/facebook.svg');
+        background-image:inline('/static/images/icons/facebook.svg');
     }
 
     &--twitter {
-        background-image:inline('static/images/icons/twitter.svg');
+        background-image:inline('/static/images/icons/twitter.svg');
     }
 
     &--github {
-        background-image:inline('static/images/icons/github.svg');
+        background-image:inline('/static/images/icons/github.svg');
     }
 
     &--googlePlus {
-        background-image:inline('static/images/icons/google-plus.svg');
+        background-image:inline('/static/images/icons/google-plus.svg');
     }
 
     &--linkedin {
-        background-image:inline('static/images/icons/linkedin.svg');
+        background-image:inline('/static/images/icons/linkedin.svg');
     }
 }

@@ -41,14 +41,14 @@
     &--main {
 
         &:before {
-            background-image:url('static/images/hero-main.jpg');
+            background-image:url('/static/images/hero-main.jpg');
         }
     }
 
     &--cfp {
 
         &:before {
-            background-image:url('static/images/hero-cfp.jpg');
+            background-image:url('/static/images/hero-cfp.jpg');
         }
     }
 }
