@@ -43,7 +43,9 @@ module.exports = function ( grunt ) {
                     processors: [
                         require('autoprefixer-core')({ browsers: ['last 2 version'] }).postcss,
                         require('pixrem')(),
-                        require('postcss-assets')(),
+                        require('postcss-assets')({
+                            basePath: 'ui'
+                        }),
                     ]
                 },
                 src: 'ui/static/stylesheets/site.css',
@@ -72,7 +74,7 @@ module.exports = function ( grunt ) {
                     expand: true,
                     cwd: 'ui/static/images/',
                     src: [
-                        '**/*.{png,jpg,gif,svg}'
+                        '**/*.{png,jpg,gif,svg}',
                     ],
                     dest: 'ui/static/images/'
                 }]
