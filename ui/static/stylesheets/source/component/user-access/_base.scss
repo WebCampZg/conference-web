@@ -10,7 +10,9 @@
     color:#fff;
 
     .Form-legend {
-        width:4.5em;
+        display:inline-block;
+        width:auto;
+        padding-right:1ch;
     }
 
     .Button {
@@ -20,7 +22,7 @@
     &-constrain {
 
         @media screen and (min-width:500px) {
-            max-width:380px;
+            max-width:420px;
             margin-left:auto; margin-right:auto;
         }
     }
