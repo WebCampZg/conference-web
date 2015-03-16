@@ -53,6 +53,20 @@ module.exports = function ( grunt ) {
             }
         },
 
+        modernizr: {
+            dist: {
+                devFile: false,
+                excludeTests: ['svg'],
+                files: ['ui/static/**/*.scss'],
+                options: [
+                    'setClasses',
+                    'addTest',
+                    'testProp'
+                ],
+                dest: 'ui/static/javascripts/modernizr.min.js'
+            }
+        },
+
         ttf2woff: {
             dist: {
                 src: ['ui/static/fonts/*.ttf'],

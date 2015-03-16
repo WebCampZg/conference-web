@@ -18,6 +18,7 @@
     "grunt-ttf2woff": "^1.0.0",
     "load-grunt-tasks": "^3.1.0",
     "pixrem": "^1.2.0",
-    "postcss-assets": "^2.1.0"
+    "postcss-assets": "^2.1.0",
+    "grunt-modernizr": "niksy/grunt-modernizr#old-build-system"
   }
 }
