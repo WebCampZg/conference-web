@@ -15,7 +15,3 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('user_profile')
-
-
-
-
