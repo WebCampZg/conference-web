@@ -53,14 +53,14 @@
                 right:100%;
                 width:155px; height:110px;
                 margin-right:-46px;
-                background-image:inline('/static/images/pixels-left.png');
+                background-image:inline('/static/images/pixels-left.svg');
             }
 
             &:after {
                 left:100%;
                 width:141px; height:110px;
                 margin-left:-33px;
-                background-image:inline('/static/images/pixels-right.png');
+                background-image:inline('/static/images/pixels-right.svg');
             }
         }
     }

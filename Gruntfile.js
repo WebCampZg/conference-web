@@ -80,8 +80,6 @@ module.exports = function ( grunt ) {
                     svgoPlugins: [
                         {removeTitle: true},
                         {removeDesc: true},
-                        {removeUselessStrokeAndFill: false},
-                        {removeViewBox: false},
                     ]
                 },
                 files: [{
