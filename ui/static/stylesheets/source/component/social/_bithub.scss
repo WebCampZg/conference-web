@@ -5,6 +5,10 @@
  */
 
 .Bithub {
-    height: 600px;
-    border: 1px solid #f4f4f4;
+    padding-right:44px;
+    height:600px;
+
+    .no-touchevents & {
+        padding-right:0;
+    }
 }
