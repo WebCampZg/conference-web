@@ -50,8 +50,17 @@
     }
 
     &-fieldError {
-        margin-top:0.2em;
+        padding-top:0.2em;
         color:$color-error-alpha;
+    }
+
+    &-footer {
+        margin-top:1em;
+    }
+
+    &-desc {
+        font-size:1.1em;
+        margin:1em 0;
     }
 
     @media screen and (min-width:$bp-beta) {
