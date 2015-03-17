@@ -1,0 +1,128 @@
+/**
+ * =============================================================================
+ * Site navigation
+ * =============================================================================
+ */
+
+.SiteNav {
+    position:absolute; right:0; top:0;
+    padding:40px 110px 0 0;
+
+    &-list {
+        display:flex;
+    }
+
+    &-item {
+        position:relative;
+        padding:0 1em;
+
+        &:before {
+            content:'';
+            position:absolute; left:0; top:50%;
+            transform:translateY(-50%);
+            width:5px; height:5px;
+            border-radius:100%;
+            background:$color-brand-beta;
+        }
+
+        &:first-child {
+
+            &:before {
+                display:none;
+            }
+        }
+    }
+
+    &-link {
+        display:block;
+        border-bottom:1px solid transparent;
+        font-size:1.1em;
+        text-transform:uppercase;
+        color:#fff;
+        transition:border-color 0.15s ease-in-out;
+
+        &:hover,
+        &:focus {
+            outline:0;
+            border-color:rgba(#fff, 0.7);
+            text-decoration:none;
+        }
+    }
+}
+
+/**
+ * =============================================================================
+ * Special cases
+ * =============================================================================
+ */
+
+/**
+ * CFP
+ * -----------------------------------------------------------------------------
+ */
+
+.SiteNav-item--cfp {
+    margin:-1em 0;
+
+    &:before {
+        display:none;
+    }
+
+    .SiteNav {
+
+        &-link {
+            padding:1em;
+            border-radius:(1em*2);
+            background:$color-brand-beta;
+            transition:background 0.15s ease-in-out;
+
+            &:hover,
+            &:focus {
+                border-color:transparent;
+                background:darken($color-brand-beta, 5%);
+            }
+        }
+    }
+}
+
+/**
+ * Account
+ * -----------------------------------------------------------------------------
+ */
+
+.SiteNav-item--account {
+    position:absolute; right:0; top:0;
+    padding:0;
+
+    &:before {
+        display:none;
+    }
+
+    .SiteNav {
+
+        &-link {
+            position:relative;
+            padding:0.2em 1em; padding-left:calc(1em + 18px);
+            font-size:1em;
+            text-transform:none;
+            color:$color-brand-alpha;
+            background:#fff;
+            transition:background 0.15s ease-in-out;
+
+            &:hover,
+            &:focus {
+                background:darken(#fff, 5%);
+            }
+
+            &:before {
+                content:'';
+                position:absolute; left:0; top:50%;
+                transform:translateY(-50%);
+                margin-left:(18px/2);
+                width:18px; height:18px;
+                background-image:inline('/static/images/icons/user.svg');
+                background-size:contain;
+            }
+        }
+    }
+}
