@@ -8,8 +8,9 @@
     display:inline-block;
     vertical-align:top;
     background-repeat:no-repeat;
+    background-position:50% 50%;
     background-size:contain;
-    text-indent:-9999px; overflow:hidden;
+    text-align:left; text-indent:-9999px; overflow:hidden;
 }
 
 @mixin Icon--social__Icon--facebook__white {
