@@ -10,6 +10,11 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
     form_class = UserProfileForm
     template_name = 'people/user_profile.html'
 
+    def get_context_data(self, **kwargs):
+        c = super(UserProfileView, self).get_context_data(**kwargs)
+        c['applications'] = self.request.user.applicant.applications.all()
+        return c
+
     def get_object(self, queryset=None):
         return self.request.user
 

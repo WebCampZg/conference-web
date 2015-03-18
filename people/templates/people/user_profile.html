@@ -17,7 +17,7 @@
             <section class="Account">
                 <form method="post" class="Form Form--beta">{% csrf_token %}
                     <fieldset class="Form-fieldset">
-                        <legend class="Form-legend">Profile</legend>
+                        <legend class="Form-legend">Edit Profile</legend>
 
                         {% if form.errors %}
                         <div class="Form-errors">
@@ -53,8 +53,13 @@
 
                     </fieldset>
                 </form>
-            </section>
+                <hr />
+                <h2 class="Punchline-info">Your submitted talks:</h2>
+                {% for application in applications %}
+                    <h3><a href="{% url 'application_update' 1 application.pk %}">{{ application }}</a></h3>
+                {% endfor %}
 
+            </section>
         </div>
     </main>
 {% endblock %}
