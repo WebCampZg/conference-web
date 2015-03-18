@@ -17,7 +17,7 @@ class PaperApplicationBaseView(SuccessMessageMixin, LoginRequiredMixin):
     success_message = "You have successfully submitted your application."
 
     def dispatch(self, request, *args, **kwargs):
-        self.cfp = CallForPaper.objects.get(pk=kwargs.get('pk') or 1)
+        self.cfp = CallForPaper.objects.get(pk=kwargs.get('cfp_id') or 1)
         return super(PaperApplicationBaseView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
