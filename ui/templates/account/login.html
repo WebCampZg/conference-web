@@ -22,6 +22,14 @@
                         <fieldset class="Form-fieldset">
                             <legend class="Form-legend">Login</legend>
 
+                            {% if form.non_field_errors %}
+                            <div class="Form-errors">
+                                <div class="Passage">
+                                    {{ form.non_field_errors }}
+                                </div>
+                            </div>
+                            {% endif %}
+
                             {% include "partials/form-field.html" with field=form.login  field_type="text" %}
                             {% include "partials/form-field.html" with field=form.password  field_type="text" %}
 
