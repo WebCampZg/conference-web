@@ -5,14 +5,16 @@ from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponse, Http404
 from django.views.generic.edit import CreateView, UpdateView
+from django.contrib.messages.views import SuccessMessageMixin
 from cfp.forms import PaperApplicationForm
 from cfp.models import Applicant, PaperApplication, CallForPaper
 
 
-class PaperApplicationBaseView(LoginRequiredMixin):
+class PaperApplicationBaseView(SuccessMessageMixin, LoginRequiredMixin):
     model = PaperApplication
     form_class = PaperApplicationForm
     template_name = 'cfp/cfp_form.html'
+    success_message = "You have successfully submitted your application."
 
     def dispatch(self, request, *args, **kwargs):
         self.cfp = CallForPaper.objects.get(pk=kwargs.get('pk') or 1)
@@ -72,6 +74,8 @@ class PaperApplicationCreateView(PaperApplicationBaseView, CreateView):
 
 
 class PaperApplicationUpdateView(PaperApplicationBaseView, UpdateView):
+    success_message = "You have successfully updated your application."
+
     def dispatch(self, request, *args, **kwargs):
         self._check_allowed(request.user)
         return super(PaperApplicationUpdateView, self).dispatch(request, *args, **kwargs)
