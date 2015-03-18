@@ -23,7 +23,7 @@ class CallForPaper(models.Model):
 
 
 class Applicant(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='applicant')
     about = models.CharField(max_length=140)
     biography = models.CharField(max_length=2048)
     speaker_experience = models.CharField(max_length=255, null=True, blank=True)
@@ -45,7 +45,7 @@ class AudienceSkillLevel(models.Model):
 
 class PaperApplication(models.Model):
     cfp = models.ForeignKey(CallForPaper)
-    applicant = models.ForeignKey(Applicant)
+    applicant = models.ForeignKey(Applicant, related_name='applications')
     title = models.CharField(max_length=255, help_text=_('The title of your talk. Keep it short and catchy.'),
                              verbose_name=_('Title'))
     about = models.TextField(help_text=_('Describe your talk in 140 characters or less.'),
