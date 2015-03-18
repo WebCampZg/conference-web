@@ -12,9 +12,16 @@
             <li class="SiteNav-item SiteNav-item--cfp">
                 <a href="{% url 'application_create' %}" class="SiteNav-link SiteNav-link--cfp">Call for papers</a>
             </li>
+            {% if user.is_authenticated %}
+            <li class="SiteNav-item SiteNav-item--account">
+                <a href="{% url 'account_logout' %}" class="SiteNav-link">{{ user.get_full_name }} | Logout</a>
+            </li>
+            {% else %}
             <li class="SiteNav-item SiteNav-item--account">
                 <a href="{% url 'account_login' %}" class="SiteNav-link">Login</a>
             </li>
+            {% endif %}
+
         </ul>
     </div>
 </nav>
