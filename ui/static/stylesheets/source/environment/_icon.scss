@@ -32,3 +32,11 @@
 @mixin Icon--social__Icon--linkedin__white {
     background-image:inline('/static/images/icons/linkedin-white.svg');
 }
+
+@mixin Icon--user__alpha {
+    background-image:inline('/static/images/icons/user.svg');
+}
+
+@mixin Icon--user__beta {
+    background-image:inline('/static/images/icons/user-beta.svg');
+}

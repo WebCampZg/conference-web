@@ -12,7 +12,7 @@
         font-size:2em;
         text-transform:uppercase;
         color:$color-brand-alpha;
-        transition:all 0.15s ease-in-out;
+        transition:all 0.1s ease-in-out;
         transition-property:border-color, color;
 
         &:hover,
@@ -69,7 +69,7 @@
         }
     }
 
-    @media screen and (min-width:($bp-alpha)) and (max-width:($bp-beta - 1)) {
+    @media screen and (min-width:($bp-alpha)) and (max-width:(900px - 1)) {
 
         &-menu {
 
@@ -82,7 +82,7 @@
         }
     }
 
-    @media screen and (max-width:($bp-beta - 1)) {
+    @media screen and (max-width:(900px - 1)) {
         position:absolute; right:0; left:0; top:0;
         background:#fff;
 
@@ -126,7 +126,7 @@
         }
     }
 
-    @media screen and (min-width:$bp-beta) {
+    @media screen and (min-width:900px) {
         position:absolute; right:0; top:0;
         padding:40px 110px 0 0;
 
@@ -162,13 +162,12 @@
 
         &-link {
             padding:0;
-            border-bottom:1px solid transparent;
             font-size:1.1em;
             color:#fff;
 
             &:hover,
             &:focus {
-                border-color:rgba(#fff, 0.7);
+                color:$color-brand-beta;
             }
         }
     }
@@ -187,7 +186,7 @@
 
 .SiteNav-item--cfp {
 
-    @media screen and (min-width:$bp-beta) {
+    @media screen and (min-width:900px) {
         margin:-1em 0;
 
         &:before {
@@ -198,26 +197,27 @@
 
 .SiteNav-link--cfp {
     border-radius:999px;
-    transition:background 0.15s ease-in-out;
+    transition:all 0.1s ease-in-out;
+    transition-property:color, border-color, background;
 
-    @media screen and (max-width:($bp-beta - 1)) {
+    @media screen and (max-width:(900px - 1)) {
         padding:0.5em;
         border:1px solid $color-brand-alpha;
 
         &:hover,
         &:focus {
-            color:$color-brand-alpha;
-            background:lighten($color-brand-alpha, 75%);
+            color:$color-brand-beta;
+            border-color:$color-brand-beta;
         }
     }
 
-    @media screen and (min-width:$bp-beta) {
+    @media screen and (min-width:900px) {
         padding:1em;
         background:$color-brand-beta;
 
         &:hover,
         &:focus {
-            border-color:transparent;
+            color:#fff;
             background:darken($color-brand-beta, 5%);
         }
     }
@@ -234,19 +234,31 @@
 
         &-link {
             position:relative;
-            transition:background 0.15s ease-in-out;
+            transition:none;
+            // transition:all 0.1s ease-in-out;
+            // transition-property:background, color;
 
             &:before {
+                @include Icon;
+                @include Icon--user__alpha;
                 content:'';
                 position:absolute; top:50%;
                 transform:translateY(-50%);
-                background-image:inline('/static/images/icons/user.svg');
-                background-size:contain;
+            }
+
+            &:hover,
+            &:focus {
+                color:$color-brand-beta;
+                border-color:$color-brand-beta;
+
+                &:before {
+                    @include Icon--user__beta;
+                }
             }
         }
     }
 
-    @media screen and (max-width:($bp-beta - 1)) {
+    @media screen and (max-width:(900px - 1)) {
 
         .SiteNav {
 
@@ -261,14 +273,13 @@
 
                 &:hover,
                 &:focus {
-                    color:$color-brand-alpha;
-                    background:lighten($color-brand-alpha, 75%);
+                    border-color:$color-brand-beta;
                 }
             }
         }
     }
 
-    @media screen and (min-width:$bp-beta) {
+    @media screen and (min-width:900px) {
         position:absolute; right:0; top:0;
         padding:0;
 
@@ -284,11 +295,6 @@
                 text-transform:none;
                 color:$color-brand-alpha;
                 background:#fff;
-
-                &:hover,
-                &:focus {
-                    background:darken(#fff, 5%);
-                }
 
                 &:before {
                     left:0;

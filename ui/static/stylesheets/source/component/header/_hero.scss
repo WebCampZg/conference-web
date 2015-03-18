@@ -1,11 +1,13 @@
 /**
  * =============================================================================
  * Hero images
+ *
+ * 1. Revert to 10 when you implement proper mobile navigation.
  * =============================================================================
  */
 
 .Hero {
-    overflow:hidden;
+    @include content-blur;
     padding-bottom:100px;
     background:$color-brand-alpha;
 
@@ -17,25 +19,8 @@
         padding-bottom:150px;
     }
 
-    &:before {
-        content:'';
-        position:absolute; left:0; top:0; right:0; bottom:0;
-        background-repeat:no-repeat;
-        background-position:50% 50%;
-        background-size:cover;
-        filter:blur(3px);
-        transition:filter 0.3s ease-in-out;
-    }
-
-    &:hover {
-
-        &:before {
-            filter:blur(0px);
-        }
-    }
-
     &-inner {
-        position:relative; z-index:10;
+        position:relative; z-index:20; /* 1 */
     }
 
     &--main {

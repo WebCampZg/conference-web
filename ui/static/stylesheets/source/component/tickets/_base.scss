@@ -5,14 +5,22 @@
  */
 
 .Tickets {
+    @include content-blur;
     position:relative;
-    background:url('/static/images/hero-tickets.jpg');
     background-size:cover;
     background-position:50% 50%;
     margin-top:calc(-130px - 4em);
     padding:10em 1rem 1em;
     text-align:center;
     color:#fff;
+
+    &:before {
+        background:url('/static/images/hero-tickets.jpg');
+    }
+
+    &-inner {
+        position:relative; z-index:10;
+    }
 
     &-title {
         margin-bottom:0.5em;
