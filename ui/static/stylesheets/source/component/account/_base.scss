@@ -8,6 +8,17 @@
     margin:1rem 0;
     padding:0 1rem;
 
+    &-talks {
+        margin-bottom:5em;
+    }
+
+    &-talkList {
+
+        a {
+            font-size:1.3em;
+        }
+    }
+
     @media screen and (min-width:$bp-beta) {
         margin-top:3rem; margin-bottom:3rem;
     }

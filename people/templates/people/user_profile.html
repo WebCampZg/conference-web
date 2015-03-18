@@ -15,6 +15,22 @@
         <div class="Wrapper Wrapper--narrow Aligner-item">
 
             <section class="Account">
+
+                {% if applications %}
+                <div class="Account-talks">
+                    <div class="Form Form--beta">
+                        <h2 class="Form-legend">Your submitted talks</h2>
+                        <div class="Passage">
+                            <ul class="Account-talkList">
+                                {% for application in applications %}
+                                <li><a href="{% url 'application_update' 1 application.pk %}">{{ application }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
                 <form method="post" class="Form Form--beta">{% csrf_token %}
                     <fieldset class="Form-fieldset">
                         <legend class="Form-legend">Edit Profile</legend>
@@ -53,11 +69,6 @@
 
                     </fieldset>
                 </form>
-                <hr />
-                <h2 class="Punchline-info">Your submitted talks:</h2>
-                {% for application in applications %}
-                    <h3><a href="{% url 'application_update' 1 application.pk %}">{{ application }}</a></h3>
-                {% endfor %}
 
             </section>
         </div>

@@ -30,7 +30,7 @@
     &-cta {
         display:inline-block;
         border:1px solid #fff;
-        margin:1em auto 1em;
+        margin:0.7em auto 0.35em;
         padding:0.3em 1em;
         border-radius:40px;
         font-size:2.3em; font-weight:700;
@@ -39,7 +39,8 @@
         transition:all 0.07s ease-in-out;
         transition-property:background, color;
 
-        &:hover {
+        &:hover,
+        &:focus {
             color:$color-brand-alpha;
             background:#fff;
             text-decoration:none;
@@ -48,9 +49,15 @@
 
     &-sponsorLink {
         margin-bottom:2em;
+        font-size:1.2em; font-weight:700;
 
         a {
             color:#fff;
+
+            &:hover,
+            &:focus {
+                color:$color-brand-beta;
+            }
         }
     }
 

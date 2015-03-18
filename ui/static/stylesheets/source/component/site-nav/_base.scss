@@ -12,7 +12,7 @@
         font-size:2em;
         text-transform:uppercase;
         color:$color-brand-alpha;
-        transition:all 0.1s ease-in-out;
+        transition:all 0.07s ease-in-out;
         transition-property:border-color, color;
 
         &:hover,
@@ -197,7 +197,7 @@
 
 .SiteNav-link--cfp {
     border-radius:999px;
-    transition:all 0.1s ease-in-out;
+    transition:all 0.07s ease-in-out;
     transition-property:color, border-color, background;
 
     @media screen and (max-width:(900px - 1)) {
@@ -235,7 +235,7 @@
         &-link {
             position:relative;
             transition:none;
-            // transition:all 0.1s ease-in-out;
+            // transition:all 0.07s ease-in-out;
             // transition-property:background, color;
 
             &:before {
