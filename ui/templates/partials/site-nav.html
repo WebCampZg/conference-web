@@ -6,6 +6,11 @@
     <div class="SiteNav-menu" id="SiteNav">
         <a href="#" class="SiteNav-compactToggler"><i class="Icon Icon--close">Close navigation</i></a>
         <ul class="SiteNav-list">
+            {% if user.is_authenticated %}
+            <li class="SiteNav-item">
+                <a href="{% url 'user_profile' %}" class="SiteNav-link">Profile: {{ user.get_full_name }}</a>
+            </li>
+            {% endif %}
             <li class="SiteNav-item">
                 <a href="https://www.entrio.hr/en/event/webcamp-zagreb-2015-2150" class="SiteNav-link">Tickets</a>
             </li>
@@ -14,7 +19,7 @@
             </li>
             {% if user.is_authenticated %}
             <li class="SiteNav-item SiteNav-item--account">
-                <a href="{% url 'account_logout' %}" class="SiteNav-link">{{ user.get_full_name }} | Logout</a>
+                <a href="{% url 'account_logout' %}" class="SiteNav-link">Logout</a>
             </li>
             {% else %}
             <li class="SiteNav-item SiteNav-item--account">
