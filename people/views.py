@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.views.generic.edit import UpdateView
 from people.forms import UserProfileForm
 from people.models import User
+from cfp.models import Applicant, PaperApplication
 
 
 class UserProfileView(LoginRequiredMixin, UpdateView):
@@ -12,7 +13,10 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         c = super(UserProfileView, self).get_context_data(**kwargs)
-        c['applications'] = self.request.user.applicant.applications.all()
+        try:
+            c['applications'] = self.request.user.applicant.applications.all()
+        except Applicant.DoesNotExist, PaperApplication.DoesNotExist:
+            c['applications'] = []
         return c
 
     def get_object(self, queryset=None):
@@ -20,7 +24,4 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('user_profile')
-
-
-
 
