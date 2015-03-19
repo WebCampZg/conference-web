@@ -1,13 +1,17 @@
 from braces.views._access import LoginRequiredMixin
 from django.core.urlresolvers import reverse
 from django.views.generic.edit import UpdateView
+from django.contrib.auth import get_user_model
+
 from people.forms import UserProfileForm
-from people.models import User
 from cfp.models import Applicant, PaperApplication
 
 
+UserModel = get_user_model()
+
+
 class UserProfileView(LoginRequiredMixin, UpdateView):
-    model = User
+    model = UserModel
     form_class = UserProfileForm
     template_name = 'people/user_profile.html'
 
