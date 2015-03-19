@@ -2,10 +2,17 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from django.utils.text import slugify
 
 from tinymce.models import HTMLField
 
 from .choices import TALK_DURATIONS
+
+
+def get_applicant_avatar_path(instance, filename):
+    return "uploads/applicant_images/{0}/{1}".format(
+            slugify(instance.user.email),
+            filename)
 
 
 class CallForPaper(models.Model):
@@ -27,7 +34,7 @@ class Applicant(models.Model):
     about = models.CharField(max_length=140)
     biography = models.CharField(max_length=2048)
     speaker_experience = models.CharField(max_length=255, null=True, blank=True)
-    image = models.ImageField(upload_to='applicant_images')
+    image = models.ImageField(upload_to=get_applicant_avatar_path)
 
     def __unicode__(self):
         return self.user.get_full_name()
