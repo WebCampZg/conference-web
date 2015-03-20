@@ -16,7 +16,7 @@ def get_applicant_avatar_path(instance, filename):
 
 
 class CallForPaper(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=1024)
     description = HTMLField()
     begin_date = models.DateField()
     end_date = models.DateField(blank=True, null=True)
@@ -31,9 +31,9 @@ class CallForPaper(models.Model):
 
 class Applicant(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='applicant')
-    about = models.CharField(max_length=140)
-    biography = models.CharField(max_length=2048)
-    speaker_experience = models.CharField(max_length=255, null=True, blank=True)
+    about = models.TextField()
+    biography = models.TextField()
+    speaker_experience = models.TextField(null=True, blank=True)
     image = models.ImageField(upload_to=get_applicant_avatar_path)
 
     def __unicode__(self):
