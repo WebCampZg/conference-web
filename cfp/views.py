@@ -4,6 +4,7 @@ from braces.views._access import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponse, Http404
+from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.messages.views import SuccessMessageMixin
 from cfp.forms import PaperApplicationForm
@@ -92,3 +93,6 @@ class PaperApplicationUpdateView(PaperApplicationBaseView, UpdateView):
         if not allow:
             raise Http404()
 
+
+def cfp_announcement(request):
+    return render(request, 'cfp/cfp_announcement.html', {})
