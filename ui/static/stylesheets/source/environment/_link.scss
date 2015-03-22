@@ -1,0 +1,23 @@
+/**
+ * =============================================================================
+ * Links
+ * =============================================================================
+ */
+
+@mixin Link--beta {
+    color:#fff;
+
+    &:hover,
+    &:focus {
+        color:$color-brand-beta;
+    }
+}
+
+@mixin Link--gamma {
+    color:#fff;
+
+    &:hover,
+    &:focus {
+        color:$color-brand-alpha;
+    }
+}
