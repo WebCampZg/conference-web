@@ -1,7 +1,7 @@
 <nav class="SiteNav">
     <div class="SiteNav-compact">
         <a href="#SiteNav" class="SiteNav-compactToggler"><i class="Icon Icon--menu">Open navigation</i></a>
-        <a href="{% url 'application_create' %}" class="SiteNav-link SiteNav-link--cfp">Call for proposals</a>
+        <a href="{% url 'cfp_announcement' %}" class="SiteNav-link SiteNav-link--cfp">Call for proposals</a>
     </div>
     <div class="SiteNav-menu" id="SiteNav">
         <a href="#" class="SiteNav-compactToggler"><i class="Icon Icon--close">Close navigation</i></a>
@@ -18,7 +18,7 @@
                 <a href="https://www.entrio.hr/en/event/webcamp-zagreb-2015-2150" class="SiteNav-link">Tickets</a>
             </li>
             <li class="SiteNav-item SiteNav-item--cfp">
-                <a href="{% url 'application_create' %}" class="SiteNav-link SiteNav-link--cfp">Call for proposals</a>
+                <a href="{% url 'cfp_announcement' %}" class="SiteNav-link SiteNav-link--cfp">Call for proposals</a>
             </li>
             {% if user.is_authenticated %}
             <li class="SiteNav-item SiteNav-item--account">
