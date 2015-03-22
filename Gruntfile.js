@@ -53,9 +53,33 @@ module.exports = function ( grunt ) {
             }
         },
 
+        browserify: {
+            dist: {
+                options: {
+                    plugin: ['bundle-collapser/plugin'],
+                    ignore: ['css']
+                },
+                files: {
+                    'ui/static/javascripts/site.js': 'ui/static/javascripts/source/index.js'
+                }
+            }
+        },
+
+        uglify: {
+            dist: {
+                files: {
+                    'ui/static/javascripts/site.js': [
+                        'ui/static/javascripts/source/modernizr.js',
+                        'ui/static/javascripts/site.js'
+                    ]
+                }
+            }
+        },
+
         modernizr: {
             dist: {
                 devFile: false,
+                uglify: false,
                 excludeTests: ['svg'],
                 files: ['ui/static/**/*.scss'],
                 options: [
@@ -63,7 +87,7 @@ module.exports = function ( grunt ) {
                     'addTest',
                     'testProp'
                 ],
-                dest: 'ui/static/javascripts/modernizr.min.js'
+                dest: 'ui/static/javascripts/source/modernizr.js'
             }
         },
 
@@ -100,6 +124,13 @@ module.exports = function ( grunt ) {
                 options: {
                     spawn: false
                 }
+            },
+            js: {
+                files: ['ui/static/javascripts/**/*.js'],
+                tasks: ['js'],
+                options: {
+                    spawn: false
+                }
             }
         },
 
@@ -108,7 +139,7 @@ module.exports = function ( grunt ) {
                 options: {
                     logConcurrentOutput: true
                 },
-                tasks: ['watch:css']
+                tasks: ['watch:css','watch:js']
             }
         }
 
@@ -118,8 +149,9 @@ module.exports = function ( grunt ) {
 
     grunt.registerTask('font', ['ttf2woff']);
     grunt.registerTask('css', ['sass','postcss','cssmin']);
+    grunt.registerTask('js', ['browserify','uglify']);
     grunt.registerTask('static', function () {
-        var tasks = ['css'];
+        var tasks = ['css','js'];
         if ( grunt.option('watch') ) {
             tasks.push('concurrent');
         }
