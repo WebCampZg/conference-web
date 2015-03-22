@@ -1,7 +1,0 @@
-@function shade($color, $percent){
-  @return mix(black, $color, $percent);
-}
-
-@function tint($color, $percent){
-  @return mix(white, $color, $percent);
-}
