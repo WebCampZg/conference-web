@@ -5,7 +5,7 @@ from people.views import UserProfileView
 
 urlpatterns = patterns('',
 
-    url(r'^$', 'ui.views.index'),
+    url(r'^$', 'ui.views.index', name="ui_index"),
     (r'^tinymce/', include('tinymce.urls')),
     url(r'^signup/success/$', 'ui.views.signup_success'),
     url(r'^code/$', 'ui.views.code_of_conduct', name='code_of_conduct'),
