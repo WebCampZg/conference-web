@@ -4,12 +4,11 @@ from braces.views._access import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponse, Http404
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.messages.views import SuccessMessageMixin
 from cfp.forms import PaperApplicationForm
 from cfp.models import Applicant, PaperApplication, CallForPaper
-
 
 class PaperApplicationBaseView(SuccessMessageMixin, LoginRequiredMixin):
     model = PaperApplication
@@ -95,4 +94,7 @@ class PaperApplicationUpdateView(PaperApplicationBaseView, UpdateView):
 
 
 def cfp_announcement(request):
-    return render(request, 'cfp/cfp_announcement.html', {})
+    cfp = get_object_or_404(CallForPaper, pk=1)
+    return render(request, 'cfp/cfp_announcement.html', {
+        "cfp": cfp
+    })
