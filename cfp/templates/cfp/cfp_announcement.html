@@ -21,21 +21,9 @@
     <section class="Intro">
         <div class="Wrapper Wrapper--narrow">
             <div class="Passage">
-                <h2 class="Intro-title">Call for Proposals</h2>
+                <h2 class="Intro-title">{{ cfp.title }}</h2>
                 <div class="Intro-body">
-
-                    <p>It’s a great pleasure to invite you to WebCamp Zagreb 2015, a tech conference devoted to web development &amp; design, which will be held on October 3rd &amp; 4th 2015 in Zagreb, Croatia.</p>
-
-                    <p>This is a call to participate: help us build a great conference once again by becoming a speaker. With great opportunities to network with fellow developers &amp; designers the most important part of every great conference are expert talks.</p>
-
-                    <p>Feel free to submit all of your ideas, we have a diverse range of interests so all submissions are welcome! While it’s not important which technology, language or tool you use, let your suggestions be interesting and fresh to a broad audience. Just make the talk web related (even if it’s a long shot). We love first hand experience talks!
-                    Talks should be of a technical nature, not promotional. Try to cover both good and bad sides and keep the presentation as objective as possible. If you want to present a specific project, give us an inside perspective. Just keep in mind that we’re looking for tech talks, not sales pitches.</p>
-
-                    <p>Here are some ideas to get you started: application architecture, hosting, cloud solutions, software development methodology, application testing, development/design tools, client and server side development, mobile web, specific technologies/tools/libraries, design, UI/UX, design methodology, SQL or NoSQL databases and data storages, tech experience you love or dislike, managing a web team or an organization, collaboration tools, distributed or remote teamwork experiences.</p>
-
-                    <p>This year you can choose between a 25 and 45 minute talk and this includes the Q&amp;A at the end. This limitation will be strictly enforced to keep the conference schedule on track. It’s highly recommended to limit your talk to 20 or 40 minutes to allow 5 minutes for Q&amp;A. All talks will be held in English.</p>
-
-                    <p>By submitting a talk, you agree to our <a href="{% url 'code_of_conduct' %}">Code of Conduct</a> which will be firmly enforced.</p>
+                    {{ cfp.announcement|safe }}
 
                     <div class="u-textCenter">
                         <a href="{% url 'application_create' %}" class="Button Button--beta Button--rounded">Submit a talk</a>
