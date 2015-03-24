@@ -18,6 +18,7 @@ def get_applicant_avatar_path(instance, filename):
 class CallForPaper(models.Model):
     title = models.CharField(max_length=1024)
     description = HTMLField()
+    announcement = HTMLField(blank=True, null=True)
     begin_date = models.DateField()
     end_date = models.DateField(blank=True, null=True)
 
