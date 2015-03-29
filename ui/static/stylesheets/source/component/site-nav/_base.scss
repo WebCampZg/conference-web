@@ -234,26 +234,27 @@
 
         &-link {
             position:relative;
-            transition:none;
-            // transition:all 0.07s ease-in-out;
-            // transition-property:background, color;
 
-            &:before {
-                @include Icon;
-                @include Icon--user__alpha;
-                content:'';
+            &,
+            & .Icon {
+                transition:all 0.07s ease-in-out;
+                transition-property:background, color;
+            }
+
+            .Icon {
                 position:absolute; top:50%;
                 transform:translateY(-50%);
             }
 
             &:hover,
             &:focus {
-                color:$color-brand-beta;
-                border-color:$color-brand-beta;
 
-                &:before {
-                    @include Icon--user__beta;
+                &,
+                & .Icon {
+                    color:$color-brand-beta;
                 }
+
+                border-color:$color-brand-beta;
             }
         }
     }
@@ -266,7 +267,7 @@
                 padding:0.5em;
                 border:1px solid $color-brand-alpha; border-radius:999px;
 
-                &:before {
+                .Icon {
                     margin-left:-1em*1.2;
                     width:1em; height:1em;
                 }
@@ -296,7 +297,7 @@
                 color:$color-brand-alpha;
                 background:#fff;
 
-                &:before {
+                .Icon {
                     left:0;
                     margin-left:(18px/2);
                     width:18px; height:18px;

@@ -8,29 +8,3 @@
     position:relative;
     color:#fff;
 }
-
-/**
- * Logo
- * -----------------------------------------------------------------------------
- */
-
-.Header {
-
-    &-logo {
-        position:relative; z-index:10;
-        width:100px; height:100px;
-        background-size:cover;
-
-        @media screen and (min-width:$bp-alpha) {
-            width:130px; height:130px;
-        }
-
-        @media screen and (min-width:$bp-beta) {
-            width:160px; height:160px;
-        }
-
-        @media screen and (min-width:$bp-gamma) {
-            width:180px; height:180px;
-        }
-    }
-}
