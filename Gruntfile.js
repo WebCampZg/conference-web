@@ -141,6 +141,22 @@ module.exports = function ( grunt ) {
                 },
                 tasks: ['watch:css','watch:js']
             }
+        },
+
+        svgstore: {
+            sprite: {
+                options: {
+                    prefix: 'Sprite-',
+                    includeTitleElement: false,
+                    preserveDescElement: false
+                },
+                files: {
+                    'ui/static/images/sprite.svg': [
+                        'ui/static/images/icons/social/**/*.svg',
+                        'ui/static/images/icons/user.svg'
+                    ]
+                }
+            }
         }
 
     });
