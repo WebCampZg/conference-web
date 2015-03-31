@@ -1,3 +1,5 @@
+import unicodedata
+
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
@@ -12,7 +14,7 @@ from .choices import TALK_DURATIONS
 def get_applicant_avatar_path(instance, filename):
     return "uploads/applicant_images/{0}/{1}".format(
             slugify(instance.user.email),
-            filename)
+            unicodedata.normalize('NFKD', filename).encode('ascii', 'ignore'))
 
 
 class CallForPaper(models.Model):
