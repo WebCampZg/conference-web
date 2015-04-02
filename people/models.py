@@ -48,8 +48,8 @@ class TShirtSize(models.Model):
 
 class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
-    first_name = models.CharField(_('first name'), max_length=30, blank=True)
-    last_name = models.CharField(_('last name'), max_length=30, blank=True)
+    first_name = models.CharField(_('first name'), max_length=255, blank=True)
+    last_name = models.CharField(_('last name'), max_length=255, blank=True)
     is_staff = models.BooleanField(_('staff status'), default=False,
         help_text=_('Designates whether the user can log into this admin '
                     'site.'))
@@ -58,8 +58,8 @@ class User(AbstractBaseUser, PermissionsMixin):
                     'active. Unselect this instead of deleting accounts.'))
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
-    github = models.CharField(max_length=39, blank=True, null=True)
-    twitter = models.CharField(max_length=20, blank=True, null=True)
+    github = models.CharField(max_length=255, blank=True, null=True)
+    twitter = models.CharField(max_length=255, blank=True, null=True)
     tshirt_size = models.ForeignKey(TShirtSize, blank=True, null=True)
 
     objects = UserManager()
