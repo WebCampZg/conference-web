@@ -1,0 +1,128 @@
+/**
+ * =============================================================================
+ * Sponsors
+ * =============================================================================
+ */
+
+.Sponsors {
+    overflow:hidden;
+    color:$color-brand-alpha;
+
+    &-title {
+        padding:0.5rem 1rem;
+        background:#fff;
+
+        @media screen and (min-width:$bp-beta) {
+            position:relative;
+            width:50%; height:78px;
+            margin:32px auto 0;
+            padding:0; padding-left:1.5rem;
+            line-height:78px;
+
+            &:before,
+            &:after {
+                content:'';
+                position:absolute;
+            }
+
+            &:before {
+                right:100%;
+                width:155px; height:110px;
+                margin-top:-32px; margin-right:-43px;
+                background-image:inline('/static/images/pixels-left-white.svg');
+                background-size:cover;
+            }
+
+            &:after {
+                left:100%; top:0; bottom:0;
+                width:100%;
+                background:#fff;
+            }
+        }
+
+        @media screen and (min-width:$bp-gamma) {
+            font-size:1.7em;
+        }
+    }
+
+    &-link {
+        display:block;
+
+        &:hover,
+        &:focus {
+
+            .Sponsors-logo {
+                opacity:0.8;
+            }
+        }
+    }
+
+    &-logo {
+        width:100%;
+        transition:opacity 0.07s ease-in-out;
+    }
+}
+
+/**
+ * Sponsor types
+ * -----------------------------------------------------------------------------
+ */
+
+.Sponsors {
+
+    &-type {
+        position:relative;
+        background:#fff;
+
+        &:after {
+            content:'';
+            position:absolute; bottom:100%; left:10px; right:10px; z-index:10;
+            height:1px;
+            background:rgba($color-gray-alpha, 0.5);
+
+            @media screen and (min-width:$bp-alpha) {
+                left:5%; right:5%;
+            }
+
+            @media screen and (min-width:$bp-beta) {
+                left:15%; right:15%;
+            }
+
+            @media screen and (min-width:$bp-delta) {
+                left:20%; right:20%;
+            }
+        }
+
+        .Sponsors-item {
+            width:60%;
+            margin:0 auto;
+            padding:1rem 0;
+
+            @media screen and (min-width:$bp-alpha) {
+                width:50%;
+                padding:2rem 0;
+            }
+
+            @media screen and (min-width:$bp-beta) {
+                width:40%;
+                padding:2.5rem 0;
+            }
+
+            @media screen and (min-width:$bp-delta) {
+                width:35%;
+                padding:3rem 0;
+            }
+        }
+
+        &--diamond {
+
+            &:after {
+                display:none;
+            }
+        }
+
+        &--other {
+
+        }
+    }
+}
