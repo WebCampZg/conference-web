@@ -1,16 +1,26 @@
+import unicodedata
+
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from django.utils.text import slugify
 
 from tinymce.models import HTMLField
 
 from .choices import TALK_DURATIONS
 
 
+def get_applicant_avatar_path(instance, filename):
+    return "uploads/applicant_images/{0}/{1}".format(
+            slugify(instance.user.email),
+            unicodedata.normalize('NFKD', filename).encode('ascii', 'ignore'))
+
+
 class CallForPaper(models.Model):
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=1024)
     description = HTMLField()
+    announcement = HTMLField(blank=True, null=True)
     begin_date = models.DateField()
     end_date = models.DateField(blank=True, null=True)
 
@@ -23,11 +33,11 @@ class CallForPaper(models.Model):
 
 
 class Applicant(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
-    about = models.CharField(max_length=140)
-    biography = models.CharField(max_length=2048)
-    speaker_experience = models.CharField(max_length=255, null=True, blank=True)
-    image = models.ImageField(upload_to='applicant_images')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='applicant')
+    about = models.TextField()
+    biography = models.TextField()
+    speaker_experience = models.TextField(null=True, blank=True)
+    image = models.ImageField(upload_to=get_applicant_avatar_path)
 
     def __unicode__(self):
         return self.user.get_full_name()
@@ -45,7 +55,7 @@ class AudienceSkillLevel(models.Model):
 
 class PaperApplication(models.Model):
     cfp = models.ForeignKey(CallForPaper)
-    applicant = models.ForeignKey(Applicant)
+    applicant = models.ForeignKey(Applicant, related_name='applications')
     title = models.CharField(max_length=255, help_text=_('The title of your talk. Keep it short and catchy.'),
                              verbose_name=_('Title'))
     about = models.TextField(help_text=_('Describe your talk in 140 characters or less.'),

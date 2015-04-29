@@ -6,12 +6,14 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <title>{% block title %}{% endblock %}</title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <link rel="shortcut icon" href="/static/images/favicon/favicon.ico" />
+        <link rel="apple-touch-icon-precomposed" href="/static/images/favicon/apple-touch-icon-precomposed.png" />
         <link rel="stylesheet" href="{% static 'stylesheets/site.css' %}" />
         <script>!function(){"use strict";function e(e,t,n){e.addEventListener?e.addEventListener(t,n,!1):e.attachEvent&&e.attachEvent("on"+t,n)}function t(e){return window.localStorage&&localStorage.font_css_cache&&localStorage.font_css_cache_file===e}function n(){if(window.localStorage&&window.XMLHttpRequest)if(t(o))c(localStorage.font_css_cache);else{var n=new XMLHttpRequest;n.open("GET",o,!0),e(n,"load",function(){4===n.readyState&&(c(n.responseText),localStorage.font_css_cache=n.responseText,localStorage.font_css_cache_file=o)}),n.send()}else{var a=document.createElement("link");a.href=o,a.rel="stylesheet",a.type="text/css",document.getElementsByTagName("head")[0].appendChild(a),document.cookie="font_css_cache"}}function c(e){var t=document.createElement("style");t.innerHTML=e,document.getElementsByTagName("head")[0].appendChild(t)}var o="/static/stylesheets/font.css";window.localStorage&&localStorage.font_css_cache||document.cookie.indexOf("font_css_cache")>-1?n():e(window,"load",n)}();</script>
     </head>
     <body class="{% block body_class %}{% endblock %}">
         {% if messages %}
-        <ul class="Messages">
+        <ul class="Notice Messages">
             {% for message in messages %}
             <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
             {% endfor %}
@@ -23,19 +25,19 @@
             <div class="Wrapper Wrapper--narrow">
                 <ul class="QuickSocial">
                     <li>
-                        <a href="https://www.facebook.com/WebCampZg"><i class="Icon Icon--social Icon--facebook">Facebook</i></a>
+                        <a href="https://www.facebook.com/WebCampZg"><svg class="Icon Icon--social"><title>Facebook</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-facebook"></use></svg></a>
                     </li>
                     <li>
-                        <a href="https://twitter.com/webcampzg"><i class="Icon Icon--social Icon--twitter">Twitter</i></a>
+                        <a href="https://twitter.com/webcampzg"><svg class="Icon Icon--social"><title>Twitter</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-twitter"></use></svg></a>
                     </li>
                     <li>
-                        <a href="https://github.com/webcampzg"><i class="Icon Icon--social Icon--github">GitHub</i></a>
+                        <a href="https://github.com/webcampzg"><svg class="Icon Icon--social"><title>Github</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-github"></use></svg></a>
                     </li>
                     <li>
-                        <a href="https://plus.google.com/+WebcampzgOrgHR"><i class="Icon Icon--social Icon--googlePlus">Google+</i></a>
+                        <a href="https://plus.google.com/+WebcampzgOrgHR"><svg class="Icon Icon--social"><title>Google+</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-google-plus"></use></svg></a>
                     </li>
                     <li>
-                        <a href="https://www.linkedin.com/company/webcamp-zagreb"><i class="Icon Icon--social Icon--linkedin">LinkedIn</i></a>
+                        <a href="https://www.linkedin.com/company/webcamp-zagreb"><svg class="Icon Icon--social"><title>LinkedIn</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-linkedin"></use></svg></a>
                     </li>
                 </ul>
             </div>
@@ -52,6 +54,7 @@
               })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
               ga('create', 'UA-35198834-2', 'auto');
               ga('send', 'pageview');
-            </script>
+        </script>
+        <script src="{% static 'javascripts/site.js' %}"></script>
     </body>
 </html>

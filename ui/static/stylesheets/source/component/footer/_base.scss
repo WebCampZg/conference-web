@@ -37,30 +37,9 @@
     a {
         display:inline-block;
 
-        &:hover {
-
-            .Icon {
-
-                &--facebook {
-                    @include Icon--social__Icon--facebook__white;
-                }
-
-                &--twitter {
-                    @include Icon--social__Icon--twitter__white;
-                }
-
-                &--github {
-                    @include Icon--social__Icon--github__white;
-                }
-
-                &--googlePlus {
-                    @include Icon--social__Icon--googlePlus__white;
-                }
-
-                &--linkedin {
-                    @include Icon--social__Icon--linkedin__white;
-                }
-            }
+        &:hover,
+        &:focus {
+            color:#fff;
         }
     }
 }

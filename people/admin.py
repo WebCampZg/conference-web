@@ -3,14 +3,19 @@ from django.contrib.auth.admin import UserAdmin
 from people.models import User
 from django.utils.translation import ugettext as _
 
+from .forms import *
+
 
 class CustomUserAdmin(UserAdmin):
+    # Set the add/modify forms
+    add_form = CustomUserCreationForm
+    form = CustomUserChangeForm
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
-        (_('Personal info'), {'fields': ('first_name', 'last_name', 'email')}),
+        (_('Personal info'), {'fields': ('first_name', 'last_name', 'email',
+            'twitter', 'github', 'tshirt_size')}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')}),
-        (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (
         (None, {
@@ -24,3 +29,4 @@ class CustomUserAdmin(UserAdmin):
     ordering = ('email',)
 
 admin.site.register(User, CustomUserAdmin)
+

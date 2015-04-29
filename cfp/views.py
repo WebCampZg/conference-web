@@ -4,18 +4,20 @@ from braces.views._access import LoginRequiredMixin, UserPassesTestMixin
 from django.core.exceptions import PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponse, Http404
+from django.shortcuts import render, get_object_or_404
 from django.views.generic.edit import CreateView, UpdateView
+from django.contrib.messages.views import SuccessMessageMixin
 from cfp.forms import PaperApplicationForm
 from cfp.models import Applicant, PaperApplication, CallForPaper
 
-
-class PaperApplicationBaseView(LoginRequiredMixin):
+class PaperApplicationBaseView(SuccessMessageMixin, LoginRequiredMixin):
     model = PaperApplication
     form_class = PaperApplicationForm
     template_name = 'cfp/cfp_form.html'
+    success_message = "You have successfully submitted your application."
 
     def dispatch(self, request, *args, **kwargs):
-        self.cfp = CallForPaper.objects.get(pk=kwargs.get('pk') or 1)
+        self.cfp = CallForPaper.objects.get(pk=kwargs.get('cfp_id') or 1)
         return super(PaperApplicationBaseView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -72,6 +74,8 @@ class PaperApplicationCreateView(PaperApplicationBaseView, CreateView):
 
 
 class PaperApplicationUpdateView(PaperApplicationBaseView, UpdateView):
+    success_message = "You have successfully updated your application."
+
     def dispatch(self, request, *args, **kwargs):
         self._check_allowed(request.user)
         return super(PaperApplicationUpdateView, self).dispatch(request, *args, **kwargs)
@@ -88,3 +92,9 @@ class PaperApplicationUpdateView(PaperApplicationBaseView, UpdateView):
         if not allow:
             raise Http404()
 
+
+def cfp_announcement(request):
+    cfp = get_object_or_404(CallForPaper, pk=1)
+    return render(request, 'cfp/cfp_announcement.html', {
+        "cfp": cfp
+    })

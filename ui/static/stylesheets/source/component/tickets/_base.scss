@@ -5,8 +5,8 @@
  */
 
 .Tickets {
+    @include content-blur;
     position:relative;
-    background:url('/static/images/hero-tickets.jpg');
     background-size:cover;
     background-position:50% 50%;
     margin-top:calc(-130px - 4em);
@@ -14,35 +14,34 @@
     text-align:center;
     color:#fff;
 
+    &:before {
+        background:url('/static/images/hero-tickets.jpg');
+    }
+
+    &-inner {
+        position:relative; z-index:10;
+    }
+
     &-title {
         margin-bottom:0.5em;
         font-size:2em; line-height:1.1;
     }
 
     &-cta {
-        display:inline-block;
-        border:1px solid #fff;
-        margin:1em auto 1em;
-        padding:0.3em 1.5em;
-        border-radius:40px;
-        font-size:2.3em; font-weight:700;
-        text-align:center; text-decoration:none;
-        color:#fff;
-        transition:all 0.07s ease-in-out;
-        transition-property:background, color;
-
-        &:hover {
-            color:$color-brand-alpha;
-            background:#fff;
-            text-decoration:none;
-        }
+        margin:0.7em auto 0.35em;
     }
 
     &-sponsorLink {
         margin-bottom:2em;
+        font-size:1.2em; font-weight:700;
 
         a {
             color:#fff;
+
+            &:hover,
+            &:focus {
+                color:$color-brand-beta;
+            }
         }
     }
 
@@ -55,7 +54,7 @@
             position:absolute; bottom:-1px; left:50%;
             transform:translateX(-50%);
             width:164px; height:76px;
-            background-image:inline('/static/images/pixels-middle.png');
+            background-image:inline('/static/images/pixels-middle.svg');
             background-size:cover;
         }
     }

@@ -4,18 +4,33 @@
 {% block content %}
     <header class="Header" role="banner">
         <div class="Wrapper Wrapper--wide">
-            <h1 class="Header-title u-textCenter">
-                <a href="/"><i class="Header-logo Icon Icon--logo">WebCamp Zagreb 2015.</i></a>
-            </h1>
+            {% include "partials/site-nav.html" %}
         </div>
     </header>
 
     <main role="main" class="Page-content Aligner">
         <div class="Wrapper Wrapper--narrow Aligner-item">
-            <section class="UserAccess UserAccess--signup">
+
+            <section class="Account">
+
+                {% if applications %}
+                <div class="Account-talks">
+                    <div class="Form Form--beta">
+                        <h2 class="Form-legend">Your submitted talks</h2>
+                        <div class="Passage">
+                            <ul class="Account-talkList">
+                                {% for application in applications %}
+                                <li><a href="{% url 'application_update' 1 application.pk %}">{{ application }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
                 <form method="post" class="Form Form--beta">{% csrf_token %}
                     <fieldset class="Form-fieldset">
-                        <legend class="Form-legend">Profile</legend>
+                        <legend class="Form-legend">Edit Profile</legend>
 
                         {% if form.errors %}
                         <div class="Form-errors">
@@ -26,15 +41,15 @@
                         </div>
                         {% endif %}
 
-                        <div class="UserAccess-grid">
-                            <div class="UserAccess-gridItem">
+                        <div class="Grid">
+                            <div class="Grid-cell Grid-cell--1of2">
 
                                 {% include "partials/form-field.html" with field=form.email field_type="text" %}
                                 {% include "partials/form-field.html" with field=form.first_name field_type="text" %}
                                 {% include "partials/form-field.html" with field=form.last_name field_type="text" %}
 
                             </div>
-                            <div class="UserAccess-gridItem">
+                            <div class="Grid-cell Grid-cell--1of2">
 
                                 {% include "partials/form-field.html" with field=form.tshirt_size field_type="text" %}
                                 {% include "partials/form-field.html" with field=form.github field_type="text" vanity_field="github" %}
@@ -43,12 +58,15 @@
                             </div>
                         </div>
 
-                        <div class="Form-actions">
-                            <button type="submit" class="Button Button--alpha Form-action Form-action--submit">Submit</button>
+                        <div class="Form-constrain">
+                            <div class="Form-actions">
+                                <button type="submit" class="Button Button--beta Form-action Form-action--submit">Submit</button>
+                            </div>
                         </div>
 
                     </fieldset>
                 </form>
+
             </section>
         </div>
     </main>

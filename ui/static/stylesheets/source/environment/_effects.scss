@@ -1,0 +1,27 @@
+/**
+ * =============================================================================
+ * Blur
+ * =============================================================================
+ */
+
+@mixin content-blur {
+    overflow:hidden;
+
+    &:before {
+        content:'';
+        position:absolute; left:-5px; top:-5px; right:-5px; bottom:-5px;
+        background-repeat:no-repeat;
+        background-position:50% 50%;
+        background-size:cover;
+        filter:blur(2px);
+        transition:filter 0.3s ease-in-out;
+        @content;
+    }
+
+    &:hover {
+
+        &:before {
+            filter:blur(0px);
+        }
+    }
+}

@@ -5,9 +5,7 @@
     <header class="Header Hero Hero--cfp" role="banner">
         <div class="Hero-inner">
             <div class="Wrapper Wrapper--wide">
-                <h1 class="Header-title">
-                    <a href="/"><i class="Header-logo Icon Icon--logo">WebCamp Zagreb 2015.</i></a>
-                </h1>
+                {% include "partials/site-nav.html" %}
             </div>
             <div class="Punchline">
                 <div class="Wrapper Wrapper--narrow">
@@ -23,7 +21,6 @@
                 <h2 class="Intro-title">Submit your talk for WebCamp Zagreb {{ current_year }}.</h2>
                 <div class="Intro-body">
                     {{ cfp_description|safe }}
-    <p>For more details see the conference web site <a href="http://2015.webcampzg.org">http://2015.webcampzg.org</a>.</p>
                 </div>
             </div>
         </div>
@@ -34,8 +31,8 @@
 
             <form method="post" enctype="multipart/form-data" class="Form">{% csrf_token %}
 
-                <div class="CFP-grid">
-                    <div class="CFP-gridItem CFP-talk">
+                <div class="Grid">
+                    <div class="Grid-cell Grid-cell--1of2 CFP-talk">
 
                         <fieldset class="Form-fieldset">
                             <legend class="Form-legend">Talk</legend>
@@ -49,7 +46,7 @@
                         </fieldset>
 
                     </div>
-                    <div class="CFP-gridItem CFP-speaker">
+                    <div class="Grid-cell Grid-cell--1of2 CFP-speaker">
 
                         <fieldset class="Form-fieldset">
                             <legend class="Form-legend">Speaker</legend>
@@ -64,8 +61,10 @@
                     </div>
                 </div>
 
-                <div class="Form-actions">
-                    <button type="submit" class="Button Button--alpha Form-action Form-action--submit">Submit</button>
+                <div class="Form-constrain">
+                    <div class="Form-actions">
+                        <button type="submit" class="Button Button--alpha Form-action Form-action--submit">Submit</button>
+                    </div>
                 </div>
 
             </form>

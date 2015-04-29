@@ -5,16 +5,14 @@
     <header class="Header Hero Hero--main" role="banner">
         <div class="Hero-inner">
             <div class="Wrapper Wrapper--wide">
-                <h1 class="Header-title">
-                    <a href="/"><i class="Header-logo Icon Icon--logo">WebCamp Zagreb 2015.</i></a>
-                </h1>
+                {% include "partials/site-nav.html" %}
             </div>
             <div class="Punchline">
                 <div class="Wrapper Wrapper--narrow">
                     <h2 class="Punchline-info">Technology oriented conference for <b>developers&nbsp;&amp;&nbsp;designers</b></h2>
                     <div class="Punchline-event">
                         <p class="Punchline-date">October 3rd &amp; 4th, 2015</p>
-                        <p class="Punchline-location">Hypo Expo XX1 <span class="Punchline-sep" aria-hidden="true" role="presentation">//</span> Slavonska avenija 6 <span class="Punchline-sep" aria-hidden="true" role="presentation">//</span> Zagreb, Croatia</p>
+                        <p class="Punchline-location"><span>Hypo Expo XX1</span> <span>Slavonska avenija 6</span> Zagreb, Croatia</p>
                     </div>
                 </div>
             </div>
@@ -71,14 +69,16 @@
     </section>
 
     <section class="Tickets">
-        <div class="Wrapper Wrapper--narrow">
-            <h3 class="Tickets-title">Early Bird tickets on&nbsp;sale!</h3>
-            <div>
-                <p>Early bird tickets are limited. Get them while they're hot.</p>
-                <p>If you don't want to pay for your ticket, submit a talk at one of our meetup groups!</p>
-                <a target="_blank" href="https://www.entrio.hr/en/event/webcamp-zagreb-2015-2150" class="Tickets-cta">Buy tickets!</a>
-                <div class="Tickets-sponsorLink">
-                    <p>...or <a href="/media/webcampzg_2015_sponsors.pdf">become a sponsor</a></p>
+        <div class="Tickets-inner">
+            <div class="Wrapper Wrapper--narrow">
+                <h3 class="Tickets-title">Early Bird tickets on&nbsp;sale!</h3>
+                <div>
+                    <p>Early bird tickets are limited. Get them while they're hot.</p>
+                    <p>If you don't want to pay for your ticket, submit a talk at one of our meetup groups!</p>
+                    <a target="_blank" href="https://www.entrio.hr/en/event/webcamp-zagreb-2015-2150" class="Tickets-cta Button Button--beta Button--rounded">Buy tickets!</a>
+                    <div class="Tickets-sponsorLink">
+                        <p>...or <a href="/media/webcampzg_2015_sponsors.pdf">become a sponsor</a></p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -91,11 +91,11 @@
                 <form action="//webcampzg.us7.list-manage.com/subscribe/post?u=9390a854a4f6130f215f417ef&amp;id=5b285297b0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate Form" target="_blank" novalidate>
                     <div id="mc_embed_signup_scroll">
                         <div class="mc-field-group form-wrap">
-                            <div class="Newsletter-grid">
-                                <div class="Newsletter-gridItem">
+                            <div class="Grid">
+                                <div class="Grid-cell Grid-cell--2of3">
                                     <div class="Field Field--text"><input type="email" value="" name="EMAIL" class="required email Newsletter-email" id="mce-EMAIL" placeholder="Let's stay in touch!"></div>
                                 </div>
-                                <div class="Newsletter-gridItem">
+                                <div class="Grid-cell Grid-cell--1of3">
                                     <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button Button Button--alpha Form-action Form-action--submit Newsletter-action">
                                 </div>
                             </div>
@@ -115,8 +115,10 @@
         </div>
     </section>
 
+    {% include "partials/sponsors.html" %}
+
     <div class="Bithub">
-        <a href="http://bithub.com/embed?hubId=2&tenant=solitary_tsunami_597_8&view=public" class="bithub-embed">hollow-cove-1477 Embed</a><script src="http://bithub.com/embed.js"></script>
+        <a href="https://bithub.com/embed?hubId=2&tenant=solitary_tsunami_597_8&view=public" class="bithub-embed">hollow-cove-1477 Embed</a><script src="https://bithub.com/embed.js"></script>
     </div>
 
 {% endblock %}

@@ -5,27 +5,33 @@
 
     <header class="Header" role="banner">
         <div class="Wrapper Wrapper--wide">
-            <h1 class="Header-title u-textCenter">
-                <a href="/"><i class="Header-logo Icon Icon--logo">WebCamp Zagreb 2015.</i></a>
-            </h1>
+            {% include "partials/site-nav.html" %}
         </div>
     </header>
 
     <main role="main" class="Page-content Aligner">
         <div class="Wrapper Wrapper--narrow Aligner-item">
-            <section class="UserAccess UserAccess--login">
-                <div class="UserAccess-constrain">
+            <section class="Account">
 
-                    <form action="." method="post" class="Form Form--beta">{% csrf_token %}
+                <form action="." method="post" class="Form Form--beta">{% csrf_token %}
+                    <div class="Form-constrain">
 
                         <fieldset class="Form-fieldset">
                             <legend class="Form-legend">Login</legend>
+
+                            {% if form.non_field_errors %}
+                            <div class="Form-errors">
+                                <div class="Passage">
+                                    {{ form.non_field_errors }}
+                                </div>
+                            </div>
+                            {% endif %}
 
                             {% include "partials/form-field.html" with field=form.login  field_type="text" %}
                             {% include "partials/form-field.html" with field=form.password  field_type="text" %}
 
                             <div class="Form-item">
-                                    <label for="remember_me" class="Togglable">
+                                <label for="remember_me" class="Togglable">
                                     <input id="remember_me" type="checkbox" name="remember" value="0" />
                                     <span class="Togglable-caption">Remember me</span>
                                 </label>
@@ -35,18 +41,18 @@
                                 <button type="submit" class="Button Button--beta Form-action Form-action--submit">Login</button>
                             </div>
 
-                            <div class="UserAccess-accessHelp">
-                                <a href="{% url 'account_reset_password' %}">Forgot password?</a>
-                            </div>
-                            <div class="UserAccess-accessHelp">
-                                <a href="{% url 'account_signup' %}">Don't have an account yet? Sign up here!</a>
+                            <div class="Form-actionHelp">
+                                <div class="u-textCenter">
+                                    <p><a href="{% url 'account_reset_password' %}">Forgot password?</a></p>
+                                    <p><a href="{% url 'account_signup' %}">Don't have an account yet? Sign up here!</a></p>
+                                </div>
                             </div>
 
                         </fieldset>
 
-                    </form>
+                    </div>
+                </form>
 
-                </div>
             </section>
         </div>
     </main>

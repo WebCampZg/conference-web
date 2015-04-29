@@ -7,11 +7,12 @@ from filebrowser.sites import site
 
 urlpatterns = patterns('',
 
-    url(r'^$', 'ui.views.index'),
+    url(r'^$', 'ui.views.index', name="ui_index"),
     (r'^tinymce/', include('tinymce.urls')),
     url(r'^signup/success/$', 'ui.views.signup_success'),
     url(r'^blog/', include('blog.urls')),
     url(r'^jobs/', include('jobs.urls')),
+    url(r'^code/$', 'ui.views.code_of_conduct', name='code_of_conduct'),
     url(r'^sponsors/', include('sponsors.urls')),
     url(r'^cfp/', include('cfp.urls')),
     url(r'^admin/filebrowser/', include(site.urls)),

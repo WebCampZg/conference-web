@@ -53,6 +53,44 @@ module.exports = function ( grunt ) {
             }
         },
 
+        browserify: {
+            dist: {
+                options: {
+                    plugin: ['bundle-collapser/plugin'],
+                    ignore: ['css']
+                },
+                files: {
+                    'ui/static/javascripts/site.js': 'ui/static/javascripts/source/index.js'
+                }
+            }
+        },
+
+        uglify: {
+            dist: {
+                files: {
+                    'ui/static/javascripts/site.js': [
+                        'ui/static/javascripts/source/modernizr.js',
+                        'ui/static/javascripts/site.js'
+                    ]
+                }
+            }
+        },
+
+        modernizr: {
+            dist: {
+                devFile: false,
+                uglify: false,
+                excludeTests: ['svg'],
+                files: ['ui/static/**/*.scss'],
+                options: [
+                    'setClasses',
+                    'addTest',
+                    'testProp'
+                ],
+                dest: 'ui/static/javascripts/source/modernizr.js'
+            }
+        },
+
         ttf2woff: {
             dist: {
                 src: ['ui/static/fonts/*.ttf'],
@@ -66,8 +104,6 @@ module.exports = function ( grunt ) {
                     svgoPlugins: [
                         {removeTitle: true},
                         {removeDesc: true},
-                        {removeUselessStrokeAndFill: false},
-                        {removeViewBox: false},
                     ]
                 },
                 files: [{
@@ -88,6 +124,13 @@ module.exports = function ( grunt ) {
                 options: {
                     spawn: false
                 }
+            },
+            js: {
+                files: ['ui/static/javascripts/**/*.js'],
+                tasks: ['js'],
+                options: {
+                    spawn: false
+                }
             }
         },
 
@@ -96,7 +139,23 @@ module.exports = function ( grunt ) {
                 options: {
                     logConcurrentOutput: true
                 },
-                tasks: ['watch:css']
+                tasks: ['watch:css','watch:js']
+            }
+        },
+
+        svgstore: {
+            sprite: {
+                options: {
+                    prefix: 'Sprite-',
+                    includeTitleElement: false,
+                    preserveDescElement: false
+                },
+                files: {
+                    'ui/static/images/sprite.svg': [
+                        'ui/static/images/icons/social/**/*.svg',
+                        'ui/static/images/icons/user.svg'
+                    ]
+                }
             }
         }
 
@@ -106,8 +165,9 @@ module.exports = function ( grunt ) {
 
     grunt.registerTask('font', ['ttf2woff']);
     grunt.registerTask('css', ['sass','postcss','cssmin']);
+    grunt.registerTask('js', ['browserify','uglify']);
     grunt.registerTask('static', function () {
-        var tasks = ['css'];
+        var tasks = ['css','js'];
         if ( grunt.option('watch') ) {
             tasks.push('concurrent');
         }

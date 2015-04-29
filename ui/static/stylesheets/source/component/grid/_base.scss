@@ -1,0 +1,29 @@
+/**
+ * =============================================================================
+ * Grid
+ * =============================================================================
+ */
+
+.Grid {
+
+    @media screen and (min-width:$bp-gamma) {
+        display:flex;
+        margin:0 (-3em/2);
+
+        &-cell {
+            padding:0 (3em/2);
+        }
+
+        &-cell--1of2 {
+            flex:0 0 percentage(1/2);
+        }
+
+        &-cell--1of3 {
+            flex:0 0 percentage(1/3);
+        }
+
+        &-cell--2of3 {
+            flex:0 0 percentage(2/3);
+        }
+    }
+}

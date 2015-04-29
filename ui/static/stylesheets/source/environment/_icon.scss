@@ -8,26 +8,7 @@
     display:inline-block;
     vertical-align:top;
     background-repeat:no-repeat;
+    background-position:50% 50%;
     background-size:contain;
-    text-indent:-9999px; overflow:hidden;
-}
-
-@mixin Icon--social__Icon--facebook__white {
-    background-image:inline('/static/images/icons/facebook-white.svg');
-}
-
-@mixin Icon--social__Icon--twitter__white {
-    background-image:inline('/static/images/icons/twitter-white.svg');
-}
-
-@mixin Icon--social__Icon--github__white {
-    background-image:inline('/static/images/icons/github-white.svg');
-}
-
-@mixin Icon--social__Icon--googlePlus__white {
-    background-image:inline('/static/images/icons/google-plus-white.svg');
-}
-
-@mixin Icon--social__Icon--linkedin__white {
-    background-image:inline('/static/images/icons/linkedin-white.svg');
+    text-align:left; text-indent:-9999px; overflow:hidden;
 }

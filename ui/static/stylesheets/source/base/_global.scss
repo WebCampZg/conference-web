@@ -34,8 +34,10 @@ a {
     display:inline-block;
     color:$color-brand-beta;
     text-decoration:none;
+    transition:color 0.07s ease-in-out;
 
-    &:hover {
-        text-decoration:underline;
+    &:hover,
+    &:focus {
+        color:shade($color-brand-beta, 20%);
     }
 }
