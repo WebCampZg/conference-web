@@ -27,24 +27,6 @@
         font-size:2em; line-height:1.1;
     }
 
-    &-cta {
-        margin:0.7em auto 0.35em;
-    }
-
-    &-sponsorLink {
-        margin-bottom:2em;
-        font-size:1.2em; font-weight:700;
-
-        a {
-            color:#fff;
-
-            &:hover,
-            &:focus {
-                color:$color-brand-beta;
-            }
-        }
-    }
-
     @media screen and (min-width:$bp-beta) {
         margin-top:calc(-100px - 4em);
         padding-bottom:76px;
@@ -56,6 +38,41 @@
             width:164px; height:76px;
             background-image:inline('/static/images/pixels-middle.svg');
             background-size:cover;
+        }
+    }
+}
+
+/**
+ * CTA
+ * -----------------------------------------------------------------------------
+ */
+
+.Tickets {
+
+    &-ctaList {
+        margin-bottom:-1em;
+
+        > li {
+            margin:1em 0;
+        }
+    }
+
+    &-cta {
+        font-size:1.8em;
+    }
+
+    @media screen and (min-width:$bp-beta) {
+
+        &-ctaList {
+            font-size:0;
+            text-align:center;
+            margin-bottom:0;
+
+            > li {
+                display:inline-block;
+                margin:1em 0.2em;
+                font-size:1rem;
+            }
         }
     }
 }
