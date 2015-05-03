@@ -10,7 +10,7 @@
     font-weight:700;
     text-align:center;
     transition:all 0.07s ease-in-out;
-    transition-property:background, color;
+    transition-property:border-color, color, background;
     outline:0;
     text-decoration:none;
 }
@@ -22,6 +22,31 @@
 
     &:hover,
     &:focus {
+        background:$color-brand-beta;
+    }
+}
+
+@mixin Button--beta {
+    border:1px solid #fff;
+    color:#fff;
+    background:transparent;
+
+    &:hover,
+    &:focus {
+        color:$color-brand-alpha;
+        background:#fff;
+    }
+}
+
+@mixin Button--gamma {
+    border:1px solid $color-brand-alpha;
+    color:$color-brand-alpha;
+    background:transparent;
+
+    &:hover,
+    &:focus {
+        border-color:$color-brand-beta;
+        color:#fff;
         background:$color-brand-beta;
     }
 }

@@ -37,13 +37,9 @@
 }
 
 .Button--beta {
-    border:1px solid #fff;
-    color:#fff;
-    background:transparent;
+    @include Button--beta;
+}
 
-    &:hover,
-    &:focus {
-        color:$color-brand-alpha;
-        background:#fff;
-    }
+.Button--gamma {
+    @include Button--gamma;
 }

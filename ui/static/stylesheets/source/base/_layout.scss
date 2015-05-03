@@ -15,3 +15,41 @@
         max-width:780px;
     }
 }
+
+/**
+ * Wrapper with flair
+ * -----------------------------------------------------------------------------
+ */
+
+.Wrapper--withFlair {
+    position:relative;
+    padding:1rem;
+
+    @media screen and (min-width:$bp-alpha) {
+        padding:2em;
+    }
+
+    @media screen and (min-width:1060px) {
+
+        &:before,
+        &:after {
+            content:'';
+            position:absolute; top:-30px;
+            background-size:cover;
+        }
+
+        &:before {
+            right:100%;
+            width:155px; height:110px;
+            margin-right:-46px;
+            background-image:inline('/static/images/pixels-left.svg');
+        }
+
+        &:after {
+            left:100%;
+            width:141px; height:110px;
+            margin-left:-33px;
+            background-image:inline('/static/images/pixels-right.svg');
+        }
+    }
+}
