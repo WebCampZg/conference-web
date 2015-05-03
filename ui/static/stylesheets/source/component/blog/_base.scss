@@ -1,0 +1,33 @@
+/**
+ * =============================================================================
+ * Blog
+ * =============================================================================
+ */
+
+.Blog {
+
+    .Intro-title {
+        margin-bottom:1rem;
+
+        @media screen and (min-width:$bp-beta) {
+            margin-bottom:2.5rem;
+        }
+    }
+
+    &-list {
+
+        > li {
+            margin-top:1.7em; padding-top:1.7em;
+            border-top:1px solid tint($color-gray-alpha, 60%);
+
+            &:first-child {
+                margin-top:0; padding-top:0;
+                border-top-width:0;
+            }
+        }
+    }
+
+    @media screen and (max-width:$bp-beta - 1) {
+        margin-bottom:0;
+    }
+}

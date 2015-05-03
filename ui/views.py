@@ -12,3 +12,6 @@ def signup_success(request):
 
 def blog_temp(request):
     return render(request, 'ui/blog_temp.html', {})
+
+def blog_article_temp(request):
+    return render(request, 'ui/blog_article_temp.html', {})
