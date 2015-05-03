@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     (r'^accounts/', include('allauth.urls')),
     url(r'^accounts/profile/', UserProfileView.as_view(), name='user_profile'),
+    url(r'^blog-temp/$', 'ui.views.blog_temp', name='blog_temp'),
 
 )
 
