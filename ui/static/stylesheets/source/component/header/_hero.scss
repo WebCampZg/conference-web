@@ -36,4 +36,11 @@
             background-image:url('/static/images/hero-cfp.jpg');
         }
     }
+
+    &--blog {
+
+        &:before {
+            background-image:url('/static/images/hero-blog.jpg');
+        }
+    }
 }

@@ -69,7 +69,7 @@
         }
     }
 
-    @media screen and (min-width:($bp-alpha)) and (max-width:(900px - 1)) {
+    @media screen and (min-width:($bp-alpha)) and (max-width:($bp-sitenav-full-display - 1)) {
 
         &-menu {
 
@@ -82,7 +82,7 @@
         }
     }
 
-    @media screen and (max-width:(900px - 1)) {
+    @media screen and (max-width:($bp-sitenav-full-display - 1)) {
         position:absolute; right:0; left:0; top:0;
         background:#fff;
 
@@ -126,7 +126,7 @@
         }
     }
 
-    @media screen and (min-width:900px) {
+    @media screen and (min-width:$bp-sitenav-full-display) {
         position:absolute; right:0; top:0;
         padding:40px 110px 0 0;
 
@@ -186,7 +186,7 @@
 
 .SiteNav-item--cfp {
 
-    @media screen and (min-width:900px) {
+    @media screen and (min-width:$bp-sitenav-full-display) {
         margin:-1em 0;
 
         &:before {
@@ -200,7 +200,7 @@
     transition:all 0.07s ease-in-out;
     transition-property:color, border-color, background;
 
-    @media screen and (max-width:(900px - 1)) {
+    @media screen and (max-width:($bp-sitenav-full-display - 1)) {
         padding:0.5em;
         border:1px solid $color-brand-alpha;
 
@@ -211,7 +211,7 @@
         }
     }
 
-    @media screen and (min-width:900px) {
+    @media screen and (min-width:$bp-sitenav-full-display) {
         padding:1em;
         background:$color-brand-beta;
 
@@ -259,7 +259,7 @@
         }
     }
 
-    @media screen and (max-width:(900px - 1)) {
+    @media screen and (max-width:($bp-sitenav-full-display - 1)) {
 
         .SiteNav {
 
@@ -280,7 +280,7 @@
         }
     }
 
-    @media screen and (min-width:900px) {
+    @media screen and (min-width:$bp-sitenav-full-display) {
         position:absolute; right:0; top:0;
         padding:0;
 
