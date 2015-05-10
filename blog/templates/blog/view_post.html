@@ -36,8 +36,8 @@
                 <div class="ArticleSocial">
                     <h3 class="ArticleSocial-title">Share this article</h3>
                     <ul class="ArticleSocial-list">
-                        <li><a class="js-sharePopup" href="https://www.facebook.com/sharer/sharer.php?u=URL"><svg class="Icon Icon--social"><title>Share on Facebook</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-facebook"></use></svg></a></li>
-                        <li><a class="js-sharePopup" href="https://twitter.com/intent/tweet?text=URL"><svg class="Icon Icon--social"><title>Share on Twitter</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-twitter"></use></svg></a></li>
+                        <li><a class="js-sharePopup" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}"><svg class="Icon Icon--social"><title>Share on Facebook</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-facebook"></use></svg></a></li>
+                        <li><a class="js-sharePopup" href="https://twitter.com/intent/tweet?text={{ request.build_absolute_uri }}"><svg class="Icon Icon--social"><title>Share on Twitter</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-twitter"></use></svg></a></li>
                     </ul>
                 </div>
                 <nav class="ArticleNav">
