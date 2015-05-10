@@ -1,7 +1,52 @@
-Title: {{ post.title }}
+{% extends 'ui/base.html' %}
+{% load static %}
+{% block title %}Blog - WebCampZG 2015{% endblock %}
+{% block content %}
 
-Body: {{ post.body|safe }}
-Created at: {{ post.created_at|date:"SHORT_DATE_FORMAT" }}<br/>
-Updated at: {{ post.updated_at|date:"SHORT_DATE_FORMAT" }}<br/>
+    <header class="Header Hero Hero--blog" role="banner">
+        <div class="Hero-inner">
+            <div class="Wrapper Wrapper--wide">
+                {% include "partials/site-nav.html" %}
+            </div>
+            <div class="Punchline">
+                <div class="Wrapper Wrapper--narrow">
+                    <h2 class="Punchline-info">Blog</h2>
+                </div>
+            </div>
+        </div>
+    </header>
 
+    <section class="Blog Intro Intro--beta">
+        <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
+            <article class="Article Article--detail">
+                <time class="Article-pubDate" pubdate="pubdate" datetime="{{ post.created_at }}">{{ post.created_at|date:"SHORT_DATE_FORMAT" }}</time>
+                <h1 class="Article-title">{{ post.title }}</h1>
+                <p class="Article-excerpt">
+                    {{ post.lead|safe }}
+                </p>
+                <div class="Article-body">
+                    <div class="Passage">
+                        {{ post.body|safe }}
+                    </div>
+                </div>
+                <div class="ArticleSocial">
+                    <h3 class="ArticleSocial-title">Share this article</h3>
+                    <ul class="ArticleSocial-list">
+                        <li><a class="js-sharePopup" href="https://www.facebook.com/sharer/sharer.php?u=URL"><svg class="Icon Icon--social"><title>Share on Facebook</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-facebook"></use></svg></a></li>
+                        <li><a class="js-sharePopup" href="https://twitter.com/intent/tweet?text=URL"><svg class="Icon Icon--social"><title>Share on Twitter</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-twitter"></use></svg></a></li>
+                    </ul>
+                </div>
+                <nav class="ArticleNav">
+                    <ul class="ArticleNav-list">
+                        <li><a class="Article-link Button Button--gamma Button--rounded" href="{% url 'blog_article_temp' %}">Previous article</a></li>
+                        <li><a class="Article-link Button Button--gamma Button--rounded" href="{% url 'blog_article_temp' %}">Next article</a></li>
+                    </ul>
+                </nav>
+            </article>
+        </div>
+    </section>
+
+    {% include "partials/sponsors.html" %}
+
+{% endblock %}
 
