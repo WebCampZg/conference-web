@@ -1,5 +1,5 @@
 {% extends 'ui/base.html' %}
-{% block title %}Blog - WebCampZG 2015{% endblock %}
+{% block title %}WebCampZG 2015{% endblock %}
 {% block content %}
 
     <header class="Header Hero Hero--blog" role="banner">
@@ -9,8 +9,12 @@
             </div>
             <div class="Punchline">
                 <div class="Wrapper Wrapper--narrow">
-                    <h2 class="Punchline-info">Blog</h2>
-                </div>
+                    <h2 class="Punchline-info">Technology oriented conference for <b>developers&nbsp;&amp;&nbsp;designers</b></h2>
+                    <div class="Punchline-event">
+                        <p class="Punchline-date">October 3rd &amp; 4th, 2015</p>
+                        <p class="Punchline-location"><span>Hypo Expo XX1</span> <span>Slavonska avenija 6</span> Zagreb, Croatia</p>
+                    </div>
+               </div>
             </div>
         </div>
     </header>
@@ -36,6 +40,11 @@
     </section>
 
     {% include "partials/sponsors.html" %}
+    <div class="Bithub">
+        <a href="https://bithub.com/embed?hubId=2&tenant=solitary_tsunami_597_8&view=public" class="bithub-embed">hollow-cove-1477 Embed</a><script src="https://bithub.com/embed.js"></script>
+    </div>
+
+
 
 {% endblock %}
 

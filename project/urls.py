@@ -7,10 +7,10 @@ from filebrowser.sites import site
 
 urlpatterns = patterns('',
 
-    url(r'^$', 'ui.views.index', name="ui_index"),
+    url(r'^$', 'blog.views.list_posts', name="ui_index"),
+    url(r'^blog/', include('blog.urls')),
     (r'^tinymce/', include('tinymce.urls')),
     url(r'^signup/success/$', 'ui.views.signup_success'),
-    url(r'^blog/', include('blog.urls')),
     url(r'^jobs/', include('jobs.urls')),
     url(r'^code/$', 'ui.views.code_of_conduct', name='code_of_conduct'),
     url(r'^sponsors/', include('sponsors.urls')),
@@ -20,8 +20,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     (r'^accounts/', include('allauth.urls')),
     url(r'^accounts/profile/', UserProfileView.as_view(), name='user_profile'),
-    url(r'^blog-temp/$', 'ui.views.blog_temp', name='blog_temp'),
-    url(r'^blog-article-temp/$', 'ui.views.blog_article_temp', name='blog_article_temp'),
 
 )
 

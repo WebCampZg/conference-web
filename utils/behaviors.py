@@ -13,7 +13,7 @@ class Timestampable(models.Model):
 
 
 class Permalinkable(models.Model):
-    slug = models.SlugField()
+    slug = models.SlugField(unique=True)
 
     class Meta:
         abstract = True
