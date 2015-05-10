@@ -14,7 +14,8 @@ class Sponsor(Permalinkable):
             default=SPONSOR_TYPES.STANDARD)
     about = HTMLField()
     url = models.URLField(max_length=255)
-    image = FileBrowseField(max_length=255, null=True, blank=True)
+    image = FileBrowseField(max_length=255, null=True, blank=True, directory="sponsors/")
+    is_active = models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.name
