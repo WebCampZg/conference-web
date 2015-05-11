@@ -8,7 +8,7 @@ import tinymce.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('cfp', '0002_auto_20150301_1827'),
+        ('cfp', '0001_initial'),
     ]
 
     operations = [

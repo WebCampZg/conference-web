@@ -29,6 +29,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('cfp', '0001_initial'),
+        ('cfp', '0007_callforpaper_announcement'),
     ]
 
     operations = [
