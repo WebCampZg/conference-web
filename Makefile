@@ -8,7 +8,8 @@ DOCKER_POSTGRES_TAG=9.3
 
 
 .PHONY: all test coverage clean requirements requirements-dev setup-test \
-	docker-check db db-data-dir db-db db-user db-user-grant db-restore db-prompt migrate
+	docker-check db db-data-dir db-db db-user db-user-grant db-restore db-prompt migrate \
+	superuser
 
 all: coverage
 
@@ -111,3 +112,5 @@ db-restore: db-data-dir
 
 db: db-db db-user-grant
 
+superuser:
+	docker-compose run web /bin/bash -c "./manage.py createsuperuser"
