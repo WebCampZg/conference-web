@@ -116,8 +116,8 @@ FILEBROWSER_VERSIONS = {
     'semibig': {'verbose_name': 'SemiBig (420px)', 'width': 420,
         'height': '', 'opts': ''},
     'big': {'verbose_name': 'Big (465px)', 'width': 465, 'height': '', 'opts': ''},
-    'diamond_sponsor': {'verbose_name': 'Diamond Sponsor (378px)', 'width': 378, 'height': '', 'opts': ''},
-    'supporter_sponsor': {'verbose_name': 'Diamond Sponsor (162px)', 'width': 162, 'height': '', 'opts': ''},
+    'diamond_sponsor': {'verbose_name': 'Diamond Sponsor (700px)', 'width': 700, 'height': '', 'opts': ''},
+    'supporter_sponsor': {'verbose_name': 'Diamond Sponsor (350px)', 'width': 350, 'height': '', 'opts': ''},
 }
 
 # Versions available within the Admin-Interface.
