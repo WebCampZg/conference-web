@@ -117,11 +117,11 @@ FILEBROWSER_VERSIONS = {
         'height': '', 'opts': ''},
     'big': {'verbose_name': 'Big (465px)', 'width': 465, 'height': '', 'opts': ''},
     'diamond_sponsor': {'verbose_name': 'Diamond Sponsor (700px)', 'width': 700, 'height': '', 'opts': ''},
-    'supporter_sponsor': {'verbose_name': 'Diamond Sponsor (350px)', 'width': 350, 'height': '', 'opts': ''},
+    'supporter_sponsor': {'verbose_name': 'Supporter Sponsor (350px)', 'width': 350, 'height': '', 'opts': ''},
 }
 
 # Versions available within the Admin-Interface.
-FILEBROWSER_ADMIN_VERSIONS = ['thumbnail', 'small', 'medium', 'semibig', 'big']
+FILEBROWSER_ADMIN_VERSIONS = ['thumbnail', 'small', 'medium', 'semibig', 'big', 'diamond_sponsor', 'supporter_sponsor']
 
 # Which Version should be used as Admin-thumbnail.
 FILEBROWSER_ADMIN_THUMBNAIL = 'fb_thumb'
