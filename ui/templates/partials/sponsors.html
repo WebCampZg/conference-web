@@ -1,5 +1,4 @@
 {% load static %}
-{% load fb_versions %}
 <section class="Sponsors">
     <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
         <h2 class="Sponsors-title">Supported by</h2>
@@ -8,7 +7,7 @@
         <ul class="Sponsors-list">
             {% for diamond in diamond_sponsors %}
             <li class="Sponsors-item">
-                <a class="Sponsors-link" href="{{ diamond.url }}"><img src="{% version diamond.image 'diamond_sponsor' %}" alt="{{ diamond.name }}" class="Sponsors-logo" /></a>
+                <a class="Sponsors-link" href="{{ diamond.url }}"><img src="{{MEDIA_URL}}{{ diamond.image }}" alt="{{ diamond.name }}" class="Sponsors-logo" /></a>
             </li>
             {% endfor %}
         </ul>
@@ -17,7 +16,7 @@
         <ul class="Sponsors-list">
             {% for sponsor in other_sponsors %}
             <li class="Sponsors-item">
-                <a class="Sponsors-link" href="{{ sponsor.url }}"><img src="{% version sponsor.image 'supporter_sponsor' %}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+                <a class="Sponsors-link" href="{{ sponsor.url }}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
             </li>
             {% endfor %}
         </ul>

@@ -1,7 +1,6 @@
 from django.db import models
 
 from tinymce.models import HTMLField
-from filebrowser.fields import FileBrowseField
 
 from utils.behaviors import Permalinkable
 from .choices import SPONSOR_TYPES
@@ -14,7 +13,7 @@ class Sponsor(Permalinkable):
             default=SPONSOR_TYPES.STANDARD)
     about = HTMLField()
     url = models.URLField(max_length=255)
-    image = FileBrowseField(max_length=255, null=True, blank=True, directory="sponsors/")
+    image = models.FileField(max_length=255, null=True, blank=True, upload_to='uploads/')
     is_active = models.BooleanField(default=False)
 
     def __unicode__(self):
