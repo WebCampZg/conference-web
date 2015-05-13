@@ -61,6 +61,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
 
     'tinymce',
+    'grappelli.dashboard',
     'grappelli',
     'filebrowser',
     'django.contrib.admin',
@@ -82,7 +83,8 @@ INSTALLED_APPS = (
 MEDIA_ROOT = os.getenv('MEDIA_ROOT', ABS_PATH('media'))
 
 GRAPPELLI_ADMIN_TITLE = 'Webcamp'
-# GRAPPELLI_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
+GRAPPELLI_INDEX_DASHBOARD = 'dashboard.CustomIndexDashboard'
+
 FILEBROWSER_MEDIA_ROOT = MEDIA_ROOT
 
 FILEBROWSER_EXTENSIONS = {
