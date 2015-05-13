@@ -145,6 +145,25 @@
             }
         }
 
+        &--track {
+
+            .Sponsors-item {
+                width:55%;
+
+                @media screen and (min-width:$bp-alpha) {
+                    width:45%;
+                }
+
+                @media screen and (min-width:$bp-beta) {
+                    width:35%;
+                }
+
+                @media screen and (min-width:$bp-delta) {
+                    width:30%;
+                }
+            }
+        }
+
         &--standard {
 
             .Sponsors-item {
