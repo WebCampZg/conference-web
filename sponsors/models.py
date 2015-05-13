@@ -13,7 +13,7 @@ class Sponsor(Permalinkable):
             default=SPONSOR_TYPES.STANDARD)
     about = HTMLField()
     url = models.URLField(max_length=255)
-    image = models.FileField(max_length=255, null=True, blank=True, upload_to='uploads/')
+    image = models.FileField(max_length=255, null=True, blank=True, upload_to='uploads/sponsors/')
     is_active = models.BooleanField(default=False)
 
     def __unicode__(self):
