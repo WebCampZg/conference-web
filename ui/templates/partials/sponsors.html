@@ -17,7 +17,7 @@
     {% if track_sponsors %}
     <div class="Sponsors-type Sponsors-type--track">
         <ul class="Sponsors-list">
-            {% for sponsor in standard_sponsors %}
+            {% for sponsor in track_sponsors %}
             <li class="Sponsors-item">
                 <a class="Sponsors-link" href="{{ sponsor.url }}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
             </li>
