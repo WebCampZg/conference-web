@@ -39,6 +39,14 @@
     }
 }
 
+.Sponsors {
+
+    &-list {
+        text-align:center;
+        font-size:0;
+    }
+}
+
 /**
  * Sponsor item
  * -----------------------------------------------------------------------------
@@ -46,8 +54,28 @@
 
 .Sponsors {
 
+    &-item {
+        display:inline-block;
+        font-size:1rem;
+        margin:0 auto;
+        padding:1rem 0;
+
+        @media screen and (min-width:$bp-alpha) {
+            padding:2rem 0;
+        }
+
+        @media screen and (min-width:$bp-beta) {
+            padding:2.5rem 0;
+        }
+
+        @media screen and (min-width:$bp-delta) {
+            padding:3rem 0;
+        }
+    }
+
     &-link {
         display:block;
+        padding:0 0.5em;
 
         &:hover,
         &:focus {
@@ -94,23 +122,6 @@
             }
         }
 
-        .Sponsors-item {
-            margin:0 auto;
-            padding:1rem 0;
-
-            @media screen and (min-width:$bp-alpha) {
-                padding:2rem 0;
-            }
-
-            @media screen and (min-width:$bp-beta) {
-                padding:2.5rem 0;
-            }
-
-            @media screen and (min-width:$bp-delta) {
-                padding:3rem 0;
-            }
-        }
-
         &--diamond {
 
             &:after {
@@ -134,7 +145,7 @@
             }
         }
 
-        &--other {
+        &--standard {
 
             .Sponsors-item {
                 width:40%;
@@ -149,6 +160,25 @@
 
                 @media screen and (min-width:$bp-delta) {
                     width:15%;
+                }
+            }
+        }
+
+        &--supporter {
+
+            .Sponsors-item {
+                width:34%;
+
+                @media screen and (min-width:$bp-alpha) {
+                    width:24%;
+                }
+
+                @media screen and (min-width:$bp-beta) {
+                    width:14%;
+                }
+
+                @media screen and (min-width:$bp-delta) {
+                    width:9%;
                 }
             }
         }

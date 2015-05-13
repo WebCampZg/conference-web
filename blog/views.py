@@ -7,12 +7,14 @@ from .models import Post
 
 def list_posts(request):
     diamond_sponsors = Sponsor.objects.filter(is_active=True).filter(type=SPONSOR_TYPES.DIAMOND)
-    other_sponsors = Sponsor.objects.filter(is_active=True).exclude(type=SPONSOR_TYPES.DIAMOND)
+    standard_sponsors = Sponsor.objects.filter(is_active=True).filter(type=SPONSOR_TYPES.STANDARD)
+    supporter_sponsors = Sponsor.objects.filter(is_active=True).filter(type=SPONSOR_TYPES.SUPPORTER)
     posts = Post.objects.all()
     return render(request, 'blog/list_posts.html', {
         'posts': posts,
         'diamond_sponsors': diamond_sponsors,
-        'other_sponsors': other_sponsors})
+        'standard_sponsors': standard_sponsors,
+        'supporter_sponsors': supporter_sponsors})
 
 
 def view_post(request, slug):

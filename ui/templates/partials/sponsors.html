@@ -12,9 +12,18 @@
             {% endfor %}
         </ul>
     </div>
-    <div class="Sponsors-type Sponsors-type--other">
+    <div class="Sponsors-type Sponsors-type--standard">
         <ul class="Sponsors-list">
-            {% for sponsor in other_sponsors %}
+            {% for sponsor in standard_sponsors %}
+            <li class="Sponsors-item">
+                <a class="Sponsors-link" href="{{ sponsor.url }}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="Sponsors-type Sponsors-type--supporter">
+        <ul class="Sponsors-list">
+            {% for sponsor in supporter_sponsors %}
             <li class="Sponsors-item">
                 <a class="Sponsors-link" href="{{ sponsor.url }}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
             </li>
