@@ -2,22 +2,7 @@
 {% block title %}WebCampZG 2015{% endblock %}
 {% block content %}
 
-    <header class="Header Hero Hero--main" role="banner">
-        <div class="Hero-inner">
-            <div class="Wrapper Wrapper--wide">
-                {% include "partials/site-nav.html" %}
-            </div>
-            <div class="Punchline">
-                <div class="Wrapper Wrapper--narrow">
-                    <h2 class="Punchline-info">Technology oriented conference for <b>developers&nbsp;&amp;&nbsp;designers</b></h2>
-                    <div class="Punchline-event">
-                        <p class="Punchline-date">October 3rd &amp; 4th, 2015</p>
-                        <p class="Punchline-location"><span>Hypo Expo XX1</span> <span>Slavonska avenija 6</span> Zagreb, Croatia</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    {% include "partials/header.html" with hero_type="main" %}
 
     <section class="Intro">
         <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
