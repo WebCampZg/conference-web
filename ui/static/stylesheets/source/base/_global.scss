@@ -19,15 +19,8 @@ abbr[title] {
 }
 
 body {
+    @include page-border;
     background:$color-gray-beta;
-
-    @media screen and (min-width:$bp-alpha) {
-        border:10px solid #fff;
-    }
-
-    @media screen and (min-width:$bp-beta) {
-        border-width:20px;
-    }
 }
 
 a {

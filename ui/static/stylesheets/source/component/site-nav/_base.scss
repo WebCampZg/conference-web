@@ -6,10 +6,29 @@
 
 .SiteNav {
 
+    &-item {
+        position:relative;
+
+        &:before {
+            content:'';
+            position:absolute;
+            width:5px; height:5px;
+            border-radius:100%;
+            background:$color-brand-beta;
+        }
+
+        &:first-child {
+
+            &:before {
+                display:none;
+            }
+        }
+    }
+
     &-link {
         display:block;
         padding:0.2em 0;
-        font-size:2em;
+        font-size:1.7em;
         text-transform:uppercase;
         color:$color-brand-alpha;
         transition:all 0.07s ease-in-out;
@@ -19,290 +38,6 @@
         &:focus {
             outline:0;
             text-decoration:none;
-        }
-    }
-
-    &-item {
-        position:relative;
-    }
-
-    &-compact {
-        display:flex;
-        flex-direction:row-reverse;
-        align-items:center;
-        padding-bottom:10px;
-
-        .SiteNav {
-
-            &-compactToggler {
-                margin-left:1em;
-            }
-
-            &-link--cfp {
-                font-size:1em;
-            }
-        }
-    }
-
-    &-compactToggler {
-
-        .Icon {
-            width:2rem; height:2rem;
-        }
-    }
-
-    @media screen and (max-width:($bp-alpha - 1)) {
-        font-size:0.85em;
-
-        &-compact {
-            padding-top:10px; padding-right:10px;
-        }
-
-        &-menu {
-
-            .SiteNav {
-
-                &-compactToggler {
-                    top:10px; right:10px;
-                }
-            }
-        }
-    }
-
-    @media screen and (min-width:($bp-alpha)) and (max-width:($bp-sitenav-full-display - 1)) {
-
-        &-menu {
-
-            .SiteNav {
-
-                &-compactToggler {
-                    right:0; top:0;
-                }
-            }
-        }
-    }
-
-    @media screen and (max-width:($bp-sitenav-full-display - 1)) {
-        position:absolute; right:0; left:0; top:0;
-        background:#fff;
-
-        &-link {
-
-            &:hover,
-            &:focus {
-                color:$color-brand-beta;
-            }
-        }
-
-        &-item {
-            padding:0.5em 0;
-
-            &:first-child {
-                padding-top:0;
-            }
-
-            &:last-child {
-                padding-bottom:0;
-            }
-        }
-
-        &-menu {
-            display:none;
-            position:absolute; left:0; right:0; top:0; z-index:20;
-            text-align:center;
-            background:#fff;
-            padding:1em;
-
-            .SiteNav {
-
-                &-compactToggler {
-                    position:absolute;
-                }
-            }
-
-            &:target {
-                display:block;
-            }
-        }
-    }
-
-    @media screen and (min-width:$bp-sitenav-full-display) {
-        position:absolute; right:0; top:0;
-        padding:40px 110px 0 0;
-
-        &-compact,
-        &-compactToggler {
-            display:none;
-        }
-
-        &-list {
-            display:flex;
-        }
-
-        &-item {
-            position:relative;
-            padding:0 1em;
-
-            &:before {
-                content:'';
-                position:absolute; left:0; top:50%;
-                transform:translateY(-50%);
-                width:5px; height:5px;
-                border-radius:100%;
-                background:$color-brand-beta;
-            }
-
-            &:first-child {
-
-                &:before {
-                    display:none;
-                }
-            }
-        }
-
-        &-link {
-            padding:0;
-            font-size:1.1em;
-            color:#fff;
-
-            &:hover,
-            &:focus {
-                color:$color-brand-beta;
-            }
-        }
-    }
-}
-
-/**
- * =============================================================================
- * Special cases
- * =============================================================================
- */
-
-/**
- * CFP
- * -----------------------------------------------------------------------------
- */
-
-.SiteNav-item--cfp {
-
-    @media screen and (min-width:$bp-sitenav-full-display) {
-        margin:-1em 0;
-
-        &:before {
-            display:none;
-        }
-    }
-}
-
-.SiteNav-link--cfp {
-    border-radius:999px;
-    transition:all 0.07s ease-in-out;
-    transition-property:color, border-color, background;
-
-    @media screen and (max-width:($bp-sitenav-full-display - 1)) {
-        padding:0.5em;
-        border:1px solid $color-brand-alpha;
-
-        &:hover,
-        &:focus {
-            color:$color-brand-beta;
-            border-color:$color-brand-beta;
-        }
-    }
-
-    @media screen and (min-width:$bp-sitenav-full-display) {
-        padding:1em;
-        background:$color-brand-beta;
-
-        &:hover,
-        &:focus {
-            color:#fff;
-            background:darken($color-brand-beta, 5%);
-        }
-    }
-}
-
-/**
- * Account
- * -----------------------------------------------------------------------------
- */
-
-.SiteNav-item--account {
-
-    .SiteNav {
-
-        &-link {
-            position:relative;
-
-            &,
-            & .Icon {
-                transition:all 0.07s ease-in-out;
-                transition-property:background, color;
-            }
-
-            .Icon {
-                position:absolute; top:50%;
-                transform:translateY(-50%);
-            }
-
-            &:hover,
-            &:focus {
-
-                &,
-                & .Icon {
-                    color:$color-brand-beta;
-                }
-
-                border-color:$color-brand-beta;
-            }
-        }
-    }
-
-    @media screen and (max-width:($bp-sitenav-full-display - 1)) {
-
-        .SiteNav {
-
-            &-link {
-                padding:0.5em;
-                border:1px solid $color-brand-alpha; border-radius:999px;
-
-                .Icon {
-                    margin-left:-1em*1.2;
-                    width:1em; height:1em;
-                }
-
-                &:hover,
-                &:focus {
-                    border-color:$color-brand-beta;
-                }
-            }
-        }
-    }
-
-    @media screen and (min-width:$bp-sitenav-full-display) {
-        position:absolute; right:0; top:0;
-        padding:0;
-
-        &:before {
-            display:none;
-        }
-
-        .SiteNav {
-
-            &-link {
-                padding:0.2em 1em; padding-left:calc(1em + 18px);
-                font-size:1em;
-                text-transform:none;
-                color:$color-brand-alpha;
-                background:#fff;
-
-                .Icon {
-                    left:0;
-                    margin-left:(18px/2);
-                    width:18px; height:18px;
-                }
-            }
         }
     }
 }

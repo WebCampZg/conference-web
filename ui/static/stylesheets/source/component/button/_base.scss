@@ -24,7 +24,7 @@
 }
 
 .Button--rounded {
-    border-radius:999px;
+    @include Button--rounded;
 }
 
 /**

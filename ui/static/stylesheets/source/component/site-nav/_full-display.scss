@@ -1,0 +1,53 @@
+/**
+ * =============================================================================
+ * Site navigation, full display
+ * =============================================================================
+ */
+
+.SiteNav {
+
+    @media screen and (min-width:$bp-sitenav-full-display) {
+        position:absolute; right:0; top:0;
+        padding:40px 110px 0 0;
+
+        &-compact {
+            display:none;
+        }
+
+        &-list {
+            display:flex;
+        }
+
+        &-item {
+            position:relative;
+            padding:0 0.7em;
+
+            &:before {
+                left:0; top:50%;
+                transform:translateY(-50%);
+            }
+        }
+
+        &-link {
+            padding:0;
+            font-size:1em;
+            color:#fff;
+
+            &:hover,
+            &:focus {
+                color:$color-brand-beta;
+            }
+        }
+    }
+
+    @media screen and (min-width:1200px) {
+
+        &-item {
+            padding:0 1em;
+        }
+
+        &-link {
+            font-size:1.1em;
+        }
+    }
+}

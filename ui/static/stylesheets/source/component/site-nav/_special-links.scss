@@ -1,0 +1,151 @@
+/**
+ * =============================================================================
+ * Special cases
+ * =============================================================================
+ */
+
+.SiteNav-item--higlighted {
+
+    &:before {
+        display:none;
+    }
+}
+
+.SiteNav-item--account .SiteNav-link,
+.SiteNav-link--cfp {
+
+    @media screen and (max-width:($bp-sitenav-full-display - 1)) {
+        @include Button;
+        @include Button--rounded;
+        @include Button--gamma;
+        display:block;
+        padding:0.5em;
+        font-weight:normal;
+    }
+}
+
+/**
+ * CFP
+ * -----------------------------------------------------------------------------
+ */
+
+.SiteNav-item--cfp {
+
+    @media screen and (min-width:$bp-sitenav-full-display) {
+        margin:-1em 0;
+    }
+}
+
+.SiteNav-link--cfp {
+
+    .SiteNav {
+
+        &-label {
+
+            &--alt {
+                display:none;
+            }
+
+            @media screen and (min-width:$bp-sitenav-full-display) and (max-width:1100px - 1) {
+                display:none;
+
+                &--alt {
+                    display:block;
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width:$bp-sitenav-full-display) {
+        @include Button;
+        @include Button--rounded;
+        @include Button--delta;
+        display:block;
+        padding:1em;
+        margin:-1px;
+        font-weight:normal;
+    }
+}
+
+/**
+ * Account
+ * -----------------------------------------------------------------------------
+ */
+
+.SiteNav-item--account {
+
+    .SiteNav {
+
+        &-link {
+            position:relative;
+
+            .Icon {
+                @include _Button-transition;
+                transition-property:color;
+                position:absolute; top:50%;
+                transform:translateY(-50%);
+            }
+
+            &:hover,
+            &:focus {
+
+                .Icon {
+                    color:$color-brand-beta;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width:($bp-sitenav-full-display - 1)) {
+
+        .SiteNav {
+
+            &-link {
+
+                .Icon {
+                    margin-left:-1em*1.2;
+                    width:1em; height:1em;
+                }
+
+                &:hover,
+                &:focus {
+
+                    .Icon {
+                        color:#fff;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (min-width:$bp-sitenav-full-display) {
+        position:absolute; right:0; top:0;
+        padding:0;
+
+        &:before {
+            display:none;
+        }
+
+        .SiteNav {
+
+            &-link {
+                padding:0.2em 1em; padding-left:calc(1em + 18px);
+                font-size:1em;
+                text-transform:none;
+                color:$color-brand-alpha;
+                background:#fff;
+
+                &:hover,
+                &:focus {
+                    color:$color-brand-beta;
+                }
+
+                .Icon {
+                    left:0;
+                    margin-left:(18px/2);
+                    width:18px; height:18px;
+                }
+            }
+        }
+    }
+}
