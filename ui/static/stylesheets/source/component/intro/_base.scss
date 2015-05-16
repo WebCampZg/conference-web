@@ -6,7 +6,7 @@
 
 .Intro {
     position:relative; z-index:10;
-    margin-top:-80px; margin-bottom:4em;
+    margin-top:-80px; margin-bottom:-80px;
 
     &:before {
         content:'';

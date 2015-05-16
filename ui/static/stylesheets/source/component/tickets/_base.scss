@@ -8,14 +8,12 @@
     @include content-blur;
     position:relative;
     background-size:cover;
-    background-position:50% 50%;
-    margin-top:calc(-130px - 4em);
-    padding:10em 1rem 1em;
+    padding:1rem;
     text-align:center;
     color:#fff;
 
     &:before {
-        background:url('/static/images/hero-tickets.jpg');
+        background:url('/static/images/hero-tickets.jpg') 50% 50%;
     }
 
     &-inner {
@@ -28,8 +26,11 @@
     }
 
     @media screen and (min-width:$bp-beta) {
-        margin-top:calc(-100px - 4em);
-        padding-bottom:76px;
+        padding:6em 1rem 76px;
+
+        &-inner {
+            padding:1.5em 0;
+        }
 
         &:after {
             content:'';
@@ -59,6 +60,7 @@
 
     &-cta {
         font-size:1.8em;
+        white-space:nowrap;
     }
 
     @media screen and (min-width:$bp-beta) {
@@ -70,7 +72,7 @@
 
             > li {
                 display:inline-block;
-                margin:1em 0.2em;
+                margin:1em 0.5em;
                 font-size:1rem;
             }
         }
