@@ -2,18 +2,7 @@
 {% block title %}Call for Proposals - WebCamp Zagreb 2015{% endblock %}
 {% block content %}
 
-    <header class="Header Hero Hero--cfp" role="banner">
-        <div class="Hero-inner">
-            <div class="Wrapper Wrapper--wide">
-                {% include "partials/site-nav.html" %}
-            </div>
-            <div class="Punchline">
-                <div class="Wrapper Wrapper--narrow">
-                    <h2 class="Punchline-info">Call for Proposals</h2>
-                </div>
-            </div>
-        </div>
-    </header>
+    {% include "partials/header.html" with hero_type="cfp" title="Call for Proposals" %}
 
     <section class="Intro">
         <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
@@ -30,24 +19,6 @@
         </div>
     </section>
 
-    <section class="Tickets">
-        <div class="Tickets-inner">
-            <div class="Wrapper Wrapper--narrow">
-                <h3 class="Tickets-title">Early Bird tickets on&nbsp;sale!</h3>
-                <div>
-                    <p>Early bird tickets are limited. Get them while they're hot.</p>
-                    <p>If you don't want to pay for your ticket, submit a talk at one of our meetup groups!</p>
-                    <a target="_blank" href="https://www.entrio.hr/en/event/webcamp-zagreb-2015-2150" class="Tickets-cta Button Button--beta Button--rounded">Buy tickets!</a>
-                    <div class="Tickets-sponsorLink">
-                        <p>...or <a href="/media/webcampzg_2015_sponsors.pdf">become a sponsor</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="Bithub">
-        <a href="https://bithub.com/embed?hubId=2&tenant=solitary_tsunami_597_8&view=public" class="bithub-embed">hollow-cove-1477 Embed</a><script src="https://bithub.com/embed.js"></script>
-    </div>
+    {% include "partials/tickets.html" %}
 
 {% endblock %}
