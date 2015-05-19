@@ -1,6 +1,6 @@
 {% extends 'ui/base.html' %}
 {% load static %}
-{% block title %}WebCampZG 2015{% endblock %}
+{% block title %}{{ post.title|safe }} &#8212; WebCampZG 2015{% endblock %}
 {% block content %}
 
     {% include "partials/header.html" with hero_type="blog" %}
