@@ -37,7 +37,7 @@ class Applicant(models.Model):
     about = models.TextField()
     biography = models.TextField()
     speaker_experience = models.TextField(null=True, blank=True)
-    image = models.ImageField(upload_to=get_applicant_avatar_path)
+    image = models.ImageField(max_length=255, upload_to=get_applicant_avatar_path)
 
     def __unicode__(self):
         return self.user.get_full_name()
