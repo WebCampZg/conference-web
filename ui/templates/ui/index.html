@@ -4,54 +4,27 @@
 
     {% include "partials/header.html" with hero_type="main" %}
 
-    <section class="Intro">
+    <section class="Blog Intro Intro--beta">
         <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
-            <div class="Passage">
-                <h2 class="Intro-title">WebCamp Zagreb 2015</h2>
-                <div class="Intro-body">
-                    <p>We&rsquo;re happy to announce that this year&rsquo;s WebCamp Zagreb conference will be held on the 3rd and 4th of October 2015 at the <a target="_blank" href="https://goo.gl/maps/yoRl8">Hypo Expo XXI conference center.</a>
-                    </p>
-                    <p>Last year&#39;s conference was amazing, and this year we are keen to take it a step further. We&rsquo;re proud of being a community conference and one of our primary goals is to promote the growth of meetup communities.
-                    </p>
-                    <p>After careful consideration of conferences passed, we have concluded that giving the majority of our tickets for free has become a major organizational problem for several reasons.
-                    </p>
-                    <p>First of all, more than a quarter of the free ticket holders do not show up for the conference - &ldquo;it&rsquo;s free so I&rsquo;ll grab one just in case&rdquo;. This meant that we had a lot of unclaimed badges and swag bags.
-                    </p>
-                    <p>Secondly, although the conference hall was not filled to capacity, people who wanted to come could not get a ticket.
-                    </p>
-                    <p>Finally, giving away free tickets en masse did not prove to be as stimulating to the meetup community as we had hoped.
-                    </p>
-                    <p>Those are the reasons why we decided to charge regular tickets this year, and not give away most of the tickets like we had done in previous years.
-                    </p>
-                    <p>There will still be a substantial amount of free tickets given out. These will be given to:
-                    </p>
-                    <ul>
-                        <li>people who are active in their perspective communities; anyone who has held or will hold a talk at one of our meetups
-                        </li>
-                        <li>our volunteers, both old and new
-                        </li>
-                        <li>select student groups
-                        </li>
-                    </ul>
-                    <p>This way we hope to encourage the participation of people in the meetup community, decrease the number of no-shows and use the additional income to improve the conference and invite more speakers, both domestic and foreign.
-                    </p>
-                    <p>Early bird tickets will cost 300HRK (~&euro;40) for both conference days, and the price will go up to 500HRK (~&euro;65) after early bird tickets have been sold out.
-                    </p>
-                    <p>If you don't want to pay for a ticket, submit a talk to one of our user groups today:
-                        <a href="http://www.meetup.com/FrontmanZg/">Frontman Zagreb</a>,
-                        <a href="http://www.meetup.com/JavaScript-Zagreb/">Javascript Zagreb</a>,
-                        <a href="http://www.meetup.com/lambdazagreb/">Lambda Zagreb</a>,
-                        <a href="http://www.mscommunity.hr/">Microsoft Community Hrvatska</a>,
-                        <a href="http://www.meetup.com/Python-Hrvatska/">Python Hrvatska</a>,
-                        <a href="http://www.meetup.com/rubyzg/">RubyHR</a>,
-                        <a href="http://www.meetup.com/Web-Designers-Hrvatska-ZG-Meetup/">Web Designers Hrvatska</a>,
-                        <a href="https://groups.google.com/forum/#!forum/zagreb-stc">Zagreb Software Testing Club</a> or
-                        <a href="http://zgphp.org/">ZgPHP</a>.
-                    </p>
-                </div>
-            </div>
+            <h1 class="Intro-title">Latest news</h1>
+            <ul class="Blog-list">
+                {% for post in posts %}
+                <li>
+                    <article class="Article">
+                        <time class="Article-pubDate" pubdate="pubdate" datetime="{{ post.created_at }}">{{ post.created_at|date:"SHORT_DATE_FORMAT" }}</time>
+                        <h3 class="Article-title"><a href="{% url 'blog_view_post' slug=post.slug %}">{{ post.title }}</a></h3>
+                        <div class="Article-excerpt">
+                            {{ post.lead|safe }}
+                        </div>
+                    </article>
+                </li>
+                {% endfor %}
+                <div><a href="#">View All</a></dev>
+            </ul>
+            <p><a class="Article-link Article-link--readMore Button Button--gamma Button--rounded" href="{% url 'blog_list_posts' %}">View Archive</a></p>
         </div>
     </section>
+
 
     {% include "partials/tickets.html" %}
 

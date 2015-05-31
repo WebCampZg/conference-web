@@ -7,7 +7,7 @@ from filebrowser.sites import site
 
 urlpatterns = patterns('',
 
-    url(r'^$', 'blog.views.list_posts', name="ui_index"),
+    url(r'^$', 'ui.views.index', name="ui_index"),
     url(r'^blog/', include('blog.urls')),
     (r'^tinymce/', include('tinymce.urls')),
     url(r'^signup/success/$', 'ui.views.signup_success'),
