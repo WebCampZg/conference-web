@@ -1,0 +1,37 @@
+/**
+ * =============================================================================
+ * Talk
+ * =============================================================================
+ */
+
+.Talk {
+
+    &-title {
+        font-size:1.3em; line-height:1.3;
+        margin-bottom:1rem;
+        color:$color-brand-alpha;
+
+        @media screen and (min-width:$bp-beta) {
+            font-size:2em;
+        }
+    }
+
+    &-excerpt {
+        font-size:1em; line-height:1.3; font-style:italic;
+        color:$color-gray-delta;
+
+        @media screen and (min-width:$bp-beta) {
+            font-size:1.2em;
+        }
+    }
+
+    &-body {
+        margin-top:1em;
+        color:tint($color-base, 40%);
+
+        @media screen and (min-width:$bp-beta) {
+            margin-top:1.3em;
+            font-size:1.2em;
+        }
+    }
+}

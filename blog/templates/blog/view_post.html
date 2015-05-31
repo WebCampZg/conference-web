@@ -5,7 +5,7 @@
 
     {% include "partials/header.html" with hero_type="blog" %}
 
-    <section class="Blog Intro Intro--beta">
+    <section class="Blog Spotlight Spotlight--beta">
         <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
             <article class="Article Article--detail">
                 <time class="Article-pubDate" pubdate="pubdate" datetime="{{ post.created_at }}">{{ post.created_at|date:"SHORT_DATE_FORMAT" }}</time>
@@ -18,15 +18,9 @@
                         {{ post.body|safe }}
                     </div>
                 </div>
-                <div class="ArticleSocial">
-                    <h3 class="ArticleSocial-title">Share this article</h3>
-                    <ul class="ArticleSocial-list">
-                        <li><a class="js-sharePopup" href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}"><svg class="Icon Icon--social"><title>Share on Facebook</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-facebook"></use></svg></a></li>
-                        <li><a class="js-sharePopup" href="https://twitter.com/intent/tweet?text={{ request.build_absolute_uri }}"><svg class="Icon Icon--social"><title>Share on Twitter</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-twitter"></use></svg></a></li>
-                    </ul>
-                </div>
-                <nav class="ArticleNav">
-                    <ul class="ArticleNav-list">
+                {% include "partials/share.html" with title="Share this article" %}
+                <nav class="Nav">
+                    <ul class="Nav-list">
                         {% if previous %}
                             <li><a class="Article-link Button Button--gamma Button--rounded" href="{% url 'blog_view_post' slug=previous.slug %}">Previous article</a></li>
                         {% endif %}
