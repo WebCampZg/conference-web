@@ -9,6 +9,7 @@ from django.utils.text import slugify
 from tinymce.models import HTMLField
 
 from .choices import TALK_DURATIONS
+from utils.behaviors import Timestampable
 
 
 def get_applicant_avatar_path(instance, filename):
@@ -53,7 +54,7 @@ class AudienceSkillLevel(models.Model):
         ordering = ['pk', ]
 
 
-class PaperApplication(models.Model):
+class PaperApplication(Timestampable):
     cfp = models.ForeignKey(CallForPaper)
     applicant = models.ForeignKey(Applicant, related_name='applications')
     title = models.CharField(max_length=255, help_text=_('The title of your talk. Keep it short and catchy.'),
