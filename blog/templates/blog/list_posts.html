@@ -13,10 +13,9 @@
                     <article class="Article">
                         <time class="Article-pubDate" pubdate="pubdate" datetime="{{ post.created_at }}">{{ post.created_at|date:"SHORT_DATE_FORMAT" }}</time>
                         <h3 class="Article-title"><a href="{% url 'blog_view_post' slug=post.slug %}">{{ post.title }}</a></h3>
-                        <p class="Article-excerpt">
+                        <div class="Article-excerpt">
                             {{ post.lead|safe }}
-                        </p>
-                        <p><a class="Article-link Article-link--readMore Button Button--gamma Button--rounded" href="{% url 'blog_view_post' slug=post.slug %}">Read more</a></p>
+                        </div>
                     </article>
                 </li>
                 {% endfor %}
