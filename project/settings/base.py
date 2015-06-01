@@ -78,6 +78,7 @@ INSTALLED_APPS = (
     'blog',
     'sponsors',
     'jobs',
+    'talks',
 )
 
 
@@ -291,4 +292,5 @@ TINYMCE_DEFAULT_CONFIG = {
     'theme_advanced_buttons3': "",
 }
 
+ALLOW_TALK_UPDATES = True
 

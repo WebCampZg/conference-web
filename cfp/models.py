@@ -2,6 +2,10 @@ import unicodedata
 
 from django.conf import settings
 from django.db import models
+from django.dispatch import receiver
+from django.db.models.signals import post_save
+from django.core.exceptions import ObjectDoesNotExist
+
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.utils.text import slugify
@@ -74,3 +78,15 @@ class PaperApplication(Timestampable):
 
     def __unicode__(self):
         return u'{0} - {1}'.format(self.applicant.user.get_full_name(), self.title)
+
+
+@receiver(post_save, sender=PaperApplication)
+def create_or_update_ftp_user(sender, instance, created, **kwargs):
+    if not settings.ALLOW_TALK_UPDATES:
+        return
+
+    try:
+        instance.talk.save()
+    except ObjectDoesNotExist:
+        pass
+
