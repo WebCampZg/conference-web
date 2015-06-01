@@ -157,6 +157,7 @@ TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + \
      'allauth.account.context_processors.account',
      'allauth.socialaccount.context_processors.socialaccount',
      'ui.ctx.sponsors',
+     'ui.ctx.talks',
 )
 
 ROOT_URLCONF = 'project.urls'

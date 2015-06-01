@@ -1,0 +1,4 @@
+{% for talk in talks %}
+Speaker: {{ talk.application.applicant.user.get_full_name }}
+Title:  {{ talk.title }}
+{% endfor %}
