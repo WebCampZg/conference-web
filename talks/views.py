@@ -1,3 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 
-# Create your views here.
+from .models import Talk
+
+
+def list_talks(request):
+    talks = Talk.objects.all().select_related(
+            'application__applicant', 'application__applicant__user')
+    return render(request, 'talks/list_talks.html', {
+        'talks': talks})
+
+
+def view_talk(request, id):
+    talk = get_object_or_404(Talk, id=id)
+    return render(request, 'talks/view_talk.html', {
+        'talk': talk})
+

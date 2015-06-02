@@ -1,0 +1,9 @@
+{% load fb_versions %}
+
+{% for talk in talks %}
+<img src="{% version talk.application.applicant.image 'small' %}"> <br/>
+Speaker: {{ talk.application.applicant.user.get_full_name }} <br/>
+Title: <a href="{% url 'talks_view_talk' id=talk.id %}">{{ talk.title }}</a><br/>
+About: {{ talk.about }} <br/>
+Abstract: {{ talk.abstract }} <br/>
+{% endfor %}

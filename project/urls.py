@@ -9,6 +9,7 @@ urlpatterns = patterns('',
 
     url(r'^$', 'ui.views.index', name="ui_index"),
     url(r'^blog/', include('blog.urls')),
+    url(r'^talks/', include('talks.urls')),
     (r'^tinymce/', include('tinymce.urls')),
     url(r'^signup/success/$', 'ui.views.signup_success'),
     url(r'^jobs/', include('jobs.urls')),

@@ -1,0 +1,10 @@
+{% load fb_versions %}
+
+<p>Abour speaker:</p>
+<img src="{% version talk.application.applicant.image 'small' %}"> <br/>
+Speaker: {{ talk.application.applicant.user.get_full_name }} <br/>
+About: {{ talk.application.applicant.about }} <br />
+Biography: {{ talk.application.applicant.biography }} <br />
+<p>About talk:</p>
+Title: {{ talk.title }}<br/>
+Abstract: {{ talk.abstract }} <br/>
