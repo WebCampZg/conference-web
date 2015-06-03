@@ -31,7 +31,7 @@ class CustomIndexDashboard(Dashboard):
                     _('Administration'),
                     column=1,
                     collapsible=False,
-                    models=('django.contrib.*', 'people.*',),
+                    models=('django.contrib.*', 'people.*', 'allauth.*'),
                 ),
             ]
         ))
