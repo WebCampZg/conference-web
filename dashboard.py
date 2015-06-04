@@ -21,6 +21,16 @@ class CustomIndexDashboard(Dashboard):
     def init_with_context(self, context):
         site_name = get_admin_site_name(context)
 
+        # append an app list module for "Applications"
+        self.children.append(modules.AppList(
+            _('AppList: Applications'),
+            collapsible=True,
+            column=1,
+            css_classes=('collapse closed',),
+            exclude=('django.contrib.*', 'allauth.*', 'people.*'),
+        ))
+
+
         # append a group for "Administration" & "Applications"
         self.children.append(modules.Group(
             _('Group: Administration & Applications'),
@@ -34,15 +44,6 @@ class CustomIndexDashboard(Dashboard):
                     models=('django.contrib.*', 'people.*', 'allauth.*'),
                 ),
             ]
-        ))
-
-        # append an app list module for "Applications"
-        self.children.append(modules.AppList(
-            _('AppList: Applications'),
-            collapsible=True,
-            column=1,
-            css_classes=('collapse closed',),
-            exclude=('django.contrib.*', 'allauth.*', 'people.*'),
         ))
 
         # append another link list module for "support".
