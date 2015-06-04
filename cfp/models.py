@@ -47,6 +47,22 @@ class Applicant(models.Model):
     def __unicode__(self):
         return self.user.get_full_name()
 
+    @property
+    def full_name(self):
+        return self.__unicode__()
+
+    @property
+    def email(self):
+        return self.user.email
+
+    @property
+    def twitter(self):
+        return self.user.twitter
+
+    @property
+    def github(self):
+        return self.user.github
+
 
 class AudienceSkillLevel(models.Model):
     name = models.CharField(max_length=50)
