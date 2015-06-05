@@ -6,38 +6,6 @@
 
 .Sponsors {
     color:$color-brand-alpha;
-
-    &-title {
-        font-size:1.3em;
-
-        @media screen and (min-width:1060px) {
-            font-size:1.7em;
-        }
-    }
-
-    @media screen and (min-width:1060px) {
-        margin-top:2em;
-        overflow:hidden;
-    }
-
-    .Wrapper--withFlair {
-        background:#fff;
-
-        @media screen and (min-width:1060px) {
-            margin-top:30px; margin-bottom:-24px;
-            background:#fff;
-
-            &:before {
-                background-image:inline('/static/images/pixels-left-white.svg');
-            }
-
-            &:after {
-                left:100%; top:0; bottom:0;
-                width:100%;
-                background:#fff;
-            }
-        }
-    }
 }
 
 .Sponsors {
@@ -103,7 +71,6 @@
 
     &-type {
         position:relative;
-        background:#fff;
 
         &:after {
             content:'';

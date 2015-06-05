@@ -4,8 +4,10 @@
   "dependencies": {
     "bourbon": "^4.2.1",
     "component-dom": "^1.0.7",
+    "component-in-viewport": "git://github.com/npmcomponent/component-in-viewport",
     "component-raf": "^1.2.0",
     "cookie-monster": "0.0.7",
+    "debounce": "^1.0.0",
     "normalize.css": "^3.0.2",
     "rationalize.css": "niksy/rationalize.css#0.1.2"
   },

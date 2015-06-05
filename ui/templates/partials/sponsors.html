@@ -1,50 +1,52 @@
 {% load static %}
-<section class="Sponsors">
+<section class="Promote Sponsors">
     <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
-        <h2 class="Sponsors-title">Supported by</h2>
+        <h2 class="Promote-title">Supported by</h2>
     </div>
-    {% if diamond_sponsors %}
-    <div class="Sponsors-type Sponsors-type--diamond">
-        <ul class="Sponsors-list">
-            {% for diamond in diamond_sponsors %}
-            <li class="Sponsors-item">
-                <a class="Sponsors-link" href="{{ diamond.url }}"><img src="{{MEDIA_URL}}{{ diamond.image }}" alt="{{ diamond.name }}" class="Sponsors-logo" /></a>
-            </li>
-            {% endfor %}
-        </ul>
+    <div class="Promote-body">
+        {% if diamond_sponsors %}
+        <div class="Sponsors-type Sponsors-type--diamond">
+            <ul class="Sponsors-list">
+                {% for diamond in diamond_sponsors %}
+                <li class="Sponsors-item">
+                    <a class="Sponsors-link" href="{{ diamond.url }}"><img src="{{MEDIA_URL}}{{ diamond.image }}" alt="{{ diamond.name }}" class="Sponsors-logo" /></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% if track_sponsors %}
+        <div class="Sponsors-type Sponsors-type--track">
+            <ul class="Sponsors-list">
+                {% for sponsor in track_sponsors %}
+                <li class="Sponsors-item">
+                    <a class="Sponsors-link" href="{{ sponsor.url }}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% if standard_sponsors %}
+        <div class="Sponsors-type Sponsors-type--standard">
+            <ul class="Sponsors-list">
+                {% for sponsor in standard_sponsors %}
+                <li class="Sponsors-item">
+                    <a class="Sponsors-link" href="{{ sponsor.url }}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% if supporter_sponsors %}
+        <div class="Sponsors-type Sponsors-type--supporter">
+            <ul class="Sponsors-list">
+                {% for sponsor in supporter_sponsors %}
+                <li class="Sponsors-item">
+                    <a class="Sponsors-link" href="{{ sponsor.url }}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
     </div>
-    {% endif %}
-    {% if track_sponsors %}
-    <div class="Sponsors-type Sponsors-type--track">
-        <ul class="Sponsors-list">
-            {% for sponsor in track_sponsors %}
-            <li class="Sponsors-item">
-                <a class="Sponsors-link" href="{{ sponsor.url }}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
-    {% if standard_sponsors %}
-    <div class="Sponsors-type Sponsors-type--standard">
-        <ul class="Sponsors-list">
-            {% for sponsor in standard_sponsors %}
-            <li class="Sponsors-item">
-                <a class="Sponsors-link" href="{{ sponsor.url }}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
-    {% if supporter_sponsors %}
-    <div class="Sponsors-type Sponsors-type--supporter">
-        <ul class="Sponsors-list">
-            {% for sponsor in supporter_sponsors %}
-            <li class="Sponsors-item">
-                <a class="Sponsors-link" href="{{ sponsor.url }}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
-    {% endif %}
 </section>

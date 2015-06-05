@@ -6,7 +6,18 @@
 
 .Bithub {
     padding-right:44px;
-    height:600px;
+
+    .bithub-embed {
+        color:#fff;
+    }
+
+    .Promote-body {
+        padding-top:24px;
+
+        .Wrapper {
+            height:600px;
+        }
+    }
 
     .no-touchevents & {
         padding-right:0;
