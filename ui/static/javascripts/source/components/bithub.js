@@ -8,6 +8,10 @@ module.exports = {
         var $bithub = $('.Bithub');
         var $script = $bithub.find('script');
 
+        if ( !$bithub.length ) {
+            return;
+        }
+
         window.addEventListener('scroll', debounce(function () {
             if ( inViewport($bithub[0], 100) && !$script.attr('src') ) {
                 $script.attr('src', $script.attr('data-src'));

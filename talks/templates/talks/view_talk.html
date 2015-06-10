@@ -4,7 +4,7 @@
 {% block title %}WebCampZG 2015{% endblock %}
 {% block content %}
 
-    {% include "partials/header.html" with hero_type="cfp" title="Talks" %}
+    {% include "partials/header.html" with hero_type="cfp" title="&nbsp;" %}
 
     <section class="Spotlight Spotlight--beta">
         <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
@@ -22,7 +22,7 @@
                     <div class="Grid">
                         <div class="Grid-cell Grid-cell--1of3">
                             <figure class="Speaker-figure">
-                                <img src="{% version talk.application.applicant.image 'small' %}" alt="Photo of {{ talk.application.applicant.user.get_full_name }}">
+                                <img src="{% version talk.application.applicant.image 'big' %}" alt="Photo of {{ talk.application.applicant.user.get_full_name }}">
                             </figure>
                         </div>
                         <div class="Grid-cell Grid-cell--2of3">

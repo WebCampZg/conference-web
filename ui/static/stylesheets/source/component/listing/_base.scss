@@ -26,4 +26,24 @@
             }
         }
     }
+
+    &-nav {
+        margin-top:1.5rem;
+        text-align:center;
+    }
+
+    &-link {
+        width:100%;
+        padding:0.6em 1.2em;
+        font-size:1em;
+        text-transform:uppercase;
+
+        @media screen and (min-width:$bp-alpha) {
+            width:auto;
+        }
+
+        @media screen and (min-width:$bp-beta) {
+            font-size:1.3em;
+        }
+    }
 }

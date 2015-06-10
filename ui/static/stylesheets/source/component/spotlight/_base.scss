@@ -60,8 +60,22 @@
                     background-image:inline('/static/images/pixels-left-gray.svg');
                 }
 
+                &.is-flairLeftInactive {
+
+                    &:before {
+                        background-image:inline('/static/images/pixels-left.svg');
+                    }
+                }
+
                 &:after {
                     background-image:inline('/static/images/pixels-right-gray.svg');
+                }
+
+                &.is-flairRightInactive {
+
+                    &:after {
+                        background-image:inline('/static/images/pixels-right.svg');
+                    }
                 }
             }
         }
