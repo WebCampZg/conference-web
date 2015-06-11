@@ -1,6 +1,4 @@
 var $ = require('component-dom');
-var inViewport = require('component-in-viewport');
-var debounce = require('debounce');
 
 module.exports = {
     init: function () {

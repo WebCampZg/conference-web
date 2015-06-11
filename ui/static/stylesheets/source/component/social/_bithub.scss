@@ -5,14 +5,17 @@
  */
 
 .Bithub {
-    padding-right:44px;
 
     .bithub-embed {
         color:#fff;
     }
 
     .Promote-body {
-        padding-top:24px;
+        padding-right:44px;
+
+        @media screen and (min-width:$bp-epsilon) {
+            padding-top:24px;
+        }
 
         .Wrapper {
             height:600px;
