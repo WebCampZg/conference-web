@@ -1,4 +1,5 @@
 from django.db import models
+from django.template.defaultfilters import slugify
 
 from filebrowser.fields import FileBrowseField
 
@@ -19,14 +20,19 @@ class Talk(Timestampable):
             max_length=255,
             blank=True,
             null=True)
+    slug = models.SlugField(blank=True, max_length=255, null=True)
 
-    video = FileBrowseField("Video", max_length=255, directory="videos/", blank=True, null=True)
+    video = FileBrowseField("Video", max_length=255,
+            directory="videos/", blank=True, null=True)
 
     def __unicode__(self):
-        return u'{0} - {1}'.format(self.application.applicant.user.get_full_name(), self.title)
+        return u'{0} - {1}'.format(
+                self.application.applicant.user.get_full_name(),
+                self.title)
 
     def save(self, *args, **kwargs):
         self.title = self.application.title
+        self.slug = slugify(self.application.title)
         self.about = self.application.about
         self.abstract = self.application.abstract
         self.skill_level = self.application.skill_level

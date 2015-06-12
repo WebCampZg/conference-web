@@ -10,8 +10,8 @@ def list_talks(request):
         'talks': talks})
 
 
-def view_talk(request, id):
-    talk = get_object_or_404(Talk, id=id)
+def view_talk(request, slug):
+    talk = get_object_or_404(Talk, slug=slug)
     return render(request, 'talks/view_talk.html', {
         'talk': talk})
 
