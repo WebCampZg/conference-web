@@ -93,7 +93,10 @@ class PaperApplication(Timestampable):
             help_text=_('What talk duration slot would you like?'))
 
     def __unicode__(self):
-        return u'{0} - {1}'.format(self.applicant.user.get_full_name(), self.title)
+        return u'{0} - {1} - {2}'.format(
+                self.applicant.user.get_full_name(),
+                self.title,
+                self.duration)
 
 
 @receiver(post_save, sender=PaperApplication)
