@@ -7,7 +7,7 @@ ALLOWED_HOSTS = ['*']
 try:
     import dj_database_url
     DATABASES = {'default': dj_database_url.config(
-        default='postgres://webcamp:webcamp@db:5432/webcampdb')}
+        default='postgres://postgres:postgres@db:5432/postgres')}
 except ImportError:
     pass
 
