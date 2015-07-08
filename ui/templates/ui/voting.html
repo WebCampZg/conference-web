@@ -1,0 +1,89 @@
+{% extends 'ui/base.html' %}
+{% load fb_versions %}
+{% load static %}
+{% block title %}Voting - WebCampZG 2015{% endblock %}
+{% block content %}
+
+    {% include "partials/header.html" with hero_type="main" title="Voting" %}
+
+    <section class="Spotlight Spotlight--beta">
+        <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
+            <ul class="Listing-list">
+                <li>
+                    <article class="VoteTalk">
+                        <h3 class="VoteTalk-title">Foobar</h3>
+                        <div class="VoteTalk-excerpt">
+                            Barfoo
+                        </div>
+                        <div class="VoteTalk-body" data-talk-slug="foobar">
+                            <div class="Passage">
+                                Barfoo
+                            </div>
+                        </div>
+                        <div class="VoteTalk-readMoreWrap">
+                            <button type="button" class="VoteTalk-readMore" data-talk-slug="foobar">Read more</button>
+                        </div>
+                        <div class="VoteTalk-actionWrap">
+                            <label class="Togglable">
+                                <input type="checkbox" class="VoteTalk-action" />
+                                <span class="Togglable-caption">Vote</span>
+                            </label>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="VoteTalk">
+                        <h3 class="VoteTalk-title">Barfoo</h3>
+                        <div class="VoteTalk-excerpt">
+                            Barfoo
+                        </div>
+                        <div class="VoteTalk-body" data-talk-slug="barfoo">
+                            <div class="Passage">
+                                Barfoo
+                            </div>
+                        </div>
+                        <div class="VoteTalk-readMoreWrap">
+                            <button type="button" class="VoteTalk-readMore" data-talk-slug="barfoo">Read more</button>
+                        </div>
+                        <div class="VoteTalk-actionWrap">
+                            <label class="Togglable">
+                                <input type="checkbox" class="VoteTalk-action" />
+                                <span class="Togglable-caption">Vote</span>
+                            </label>
+                        </div>
+                    </article>
+                </li>
+                <li>
+                    <article class="VoteTalk">
+                        <h3 class="VoteTalk-title">Bazbad</h3>
+                        <div class="VoteTalk-excerpt">
+                            Barfoo
+                        </div>
+                        <div class="VoteTalk-body" data-talk-slug="bazbad">
+                            <div class="Passage">
+                                Barfoo
+                            </div>
+                        </div>
+                        <div class="VoteTalk-readMoreWrap">
+                            <button type="button" class="VoteTalk-readMore" data-talk-slug="bazbad">Read more</button>
+                        </div>
+                        <div class="VoteTalk-actionWrap">
+                            <label class="Togglable">
+                                <input type="checkbox" class="VoteTalk-action" />
+                                <span class="Togglable-caption">Vote</span>
+                            </label>
+                        </div>
+                    </article>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    {% include "partials/tickets.html" %}
+
+    {% include "partials/sponsors.html" %}
+
+    {% include "partials/bithub.html" %}
+
+{% endblock %}
+

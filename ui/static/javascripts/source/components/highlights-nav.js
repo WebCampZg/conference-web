@@ -4,6 +4,11 @@ module.exports = {
     init: function () {
 
         var $nav = $('.Highlights-nav');
+
+        if ( !$nav.length ) {
+            return;
+        }
+
         var $block = $('.Highlights-block');
         var $link = $('.Highlights-navLink');
         var $wrapper = $nav.parent('.Wrapper');

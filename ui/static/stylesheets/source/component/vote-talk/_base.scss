@@ -1,0 +1,118 @@
+/**
+ * =============================================================================
+ * Vote talk
+ * =============================================================================
+ */
+
+.VoteTalk {
+
+    &-title {
+        font-size:1.3em; line-height:1.3;
+        margin:0.2em 0 0.5rem;
+        color:$color-brand-alpha;
+
+        @media screen and (min-width:$bp-beta) {
+            font-size:1.7em;
+        }
+    }
+
+    &-excerpt {
+        font-size:1em; line-height:1.3; font-style:italic;
+        color:$color-gray-delta;
+
+        @media screen and (min-width:$bp-beta) {
+            font-size:1.2em;
+        }
+    }
+
+    &-body {
+        margin-top:0.5rem;
+        color:tint($color-base, 40%);
+
+        &.is-hidden {
+            display:none;
+        }
+
+        @media screen and (min-width:$bp-beta) {
+            font-size:1.2em;
+        }
+    }
+
+    &-readMoreWrap {
+        margin-top:1rem;
+        text-align:center;
+
+        .no-js & {
+            display:none;
+        }
+    }
+
+    &-readMore {
+        position:relative;
+        cursor:pointer;
+        font-size:1em;
+        text-transform:uppercase;
+        color:$color-brand-alpha;
+        background:none;
+        transition:all 0.07s ease-in-out;
+
+        &:before,
+        &:after {
+            content:'';
+            position:absolute; top:50%;
+            width:13px; height:13px;
+            background-image:inline('/static/images/arrow-down.svg');
+            background-repeat:no-repeat;
+            background-size:13px 13px;
+            transform:translateY(-50%);
+            opacity:0.5;
+        }
+
+        &.is-active {
+
+            &:before,
+            &:after {
+                transform:translateY(-50%) rotate(180deg);
+            }
+        }
+
+        &:before {
+            right:100%;
+            margin-right:0.6rem;
+        }
+
+        &:after {
+            left:100%;
+            margin-left:0.6rem;
+        }
+
+        &:hover,
+        &:focus {
+            outline:0;
+            color:$color-brand-beta;
+        }
+
+        @media screen and (min-width:$bp-beta) {
+            font-size:1.2em;
+        }
+    }
+
+    &-actionWrap {
+        margin-top:1rem;
+        text-align:center;
+    }
+
+    @media screen and (min-width:$bp-beta) {
+        position:relative;
+        padding-right:100px;
+
+        &-readMoreWrap {
+            margin-right:-100px;
+        }
+
+        &-actionWrap {
+            position:absolute; right:0; top:0;
+            margin-top:0;
+        }
+    }
+}

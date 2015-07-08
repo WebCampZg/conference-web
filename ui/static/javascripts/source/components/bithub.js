@@ -6,11 +6,12 @@ module.exports = {
     init: function () {
 
         var $bithub = $('.Bithub');
-        var $script = $bithub.find('script');
 
         if ( !$bithub.length ) {
             return;
         }
+
+        var $script = $bithub.find('script');
 
         window.addEventListener('scroll', debounce(function () {
             if ( inViewport($bithub[0], 100) && !$script.attr('src') ) {
