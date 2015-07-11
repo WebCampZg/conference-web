@@ -4,7 +4,6 @@
     <div class="SiteNav-compact" aria-hidden="true" role="presentation">
         <a href="#SiteNav" class="SiteNav-toggler SiteNav-toggler--open"><i class="Icon Icon--menu">Open navigation</i></a>
         <a href="#" class="SiteNav-toggler SiteNav-toggler--close"><i class="Icon Icon--close">Close navigation</i></a>
-        <a href="{% url 'cfp_announcement' %}" class="SiteNav-link SiteNav-link--cfp"><span class="SiteNav-label">Call for Proposals</span><span class="SiteNav-label SiteNav-label--alt" aria-hidden="true" role="presentation">CFP</span></a>
     </div>
     <ul class="SiteNav-list">
         {% if user.is_authenticated %}
@@ -20,9 +19,6 @@
         </li>
         <li class="SiteNav-item">
             <a href="https://www.entrio.hr/en/event/webcamp-zagreb-2015-2150" class="SiteNav-link">Tickets</a>
-        </li>
-        <li class="SiteNav-item SiteNav-item--higlighted SiteNav-item--cfp">
-            <a href="{% url 'cfp_announcement' %}" class="SiteNav-link SiteNav-link--cfp"><span class="SiteNav-label">Call for Proposals</span><span class="SiteNav-label SiteNav-label--alt" aria-hidden="true" role="presentation">CFP</span></a>
         </li>
         {% if user.is_authenticated %}
         <li class="SiteNav-item SiteNav-item--higlighted SiteNav-item--account">
