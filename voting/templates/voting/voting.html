@@ -1,0 +1,47 @@
+{% extends 'ui/base.html' %}
+{% load fb_versions %}
+{% load static %}
+{% block title %}Voting - WebCampZG 2015{% endblock %}
+{% block content %}
+
+    {% include "partials/header.html" with hero_type="main" title="Voting" %}
+
+    <section class="Spotlight Spotlight--beta">
+        <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
+            <ul class="Listing-list">
+                {% for application in applications %}
+                <li>
+                    <article class="VoteTalk">
+                        <h3 class="VoteTalk-title">{{ application.title }}</h3>
+                        <div class="VoteTalk-excerpt">
+                            {{ application.about }}
+                        </div>
+                        <div class="VoteTalk-body" data-talk-slug="{{ application.title|slugify }}">
+                            <div class="Passage">
+                                {{ application.abstract }}
+                            </div>
+                        </div>
+                        <div class="VoteTalk-readMoreWrap">
+                            <button type="button" class="VoteTalk-readMore" data-talk-slug="{{ application.title|slugify }}">Read more</button>
+                        </div>
+                        <div class="VoteTalk-actionWrap">
+                            <label class="Togglable">
+                                <input data-talk-id="{{ application.id }}" type="checkbox" class="VoteTalk-action" />
+                                <span class="Togglable-caption">Vote</span>
+                            </label>
+                        </div>
+                    </article>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+
+    {% include "partials/tickets.html" %}
+
+    {% include "partials/sponsors.html" %}
+
+    {% include "partials/bithub.html" %}
+
+{% endblock %}
+

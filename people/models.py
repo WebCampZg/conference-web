@@ -2,6 +2,7 @@ from allauth.account.signals import password_changed
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.models import AbstractUser, BaseUserManager, AbstractBaseUser, PermissionsMixin
 from django.core.mail import send_mail
+from django.conf import settings
 from django.db import models
 from django.dispatch.dispatcher import receiver
 from django.utils.translation import ugettext as _
@@ -84,6 +85,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         Sends an email to this User.
         """
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+    def is_ticket_holder(self):
+        return self.groups.filter(name=settings.TICKET_HOLDER_GROUP_NAME).exists()
 
     objects = UserManager()
 

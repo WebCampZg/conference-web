@@ -80,6 +80,7 @@ INSTALLED_APPS = (
     'sponsors',
     'jobs',
     'talks',
+    'voting',
 )
 
 
