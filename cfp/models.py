@@ -92,6 +92,8 @@ class PaperApplication(Timestampable):
             verbose_name=_('Talk Duration Slot'),
             help_text=_('What talk duration slot would you like?'))
 
+    exclude = models.BooleanField(default=False)
+
     def __unicode__(self):
         return u'{0} - {1} - {2}'.format(
                 self.applicant.user.get_full_name(),
