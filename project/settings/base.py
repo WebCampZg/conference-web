@@ -66,6 +66,7 @@ INSTALLED_APPS = (
     'grappelli',
     'filebrowser',
     'django.contrib.admin',
+    'markdown_deux',
 
     'ui',
 

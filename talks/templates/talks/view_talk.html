@@ -1,5 +1,6 @@
 {% extends 'ui/base.html' %}
 {% load fb_versions %}
+{% load markdown_deux_tags %}
 {% load static %}
 {% block title %}WebCampZG 2015{% endblock %}
 {% block content %}
@@ -15,7 +16,7 @@
                 </div>
                 <div class="Talk-body">
                     <div class="Passage">
-                        {{ talk.abstract }}
+                        {{ talk.abstract|markdown }}
                     </div>
                 </div>
                 <div class="Speaker" id="speaker">
@@ -28,7 +29,7 @@
                         <div class="Grid-cell Grid-cell--2of3">
                             <strong class="Speaker-name">{{ talk.application.applicant.user.get_full_name }}</strong>
                             <div class="Speaker-bio">
-                                {{ talk.application.applicant.biography }}
+                                {{ talk.application.applicant.biography|markdown }}
                             </div>
                             <aside class="Speaker-social">
                                 <ul>
