@@ -8,7 +8,7 @@
     <section class="Blog Spotlight Spotlight--beta">
         <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
             <article class="Article Article--detail">
-                <time class="Article-pubDate" pubdate="pubdate" datetime="{{ post.created_at }}">{{ post.created_at|date:"SHORT_DATE_FORMAT" }}</time>
+                <time class="Article-pubDate" pubdate="pubdate" datetime="{{ post.created_at }}">{{ post.created_at|date:"d.m.Y." }}</time>
                 <h1 class="Article-title">{{ post.title }}</h1>
                 <p class="Article-excerpt">
                     {{ post.lead|safe }}

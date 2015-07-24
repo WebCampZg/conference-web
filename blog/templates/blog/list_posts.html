@@ -11,7 +11,7 @@
                 {% for post in posts %}
                 <li>
                     <article class="Article">
-                        <time class="Article-pubDate" pubdate="pubdate" datetime="{{ post.created_at }}">{{ post.created_at|date:"SHORT_DATE_FORMAT" }}</time>
+                        <time class="Article-pubDate" pubdate="pubdate" datetime="{{ post.created_at }}">{{ post.created_at|date:"d.m.Y." }}</time>
                         <h3 class="Article-title"><a href="{% url 'blog_view_post' slug=post.slug %}">{{ post.title }}</a></h3>
                         <div class="Article-excerpt">
                             {{ post.lead|safe }}
