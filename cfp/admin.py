@@ -4,8 +4,7 @@ from django.core import urlresolvers
 
 
 class ApplicantAdmin(admin.ModelAdmin):
-    readonly_fields = ('user',)
-    list_display = ('full_name', 'about', 'biography', 'speaker_experience', 'github', 'twitter')
+    list_display = ('user', 'full_name', 'about', 'biography', 'speaker_experience', 'github', 'twitter')
     fields = ('user', 'about', 'biography', 'speaker_experience', 'image')
 
 
