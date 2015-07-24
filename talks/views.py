@@ -5,7 +5,10 @@ from .models import Talk
 
 def list_talks(request):
     talks = Talk.objects.all().select_related(
-            'application__applicant', 'application__applicant__user')
+            'application__applicant',
+            'application__applicant__user'
+        ).order_by('title')
+
     return render(request, 'talks/list_talks.html', {
         'talks': talks})
 
