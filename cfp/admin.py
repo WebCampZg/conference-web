@@ -4,9 +4,14 @@ from django.core import urlresolvers
 
 
 class ApplicantAdmin(admin.ModelAdmin):
-    readonly_fields = ('user',)
+    raw_id_fields = ("user", )
     list_display = ('full_name', 'about', 'biography', 'speaker_experience', 'github', 'twitter')
     fields = ('user', 'about', 'biography', 'speaker_experience', 'image')
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:
+            return self.readonly_fields + ('user',)
+        return self.readonly_fields
 
 
 class PaperApplicationAdmin(admin.ModelAdmin):
