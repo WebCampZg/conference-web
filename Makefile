@@ -80,7 +80,7 @@ db-restore:
 		exit 1; \
 	fi
 	@echo "Restoring database from backup file: webcampdb.sql"
-	@psql -h localhost -Upostgres < webcampdb.sql;
+	@cat webcampdb.sql | docker exec -i conferenceweb_db_1 psql -Upostgres
 
 superuser:
 	@docker-compose run web /bin/bash -c "./manage.py createsuperuser"
