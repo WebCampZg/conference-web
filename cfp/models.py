@@ -100,7 +100,7 @@ class PaperApplication(Timestampable):
 
 
 @receiver(post_save, sender=PaperApplication)
-def create_or_update_ftp_user(sender, instance, created, **kwargs):
+def update_talk_instance(sender, instance, created, **kwargs):
     if not settings.ALLOW_TALK_UPDATES:
         return
 
