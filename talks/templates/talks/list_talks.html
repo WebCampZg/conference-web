@@ -9,34 +9,14 @@
     <section class="Listing Spotlight Spotlight--beta">
         <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
             <ul class="Listing-list">
+                {% for keynote in keynotes %}
+                <li>
+                    {% include "talks/partials/talk.html" with talk=keynote %}
+                </li>
+                {% endfor %}
                 {% for talk in talks %}
                 <li>
-                    <article class="QuickTalk">
-                        <div class="Grid">
-                            <div class="Grid-cell Grid-cell--1of3">
-                                <figure class="QuickTalk-figure">
-                                    <img src="{% version talk.application.applicant.image 'big' %}" alt="Photo of {{ talk.application.applicant.user.get_full_name }}">
-                                </figure>
-                            </div>
-                            <div class="Grid-cell Grid-cell--2of3">
-                                <p class="QuickTalk-speaker"><span>Speaker:</span> <a href="{% url 'talks_view_talk' slug=talk.slug %}#speaker">{{ talk.application.applicant.user.get_full_name }}</a></p>
-                                <h3 class="QuickTalk-title"><a href="{% url 'talks_view_talk' slug=talk.slug %}">{{ talk.title }}</a></h3>
-                                <div class="QuickTalk-body">
-                                    {{ talk.about }}
-                                </div>
-                                <aside class="QuickTalk-social">
-                                    <ul>
-                                        {% if talk.application.applicant.user.twitter %}
-                                        <li><a href="https://twitter.com/{{ talk.application.applicant.user.twitter }}"><svg class="Icon Icon--social"><title>Twitter profile</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-twitter"></use></svg></a></a></li>
-                                        {% endif %}
-                                        {% if talk.application.applicant.user.github %}
-                                        <li><a href="https://github.com/{{ talk.application.applicant.user.github }}"><svg class="Icon Icon--social"><title>GitHub profile</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-github"></use></svg></a></a></li>
-                                        {% endif %}
-                                    </ul>
-                                </aside>
-                            </div>
-                        </div>
-                    </article>
+                    {% include "talks/partials/talk.html" with talk=talk %}
                 </li>
                 {% endfor %}
             </ul>

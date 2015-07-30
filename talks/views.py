@@ -4,13 +4,16 @@ from .models import Talk
 
 
 def list_talks(request):
+    keynotes = Talk.objects.filter(
+            keynote=True).order_by('title')
     talks = Talk.objects.all().select_related(
             'application__applicant',
             'application__applicant__user'
-        ).order_by('title')
+        ).exclude(keynote=True).order_by('title')
 
     return render(request, 'talks/list_talks.html', {
-        'talks': talks})
+        'talks': talks,
+        'keynotes': keynotes})
 
 
 def view_talk(request, slug):

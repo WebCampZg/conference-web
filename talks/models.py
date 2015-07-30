@@ -25,6 +25,8 @@ class Talk(Timestampable):
     video = FileBrowseField("Video", max_length=255,
             directory="videos/", blank=True, null=True)
 
+    keynote = models.BooleanField(default=False)
+
     def __unicode__(self):
         return u'{0} - {1}'.format(
                 self.application.applicant.user.get_full_name(),
