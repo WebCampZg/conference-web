@@ -1,11 +1,11 @@
 db:
     image: postgres:9.3
     volumes_from:
-        - dbData
+        - dbDataContainer
     ports:
         - "5432:5432"
 
-dbData:
+dbDataContainer:
     image: postgres:9.3
     command: true
     volumes:
