@@ -30,8 +30,10 @@ def sponsors(request):
 
 def talks(request):
     ctx = {}
+    keynotes = {'keynotes': Talk.objects.filter(keynote=True).select_related('application__applicant')}
     talks = {'talks': Talk.objects.all().order_by('?').select_related('application__applicant')[:3]}
     ctx.update(talks)
+    ctx.update(keynotes)
 
     return ctx
 
