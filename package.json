@@ -10,6 +10,7 @@
     "debounce": "^1.0.0",
     "normalize.css": "^3.0.2",
     "rationalize.css": "niksy/rationalize.css#0.1.2"
+    "jquery": "^2.1.4"
   },
   "devDependencies": {
     "autoprefixer-core": "^5.1.7",

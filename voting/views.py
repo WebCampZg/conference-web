@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
 
 from cfp.models import PaperApplication
 from cfp.choices import TALK_DURATIONS
@@ -28,6 +29,7 @@ def voting(request):
 @login_required
 @require_ticket_holder
 @require_POST
+@csrf_exempt
 def add_vote(request, application_id):
     application = get_object_or_404(PaperApplication, id=application_id)
     try:
@@ -35,21 +37,19 @@ def add_vote(request, application_id):
                 application=application,
                 user=request.user)
         return JsonResponse(
-                data={"message": "Vote saved."},
-                status_code=200)
+                data={"error": None, "message": "Vote saved."})
     except IntegrityError:
         return JsonResponse(
-                data={"message": "You already voted for this talk."},
-                status_code=400)
+                data={"error": "You already voted for this talk.", "message": None})
 
 
 @login_required
 @require_ticket_holder
 @require_POST
+@csrf_exempt
 def remove_vote(request, application_id):
     vote = get_object_or_404(Vote, application_id=application_id, user=request.user)
     vote.delete()
     return JsonResponse(
-            data={"message": "Vote deleted."},
-            status_code=200)
+            data={"message": "Vote deleted."})
 
