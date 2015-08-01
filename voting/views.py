@@ -21,6 +21,17 @@ def voting(request):
             duration=TALK_DURATIONS.MIN_25).exclude(
                     id__in=already_picked).exclude(
                     exclude=True).order_by('title')
+
+    # Include boolean attribute to check if the user alerady voted for this talk
+    votes = Vote.objects.filter(user=request.user,
+                                application_id__in=[x.pk for x in applications])\
+                        .values_list('application_id', flat=True)
+
+    for application in applications:
+        application.voted = False
+        if application.pk in votes:
+            application.voted = True
+
     return render(request, 'voting/voting.html', {
         'applications': applications
     })

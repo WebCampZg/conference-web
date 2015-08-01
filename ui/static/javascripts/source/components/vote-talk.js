@@ -16,7 +16,6 @@ module.exports = {
 
         $voteTalk.on('click', '.VoteTalk-readMore', function ( e ) {
             var $el = $(e.delegateTarget);
-            console.log('hello');
             var $body = $voteTalkBody.filter(function ( el ) {
                 return $(el).attr('data-talk-slug') === $el.attr('data-talk-slug');
             });
@@ -31,7 +30,17 @@ module.exports = {
 
         });
 
+
         var $voteTalkButton = $('.VoteTalk-action');
+
+        jQuery(document).ready(function(){
+            $voteTalkButton.each(function(el){
+                if (el.attr('data-voted') == 'True'){
+                    el.prop('checked', true);
+                }
+            });
+        });
+
         $voteTalkButton.on('click', function(e){
             var checked = $(this).prop('checked');
 
