@@ -7,10 +7,14 @@
     </div>
     <ul class="SiteNav-list">
         {% if user.is_authenticated %}
+            {% if user.is_ticket_holder %}
+                <li class="SiteNav-item">
+                    <a href="{% url 'voting_index' %}" class="SiteNav-link">Voting</a>
+                </li>
+            {% endif %}
         <li class="SiteNav-item">
             <a href="{% url 'user_profile' %}" class="SiteNav-link">Profile: {{ user.get_full_name }}</a>
         </li>
-        {% endif %}
         <li class="SiteNav-item">
             <a href="{% url 'talks_list_talks' %}" class="SiteNav-link">Talks</a>
         </li>
@@ -20,7 +24,6 @@
         <li class="SiteNav-item">
             <a href="https://www.entrio.hr/en/event/webcamp-zagreb-2015-2150" class="SiteNav-link">Tickets</a>
         </li>
-        {% if user.is_authenticated %}
         <li class="SiteNav-item SiteNav-item--higlighted SiteNav-item--account">
             <a href="{% url 'account_logout' %}" class="SiteNav-link"><svg class="Icon" aria-hidden="true" role="presentation"><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-user"></use></svg>Logout</a>
         </li>
