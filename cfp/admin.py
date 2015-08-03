@@ -3,6 +3,10 @@ from cfp.models import CallForPaper, PaperApplication, Applicant
 from django.core import urlresolvers
 
 
+def mark_as_excluded(modeladmin, request, queryset):
+    queryset.update(exclude=True)
+
+
 class ApplicantAdmin(admin.ModelAdmin):
     raw_id_fields = ('user', )
     list_display = ('user', 'full_name', 'about', 'biography', 'speaker_experience', 'github', 'twitter')
@@ -13,10 +17,12 @@ class ApplicantAdmin(admin.ModelAdmin):
             return self.readonly_fields + ('user',)
         return self.readonly_fields
 
+
 class PaperApplicationAdmin(admin.ModelAdmin):
-    list_display = ('title', 'link_to_applicant', 'about', 'abstract', 'skill_level', 'duration')
+    list_display = ('title', 'link_to_applicant', 'about', 'abstract', 'skill_level', 'duration', 'exclude')
     readonly_fields = ('cfp', 'applicant')
     fields = ('cfp', 'applicant', 'title', 'about', 'abstract', 'skill_level', 'duration')
+    actions = [mark_as_excluded]
 
     def link_to_applicant(self, obj):
         link = urlresolvers.reverse("admin:cfp_applicant_change", args=[obj.applicant.id])
