@@ -5,6 +5,8 @@ from cfp.models import PaperApplication
 
 
 class Vote(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    class Meta:
+        unique_together = (("user", 'application'),)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     application = models.OneToOneField(PaperApplication, related_name='votes')
 
