@@ -13,8 +13,6 @@ from .decorators import require_ticket_holder
 from .models import Vote
 
 
-@login_required
-@require_ticket_holder
 def voting(request):
     already_picked = [t.application_id for t in Talk.objects.all()]
     applications = PaperApplication.objects.filter(
@@ -22,15 +20,16 @@ def voting(request):
                     id__in=already_picked).exclude(
                     exclude=True).order_by('title')
 
-    # Include boolean attribute to check if the user alerady voted for this talk
-    votes = Vote.objects.filter(user=request.user,
-                                application_id__in=[x.pk for x in applications])\
-                        .values_list('application_id', flat=True)
+    if request.user.is_authenticated() and request.user.is_ticket_holder():
+        # Include boolean attribute to check if the user alerady voted for this talk
+        votes = Vote.objects.filter(user=request.user,
+                                    application_id__in=[x.pk for x in applications])\
+                            .values_list('application_id', flat=True)
 
-    for application in applications:
-        application.voted = False
-        if application.pk in votes:
-            application.voted = True
+        for application in applications:
+            application.voted = False
+            if application.pk in votes:
+                application.voted = True
 
     return render(request, 'voting/voting.html', {
         'applications': applications
