@@ -35,7 +35,7 @@
                         {% elif not user.is_authenticated %}
                             <div class="VoteTalk-actionWrap">
                                 <span class="Togglable-caption">
-                                    <a href="{% url 'account_login' %}">Login</a>
+                                    <a href="{% url 'account_login' %}?next={% url 'voting_index' %}">Login</a>
                                 </span>
                             </div>
                         {% elif user.is_authenticated and not user.is_ticket_holder %}
