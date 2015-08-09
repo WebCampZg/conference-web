@@ -24,6 +24,7 @@
                         <div class="VoteTalk-readMoreWrap">
                             <button type="button" class="VoteTalk-readMore" data-talk-slug="{{ application.title|slugify }}">Read more</button>
                         </div>
+                        {% if user.is_authenticated and user.is_ticket_holder %}
                         <div class="VoteTalk-actionWrap">
                             <label class="Togglable">
                                 <input data-talk-id="{{ application.id }}" data-voted="{{ application.voted }}"
@@ -31,6 +32,20 @@
                                 <span class="Togglable-caption">Vote</span>
                             </label>
                         </div>
+                        {% elif not user.is_authenticated %}
+                            <div class="VoteTalk-actionWrap">
+                                <span class="Togglable-caption">
+                                    <a href="{% url 'account_login' %}?next={% url 'voting_index' %}">Login</a>
+                                </span>
+                            </div>
+                        {% elif user.is_authenticated and not user.is_ticket_holder %}
+                            <div class="VoteTalk-actionWrap">
+                                <span class="Togglable-caption">
+                                    <a href="https://www.entrio.hr/en/event/webcamp-zagreb-2015-2150"
+                                       target="_blank">Vote</a>
+                                </span>
+                            </div>
+                        {% endif %}
                     </article>
                 </li>
                 {% endfor %}
