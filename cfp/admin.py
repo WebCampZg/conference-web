@@ -19,7 +19,7 @@ class ApplicantAdmin(admin.ModelAdmin):
 
 
 class PaperApplicationAdmin(admin.ModelAdmin):
-    list_display = ('title', 'link_to_applicant', 'about', 'abstract', 'skill_level', 'duration', 'exclude')
+    list_display = ('title', 'link_to_applicant', 'about', 'abstract', 'skill_level', 'duration', 'exclude', 'votes_count')
     readonly_fields = ('cfp', 'applicant')
     fields = ('cfp', 'applicant', 'title', 'about', 'abstract', 'skill_level', 'duration')
     actions = [mark_as_excluded]

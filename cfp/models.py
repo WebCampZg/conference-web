@@ -100,6 +100,10 @@ class PaperApplication(Timestampable):
                 self.title,
                 self.duration)
 
+    @property
+    def votes_count(self):
+        return self.votes.all().count()
+
 
 @receiver(post_save, sender=PaperApplication)
 def update_talk_instance(sender, instance, created, **kwargs):
