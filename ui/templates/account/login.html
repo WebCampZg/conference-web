@@ -29,7 +29,9 @@
 
                             {% include "partials/form-field.html" with field=form.login  field_type="text" %}
                             {% include "partials/form-field.html" with field=form.password  field_type="text" %}
+                            {% if redirect_field_value %}
                             <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                            {% endif %}
 
                             <div class="Form-item">
                                 <label for="remember_me" class="Togglable">
