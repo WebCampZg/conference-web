@@ -28,7 +28,16 @@
             <a href="{% url 'account_logout' %}" class="SiteNav-link"><svg class="Icon" aria-hidden="true" role="presentation"><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-user"></use></svg>Logout</a>
         </li>
         {% else %}
-        <li class="SiteNav-item SiteNav-item--higlighted SiteNav-item--account">
+        <li class="SiteNav-item">
+            <a href="{% url 'talks_list_talks' %}" class="SiteNav-link">Talks</a>
+        </li>
+        <li class="SiteNav-item">
+            <a href="{% url 'code_of_conduct' %}" class="SiteNav-link">Code of Conduct</a>
+        </li>
+        <li class="SiteNav-item">
+            <a href="https://www.entrio.hr/en/event/webcamp-zagreb-2015-2150" class="SiteNav-link">Tickets</a>
+        </li>
+         <li class="SiteNav-item SiteNav-item--higlighted SiteNav-item--account">
             <a href="{% url 'account_login' %}" class="SiteNav-link"><svg class="Icon" aria-hidden="true" role="presentation"><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-user"></use></svg>Login</a>
         </li>
         {% endif %}
