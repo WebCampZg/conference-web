@@ -41,7 +41,7 @@
                         {% elif user.is_authenticated and not user.is_ticket_holder %}
                             <div class="VoteTalk-actionWrap">
                                 <span class="Togglable-caption">
-                                    <a href="https://www.entrio.hr/en/event/webcamp-zagreb-2015-2150"
+                                    <a href="{% url 'tickets' %}"
                                        target="_blank">Vote</a>
                                 </span>
                             </div>
