@@ -1,7 +1,13 @@
 {% extends 'ui/base.html' %}
 {% load fb_versions %}
 {% load static %}
-{% block title %}WebCampZG 2015{% endblock %}
+
+{% block title %}Speakers and Talks - WebCamp Zagreb Conference 2015{% endblock %}
+
+{% block head %}
+    <meta name="description" content="This years's WebCamp Zagreb conference speakers bring us interesting talks on various web dev topics. Jaime Levy and Bob Ippolito join us as keynote speakers!">
+{% endblock %}
+
 {% block content %}
 
     {% include "partials/header.html" with hero_type="cfp" title="Talks" %}
