@@ -2,7 +2,13 @@
 {% load fb_versions %}
 {% load markdown_deux_tags %}
 {% load static %}
-{% block title %}WebCampZG 2015{% endblock %}
+
+{% block title %}{{ talk.application.applicant.user.get_full_name }}: {{ talk.title }} - WebCamp Zagreb Conference 2015{% endblock %}
+
+{% block head %}
+    <meta name="description" content="{{ talk.about }}">
+{% endblock %}
+
 {% block content %}
 
     {% include "partials/header.html" with hero_type="cfp" title="&nbsp;" %}

@@ -1,7 +1,13 @@
 {% extends 'ui/base.html' %}
 {% load fb_versions %}
 {% load static %}
-{% block title %}WebCampZG 2015{% endblock %}
+
+{% block title %}WebCamp Zagreb 2015 - Community Oriented Conference{% endblock %}
+
+{% block head %}
+    <meta name="description" content="WebCamp Zagreb is a technology oriented conference for developers & designers taking place on October 3rd & 4th, 2015 in Zagreb, Croatia.">
+{% endblock %}
+
 {% block content %}
 
     {% include "partials/header.html" with hero_type="main" %}

@@ -1,7 +1,13 @@
 {% extends 'ui/base.html' %}
 {% load fb_versions %}
 {% load static %}
-{% block title %}Voting - WebCampZG 2015{% endblock %}
+
+{% block title %}Voting for talks - WebCamp Zagreb Conference 2015{% endblock %}
+
+{% block head %}
+    <meta name="description" content="This year we want to give you, the attendee, a chance to influence the content of WebCamp Zagreb. We made a selection of 35 talks which did not get chosen in our initial selection process. These talks can be voted on by ticket holders.">
+{% endblock %}
+
 {% block content %}
 
     {% include "partials/header.html" with hero_type="main" title="Voting" %}
@@ -41,7 +47,7 @@
                         {% elif user.is_authenticated and not user.is_ticket_holder %}
                             <div class="VoteTalk-actionWrap">
                                 <span class="Togglable-caption">
-                                    <a href="https://www.entrio.hr/en/event/webcamp-zagreb-2015-2150"
+                                    <a href="{% url 'tickets' %}"
                                        target="_blank">Vote</a>
                                 </span>
                             </div>
