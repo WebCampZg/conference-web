@@ -81,6 +81,7 @@ INSTALLED_APPS = (
     'jobs',
     'talks',
     'voting',
+    'tickets',
 )
 
 
