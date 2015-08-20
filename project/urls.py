@@ -3,7 +3,8 @@ from django.contrib import admin
 from django.conf import settings
 from people.views import UserProfileView
 from filebrowser.sites import site
-
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import sitemaps
 
 urlpatterns = patterns('',
 
@@ -24,7 +25,8 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     (r'^accounts/', include('allauth.urls')),
     url(r'^accounts/profile/', UserProfileView.as_view(), name='user_profile'),
-
+    url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
+        name='django.contrib.sitemaps.views.sitemap'),
 )
 
 if settings.DEBUG:
