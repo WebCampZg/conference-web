@@ -18,6 +18,8 @@
                 {% for application in applications %}
                 <li>
                     <article class="VoteTalk">
+                        <h4 class="VoteTalk-title">{{ application.applicant.user.get_full_name }}</h4>
+                        <div class="VoteTalk-excerpt">{{ application.applicant.about }}</div>
                         <h3 class="VoteTalk-title">{{ application.title }}</h3>
                         <div class="VoteTalk-excerpt">
                             {{ application.about }}
