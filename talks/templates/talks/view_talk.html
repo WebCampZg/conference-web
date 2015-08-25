@@ -12,7 +12,7 @@
 {% block og %}
     <meta property="og:title" content="{{ talk.application.applicant.user.get_full_name }}: {{ talk.title }} - WebCamp Zagreb Conference 2015" />
     <meta property="og:description" content="{{ talk.about }}" />
-    <meta property="og:image:secure_url" content="https://2015.webcampzg.org{% version talk.application.applicant.image 'big' %}" />
+    <meta property="og:image" content="https://2015.webcampzg.org{% version talk.application.applicant.image 'big' %}" />
 {% endblock %}
 
 {% block content %}
