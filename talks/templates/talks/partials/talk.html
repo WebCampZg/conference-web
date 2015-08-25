@@ -5,7 +5,9 @@
     <div class="Grid">
         <div class="Grid-cell Grid-cell--1of3">
             <figure class="QuickTalk-figure">
-                <img src="{% version talk.application.applicant.image 'big' %}" alt="Photo of {{ talk.application.applicant.user.get_full_name }}">
+                <div class="FlairFigure">
+                    <img src="{% version talk.application.applicant.image 'big' %}" alt="Photo of {{ talk.application.applicant.user.get_full_name }}">
+                </div>
             </figure>
         </div>
         <div class="Grid-cell Grid-cell--2of3">

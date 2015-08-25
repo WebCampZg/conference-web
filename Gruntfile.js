@@ -41,11 +41,12 @@ module.exports = function ( grunt ) {
                 options: {
                     map: false,
                     processors: [
-                        require('autoprefixer-core')({ browsers: ['last 2 version'] }).postcss,
+                        require('autoprefixer-core')({ browsers: ['last 2 version'] }),
                         require('pixrem')(),
                         require('postcss-assets')({
                             basePath: 'ui'
                         }),
+                        require('postcss-clearfix')
                     ]
                 },
                 src: 'ui/static/stylesheets/site.css',
