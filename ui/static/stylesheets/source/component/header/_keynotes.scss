@@ -79,7 +79,7 @@
         }
     }
 
-    &-speaker {
+    &-description {
         font-size:1.2rem;
 
         @media screen and (min-width:$bp-gamma) {
@@ -87,9 +87,8 @@
         }
     }
 
-    &-description {
-        font-size:1rem; font-style:italic;
-        color:$color-gray-delta;
+    &-speaker {
+        font-size:1rem;
 
         @media screen and (min-width:$bp-gamma) {
             font-size:1.1rem;
