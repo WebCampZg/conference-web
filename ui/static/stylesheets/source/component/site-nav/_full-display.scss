@@ -7,8 +7,9 @@
 .SiteNav {
 
     @media screen and (min-width:$bp-sitenav-full-display) {
-        position:absolute; right:0; top:0;
-        padding:40px 110px 0 0;
+        position:absolute; right:0; left:0; top:0;
+        padding:0 0 20px;
+        background:#fff;
 
         &-compact {
             display:none;
@@ -16,6 +17,8 @@
 
         &-list {
             display:flex;
+            justify-content:flex-end;
+            align-items:center;
         }
 
         &-item {
@@ -30,13 +33,7 @@
 
         &-link {
             padding:0;
-            font-size:1em;
-            color:#fff;
-
-            &:hover,
-            &:focus {
-                color:$color-brand-beta;
-            }
+            font-size:1.1em;
         }
     }
 
@@ -47,7 +44,7 @@
         }
 
         &-link {
-            font-size:1.1em;
+            font-size:1.2em;
         }
     }
 }

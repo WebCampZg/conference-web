@@ -15,12 +15,18 @@
 .SiteNav-link--cfp {
 
     @media screen and (max-width:($bp-sitenav-full-display - 1)) {
-        @include Button;
-        @include Button--rounded;
-        @include Button--gamma;
         display:block;
         padding:0.5em;
         font-weight:normal;
+    }
+}
+
+.SiteNav-link--cfp {
+
+    @media screen and (max-width:($bp-sitenav-full-display - 1)) {
+        @include Button;
+        @include Button--rounded;
+        @include Button--gamma;
     }
 }
 
@@ -119,8 +125,8 @@
     }
 
     @media screen and (min-width:$bp-sitenav-full-display) {
-        position:absolute; right:0; top:0;
         padding:0;
+        margin-left:1.5rem;
 
         &:before {
             display:none;
@@ -129,9 +135,7 @@
         .SiteNav {
 
             &-link {
-                padding:0.2em 1em; padding-left:calc(1em + 18px);
-                font-size:1em;
-                text-transform:none;
+                padding:0.3em 1.3em; padding-left:calc(1.3em + 25px);
                 color:$color-brand-alpha;
                 background:#fff;
 
@@ -142,7 +146,7 @@
 
                 .Icon {
                     left:0;
-                    margin-left:(18px/2);
+                    margin-left:(35px/2);
                     width:18px; height:18px;
                 }
             }
