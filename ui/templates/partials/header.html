@@ -1,9 +1,11 @@
+{% load fb_versions %}
+
 <header class="Header Hero Hero--{{ hero_type }}" role="banner">
     <div class="Hero-inner">
         <div class="Wrapper Wrapper--wide">
             {% include "partials/site-nav.html" %}
         </div>
-        <div class="Punchline">
+        <div class="Punchline {% if keynote and keynotes %}Punchline--keynotes{% endif %}">
             <div class="Wrapper Wrapper--narrow">
                 {% if title %}
                 <h2 class="Punchline-info">{{ title }}</h2>
@@ -16,5 +18,39 @@
                 {% endif %}
            </div>
         </div>
+        {% if keynote and keynotes %}
+        <div class="Wrapper Wrapper--wide">
+            <div class="HeaderCTA">
+                <a href="{% url 'tickets' %}" class="HeaderCTA-action Button Button--beta Button--rounded">Buy tickets!</a>
+                <a href="/media/webcampzg_2015_sponsors.pdf" class="HeaderCTA-action Button Button--beta Button--rounded">Become a sponsor</a>
+            </div>
+            <ul class="Keynotes">
+                {% for talk in keynotes %}
+                <li class="Keynote">
+                    <a href="{% url 'talks_view_talk' slug=talk.slug %}" class="Keynote-link">
+                        <h4 class="Keynote-title">
+                            {% if forloop.counter == 1 %}Saturday{% else %}Sunday{% endif %} Keynote
+                        </h4>
+                        <div class="Keynote-content">
+                            <div class="Grid">
+                                <div class="Grid-cell Grid-cell--1of3">
+                                    <div class="Keynote-figure">
+                                        <div class="FlairFigure">
+                                            <img src="{% version talk.application.applicant.image 'big' %}" alt="Photo of {{ talk.application.applicant.user.get_full_name }}" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="Grid-cell Grid-cell--2of3">
+                                    <p class="Keynote-speaker">{{ talk.application.applicant.user.get_full_name }}</p>
+                                    <h3 class="Keynote-description">{{ talk.title }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
     </div>
 </header>

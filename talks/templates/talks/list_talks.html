@@ -18,16 +18,11 @@
 
 {% block content %}
 
-    {% include "partials/header.html" with hero_type="cfp" title="Talks" %}
+    {% include "partials/header.html" with hero_type="cfp" title="Talks" keynote=True %}
 
     <section class="Listing Spotlight Spotlight--beta">
         <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
             <ul class="Listing-list">
-                {% for keynote in keynotes %}
-                <li>
-                    {% include "talks/partials/talk.html" with talk=keynote %}
-                </li>
-                {% endfor %}
                 {% for talk in talks %}
                 <li>
                     {% include "talks/partials/talk.html" with talk=talk %}

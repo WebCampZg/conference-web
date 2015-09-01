@@ -1,10 +1,6 @@
 {% load fb_versions %}
 {% load static %}
-{% for keynote in keynotes %}
-    <li>
-        {% include "talks/partials/talk.html" with talk=keynote %}
-    </li>
-{% endfor %}
+
 {% for talk in talks %}
     <li>
         {% include "talks/partials/talk.html" with talk=talk %}

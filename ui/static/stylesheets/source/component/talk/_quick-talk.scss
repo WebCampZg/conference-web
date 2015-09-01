@@ -7,31 +7,6 @@
 .QuickTalk {
 
     &-figure {
-        position:relative;
-        text-align:center;
-
-        img {
-            width:100%;
-        }
-
-        &:before,
-        &:after {
-            content:'';
-            position:absolute;
-            background-repeat:no-repeat; background-size:cover;
-        }
-
-        &:before {
-            left:0; top:0;
-            width:6rem; height:4rem;
-            background-image:inline('/static/images/frame-top-left.svg');
-        }
-
-        &:after {
-            right:0; bottom:0;
-            width:7rem; height:7rem;
-            background-image:inline('/static/images/frame-bottom-right.svg');
-        }
 
         @media screen and (max-width:$bp-gamma - 1) {
             display:none;

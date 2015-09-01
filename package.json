@@ -8,9 +8,10 @@
     "component-raf": "^1.2.0",
     "cookie-monster": "0.0.7",
     "debounce": "^1.0.0",
+    "jquery": "^2.1.4",
     "normalize.css": "^3.0.2",
-    "rationalize.css": "niksy/rationalize.css#0.1.2",
-    "jquery": "^2.1.4"
+    "postcss-clearfix": "^0.2.0",
+    "rationalize.css": "niksy/rationalize.css#0.1.2"
   },
   "devDependencies": {
     "autoprefixer-core": "^5.1.7",
@@ -25,7 +26,7 @@
     "grunt-contrib-uglify": "^0.8.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-modernizr": "niksy/grunt-modernizr#old-build-system",
-    "grunt-postcss": "^0.3.0",
+    "grunt-postcss": "^0.6.0",
     "grunt-svgstore": "^0.5.0",
     "grunt-ttf2woff": "^1.0.0",
     "load-grunt-tasks": "^3.1.0",
