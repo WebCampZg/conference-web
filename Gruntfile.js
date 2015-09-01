@@ -7,6 +7,7 @@ module.exports = function ( grunt ) {
         sass: {
             dist: {
                 options: {
+                    bundleExec: true,
                     sourcemap: 'none',
                     style: 'expanded',
                     precision: 5,

@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "scripts": {
     "static": "grunt static",
-    "static-watch": "grunt static --watch"
+    "static-watch": "grunt static --watch",
+    "bundle-install": "bundle install",
+    "postinstall": "npm run bundle-install"
   },
   "dependencies": {
     "bourbon": "^4.2.1",
