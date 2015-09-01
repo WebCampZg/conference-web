@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 
 from cfp.models import PaperApplication
@@ -32,7 +33,8 @@ def voting(request):
                 application.voted = True
 
     return render(request, 'voting/voting.html', {
-        'applications': applications
+        'applications': applications,
+        'voting_enabled': settings.VOTING_ENABLED
     })
 
 

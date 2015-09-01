@@ -22,6 +22,7 @@
 
     <section class="Spotlight Spotlight--beta">
         <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
+            {% if voting_enabled %}
             <ul class="Listing-list">
                 {% for application in applications %}
                 <li>
@@ -66,6 +67,9 @@
                 </li>
                 {% endfor %}
             </ul>
+            {% else %}
+                <h1>Voting is closed!</h1>
+            {% endif %}
         </div>
     </section>
 
