@@ -65,3 +65,6 @@ docs/_build
 
 # node
 /node_modules
+
+# sass
+/.sass-cache
