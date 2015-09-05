@@ -27,6 +27,9 @@ class Talk(Timestampable):
 
     keynote = models.BooleanField(default=False)
 
+    is_sponsored = models.BooleanField(default=False)
+    is_community_chosen = models.BooleanField(default=False)
+
     def get_absolute_url(self):
         from django.core.urlresolvers import reverse
         return reverse('talks_view_talk', args=[self.slug])
