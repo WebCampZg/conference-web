@@ -1,0 +1,19 @@
+/**
+ * =============================================================================
+ * Flags
+ * =============================================================================
+ */
+
+.Flag--alpha {
+    display:inline-block;
+    padding:0.4rem 0.9rem;
+    font-size:0.7rem;
+    text-transform:uppercase;
+    color:#fff;
+    background:$color-brand-alpha;
+
+    @media screen and (min-width:$bp-beta) {
+        padding:0.5rem 1rem;
+        font-size:0.9rem;
+    }
+}
