@@ -1,4 +1,32 @@
-Name: {{ sponsor.name }}</br />
+{% extends 'ui/base.html' %}
+{% load static %}
 
-About: {{ sponsor.about|safe }}
+{% block title %}Sponsors - WebCamp Zagreb Conference 2015{% endblock %}
 
+{% block og %}
+    <meta property="og:title" content="Sponsors - WebCamp Zagreb Conference 2015" />
+    <meta property="og:image" content="https://2015.webcampzg.org/static/images/webcamp-zagreb-conference.jpg"/>
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="315" />
+{% endblock %}
+
+{% block content %}
+
+    {% include "partials/header.html" with hero_type="main" title="Sponsors" sponsors_cta="true" %}
+
+    <section class="Spotlight Spotlight--beta">
+        <div class="Wrapper Wrapper--wide Wrapper--withFlair">
+
+            Name: {{ sponsor.name }}
+            About: {{ sponsor.about|safe }}
+
+        </div>
+    </section>
+
+    {% include "partials/tickets.html" %}
+
+    {% include "partials/sponsors.html" %}
+
+    {% include "partials/bithub.html" %}
+
+{% endblock %}

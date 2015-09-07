@@ -36,3 +36,14 @@
         padding:0;
     }
 }
+
+.HeaderCTA--sponsors {
+
+    .HeaderCTA-action {
+        font-size:1rem;
+
+        @media screen and (min-width:$bp-beta) {
+            font-size:1.5rem;
+        }
+    }
+}

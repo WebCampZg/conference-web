@@ -1,0 +1,203 @@
+/**
+ * =============================================================================
+ * Sponsors list
+ * =============================================================================
+ */
+
+/**
+ * Sponsor item
+ * -----------------------------------------------------------------------------
+ */
+
+.Sponsors {
+
+    &-item {
+        display:block;
+
+        @media screen and (min-width:$bp-alpha) {
+            display:inline-block;
+        }
+    }
+
+    &-link {
+        padding:1.5rem 0.2rem;
+
+        @media screen and (min-width:$bp-alpha) {
+            padding:1rem;
+        }
+
+        @media screen and (min-width:$bp-gamma) {
+            padding:1.5rem;
+        }
+    }
+}
+
+/**
+ * Sponsor types
+ * -----------------------------------------------------------------------------
+ */
+
+.Sponsors {
+
+    &-block {
+        position:relative;
+        padding:1rem;
+        border:1px solid $color-gray-gamma;
+        background:#fff;
+
+        @media screen and (min-width:$bp-alpha) {
+            padding:1rem;
+        }
+
+        @media screen and (min-width:$bp-gamma) {
+            padding:3rem;
+        }
+
+        @media screen and (min-width:950px) {
+            padding:4.5rem;
+        }
+    }
+
+    &-flag {
+        position:absolute; left:1rem; bottom:100%;
+        transform:translateY(50%);
+
+        @media screen and (min-width:$bp-beta) and (max-width:$bp-gamma - 1) {
+            font-size:0.7rem;
+        }
+    }
+
+    &-type {
+        margin-top:2rem;
+
+        &--diamond,
+        &--track {
+
+            @media screen and (min-width:$bp-alpha) and (max-width:$bp-beta - 1) {
+
+                .Sponsors-item {
+                    display:block;
+                }
+            }
+        }
+
+        &--diamond {
+
+            @media screen and (min-width:$bp-beta) {
+                padding-right:5rem; padding-left:5rem;
+
+                .Sponsors-item {
+                    width:percentage(1);
+                }
+            }
+
+            @media screen and (min-width:950px) {
+                padding-right:10rem; padding-left:10rem;
+            }
+        }
+
+        &--track {
+
+            .Sponsors-item {
+                margin-top:2rem;
+
+                &:first-child {
+                    margin-top:0;
+                }
+            }
+
+            @media screen and (min-width:$bp-beta) {
+
+                .Sponsors-list {
+                    display:flex;
+                }
+
+                .Sponsors-item {
+                    width:percentage(1/2);
+                    margin-left:2rem; margin-top:0;
+
+                    &:first-child {
+                        margin-left:0;
+                    }
+                }
+
+                .Sponsors-link {
+                    display:inline-block;
+                }
+            }
+        }
+
+        &--standard,
+        &--supporter {
+
+            @media screen and (min-width:$bp-alpha) {
+
+                .Sponsors-list {
+                    margin-top:1rem;
+                }
+
+                .Sponsors-item {
+                    width:percentage(1/2);
+                    padding:0.3rem 0.7rem;
+                }
+
+                .Sponsors-link {
+                    border:1px solid $color-gray-gamma; border-radius:0.5rem;
+                }
+            }
+
+            @media screen and (min-width:$bp-gamma) {
+
+                .Sponsors-list {
+                    margin-top:0;
+                }
+            }
+        }
+
+        &--standard {
+
+            @media screen and (max-width:$bp-alpha - 1) {
+
+                .Sponsors-block {
+                    padding-left:2rem; padding-right:2rem;
+                }
+            }
+
+            @media screen and (min-width:700px) {
+
+                .Sponsors-item {
+                    width:percentage(1/4);
+                }
+            }
+        }
+
+        &--supporter {
+
+            .Sponsors-logo {
+                max-height:2.5em;
+            }
+
+            @media screen and (max-width:$bp-alpha - 1) {
+
+                .Sponsors-block {
+                    padding-left:3.5rem; padding-right:3.5rem;
+                }
+            }
+
+            @media screen and (min-width:700px) {
+
+                .Sponsors-item {
+                    width:percentage(1/5);
+                }
+            }
+        }
+
+        @media screen and (min-width:$bp-alpha) {
+            margin-top:2rem;
+        }
+
+        @media screen and (min-width:$bp-gamma) {
+            margin-top:3.5rem;
+        }
+    }
+}

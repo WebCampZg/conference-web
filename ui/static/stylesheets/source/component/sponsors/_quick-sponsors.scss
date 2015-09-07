@@ -1,0 +1,149 @@
+/**
+ * =============================================================================
+ * Quick sponsors
+ * =============================================================================
+ */
+
+/**
+ * Sponsor item
+ * -----------------------------------------------------------------------------
+ */
+
+.QuickSponsors {
+
+    &-item {
+        margin:0 auto;
+        padding:1rem 0;
+
+        @media screen and (min-width:$bp-alpha) {
+            padding:2rem 0;
+        }
+
+        @media screen and (min-width:$bp-beta) {
+            padding:2.5rem 0;
+        }
+
+        @media screen and (min-width:$bp-delta) {
+            padding:3rem 0;
+        }
+    }
+
+    &-link {
+        padding:0 1em;
+    }
+}
+
+/**
+ * Sponsor types
+ * -----------------------------------------------------------------------------
+ */
+
+.QuickSponsors {
+
+    &-type {
+        position:relative;
+
+        &:after {
+            content:'';
+            position:absolute; bottom:100%; left:10px; right:10px; z-index:10;
+            height:1px;
+            background:rgba($color-gray-alpha, 0.5);
+
+            @media screen and (min-width:$bp-alpha) {
+                left:5%; right:5%;
+            }
+
+            @media screen and (min-width:$bp-beta) {
+                left:15%; right:15%;
+            }
+
+            @media screen and (min-width:$bp-delta) {
+                left:20%; right:20%;
+            }
+        }
+
+        &--diamond {
+
+            &:after {
+                display:none;
+            }
+
+            .QuickSponsors-item {
+                width:60%;
+
+                @media screen and (min-width:$bp-alpha) {
+                    width:50%;
+                }
+
+                @media screen and (min-width:$bp-beta) {
+                    width:40%;
+                }
+
+                @media screen and (min-width:$bp-delta) {
+                    width:35%;
+                }
+            }
+        }
+
+        &--track {
+
+            .QuickSponsors-item {
+                width:55%;
+
+                @media screen and (min-width:$bp-alpha) {
+                    width:45%;
+                }
+
+                @media screen and (min-width:$bp-beta) {
+                    width:35%;
+                }
+
+                @media screen and (min-width:$bp-delta) {
+                    width:30%;
+                }
+            }
+        }
+
+        &--standard {
+
+            .QuickSponsors-item {
+                width:40%;
+
+                @media screen and (min-width:$bp-alpha) {
+                    width:30%;
+                }
+
+                @media screen and (min-width:$bp-beta) {
+                    width:20%;
+                }
+
+                @media screen and (min-width:$bp-delta) {
+                    width:15%;
+                }
+            }
+        }
+
+        &--supporter {
+
+            .QuickSponsors-logo {
+                max-height:1.9em;
+            }
+
+            .QuickSponsors-item {
+                width:34%;
+
+                @media screen and (min-width:$bp-alpha) {
+                    width:24%;
+                }
+
+                @media screen and (min-width:$bp-beta) {
+                    width:14%;
+                }
+
+                @media screen and (min-width:$bp-delta) {
+                    width:9%;
+                }
+            }
+        }
+    }
+}

@@ -1,8 +1,84 @@
-{% for sponsor in sponsors %}
+{% extends 'ui/base.html' %}
+{% load static %}
 
-Name: <a href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">{{ sponsor.name }}</a> <br />
-About: {{ sponsor.about|safe }}
-<hr />
+{% block title %}Sponsors - WebCamp Zagreb Conference 2015{% endblock %}
 
-{% endfor %}
+{% block og %}
+    <meta property="og:title" content="Sponsors - WebCamp Zagreb Conference 2015" />
+    <meta property="og:image" content="https://2015.webcampzg.org/static/images/webcamp-zagreb-conference.jpg"/>
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="315" />
+{% endblock %}
 
+{% block content %}
+
+    {% include "partials/header.html" with hero_type="main" title="Sponsors" sponsors_cta="true" %}
+
+    <section class="Spotlight Spotlight--beta">
+        <div class="Wrapper Wrapper--wide Wrapper--withFlair">
+
+            <div class="Sponsors">
+                {% if diamond_sponsors %}
+                <div class="Sponsors-type Sponsors-type--diamond">
+                    <ul class="Sponsors-list">
+                        {% for sponsor in diamond_sponsors %}
+                        <li class="Sponsors-item">
+                            <div class="Sponsors-block">
+                                <span class="Sponsors-flag Flag Flag--alpha">Diamond sponsor</span>
+                                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                {% if track_sponsors %}
+                <div class="Sponsors-type Sponsors-type--track">
+                    <ul class="Sponsors-list">
+                        {% for sponsor in track_sponsors %}
+                        <li class="Sponsors-item Sponsors-block">
+                            <span class="Sponsors-flag Flag Flag--alpha">Track sponsor</span>
+                            <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+                {% if standard_sponsors %}
+                <div class="Sponsors-type Sponsors-type--standard">
+                    <div class="Sponsors-block">
+                        <span class="Sponsors-flag Flag Flag--alpha">Standard sponsors</span>
+                        <ul class="Sponsors-list">
+                            {% for sponsor in standard_sponsors %}
+                            <li class="Sponsors-item">
+                                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+                {% if supporter_sponsors %}
+                <div class="Sponsors-type Sponsors-type--supporter">
+                    <div class="Sponsors-block">
+                        <span class="Sponsors-flag Flag Flag--alpha">Supporters</span>
+                        <ul class="Sponsors-list">
+                            {% for sponsor in supporter_sponsors %}
+                            <li class="Sponsors-item">
+                                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </section>
+
+    {% include "partials/tickets.html" %}
+
+    {% include "partials/bithub.html" %}
+
+{% endblock %}
