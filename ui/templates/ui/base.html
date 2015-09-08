@@ -43,6 +43,7 @@
         {% endif %}
         {% block content %}
         {% endblock %}
+        {% block footer %}
         <footer class="Footer" role="contentinfo">
             <div class="Wrapper Wrapper--narrow">
                 <ul class="QuickSocial">
@@ -69,6 +70,7 @@
                 </div>
             </div>
         </footer>
+        {% endblock %}
         <script src="{% static 'javascripts/site.js' %}"></script>
     </body>
 </html>
