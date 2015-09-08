@@ -61,6 +61,7 @@
     }
 
     &-meta {
+        font-style:italic;
 
         @media screen and (min-width:$bp-gamma) {
             position:absolute; bottom:0;
