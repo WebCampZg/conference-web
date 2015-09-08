@@ -25,7 +25,7 @@
                         <li class="Sponsors-item">
                             <div class="Sponsors-block Block Block--alpha">
                                 <span class="Sponsors-flag Flag Flag--alpha">Diamond sponsor</span>
-                                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+                                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
                             </div>
                         </li>
                         {% endfor %}
@@ -38,7 +38,7 @@
                         {% for sponsor in track_sponsors %}
                         <li class="Sponsors-item Sponsors-block Block Block--alpha">
                             <span class="Sponsors-flag Flag Flag--alpha">Track sponsor</span>
-                            <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+                            <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
                         </li>
                         {% endfor %}
                     </ul>
@@ -51,7 +51,7 @@
                         <ul class="Sponsors-list">
                             {% for sponsor in standard_sponsors %}
                             <li class="Sponsors-item">
-                                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+                                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
                             </li>
                             {% endfor %}
                         </ul>
@@ -61,11 +61,11 @@
                 {% if supporter_sponsors %}
                 <div class="Sponsors-type Sponsors-type--supporter">
                     <div class="Sponsors-block Block Block--alpha">
-                        <span class="Sponsors-flag Flag Flag--alpha">Support sponsor</span>
+                        <span class="Sponsors-flag Flag Flag--alpha">Support sponsors</span>
                         <ul class="Sponsors-list">
                             {% for sponsor in supporter_sponsors %}
                             <li class="Sponsors-item">
-                                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+                                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
                             </li>
                             {% endfor %}
                         </ul>

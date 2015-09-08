@@ -68,6 +68,14 @@
     &-type {
         margin-top:2rem;
 
+        @media screen and (min-width:$bp-alpha) {
+            margin-top:2rem;
+        }
+
+        @media screen and (min-width:$bp-gamma) {
+            margin-top:3.5rem;
+        }
+
         &--diamond,
         &--track {
 
@@ -80,6 +88,10 @@
         }
 
         &--diamond {
+
+            @media screen and (max-width:$bp-alpha - 1) {
+                margin-top:1rem;
+            }
 
             @media screen and (min-width:$bp-beta) {
                 padding-right:5rem; padding-left:5rem;
@@ -111,6 +123,8 @@
                 }
 
                 .Sponsors-item {
+                    display:flex;
+                    align-self:stretch;
                     width:percentage(1/2);
                     margin-left:2rem; margin-top:0;
 
@@ -120,7 +134,10 @@
                 }
 
                 .Sponsors-link {
-                    display:inline-block;
+                    display:flex;
+                    justify-content:center;
+                    align-items:center;
+                    width:percentage(1);
                 }
             }
         }
@@ -131,16 +148,33 @@
             @media screen and (min-width:$bp-alpha) {
 
                 .Sponsors-list {
+                    display:flex;
+                    justify-content:center;
+                    align-items:center;
+                    flex-wrap:wrap;
                     margin-top:1rem;
                 }
 
                 .Sponsors-item {
+                    display:flex;
+                    align-self:stretch;
                     width:percentage(1/2);
                     padding:0.3rem 0.7rem;
                 }
 
                 .Sponsors-link {
+                    display:flex;
+                    justify-content:center;
+                    align-items:center;
+                    width:percentage(1);
                     border:1px solid $color-gray-gamma; border-radius:0.5rem;
+                }
+            }
+
+            @media screen and (min-width:550px) and (max-width:700px - 1) {
+
+                .Sponsors-list {
+                    padding:1rem 3rem;
                 }
             }
 
@@ -171,10 +205,6 @@
 
         &--supporter {
 
-            .Sponsors-logo {
-                max-height:2.5em;
-            }
-
             @media screen and (max-width:$bp-alpha - 1) {
 
                 .Sponsors-block {
@@ -188,14 +218,6 @@
                     width:percentage(1/5);
                 }
             }
-        }
-
-        @media screen and (min-width:$bp-alpha) {
-            margin-top:2rem;
-        }
-
-        @media screen and (min-width:$bp-gamma) {
-            margin-top:3.5rem;
         }
     }
 }
