@@ -23,7 +23,7 @@
                     <ul class="Sponsors-list">
                         {% for sponsor in diamond_sponsors %}
                         <li class="Sponsors-item">
-                            <div class="Sponsors-block">
+                            <div class="Sponsors-block Block Block--alpha">
                                 <span class="Sponsors-flag Flag Flag--alpha">Diamond sponsor</span>
                                 <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
                             </div>
@@ -36,7 +36,7 @@
                 <div class="Sponsors-type Sponsors-type--track">
                     <ul class="Sponsors-list">
                         {% for sponsor in track_sponsors %}
-                        <li class="Sponsors-item Sponsors-block">
+                        <li class="Sponsors-item Sponsors-block Block Block--alpha">
                             <span class="Sponsors-flag Flag Flag--alpha">Track sponsor</span>
                             <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
                         </li>
@@ -46,7 +46,7 @@
                 {% endif %}
                 {% if standard_sponsors %}
                 <div class="Sponsors-type Sponsors-type--standard">
-                    <div class="Sponsors-block">
+                    <div class="Sponsors-block Block Block--alpha">
                         <span class="Sponsors-flag Flag Flag--alpha">Standard sponsors</span>
                         <ul class="Sponsors-list">
                             {% for sponsor in standard_sponsors %}
@@ -60,8 +60,8 @@
                 {% endif %}
                 {% if supporter_sponsors %}
                 <div class="Sponsors-type Sponsors-type--supporter">
-                    <div class="Sponsors-block">
-                        <span class="Sponsors-flag Flag Flag--alpha">Supporters</span>
+                    <div class="Sponsors-block Block Block--alpha">
+                        <span class="Sponsors-flag Flag Flag--alpha">Support sponsor</span>
                         <ul class="Sponsors-list">
                             {% for sponsor in supporter_sponsors %}
                             <li class="Sponsors-item">

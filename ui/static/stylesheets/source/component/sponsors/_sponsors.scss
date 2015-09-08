@@ -42,8 +42,6 @@
     &-block {
         position:relative;
         padding:1rem;
-        border:1px solid $color-gray-gamma;
-        background:#fff;
 
         @media screen and (min-width:$bp-alpha) {
             padding:1rem;
