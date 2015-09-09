@@ -15,9 +15,15 @@ def index(request):
 def code_of_conduct(request):
     return render(request, 'ui/code_of_conduct.html', {})
 
+
 def voting(request):
     return render(request, 'ui/voting.html', {})
 
 
 def signup_success(request):
     return render(request, 'account/signup-success.html')
+
+
+def custom_404(request):
+    return render(request, 'ui/404.html', status=404)
+

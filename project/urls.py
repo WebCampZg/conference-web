@@ -6,6 +6,8 @@ from filebrowser.sites import site
 from django.contrib.sitemaps.views import sitemap
 from .sitemaps import sitemaps
 
+handler404 = 'ui.views.custom_404'
+
 urlpatterns = patterns('',
 
     url(r'^$', 'ui.views.index', name="ui_index"),
