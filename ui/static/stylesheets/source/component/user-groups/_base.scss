@@ -1,0 +1,178 @@
+/**
+ * =============================================================================
+ * User groups
+ * =============================================================================
+ */
+
+.UserGroups {
+
+    &-item {
+        text-align:center;
+    }
+
+    &-link {
+
+        &:hover,
+        &:focus {
+
+            .UserGroups-logo {
+                opacity:0.8;
+            }
+        }
+    }
+
+    &-logo {
+        width:100%;
+        transition:opacity 0.07s ease-in-out;
+        vertical-align:middle;
+
+        &[src$=".png"] {
+            width:auto;
+
+            @-moz-document url-prefix() {
+                width:100%;
+            }
+        }
+    }
+
+    @media screen and (max-width:$bp-gamma - 1) {
+
+        &-list {
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            flex-wrap:wrap;
+        }
+
+        &-item {
+            padding:0.5rem 0;
+            width:percentage(1/2);
+        }
+
+        &-logo {
+            width:100px;
+        }
+
+        &-item--frontman-zagreb {
+
+            .UserGroups-logo {
+                width:180px;
+            }
+        }
+
+        &-item--javascript-zagreb {
+
+            .UserGroups-logo {
+                width:100px;
+            }
+        }
+
+        &-item--lambda-zagreb {
+
+            .UserGroups-logo {
+                width:80px;
+            }
+        }
+
+        &-item--ms-community-hrvatska {
+
+            .UserGroups-logo {
+                width:200px;
+            }
+        }
+
+        &-item--python-hrvatska {
+
+            .UserGroups-logo {
+                width:90px;
+            }
+        }
+
+        &-item--ruby-zagreb {
+
+            .UserGroups-logo {
+                width:90px;
+            }
+        }
+
+        &-item--wdhr {
+
+            .UserGroups-logo {
+                width:200px;
+            }
+        }
+
+        &-item--zgphp {
+
+            .UserGroups-logo {
+                width:90px;
+            }
+        }
+    }
+
+    @media screen and (min-width:$bp-beta) {
+
+        &-list {
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            flex-wrap:wrap;
+            padding:3rem 15%;
+        }
+
+        &-item {
+            display:flex;
+            align-self:stretch;
+            width:percentage(1/5);
+        }
+
+        &-link {
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            width:percentage(1);
+        }
+
+        &-item--frontman-zagreb {
+
+            .UserGroups-logo {
+                width:80%;
+            }
+        }
+
+        &-item--javascript-zagreb {
+
+            .UserGroups-logo {
+                width:50%;
+            }
+        }
+
+        &-item--lambda-zagreb {
+
+            .UserGroups-logo {
+                width:45%;
+            }
+        }
+
+        &-item--python-hrvatska {
+
+            .UserGroups-logo {
+                width:80%;
+            }
+        }
+
+        &-item--ruby-zagreb {
+
+            .UserGroups-logo {
+                width:55%;
+            }
+        }
+
+        &-item--zgphp {
+
+            .UserGroups-logo {
+                width:50%;
+            }
+        }
+    }
+}

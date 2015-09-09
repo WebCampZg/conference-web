@@ -188,6 +188,10 @@
 
         &--standard {
 
+            .Sponsors-logo {
+                max-height:4.5em;
+            }
+
             @media screen and (max-width:$bp-alpha - 1) {
 
                 .Sponsors-block {
@@ -204,6 +208,10 @@
         }
 
         &--supporter {
+
+            .Sponsors-logo {
+                max-height:1.9em;
+            }
 
             @media screen and (max-width:$bp-alpha - 1) {
 

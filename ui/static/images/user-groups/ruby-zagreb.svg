@@ -1,0 +1,18 @@
+<svg width="309" height="279" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+ <g>
+  <title>Layer 1</title>
+  <path id="svg_1" d="m294.81299,146.97836l-132.27002,132.27402l-132.26999,-132.27402l66.13199,-66.13l132.27301,0" fill="#ED1C24"/>
+  <g id="svg_2" stroke-miterlimit="10" stroke-width="2" stroke-opacity="0.5" stroke="#FFF" fill-opacity="0.1" fill="#FFF">
+   <path id="svg_3" d="m162.70001,279.35638l-66.242,-198.49698l-60.45801,-6.12503l-36,150l162.70001,54.62201z"/>
+   <path id="svg_4" d="m309.16699,146.97836l-71.66699,-90.07397l-163.66498,5.66501l-45.96002,79.853l2.39801,4.392l278.89398,0.16397z"/>
+   <path id="svg_5" d="m305.5,133.90237l-76.82202,-53.05499l-65.97998,198.50998l97.802,-58.78897l45,-86.66602z"/>
+   <path id="svg_6" d="m309.16699,142.90237l-83.815,-90.32401l-131.35199,14.98801l2.45801,13.293l143.146,146.89001l69.56299,-84.84702z"/>
+   <path id="svg_7" d="m72.16599,67.56638l153.33597,7.168l3.17603,6.11301l-155.815,154.08298l-65.53,-96.53l64.83301,-70.83398z"/>
+  </g>
+  <text fill="black" id="svg_8" x="50.75699" y="61.00238">
+   <tspan id="svg_9" font-size="67.832" font-family="&#x27;TyponineSans-Bld'" fill="#ED1C24" y="61.00238" x="50.75699">Rub</tspan>
+   <tspan id="svg_10" font-size="67.832" font-family="&#x27;TyponineSans-Bld'" fill="#ED1C24" y="61.00238" x="171.22599">y</tspan>
+   <tspan id="svg_11" font-size="67.832" font-family="&#x27;TyponineSans-Bld'" fill="#FF666C" y="61.00238" x="206.83699">zg</tspan>
+  </text>
+ </g>
+</svg>

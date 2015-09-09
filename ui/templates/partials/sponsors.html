@@ -30,7 +30,7 @@
         <div class="QuickSponsors-type QuickSponsors-type--standard">
             <ul class="QuickSponsors-list">
                 {% for sponsor in standard_sponsors %}
-                <li class="QuickSponsors-item">
+                <li class="QuickSponsors-item {% if sponsor.name == 'HR Cloud' %}QuickSponsors-item--hr-cloud{% endif %}">
                     <a class="QuickSponsors-link" href="{{ sponsor.url }}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="QuickSponsors-logo" /></a>
                 </li>
                 {% endfor %}

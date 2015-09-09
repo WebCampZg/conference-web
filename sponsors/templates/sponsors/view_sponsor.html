@@ -32,8 +32,8 @@
                     </span>
                     <div class="Grid">
                         <div class="Grid-cell Grid-cell--1of3">
-                            <figure class="Sponsor-logo">
-                                <img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" />
+                            <figure class="Sponsor-logoWrap">
+                                <img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsor-logo" />
                             </figure>
                         </div>
                         <div class="Grid-cell Grid-cell--2of3">
@@ -76,6 +76,8 @@
     {% include "partials/tickets.html" %}
 
     {% include "partials/sponsors.html" %}
+
+    {% include "partials/user-groups.html" %}
 
     {% include "partials/bithub.html" %}
 
