@@ -7,7 +7,7 @@ db:
 
 dbDataContainer:
     image: postgres:9.3
-    command: true
+    command: /bin/true
     volumes:
         - /var/lib/postgresql
     labels:
