@@ -106,7 +106,10 @@
             }
 
             .QuickSponsors-item--aduro-ideja {
-                max-height:1.6em;
+
+                .QuickSponsors-logo {
+                    max-height:1.6em;
+                }
             }
 
             .QuickSponsors-item--hr-cloud {
@@ -117,7 +120,7 @@
             }
 
             .QuickSponsors-logo {
-                max-height:4.5em;
+                max-height:6em;
             }
         }
 
