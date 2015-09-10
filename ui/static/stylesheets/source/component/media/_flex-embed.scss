@@ -1,0 +1,26 @@
+/**
+ * =============================================================================
+ * Flex embed
+ * =============================================================================
+ */
+
+.FlexEmbed {
+    display:block;
+    overflow:hidden;
+    position:relative;
+
+    &-ratio {
+        display:block;
+        padding-bottom:100%;
+        width:100%;
+    }
+
+    &-ratio--16by9 {
+        padding-bottom:56.25%;
+    }
+
+    &-content {
+        position:absolute; left:0; top:0; bottom:0;
+        width:100%; height:100%;
+    }
+}

@@ -51,10 +51,6 @@
 
         &[src$=".png"] {
             width:auto;
-
-            @-moz-document url-prefix() {
-                width:100%;
-            }
         }
     }
 }
