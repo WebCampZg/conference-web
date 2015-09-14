@@ -1,10 +1,51 @@
-{% for job in jobs %}
+{% extends 'ui/base.html' %}
+{% load static %}
 
-Title: {{ job.title }}<br />
-About: {{ job.text|safe }}
-URL: {{ job.url }} <br />
-By: {{ job.sponsor }}
-<hr />
+{% block title %}Jobs - WebCamp Zagreb Conference 2015{% endblock %}
 
-{% endfor %}
+{% block og %}
+    <meta property="og:title" content="Jobs - WebCamp Zagreb Conference 2015" />
+    <meta property="og:image" content="https://2015.webcampzg.org/static/images/webcamp-zagreb-conference.jpg"/>
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="315" />
+{% endblock %}
 
+{% block content %}
+
+    {% include "partials/header.html" with hero_type="main" title="Jobs" %}
+
+    <section class="Spotlight Spotlight--beta">
+        <div class="Wrapper Wrapper--wide Wrapper--withFlair">
+
+            {% if jobs %}
+            <div class="Jobs">
+                <ul class="Jobs-list">
+                    {% for job in jobs %}
+                    <li class="Job Block Block--alpha">
+                        <button type="button" class="Link Link--delta Job-readMore" data-job-slug="{{ job.title|slugify }}">{{ job.title }} ({{ job.sponsor }})</button>
+                        <div class="Job-body" data-job-slug="{{ job.title|slugify }}">
+                            <div class="Passage">
+                                {{ job.text|safe }}
+                            </div>
+                            <div class="Job-apply">
+                                <a href="{{ job.url }}" class="Button Button--gamma Button--rounded">Apply now!</a>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+
+        </div>
+    </section>
+
+    {% include "partials/tickets.html" %}
+
+    {% include "partials/sponsors.html" %}
+
+    {% include "partials/user-groups.html" %}
+
+    {% include "partials/bithub.html" %}
+
+{% endblock %}
