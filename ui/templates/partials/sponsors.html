@@ -9,7 +9,7 @@
             <ul class="QuickSponsors-list">
                 {% for diamond in diamond_sponsors %}
                 <li class="QuickSponsors-item">
-                    <a class="QuickSponsors-link" href="{{ diamond.url }}"><img src="{{MEDIA_URL}}{{ diamond.image }}" alt="{{ diamond.name }}" class="QuickSponsors-logo" /></a>
+                    <a class="QuickSponsors-link" href="{% url 'sponsors_view_sponsor' slug=diamond.slug %}"><img src="{{MEDIA_URL}}{{ diamond.image }}" alt="{{ diamond.name }}" class="QuickSponsors-logo" /></a>
                 </li>
                 {% endfor %}
             </ul>
@@ -20,7 +20,7 @@
             <ul class="QuickSponsors-list">
                 {% for sponsor in track_sponsors %}
                 <li class="QuickSponsors-item">
-                    <a class="QuickSponsors-link" href="{{ sponsor.url }}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="QuickSponsors-logo" /></a>
+                    <a class="QuickSponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="QuickSponsors-logo" /></a>
                 </li>
                 {% endfor %}
             </ul>
@@ -31,7 +31,7 @@
             <ul class="QuickSponsors-list">
                 {% for sponsor in standard_sponsors %}
                 <li class="QuickSponsors-item {% if sponsor.name == 'HR Cloud' %}QuickSponsors-item--hr-cloud{% endif %} {% if sponsor.name == 'Aduro Ideja' %}QuickSponsors-item--aduro-ideja{% endif %}">
-                    <a class="QuickSponsors-link" href="{{ sponsor.url }}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="QuickSponsors-logo" /></a>
+                    <a class="QuickSponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="QuickSponsors-logo" /></a>
                 </li>
                 {% endfor %}
             </ul>
