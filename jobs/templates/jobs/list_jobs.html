@@ -19,28 +19,14 @@
 
             {% if jobs %}
             <div class="Jobs">
-                <ul class="Jobs-list">
-                    {% for job in jobs %}
-                    <li class="Job Block Block--alpha">
-                        <button type="button" class="Link Link--delta Job-readMore" data-job-slug="{{ job.title|slugify }}">{{ job.title }} ({{ job.sponsor }})</button>
-                        <div class="Job-body" data-job-slug="{{ job.title|slugify }}">
-                            <div class="Passage">
-                                {{ job.text|safe }}
-                            </div>
-                            <div class="Job-apply">
-                                <a href="{{ job.url }}" class="Button Button--gamma Button--rounded">View on {{ job.sponsor.name }} web!</a>
-                            </div>
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
+                {% include "partials/jobs.html" with jobs=jobs show_sponsor_name="true" %}
             </div>
             {% endif %}
 
         </div>
     </section>
 
-    {% include "partials/tickets.html" %}
+
 
     {% include "partials/sponsors.html" %}
 

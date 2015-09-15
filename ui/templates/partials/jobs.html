@@ -1,0 +1,16 @@
+<ul class="Jobs-list">
+    {% for job in jobs %}
+    <li class="Job Block Block--alpha">
+        <button type="button" class="Link Link--delta Job-readMore" data-job-slug="{{ job.title|slugify }}">{{ job.title }} {% if show_sponsor_name %} - <b>{{ job.sponsor }}</b>{% endif %}</button>
+        <div class="Job-body" data-job-slug="{{ job.title|slugify }}">
+            <div class="Passage">
+                <p class="Job-location">Location: {{ job.location }}</p>
+                {{ job.text|safe }}
+            </div>
+            <div class="Job-apply">
+                <a href="{{ job.url }}" class="Button Button--gamma Button--rounded">View on {{ job.sponsor.name }}&nbsp;web!</a>
+            </div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
