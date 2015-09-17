@@ -16,6 +16,10 @@ def code_of_conduct(request):
     return render(request, 'ui/code_of_conduct.html', {})
 
 
+def visitors_info(request):
+    return render(request, 'ui/visitors_information.html', {})
+
+
 def voting(request):
     return render(request, 'ui/voting.html', {})
 
