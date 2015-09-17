@@ -26,11 +26,44 @@
             </ul>
         </div>
         {% endif %}
+        {% if foodanddrinks_sponsors %}
+        <div class="QuickSponsors-type QuickSponsors-type--track">
+            <ul class="QuickSponsors-list">
+                {% for sponsor in foodanddrinks_sponsors %}
+                <li class="QuickSponsors-item">
+                    <a class="QuickSponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="QuickSponsors-logo" /></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
         {% if standard_sponsors %}
         <div class="QuickSponsors-type QuickSponsors-type--standard">
             <ul class="QuickSponsors-list">
                 {% for sponsor in standard_sponsors %}
                 <li class="QuickSponsors-item {% if sponsor.name == 'HR Cloud' %}QuickSponsors-item--hr-cloud{% endif %} {% if sponsor.name == 'Aduro Ideja' %}QuickSponsors-item--aduro-ideja{% endif %}">
+                    <a class="QuickSponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="QuickSponsors-logo" /></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% if mainmedia_sponsors %}
+        <div class="QuickSponsors-type QuickSponsors-type--standard">
+            <ul class="QuickSponsors-list">
+                {% for sponsor in mainmedia_sponsors %}
+                <li class="QuickSponsors-item">
+                    <a class="QuickSponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="QuickSponsors-logo" /></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% if media_sponsors %}
+        <div class="QuickSponsors-type QuickSponsors-type--standard">
+            <ul class="QuickSponsors-list">
+                {% for sponsor in media_sponsors %}
+                <li class="QuickSponsors-item">
                     <a class="QuickSponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="QuickSponsors-logo" /></a>
                 </li>
                 {% endfor %}

@@ -44,12 +44,52 @@
                     </ul>
                 </div>
                 {% endif %}
+                {% if foodanddrinks_sponsors %}
+                <div class="Sponsors-type Sponsors-type--track">
+                    <ul class="Sponsors-list">
+                        {% for sponsor in foodanddrinks_sponsors %}
+                        <li class="Sponsors-item Sponsors-block Block Block--alpha">
+                            <span class="Sponsors-flag Flag Flag--alpha">Food and Drinks sponsors</span>
+                            <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
                 {% if standard_sponsors %}
                 <div class="Sponsors-type Sponsors-type--standard">
                     <div class="Sponsors-block Block Block--alpha">
                         <span class="Sponsors-flag Flag Flag--alpha">Standard sponsors</span>
                         <ul class="Sponsors-list">
                             {% for sponsor in standard_sponsors %}
+                            <li class="Sponsors-item">
+                                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+                {% if mainmedia_sponsors %}
+                <div class="Sponsors-type Sponsors-type--standard">
+                    <div class="Sponsors-block Block Block--alpha">
+                        <span class="Sponsors-flag Flag Flag--alpha">Main media sponsor</span>
+                        <ul class="Sponsors-list">
+                            {% for sponsor in mainmedia_sponsors %}
+                            <li class="Sponsors-item">
+                                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+                {% if media_sponsors %}
+                <div class="Sponsors-type Sponsors-type--standard">
+                    <div class="Sponsors-block Block Block--alpha">
+                        <span class="Sponsors-flag Flag Flag--alpha">Media sponsors</span>
+                        <ul class="Sponsors-list">
+                            {% for sponsor in media_sponsors %}
                             <li class="Sponsors-item">
                                 <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
                             </li>
