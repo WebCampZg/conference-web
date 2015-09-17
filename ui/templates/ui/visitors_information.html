@@ -1,0 +1,60 @@
+{% extends 'ui/base.html' %}
+
+{% block title %}Visitors information - WebCamp Zagreb Conference 2015{% endblock %}
+
+{% block og %}
+    <meta property="og:title" content="Visitors information - WebCamp Zagreb Conference 2015" />
+    <meta property="og:image" content="https://2015.webcampzg.org/static/images/webcamp-zagreb-conference.jpg"/>
+    <meta property="og:image:width" content="600" />
+    <meta property="og:image:height" content="315" />
+{% endblock %}
+
+{% block content %}
+
+    {% include "partials/header.html" with hero_type="cfp" title="Visitors information" %}
+
+    <section class="Visitors Spotlight">
+        <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
+            <div class="Passage">
+                <div class="Spotlight-body">
+                    <p>Welcome to Zagreb, host city of the WebCamp Zagreb conference for the fourth year in a row. WebCamp Zagreb conference is a technology oriented conference for developers & designers, which attracted over 800 professionals and entrepreneurs in 2014. and promises to reach similar numbers this year.</p>
+
+                    <div class="Visitors-cta">
+                        <a href="{% url 'tickets' %}" class="Button Button--beta Button--rounded">Get your ticket</a>
+                        <a href="/media/webcampzg_2015_sponsors.pdf" class="Button Button--beta Button--rounded">Become a sponsor</a>
+                    </div>
+
+                    <p>Zagreb is the cultural, scientific, economic, political and administrative center of the Republic of Croatia. It is a safe city whose doors are always open and where everything is accessible on foot – from your hotel to the main square or WebCamp Zagreb conference 2015.</p>
+                    <p>Get to know the city of Zagreb and it's beautiful scenery through <a href="http://www.zagreb-movies.com/?lang=en">movies</a> and <a href="http://www.lovezagreb.hr/">images</a>.</p>
+                    <p>If you're travelling to Zagreb from abroad to enter Croatia you will need a valid passport or, for some countries (EU), a personal identity card will be enough.</p>
+                    <p>These links will help you find your way around the capital, especially if you're visiting for the first time:</p>
+                    <ul>
+                        <li><a href="http://www.zagreb-touristinfo.hr/contact/tourist-information-center">Tourist information center</a></li>
+                        <li><a href="http://www.zagreb-touristinfo.hr/&lang=en">Zagreb Tourist Board</a></li>
+                        <li><a href="http://www.zagreb-touristinfo.hr/travel-plan/accomodation/hotels">Accomodation in Zagreb</a></li>
+                    </ul>
+                    <p>If you find yourself in an emergency situation here is a list of the most important telephone numbers:</p>
+                    <ul>
+                        <li><a href="tel:+385112">(+385) 112 – emergency number</a></li>
+                        <li><a href="tel:+385192">(+385) 192 – police</a></li>
+                        <li><a href="tel:+385193">(+385) 193 – fire brigade</a></li>
+                        <li><a href="tel:+385194">(+385) 194 – ambulance</a></li>
+                        <li><a href="tel:+385195">(+385) 195 – search and rescue at the sea</a></li>
+                        <li><a href="tel:+3851987">(+385) 1987 – road assistance</a></li>
+                        <li><a href="tel:+38511888">(+385) 11888 – telephone directory</a></li>
+                        <li><a href="tel:+38518166">(+385) 18166 – weather forecast</a></li>
+                    </ul>
+                    <p>While attending the conference please abide by our <a href="https://2015.webcampzg.org/code/">Code of Conduct</a>. Have fun and see you in Zagreb!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include "partials/tickets.html" %}
+
+    {% include "partials/sponsors.html" %}
+
+    {% include "partials/user-groups.html" %}
+
+{% endblock %}
+
