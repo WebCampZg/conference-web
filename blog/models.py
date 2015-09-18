@@ -15,6 +15,7 @@ class Post(Timestampable, Permalinkable):
 
     title = models.CharField(max_length=255)
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
+    is_sponsored = models.BooleanField(default=False)
     body = HTMLField()
     lead = HTMLField()
 
