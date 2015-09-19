@@ -46,6 +46,10 @@
         width:100%;
         transition:opacity 0.07s ease-in-out;
         vertical-align:middle;
+
+        &[src$=".png"] {
+            width:auto;
+        }
     }
 }
 
@@ -59,12 +63,40 @@
     &-type {
 
         &--diamond,
-        &--track {
+        &--track,
+        &--media {
 
             @media screen and (min-width:$bp-alpha) and (max-width:$bp-beta - 1) {
 
                 .Sponsors-item {
                     display:block;
+                }
+            }
+        }
+
+        &--media,
+        &--track {
+
+            @media screen and (min-width:$bp-beta) {
+
+                .Sponsors-list {
+                    display:flex;
+                    justify-content:center;
+                    align-items:center;
+                    flex-wrap:wrap;
+                }
+
+                .Sponsors-item {
+                    display:flex;
+                    align-self:stretch;
+                    width:percentage(1/2);
+                }
+
+                .Sponsors-link {
+                    display:flex;
+                    justify-content:center;
+                    align-items:center;
+                    width:percentage(1);
                 }
             }
         }
@@ -119,33 +151,14 @@
             }
         }
 
-        &--track {
-
-            @media screen and (min-width:$bp-beta) {
-
-                .Sponsors-list {
-                    display:flex;
-                }
-
-                .Sponsors-item {
-                    display:flex;
-                    align-self:stretch;
-                    width:percentage(1/2);
-                }
-
-                .Sponsors-link {
-                    display:flex;
-                    justify-content:center;
-                    align-items:center;
-                    width:percentage(1);
-                }
-            }
-        }
-
         &--standard {
 
             .Sponsors-logo {
-                max-height:6em;
+                max-height:4rem;
+
+                &[src*="aduro"] {
+                    max-height:1.3rem;
+                }
             }
 
             @media screen and (min-width:700px) {
@@ -156,10 +169,24 @@
             }
         }
 
-        &--mainMedia {
+        &--media {
 
-            .Sponsors-link {
-                flex-wrap:wrap;
+            .Sponsors-item {
+                justify-content:center;
+            }
+
+            .Sponsors-item--mainMedia {
+
+                .Sponsors-link {
+                    width:70%;
+                }
+            }
+
+            .Sponsors-item--media {
+
+                .Sponsors-link {
+                    width:40%;
+                }
             }
 
             .Sponsors-desc {
@@ -172,7 +199,12 @@
         &--supporter {
 
             .Sponsors-logo {
-                max-height:1.9em;
+                max-height:2rem;
+
+                &[src*="locastic"] {
+                    max-width:4rem;
+                    max-height:1.8rem;
+                }
             }
 
             @media screen and (min-width:700px) {

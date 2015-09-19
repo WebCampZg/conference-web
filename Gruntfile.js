@@ -42,6 +42,7 @@ module.exports = function ( grunt ) {
                 options: {
                     map: false,
                     processors: [
+                        require('postcss-flexbugs-fixes'),
                         require('autoprefixer-core')({ browsers: ['last 2 version'] }),
                         require('pixrem')(),
                         require('postcss-assets')({
