@@ -1,141 +1,108 @@
 /**
  * =============================================================================
- * Quick sponsors
+ * Quick sponsors list
  * =============================================================================
  */
 
-.QuickSponsors {
+.Sponsors--quickList {
 
-    &-list {
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        flex-wrap:wrap;
+    .Sponsors {
 
-        @media screen and (min-width:$bp-alpha) {
+        &-list {
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            flex-wrap:wrap;
             padding:0 5%;
-        }
 
-        @media screen and (min-width:$bp-gamma) {
-            padding:0 15%;
-        }
-
-        @media screen and (min-width:$bp-delta) {
-            padding:0 20%;
-        }
-    }
-
-    &-item {
-        display:flex;
-        align-self:stretch;
-        padding:1rem 0;
-
-        @media screen and (min-width:$bp-beta) {
-            padding:2.2rem 0;
-        }
-    }
-
-    &-link {
-        display:flex;
-        justify-content:center;
-        align-items:center;
-        width:percentage(1);
-        padding:0 1em;
-    }
-}
-
-/**
- * Sponsor types
- * -----------------------------------------------------------------------------
- */
-
-.QuickSponsors {
-
-    &-type {
-        position:relative;
-
-        &:after {
-            content:'';
-            position:absolute; bottom:100%; left:10px; right:10px; z-index:10;
-            height:1px;
-            background:rgba($color-gray-alpha, 0.5);
-
-            @media screen and (min-width:$bp-alpha) {
-                left:5%; right:5%;
-            }
-
-            @media screen and (min-width:$bp-beta) {
-                left:15%; right:15%;
+            @media screen and (min-width:$bp-gamma) {
+                padding:0 15%;
             }
 
             @media screen and (min-width:$bp-delta) {
-                left:20%; right:20%;
+                padding:0 20%;
             }
         }
 
-        &--diamond {
+        &-item {
+            display:flex;
+            align-self:stretch;
+            width:percentage(1/2);
+            padding:0;
+
+            @media screen and (min-width:$bp-beta) {
+                padding:2.2rem 0;
+            }
+        }
+
+        &-link {
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            width:percentage(1);
+            padding-top:1rem; padding-bottom:1rem;
+        }
+
+        &-type {
+            position:relative;
 
             &:after {
-                display:none;
-            }
+                content:'';
+                position:absolute; bottom:100%; left:10px; right:10px; z-index:10;
+                height:1px;
+                background:rgba($color-gray-alpha, 0.5);
 
-            .QuickSponsors-item {
-                width:percentage(1);
+                @media screen and (min-width:$bp-alpha) {
+                    left:5%; right:5%;
+                }
 
                 @media screen and (min-width:$bp-beta) {
-                    padding-left:20%; padding-right:20%;
+                    left:15%; right:15%;
                 }
-            }
-        }
 
-        &--track {
-
-            .QuickSponsors-item {
-                width:percentage(1/2);
-            }
-        }
-
-        &--standard {
-
-            .QuickSponsors-item {
-                width:percentage(1/2);
-
-                @media screen and (min-width:$bp-beta) {
-                    width:percentage(1/4);
+                @media screen and (min-width:$bp-delta) {
+                    left:20%; right:20%;
                 }
             }
 
-            .QuickSponsors-item--aduro-ideja {
+            &--diamond {
 
-                .QuickSponsors-logo {
-                    max-height:1.6em;
+                &:after {
+                    display:none;
+                }
+
+                .Sponsors-item {
+                    width:percentage(1);
                 }
             }
 
-            .QuickSponsors-item--hr-cloud {
+            &--track {
 
-                @media screen and (min-width:$bp-beta) {
-                    margin-left:-8%;
+                .Sponsors-item {
+                    width:percentage(1/2);
                 }
             }
 
-            .QuickSponsors-logo {
-                max-height:6em;
-            }
-        }
+            &--standard {
 
-        &--supporter {
+                .Sponsors-item {
+                    width:percentage(1/2);
 
-            .QuickSponsors-item {
-                width:percentage(1/2);
-
-                @media screen and (min-width:$bp-beta) {
-                    width:percentage(1/5);
+                    @media screen and (min-width:$bp-beta) {
+                        width:percentage(1/4);
+                    }
                 }
             }
 
-            .QuickSponsors-logo {
-                max-height:1.9em;
+            &--supporter {
+
+                .Sponsors-item {
+                    width:percentage(1/2);
+
+                    @media screen and (min-width:$bp-beta) {
+                        width:percentage(1/5);
+                    }
+                }
             }
         }
     }

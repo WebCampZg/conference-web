@@ -1,0 +1,153 @@
+<div class="Sponsors Sponsors--{% if listing_type == 'quick' %}quickList{% else %}detailedList{% endif %}">
+    {% if diamond_sponsors %}
+    <div class="Sponsors-type Sponsors-type--diamond">
+        <ul class="Sponsors-list">
+            {% for sponsor in diamond_sponsors %}
+            {% if listing_type == 'quick' %}
+            <li class="Sponsors-item">
+                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+            </li>
+            {% else %}
+            <li class="Sponsors-item">
+                <div class="Sponsors-block Block Block--alpha">
+                    <span class="Sponsors-flag Flag Flag--alpha">Diamond sponsor</span>
+                    <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
+                </div>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% if track_sponsors %}
+    <div class="Sponsors-type Sponsors-type--track">
+        <ul class="Sponsors-list">
+            {% for sponsor in track_sponsors %}
+            {% if listing_type == 'quick' %}
+            <li class="Sponsors-item">
+                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+            </li>
+            {% else %}
+            <li class="Sponsors-item Sponsors-block Block Block--alpha">
+                <span class="Sponsors-flag Flag Flag--alpha">Track sponsor</span>
+                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% if foodanddrinks_sponsors %}
+    <div class="Sponsors-type Sponsors-type--foodAndDrinks">
+        <ul class="Sponsors-list">
+            {% for sponsor in foodanddrinks_sponsors %}
+            {% if listing_type == 'quick' %}
+            <li class="Sponsors-item">
+                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+            </li>
+            {% else %}
+            <li class="Sponsors-item Sponsors-block Block Block--alpha">
+                <span class="Sponsors-flag Flag Flag--alpha">Food and Drinks sponsors</span>
+                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% if standard_sponsors %}
+    <div class="Sponsors-type Sponsors-type--standard">
+        {% if listing_type == 'quick' %}
+        <ul class="Sponsors-list">
+            {% for sponsor in standard_sponsors %}
+            <li class="Sponsors-item">
+                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <div class="Sponsors-block Block Block--alpha">
+            <span class="Sponsors-flag Flag Flag--alpha">Standard sponsors</span>
+            <ul class="Sponsors-list">
+                {% for sponsor in standard_sponsors %}
+                <li class="Sponsors-item">
+                    <a class="Sponsors-link Block Block--alpha" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+    {% if mainmedia_sponsors %}
+    <div class="Sponsors-type Sponsors-type--mainMedia">
+        <ul class="Sponsors-list">
+            {% for sponsor in mainmedia_sponsors %}
+            {% if listing_type == 'quick' %}
+            <li class="Sponsors-item">
+                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
+                    <img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" />
+                    <p class="Sponsors-desc">Main media sponsor</p>
+                </a>
+            </li>
+            {% else %}
+            <li class="Sponsors-item">
+                <div class="Sponsors-block Block Block--alpha">
+                    <span class="Sponsors-flag Flag Flag--alpha">Main media sponsor</span>
+                    <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
+                </div>
+            </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% if media_sponsors %}
+    <div class="Sponsors-type Sponsors-type--media">
+        {% if listing_type == 'quick' %}
+        <ul class="Sponsors-list">
+            {% for sponsor in media_sponsors %}
+            <li class="Sponsors-item {% if sponsor.name == 'HR Cloud' %}Sponsors-item--hr-cloud{% endif %} {% if sponsor.name == 'Aduro Ideja' %}Sponsors-item--aduro-ideja{% endif %}">
+                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <div class="Sponsors-block Block Block--alpha">
+            <span class="Sponsors-flag Flag Flag--alpha">Media sponsors</span>
+            <ul class="Sponsors-list">
+                {% for sponsor in media_sponsors %}
+                <li class="Sponsors-item">
+                    <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+    {% if supporter_sponsors %}
+    <div class="Sponsors-type Sponsors-type--supporter">
+        {% if listing_type == 'quick' %}
+        <ul class="Sponsors-list">
+            {% for sponsor in supporter_sponsors %}
+            <li class="Sponsors-item">
+                <a class="Sponsors-link" href="{{ sponsor.url }}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <div class="Sponsors-block Block Block--alpha">
+            <span class="Sponsors-flag Flag Flag--alpha">Support sponsors</span>
+            <ul class="Sponsors-list">
+                {% for sponsor in supporter_sponsors %}
+                <li class="Sponsors-item">
+                    <a class="Sponsors-link Block Block--alpha" href="{{ sponsor.url }}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
