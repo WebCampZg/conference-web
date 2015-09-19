@@ -14,7 +14,7 @@
             <p class="QuickTalk-speaker"><span>Speaker:</span> <a href="{% url 'talks_view_talk' slug=talk.slug %}#speaker">{{ talk.application.applicant.user.get_full_name }}</a></p>
             <h3 class="QuickTalk-title"><a href="{% url 'talks_view_talk' slug=talk.slug %}">{% if talk.keynote %}Keynote: {% endif %}{{ talk.title }}
             {% if talk.is_sponsored or talk.is_community_chosen %}
-            <span class="QuickTalk-type Flag Flag--alpha">
+            <span class="ArticleFlag Flag Flag--alpha">
                 {% if talk.is_sponsored %}
                 Sponsored
                 {% else %}
