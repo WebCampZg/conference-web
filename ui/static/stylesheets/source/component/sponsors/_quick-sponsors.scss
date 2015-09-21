@@ -97,6 +97,10 @@
 
             &--media {
 
+                .Sponsors-item {
+                    width:percentage(1/3);
+                }
+
                 @media screen and (max-width:$bp-beta - 1) {
 
                     .Sponsors-item {
