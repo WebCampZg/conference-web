@@ -20,9 +20,13 @@ class ApplicantAdmin(admin.ModelAdmin):
 
 class PaperApplicationAdmin(admin.ModelAdmin):
     list_display = ('title', 'link_to_applicant', 'about', 'abstract', 'skill_level', 'duration', 'exclude', 'votes_count')
-    readonly_fields = ('cfp', 'applicant')
     fields = ('cfp', 'applicant', 'title', 'about', 'abstract', 'skill_level', 'duration')
     actions = [mark_as_excluded]
+
+    def get_readonly_fields(self, request, obj=None):
+        if obj:
+            return self.readonly_fields + ('cfp', 'applicant')
+        return self.readonly_fields
 
     def link_to_applicant(self, obj):
         link = urlresolvers.reverse("admin:cfp_applicant_change", args=[obj.applicant.id])
