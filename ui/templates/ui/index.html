@@ -25,7 +25,7 @@
                     <div class="Listing">
                         <ul class="Listing-list">
                             {% for post in posts %}
-                            <li>
+                            <li class="Listing-item">
                                 <article class="Article">
                                     <time class="Article-pubDate" pubdate="pubdate" datetime="{{ post.created_at }}">{{ post.created_at|date:"d.m.Y." }}</time>
                                     <h3 class="Article-title">

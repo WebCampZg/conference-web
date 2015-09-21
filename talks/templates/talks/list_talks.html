@@ -24,7 +24,7 @@
         <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
             <ul class="Listing-list">
                 {% for talk in talks %}
-                <li>
+                <li class="Listing-item">
                     {% include "talks/partials/talk.html" with talk=talk %}
                 </li>
                 {% endfor %}
