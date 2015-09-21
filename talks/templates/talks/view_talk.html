@@ -66,6 +66,33 @@
                         </div>
                     </div>
                 </div>
+                <div class="Speaker" id="speaker2">
+                    <div class="Grid">
+                        <div class="Grid-cell Grid-cell--1of3">
+                            <figure class="Speaker-figure">
+                                <div class="FlairFigure">
+                                    <img src="{% version talk.co_presenter.image 'big' %}" alt="Photo of {{ talk.co_presenter.user.get_full_name }}">
+                                </div>
+                            </figure>
+                        </div>
+                        <div class="Grid-cell Grid-cell--2of3">
+                            <strong class="Speaker-name">{{ talk.co_presenter.user.get_full_name }}</strong>
+                            <div class="Speaker-bio">
+                                {{ talk.co_presenter.biography|markdown }}
+                            </div>
+                            <aside class="Speaker-social">
+                                <ul>
+                                    {% if talk.co_presenter.user.twitter %}
+                                    <li><a href="https://twitter.com/{{ talk.co_presenter.user.twitter }}"><svg class="Icon Icon--social"><title>Twitter profile</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-twitter"></use></svg></a></a></li>
+                                    {% endif %}
+                                    {% if talk.co_presenter.user.github %}
+                                    <li><a href="https://github.com/{{ talk.co_presenter.user.github }}"><svg class="Icon Icon--social"><title>GitHub profile</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-github"></use></svg></a></a></li>
+                                    {% endif %}
+                                </ul>
+                            </aside>
+                        </div>
+                    </div>
+                </div>
                 {% include "partials/share.html" with title="Share this talk" %}
             </article>
         </div>

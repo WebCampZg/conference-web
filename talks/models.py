@@ -3,13 +3,16 @@ from django.template.defaultfilters import slugify
 
 from filebrowser.fields import FileBrowseField
 
-from cfp.models import PaperApplication, AudienceSkillLevel
+from cfp.models import PaperApplication, AudienceSkillLevel, Applicant
 from utils.behaviors import Timestampable
 from cfp.choices import TALK_DURATIONS
 
 
 class Talk(Timestampable):
     application = models.OneToOneField(PaperApplication, related_name='talk')
+
+    co_presenter = models.ForeignKey(Applicant, related_name='co_talks',
+            blank=True, null=True)
 
     title = models.CharField(max_length=255, blank=True)
     about = models.TextField(blank=True)
