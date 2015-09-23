@@ -92,6 +92,11 @@ class PaperApplication(Timestampable):
             verbose_name=_('Talk Duration Slot'),
             help_text=_('What talk duration slot would you like?'))
 
+    accomodation_required = models.BooleanField(
+            'I require accomodation',
+            help_text='For people outside of the Zagreb area, we provide 2 nights in a hotel.',
+            default=False)
+
     exclude = models.BooleanField(default=False)
 
     def __unicode__(self):
