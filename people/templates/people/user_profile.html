@@ -23,8 +23,15 @@
                                 <li><a href="{% url 'application_update' 1 application.pk %}">{{ application }}</a></li>
                                 {% endfor %}
                             </ul>
+                            {% if cfp_enabled %}
+                            <div class="Form-constrain">
+                                <div class="Form-actions">
+                                    <a class="Button Button--beta Form-action Form-action--submit" href="{% url "application_create" %}">Submit another talk</a>
+                                </div>
+                            </div>
+                            {% endif %}
                         </div>
-                    </div>
+                     </div>
                 </div>
                 {% endif %}
 
@@ -60,7 +67,7 @@
 
                         <div class="Form-constrain">
                             <div class="Form-actions">
-                                <button type="submit" class="Button Button--beta Form-action Form-action--submit">Submit</button>
+                                <button type="submit" class="Button Button--beta Form-action Form-action--submit">Update profile</button>
                             </div>
                         </div>
 
