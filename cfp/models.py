@@ -97,6 +97,12 @@ class PaperApplication(Timestampable):
             help_text='For people outside of the Zagreb area, we provide 2 nights in a hotel.',
             default=False)
 
+    extra_info = models.TextField(
+            'Extra info',
+            help_text='Anything else that you would like to let us know?',
+            null=True,
+            blank=True)
+
     exclude = models.BooleanField(default=False)
 
     def __unicode__(self):
