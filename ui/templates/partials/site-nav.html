@@ -4,6 +4,9 @@
     <div class="SiteNav-compact" aria-hidden="true" role="presentation">
         <a href="#SiteNav" class="SiteNav-toggler SiteNav-toggler--open"><i class="Icon Icon--menu">Open navigation</i></a>
         <a href="#" class="SiteNav-toggler SiteNav-toggler--close"><i class="Icon Icon--close">Close navigation</i></a>
+        {% if cfp_enabled %}
+        <a href="{% url 'cfp_announcement' %}" class="SiteNav-link SiteNav-link--cfp"><span class="SiteNav-label">Call for Proposals</span><span class="SiteNav-label SiteNav-label--alt" aria-hidden="true" role="presentation">CFP</span></a>
+        {% endif %}
     </div>
     <ul class="SiteNav-list">
         {% if user.is_authenticated %}
@@ -34,6 +37,12 @@
         <li class="SiteNav-item">
             <a href="{% url 'tickets' %}" class="SiteNav-link">Tickets</a>
         </li>
+        {% if cfp_enabled %}
+        <li class="SiteNav-item SiteNav-item--higlighted SiteNav-item--cfp">
+            <a href="{% url 'cfp_announcement' %}" class="SiteNav-link SiteNav-link--cfp"><span class="SiteNav-label">Call for Proposals</span><span class="SiteNav-label SiteNav-label--alt" aria-hidden="true" role="presentation">CFP</span></a>
+        </li>
+        {% endif %}
+
         <li class="SiteNav-item SiteNav-item--higlighted SiteNav-item--account">
             {% if user.is_authenticated %}
             <a href="{% url 'account_logout' %}" class="SiteNav-link Button Button--gamma Button--rounded"><svg class="Icon" aria-hidden="true" role="presentation"><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-user"></use></svg>Logout</a>

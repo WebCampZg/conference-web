@@ -300,3 +300,8 @@ TINYMCE_DEFAULT_CONFIG = {
 ALLOW_TALK_UPDATES = True
 TICKET_HOLDER_GROUP_NAME = 'TicketHolders'
 VOTING_ENABLED = False
+
+# This is just to remove the entries from cfp/urls.py and
+# and to remove the button to add a new talk from the profile pages.
+# We still use cfp.is_active as a checking mechanism while submitting the form
+CFP_ENABLED = False

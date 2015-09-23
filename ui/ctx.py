@@ -1,3 +1,5 @@
+from django.conf import settings
+
 from sponsors.models import Sponsor
 from sponsors.choices import SPONSOR_TYPES
 from talks.models import Talk
@@ -39,6 +41,7 @@ def sponsors(request):
 
 def talks(request):
     ctx = {}
+    ctx['cfp_enabled'] = settings.CFP_ENABLED
     keynotes = {'keynotes': Talk.objects.filter(keynote=True).select_related('application__applicant')}
     talks = {'talks': Talk.objects.all().order_by('?').select_related('application__applicant')[:3]}
     ctx.update(talks)
