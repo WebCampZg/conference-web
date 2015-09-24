@@ -10,11 +10,6 @@
     </div>
     <ul class="SiteNav-list">
         {% if user.is_authenticated %}
-            {% if user.is_ticket_holder %}
-                <li class="SiteNav-item">
-                    <a href="{% url 'voting_index' %}" class="SiteNav-link">Voting</a>
-                </li>
-            {% endif %}
         <li class="SiteNav-item">
             <a href="{% url 'user_profile' %}" class="SiteNav-link">Profile: {{ user.get_full_name }}</a>
         </li>
