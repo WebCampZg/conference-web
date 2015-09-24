@@ -7,19 +7,19 @@ from talks.models import Talk
 
 def get_sponsors():
     diamond_sponsors = Sponsor.objects.filter(
-        is_active=True).filter(type=SPONSOR_TYPES.DIAMOND)
+        is_active=True).filter(type=SPONSOR_TYPES.DIAMOND).order_by('id')
     track_sposors = Sponsor.objects.filter(
-        is_active=True).filter(type=SPONSOR_TYPES.TRACK)
+        is_active=True).filter(type=SPONSOR_TYPES.TRACK).order_by('id')
     foodanddrinks_sposors = Sponsor.objects.filter(
-        is_active=True).filter(type=SPONSOR_TYPES.FOOD_AND_DRINKS)
+        is_active=True).filter(type=SPONSOR_TYPES.FOOD_AND_DRINKS).order_by('id')
     standard_sponsors = Sponsor.objects.filter(
-        is_active=True).filter(type=SPONSOR_TYPES.STANDARD)
+        is_active=True).filter(type=SPONSOR_TYPES.STANDARD).order_by('id')
     supporter_sponsors = Sponsor.objects.filter(
-        is_active=True).filter(type=SPONSOR_TYPES.SUPPORTER)
+        is_active=True).filter(type=SPONSOR_TYPES.SUPPORTER).order_by('id')
     mainmedia_sponsors = Sponsor.objects.filter(
-        is_active=True).filter(type=SPONSOR_TYPES.MAIN_MEDIA)
+        is_active=True).filter(type=SPONSOR_TYPES.MAIN_MEDIA).order_by('id')
     media_sponsors = Sponsor.objects.filter(
-        is_active=True).filter(type=SPONSOR_TYPES.MEDIA)
+        is_active=True).filter(type=SPONSOR_TYPES.MEDIA).order_by('id')
 
     return {'diamond_sponsors': diamond_sponsors,
             'track_sponsors': track_sposors,

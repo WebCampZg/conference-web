@@ -6,7 +6,7 @@ from .models import Sponsor
 
 
 def list_sponsors(request):
-    sponsors = Sponsor.objects.all()
+    sponsors = Sponsor.objects.all().order_by('id')
     return render(request, 'sponsors/list_sponsors.html', {'sponsors': sponsors})
 
 
