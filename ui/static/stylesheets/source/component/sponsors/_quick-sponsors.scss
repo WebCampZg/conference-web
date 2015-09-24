@@ -93,6 +93,17 @@
                         width:percentage(1/4);
                     }
                 }
+
+                @media screen and (min-width:700px) {
+
+                    .Sponsors-item--aduroIdeja {
+                        position:relative; left:4%;
+
+                        .Sponsors-link {
+                            padding:0;
+                        }
+                    }
+                }
             }
 
             &--media {

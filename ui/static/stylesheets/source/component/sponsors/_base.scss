@@ -157,7 +157,11 @@
                 max-height:4rem;
 
                 &[src*="aduro"] {
-                    max-height:1.3rem;
+                    max-height:1.9rem;
+                }
+
+                &[src*="HRC"] {
+                    max-height:5.3rem;
                 }
             }
 

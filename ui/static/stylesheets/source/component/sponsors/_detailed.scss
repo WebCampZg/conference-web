@@ -120,6 +120,20 @@
                         padding-left:2rem; padding-right:2rem;
                     }
                 }
+
+                @media screen and (min-width:700px) {
+
+                    .Sponsors-item--aduroIdeja {
+
+                        .Sponsors-link {
+                            padding:0;
+                        }
+
+                        .Sponsors-logo {
+                            position:relative; left:4%;
+                        }
+                    }
+                }
             }
 
             &--media {
