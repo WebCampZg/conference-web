@@ -11,6 +11,7 @@ handler404 = 'ui.views.custom_404'
 urlpatterns = patterns('',
 
     url(r'^$', 'ui.views.index', name="ui_index"),
+    url(r'^schedule/', include('schedule.urls')),
     url(r'^blog/', include('blog.urls')),
     url(r'^talks/', include('talks.urls')),
     url(r'^tickets/', include('tickets.urls')),
