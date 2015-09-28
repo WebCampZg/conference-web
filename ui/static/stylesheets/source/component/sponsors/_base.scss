@@ -182,14 +182,14 @@
             .Sponsors-item--mainMedia {
 
                 .Sponsors-link {
-                    width:85%;
+                    width:75%;
                 }
             }
 
             .Sponsors-item--media {
 
                 .Sponsors-link {
-                    width:55%;
+                    width:65%;
                 }
             }
 
@@ -208,6 +208,13 @@
                 &[src*="locastic"] {
                     max-width:4rem;
                     max-height:1.8rem;
+                }
+            }
+
+            .Sponsors-item--masinerija {
+
+                .Sponsors-logo {
+                    max-height:3.1rem;
                 }
             }
 

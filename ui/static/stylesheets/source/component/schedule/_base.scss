@@ -24,6 +24,7 @@
         color:$color-gray-alpha;
 
         &.Schedule-talkWrap {
+            transition:background 0.07s ease-in-out;
 
             &:hover,
             &:focus {
