@@ -68,11 +68,17 @@ docker-check:
 		{ echo >&2 "Docker needs to be installed and on your PATH.  Aborting."; exit 1; }
 
 migrate:
-	docker-compose run web /bin/bash -c "python manage.py migrate"
+	@docker exec -it `docker-compose ps -q web` python manage.py migrate
+
+shell:
+	@docker exec -it `docker-compose ps -q web` /bin/bash
+
+run:
+	@docker-compose up
 
 db-prompt:
 	@echo "Starting interactive database prompt (current dir mounted to /tmp/codebase)...";
-	@docker-compose run db /bin/bash -c "psql -Upostgres"
+	@docker exec -it `docker-compose ps -q db` psql -Upostgres
 
 db-restore:
 	@if [ ! -f webcampdb.sql ]; then \
@@ -80,8 +86,8 @@ db-restore:
 		exit 1; \
 	fi
 	@echo "Restoring database from backup file: webcampdb.sql"
-	@cat webcampdb.sql | docker exec -i conferenceweb_db_1 psql -Upostgres
+	@cat webcampdb.sql | docker exec -i `docker-compose ps -q db` psql -Upostgres
 
 superuser:
-	@docker-compose run web /bin/bash -c "./manage.py createsuperuser"
+	@docker exec -it `docker-compose ps -q web` python manage.py createsuperuser
 
