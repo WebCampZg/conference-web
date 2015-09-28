@@ -31,6 +31,10 @@
     &:hover,
     &:focus {
         color:#fff;
+    }
+
+    &:hover,
+    &:not(.is-sansFocus):focus {
         background:$color-brand-beta;
     }
 }
@@ -43,6 +47,10 @@
     &:hover,
     &:focus {
         color:$color-brand-alpha;
+    }
+
+    &:hover,
+    &:not(.is-sansFocus):focus {
         background:#fff;
     }
 }
@@ -54,8 +62,12 @@
 
     &:hover,
     &:focus {
-        border-color:$color-brand-beta;
         color:#fff;
+    }
+
+    &:hover,
+    &:not(.is-sansFocus):focus {
+        border-color:$color-brand-beta;
         background:$color-brand-beta;
     }
 }
@@ -68,6 +80,10 @@
     &:hover,
     &:focus {
         color:#fff;
+    }
+
+    &:hover,
+    &:not(.is-sansFocus):focus {
         background:darken($color-brand-beta, 5%);
     }
 }
