@@ -17,9 +17,9 @@ def get_sponsors():
     supporter_sponsors = Sponsor.objects.filter(
         is_active=True).filter(type=SPONSOR_TYPES.SUPPORTER).order_by('id')
     mainmedia_sponsors = Sponsor.objects.filter(
-        is_active=True).filter(type=SPONSOR_TYPES.MAIN_MEDIA).order_by('id')
+        is_active=True).filter(type=SPONSOR_TYPES.MAIN_MEDIA).order_by('order')
     media_sponsors = Sponsor.objects.filter(
-        is_active=True).filter(type=SPONSOR_TYPES.MEDIA).order_by('id')
+        is_active=True).filter(type=SPONSOR_TYPES.MEDIA).order_by('order')
 
     return {'diamond_sponsors': diamond_sponsors,
             'track_sponsors': track_sposors,
