@@ -8,9 +8,6 @@
         <div class="Punchline {% if keynote and keynotes %}Punchline--keynotes{% endif %}">
             <div class="Wrapper Wrapper--narrow">
                 {% if sponsors_cta %}
-                <div class="HeaderCTA HeaderCTA--sponsors">
-                    <a href="/media/webcampzg_2015_sponsors.pdf" class="HeaderCTA-action Button Button--beta Button--rounded">Become a sponsor</a>
-                </div>
                 {% else %}
                 {% if title %}
                 <h2 class="Punchline-info">{{ title }}</h2>
@@ -26,10 +23,6 @@
         </div>
         {% if keynote and keynotes %}
         <div class="Wrapper Wrapper--wide">
-            <div class="HeaderCTA">
-                <a href="{% url 'tickets' %}" class="HeaderCTA-action Button Button--beta Button--rounded">Buy tickets!</a>
-                <a href="/media/webcampzg_2015_sponsors.pdf" class="HeaderCTA-action Button Button--beta Button--rounded">Become a sponsor</a>
-            </div>
             <ul class="Keynotes">
                 {% for talk in keynotes %}
                 <li class="Keynote">
