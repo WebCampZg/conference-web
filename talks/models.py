@@ -28,6 +28,8 @@ class Talk(Timestampable):
     video = FileBrowseField("Video", max_length=255,
             directory="videos/", blank=True, null=True)
 
+    slides_url = models.URLField(blank=True)
+
     keynote = models.BooleanField(default=False)
 
     is_sponsored = models.BooleanField(default=False)
