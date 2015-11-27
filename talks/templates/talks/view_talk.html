@@ -40,6 +40,9 @@
                         {% if talk.slides_url %}
                         <a class="Button Button--gamma Button--rounded Talk-slides" href="{{ talk.slides_url }}">Slides</a>
                         {% endif %}
+                        {% if talk.rate_url %}
+                        <a class="Button Button--gamma Button--rounded Talk-slides" href="{{ talk.rate_url }}">Rate the talk</a>
+                        {% endif %}
                     </div>
                 </div>
                 {% if talk.youtube_id %}
