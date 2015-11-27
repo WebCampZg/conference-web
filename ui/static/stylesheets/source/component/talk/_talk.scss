@@ -40,6 +40,10 @@
     }
 
     &-video {
-        margin-top:2em;
+        margin-top:1rem;
+
+        @media screen and (min-width:$bp-beta) {
+            margin-top:2rem;
+        }
     }
 }
