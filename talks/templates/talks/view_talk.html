@@ -37,8 +37,24 @@
                 <div class="Talk-body">
                     <div class="Passage">
                         {{ talk.abstract|markdown }}
+                        {% if talk.slides_url %}
+                        <a class="Button Button--gamma Button--rounded Talk-slides" href="{{ talk.slides_url }}">Slides</a>
+                        {% endif %}
+                        {% if talk.rate_url %}
+                        <a class="Button Button--gamma Button--rounded Talk-slides" href="{{ talk.rate_url }}">Rate the talk</a>
+                        {% endif %}
                     </div>
                 </div>
+                {% if talk.youtube_id %}
+                <div class="Talk-video">
+                    <div class="FlexEmbed">
+                        <div class="FlexEmbed-ratio FlexEmbed-ratio--16by9"></div>
+                        <div class="FlexEmbed-content">
+                            <iframe width="100%" height="400" src="https://www.youtube.com/embed/{{ talk.youtube_id }}" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
                 <div class="Speaker" id="speaker">
                     <div class="Grid">
                         <div class="Grid-cell Grid-cell--1of3">

@@ -46,4 +46,24 @@
     li {
         list-style-type:inherit;
     }
+
+    table {
+        width:100%;
+    }
+
+    td, th {
+        padding:0.5em;
+        border:1px solid $color-gray-alpha;
+        border-collapse:collapse;
+        background:#fff;
+    }
+
+    dt {
+        font-weight:bold;
+    }
+
+    dd {
+        padding-left:1em;
+        margin-bottom:0.5em;
+    }
 }

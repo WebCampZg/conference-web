@@ -1,8 +1,6 @@
 from django.db import models
 from django.template.defaultfilters import slugify
 
-from filebrowser.fields import FileBrowseField
-
 from cfp.models import PaperApplication, AudienceSkillLevel, Applicant
 from utils.behaviors import Timestampable
 from cfp.choices import TALK_DURATIONS
@@ -24,12 +22,11 @@ class Talk(Timestampable):
             blank=True,
             null=True)
     slug = models.SlugField(blank=True, max_length=255, null=True)
-
-    video = FileBrowseField("Video", max_length=255,
-            directory="videos/", blank=True, null=True)
+    slides_url = models.URLField(blank=True)
+    rate_url = models.URLField(blank=True)
+    youtube_id = models.CharField(blank=True, max_length=20)
 
     keynote = models.BooleanField(default=False)
-
     is_sponsored = models.BooleanField(default=False)
     is_community_chosen = models.BooleanField(default=False)
 

@@ -34,4 +34,16 @@
             font-size:1.2em;
         }
     }
+
+    &-slides {
+        font-size:1.2em;
+    }
+
+    &-video {
+        margin-top:1rem;
+
+        @media screen and (min-width:$bp-beta) {
+            margin-top:2rem;
+        }
+    }
 }
