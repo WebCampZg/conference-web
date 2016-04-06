@@ -47,22 +47,14 @@ First install Docker and Docker-Compose
 
 https://docs.docker.com/compose/install/
 
-After you have that set up pre-create the "__data" dir that will be used
-to save the database data (because containers are ephemeral) using the following command:
+Start the db and web containers using the following command:
 
-    make db
-
-This will take care of creating the database, the user and granting the user correct
-permissions.
-
-Now all that's left is to run the db and web containers using the following command:
-
-    docker-compose up
+    make run
 
 The django devserver should be running and you should be able to visit the app
-on your host machine on `http://localhost:8000`.
+on your host machine on `http://localhost:8000` (or some IP on a mac).
 
-You might want to run the database migrations, using the following command:
+You might want to run the database migrations, using the following command (after the above command is done):
 
     make migrate
 
