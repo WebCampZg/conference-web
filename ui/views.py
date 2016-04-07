@@ -23,6 +23,8 @@ def venue(request):
 def visitors_info(request):
     return render(request, 'ui/visitors_information.html', {})
 
+def timeline(request):
+    return render(request, 'ui/timeline.html', {})
 
 def voting(request):
     return render(request, 'ui/voting.html', {})
