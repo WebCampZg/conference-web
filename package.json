@@ -2,10 +2,8 @@
   "name": "webcampzg-web",
   "version": "1.0.0",
   "scripts": {
-    "static": "grunt static",
-    "static-watch": "grunt static --watch",
-    "bundle-install": "bundle install",
-    "postinstall": "npm run bundle-install"
+    "build:production": "grunt static",
+    "watch:production": "grunt static --watch"
   },
   "dependencies": {
     "bourbon": "^4.2.1",
@@ -28,10 +26,10 @@
     "grunt-cli": "^0.1.13",
     "grunt-concurrent": "^1.0.0",
     "grunt-contrib-cssmin": "^0.12.2",
-    "grunt-contrib-sass": "^0.9.2",
     "grunt-contrib-uglify": "^0.8.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-postcss": "^0.6.0",
+    "grunt-sass": "^1.1.0",
     "load-grunt-tasks": "^3.1.0",
     "pixrem": "^1.2.0",
     "postcss-assets": "^2.1.0",

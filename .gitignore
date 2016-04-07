@@ -65,6 +65,7 @@ docs/_build
 
 # node
 /node_modules
+npm-debug.log
 
 # sass
 /.sass-cache
