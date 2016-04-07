@@ -18,7 +18,7 @@
                 <nav class="Highlights-nav">
                     <ul>
                         <li><a href="#highlights-posts" class="Highlights-navLink Highlights-navLink--posts is-active" data-block="highlights-posts">Latest news</a></li>
-                        <li><a href="#highlights-talks" class="Highlights-navLink Highlights-navLink--talks" data-block="highlights-talks">Talks</a></li>
+                        <li><span class="Highlights-navLink Highlights-navLink--talks">&nbsp;</span></li>
                     </ul>
                 </nav>
                 <div class="Highlights-block is-active" id="highlights-posts">
@@ -43,16 +43,6 @@
                         </ul>
                         <nav class="Listing-nav">
                             <p><a class="Listing-link Button Button--gamma Button--rounded" href="{% url 'blog_list_posts' %}">View Archive</a></p>
-                        </nav>
-                    </div>
-                </div>
-                <div class="Highlights-block" id="highlights-talks">
-                    <div class="Listing">
-                        <ul class="Listing-list">
-                            {% include "partials/random_talks.html" %}
-                        </ul>
-                        <nav class="Listing-nav">
-                            <p><a class="Listing-link Button Button--gamma Button--rounded" href="{% url 'talks_list_talks' %}">All Talks</a></p>
                         </nav>
                     </div>
                 </div>
