@@ -3,7 +3,7 @@
 {% load markdown_deux_tags %}
 {% load static %}
 
-{% block title %}{{ talk.application.applicant.user.get_full_name }}: {{ talk.title }} - {{ webcamp.extended_title }}{% endblock %}
+{# {% block title %}{{ talk.application.applicant.user.get_full_name }}: {{ talk.title }} - {{ webcamp.extended_title }}{% endblock %} #}
 
 {% block head %}
     <meta name="description" content="{{ talk.about }}">
@@ -12,7 +12,7 @@
 {% block og %}
     <meta property="og:title" content="{{ talk.application.applicant.user.get_full_name }}: {{ talk.title }} - {{ webcamp.extended_title }}" />
     <meta property="og:description" content="{{ talk.about }}" />
-    <meta property="og:image" content="https://2015.webcampzg.org{% version talk.application.applicant.image 'big' %}" />
+    <meta property="og:image" content="{{ base_url }}{% version talk.application.applicant.image 'big' %}" />
 {% endblock %}
 
 {% block content %}

@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib.staticfiles.templatetags.staticfiles import static
-
+from django.contrib.sites.shortcuts import get_current_site
 from sponsors.models import Sponsor
 from sponsors.choices import SPONSOR_TYPES
 from talks.models import Talk
@@ -56,11 +56,16 @@ def webcamp(request):
     image_url = request.build_absolute_uri(static(image_path))
 
     return {
+        "base_url": request.build_absolute_uri('/').rstrip('/'),
         "webcamp": {
             "title": "WebCamp Zagreb 2016",
             "extended_title": "WebCamp Zagreb Conference 2016",
             "tagline": "Technology oriented conference for developers & designers",
-            "date": "October 28th & 29th, 2016",
-            "image": image_url,
+            "dates": "October 28th & 29th, 2016",
+            "og_image": {
+                "url": image_url,
+                "width": 600,
+                "height": 300
+            }
         }
     }

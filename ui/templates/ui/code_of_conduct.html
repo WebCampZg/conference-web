@@ -9,7 +9,7 @@
 {% block og %}
     <meta property="og:title" content="Code of Conduct - {{ webcamp.extended_title }}" />
     <meta property="og:description" content="All participants are required to agree with conference's code of conduct. We do not tolerate harassment of conference participants in any form." />
-    <meta property="og:image" content="https://2015.webcampzg.org/static/images/webcamp-zagreb-conference.jpg"/>
+    <meta property="og:image" content="{{ webcamp.og_image.url }}"/>
     <meta property="og:image:width" content="600" />
     <meta property="og:image:height" content="315" />
 {% endblock %}
@@ -21,7 +21,7 @@
     <section class="Spotlight">
         <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
             <div class="Passage">
-                <h2 class="Spotlight-title">Code of Conduct for WebCamp Zagreb 2015</h2>
+                <h2 class="Spotlight-title">Code of Conduct for WebCamp Zagreb</h2>
                 <div class="Spotlight-body">
                     <p>All attendees, speakers, sponsors and volunteers at our conference are required to agree with the following code of conduct. Organisers will enforce this code throughout the event. We are expecting cooperation from all participants to help ensuring a safe environment for everybody.</p>
 

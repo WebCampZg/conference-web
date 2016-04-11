@@ -4,7 +4,7 @@
 
 {% block og %}
     <meta property="og:title" content="Visitors information - {{ webcamp.extended_title }}" />
-    <meta property="og:image" content="https://2015.webcampzg.org/static/images/webcamp-zagreb-conference.jpg"/>
+    <meta property="og:image" content="{{ webcamp.og_image.url }}"/>
     <meta property="og:image:width" content="600" />
     <meta property="og:image:height" content="315" />
 {% endblock %}
@@ -39,7 +39,7 @@
                         <li><a href="tel:+38511888">(+385) 11888 – telephone directory</a></li>
                         <li><a href="tel:+38518166">(+385) 18166 – weather forecast</a></li>
                     </ul>
-                    <p>While attending the conference please abide by our <a href="https://2015.webcampzg.org/code/">Code of Conduct</a>. Have fun and see you in Zagreb!</p>
+                    <p>While attending the conference please abide by our <a href="{% url 'code_of_conduct' %}">Code of Conduct</a>. Have fun and see you in Zagreb!</p>
                 </div>
             </div>
         </div>
