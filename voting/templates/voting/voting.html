@@ -2,14 +2,14 @@
 {% load fb_versions %}
 {% load static %}
 
-{% block title %}Voting for talks - WebCamp Zagreb Conference 2015{% endblock %}
+{% block title %}Voting for talks - {{ webcamp.extended_title }}{% endblock %}
 
 {% block head %}
     <meta name="description" content="This year we want to give you, the attendee, a chance to influence the content of WebCamp Zagreb. We made a selection of 35 talks which did not get chosen in our initial selection process. These talks can be voted on by ticket holders.">
 {% endblock %}
 
 {% block og %}
-    <meta property="og:title" content="Voting for talks - WebCamp Zagreb Conference 2015" />
+    <meta property="og:title" content="Voting for talks - {{ webcamp.extended_title }}" />
     <meta property="og:description" content="This year we want to give you, the attendee, a chance to influence the content of WebCamp Zagreb. We made a selection of 35 talks which did not get chosen in our initial selection process. These talks can be voted on by ticket holders." />
     <meta property="og:image" content="https://2015.webcampzg.org/static/images/webcamp-zagreb-conference.jpg"/>
     <meta property="og:image:width" content="600" />

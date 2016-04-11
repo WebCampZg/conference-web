@@ -1,9 +1,9 @@
 from django.conf import settings
+from django.contrib.staticfiles.templatetags.staticfiles import static
 
 from sponsors.models import Sponsor
 from sponsors.choices import SPONSOR_TYPES
 from talks.models import Talk
-
 
 def get_sponsors():
     diamond_sponsors = Sponsor.objects.filter(
@@ -31,7 +31,6 @@ def get_sponsors():
 
 
 def sponsors(request):
-
     ctx = {}
     sponsors = get_sponsors()
     ctx.update(sponsors)
@@ -49,3 +48,19 @@ def talks(request):
 
     return ctx
 
+def webcamp(request):
+    """Conference-related strings"""
+    # TODO: move to database?
+
+    image_path = "images/webcamp-zagreb-conference.jpg"
+    image_url = request.build_absolute_uri(static(image_path))
+
+    return {
+        "webcamp": {
+            "title": "WebCamp Zagreb 2016",
+            "extended_title": "WebCamp Zagreb Conference 2016",
+            "tagline": "Technology oriented conference for developers & designers",
+            "date": "October 28th & 29th, 2016",
+            "image": image_url,
+        }
+    }

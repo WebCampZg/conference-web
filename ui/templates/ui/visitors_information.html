@@ -1,9 +1,9 @@
 {% extends 'ui/base.html' %}
 
-{% block title %}Visitors information - WebCamp Zagreb Conference 2015{% endblock %}
+{% block title %}Visitors information - {{ webcamp.extended_title }}{% endblock %}
 
 {% block og %}
-    <meta property="og:title" content="Visitors information - WebCamp Zagreb Conference 2015" />
+    <meta property="og:title" content="Visitors information - {{ webcamp.extended_title }}" />
     <meta property="og:image" content="https://2015.webcampzg.org/static/images/webcamp-zagreb-conference.jpg"/>
     <meta property="og:image:width" content="600" />
     <meta property="og:image:height" content="315" />
@@ -19,7 +19,7 @@
                 <div class="Spotlight-body">
                     <p>Welcome to Zagreb, host city of the WebCamp Zagreb conference for the fourth year in a row. WebCamp Zagreb is a technology oriented conference for developers & designers, which attracted over 800 professionals and entrepreneurs in 2014. and promises to reach similar numbers this year.</p>
 
-                    <p>Zagreb is the cultural, scientific, economic, political and administrative center of the Republic of Croatia. It is a safe city whose doors are always open and where everything is accessible on foot – from your hotel to the main square or WebCamp Zagreb conference 2015.</p>
+                    <p>Zagreb is the cultural, scientific, economic, political and administrative center of the Republic of Croatia. It is a safe city whose doors are always open and where everything is accessible on foot – from your hotel to the main square or {{ webcamp.extended_title }}.</p>
                     <p>Get to know the city of Zagreb and it's beautiful scenery through <a href="http://www.zagreb-movies.com/?lang=en">movies</a> and <a href="http://www.lovezagreb.hr/">images</a>.</p>
                     <p>If you're travelling to Zagreb from abroad to enter Croatia you will need a valid passport or, for some countries (EU), a personal identity card will be enough.</p>
                     <p>These links will help you find your way around the capital, especially if you're visiting for the first time:</p>

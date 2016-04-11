@@ -3,14 +3,14 @@
 {% load markdown_deux_tags %}
 {% load static %}
 
-{% block title %}{{ talk.application.applicant.user.get_full_name }}: {{ talk.title }} - WebCamp Zagreb Conference 2015{% endblock %}
+{% block title %}{{ talk.application.applicant.user.get_full_name }}: {{ talk.title }} - {{ webcamp.extended_title }}{% endblock %}
 
 {% block head %}
     <meta name="description" content="{{ talk.about }}">
 {% endblock %}
 
 {% block og %}
-    <meta property="og:title" content="{{ talk.application.applicant.user.get_full_name }}: {{ talk.title }} - WebCamp Zagreb Conference 2015" />
+    <meta property="og:title" content="{{ talk.application.applicant.user.get_full_name }}: {{ talk.title }} - {{ webcamp.extended_title }}" />
     <meta property="og:description" content="{{ talk.about }}" />
     <meta property="og:image" content="https://2015.webcampzg.org{% version talk.application.applicant.image 'big' %}" />
 {% endblock %}

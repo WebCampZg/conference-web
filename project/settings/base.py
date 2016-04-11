@@ -163,6 +163,7 @@ TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + \
      'allauth.socialaccount.context_processors.socialaccount',
      'ui.ctx.sponsors',
      'ui.ctx.talks',
+     'ui.ctx.webcamp',
 )
 
 ROOT_URLCONF = 'project.urls'
@@ -183,12 +184,8 @@ DATABASES = {
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Europe/Zagreb'
-
 USE_I18N = True
-
-
 USE_L10N = True
-
 USE_TZ = True
 
 

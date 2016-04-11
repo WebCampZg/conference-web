@@ -1,13 +1,13 @@
 {% extends 'ui/base.html' %}
 
-{% block title %}Code of Conduct - WebCamp Zagreb Conference 2015{% endblock %}
+{% block title %}Code of Conduct - {{ webcamp.extended_title }}{% endblock %}
 
 {% block head %}
     <meta name="description" content="All participants are required to agree with conference's code of conduct. We do not tolerate harassment of conference participants in any form.">
 {% endblock %}
 
 {% block og %}
-    <meta property="og:title" content="Code of Conduct - WebCamp Zagreb Conference 2015" />
+    <meta property="og:title" content="Code of Conduct - {{ webcamp.extended_title }}" />
     <meta property="og:description" content="All participants are required to agree with conference's code of conduct. We do not tolerate harassment of conference participants in any form." />
     <meta property="og:image" content="https://2015.webcampzg.org/static/images/webcamp-zagreb-conference.jpg"/>
     <meta property="og:image:width" content="600" />
