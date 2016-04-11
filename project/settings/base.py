@@ -16,8 +16,8 @@ from django.conf import global_settings
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 ADMINS = (
-    ('Vedran Vojvoda', 'vedran.vojvoda@gmail.com'),
-    ('Deni Bertovic', 'deni@denibertovic.com')
+    ('Ivan Habunek', 'ivan.habunek@gmail.com'),
+    ('WebCamp', 'info@webcampzg.org')
 )
 
 MANAGERS = ADMINS
