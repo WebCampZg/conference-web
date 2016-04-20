@@ -26,7 +26,7 @@ module.exports = {
             $block.removeClass('is-active');
             $('#' + $el.attr('data-block')).addClass('is-active');
 
-            if ( $el.hasClass('Highlights-navLink--posts') ) {
+            if ( $el.hasClass('Highlights-navLink--leftSide') ) {
                 $wrapper.addClass('is-flairRightInactive');
             } else {
                 $wrapper.addClass('is-flairLeftInactive');

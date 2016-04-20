@@ -69,3 +69,6 @@ npm-debug.log
 
 # sass
 /.sass-cache
+
+# osx
+.DS_Store
