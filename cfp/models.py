@@ -1,19 +1,22 @@
 import unicodedata
 
 from django.conf import settings
-from django.db import models
-from django.dispatch import receiver
-from django.db.models.signals import post_save
 from django.core.exceptions import ObjectDoesNotExist
-
+from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
-from django.utils.translation import ugettext_lazy as _
 from django.utils.text import slugify
+from django.utils.translation import ugettext_lazy as _
 
+from cfp.choices import TALK_DURATIONS
 from tinymce.models import HTMLField
-
-from .choices import TALK_DURATIONS
 from utils.behaviors import Timestampable
+
+
+def get_active_cfp():
+    return get_object_or_404(CallForPaper, pk=settings.ACTIVE_CFP_ID)
 
 
 def get_applicant_avatar_path(instance, filename):
@@ -125,4 +128,3 @@ def update_talk_instance(sender, instance, created, **kwargs):
         instance.talk.save()
     except ObjectDoesNotExist:
         pass
-

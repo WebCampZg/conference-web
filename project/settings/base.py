@@ -302,4 +302,5 @@ VOTING_ENABLED = False
 # This is just to remove the entries from cfp/urls.py and
 # and to remove the button to add a new talk from the profile pages.
 # We still use cfp.is_active as a checking mechanism while submitting the form
-CFP_ENABLED = False
+CFP_ENABLED = True
+ACTIVE_CFP_ID = 2

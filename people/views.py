@@ -1,11 +1,10 @@
-from braces.views._access import LoginRequiredMixin
+from django.contrib.auth import get_user_model
 from django.core.urlresolvers import reverse
 from django.views.generic.edit import UpdateView
-from django.contrib.auth import get_user_model
 
+from braces.views._access import LoginRequiredMixin
+from cfp.models import Applicant, PaperApplication, get_active_cfp
 from people.forms import UserProfileForm
-from cfp.models import Applicant, PaperApplication
-
 
 UserModel = get_user_model()
 
@@ -17,8 +16,9 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         c = super(UserProfileView, self).get_context_data(**kwargs)
+        cfp = get_active_cfp()
         try:
-            c['applications'] = self.request.user.applicant.applications.all()
+            c['applications'] = self.request.user.applicant.applications.filter(cfp=cfp)
         except Applicant.DoesNotExist, PaperApplication.DoesNotExist:
             c['applications'] = []
         return c
@@ -28,4 +28,3 @@ class UserProfileView(LoginRequiredMixin, UpdateView):
 
     def get_success_url(self):
         return reverse('user_profile')
-

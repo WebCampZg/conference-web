@@ -1,14 +1,14 @@
-from datetime import datetime
-
-from braces.views._access import LoginRequiredMixin, UserPassesTestMixin
-from django.core.exceptions import PermissionDenied
+from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse
 from django.http.response import HttpResponse, Http404
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView
-from django.contrib.messages.views import SuccessMessageMixin
+
+from braces.views._access import LoginRequiredMixin
 from cfp.forms import PaperApplicationForm
-from cfp.models import Applicant, PaperApplication, CallForPaper
+from cfp.models import Applicant, PaperApplication, get_active_cfp
+from datetime import datetime
+
 
 class PaperApplicationBaseView(SuccessMessageMixin, LoginRequiredMixin):
     model = PaperApplication
@@ -17,7 +17,7 @@ class PaperApplicationBaseView(SuccessMessageMixin, LoginRequiredMixin):
     success_message = "You have successfully submitted your application."
 
     def dispatch(self, request, *args, **kwargs):
-        self.cfp = CallForPaper.objects.get(pk=kwargs.get('cfp_id') or 1)
+        self.cfp = get_active_cfp()
         return super(PaperApplicationBaseView, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -94,7 +94,6 @@ class PaperApplicationUpdateView(PaperApplicationBaseView, UpdateView):
 
 
 def cfp_announcement(request):
-    cfp = get_object_or_404(CallForPaper, pk=1)
     return render(request, 'cfp/cfp_announcement.html', {
-        "cfp": cfp
+        "cfp": get_active_cfp()
     })
