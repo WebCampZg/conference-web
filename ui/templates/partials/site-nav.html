@@ -9,11 +9,6 @@
         {% endif %}
     </div>
     <ul class="SiteNav-list">
-        {% if user.is_authenticated %}
-        <li class="SiteNav-item">
-            <a href="{% url 'user_profile' %}" class="SiteNav-link">Profile: {{ user.get_full_name }}</a>
-        </li>
-        {% endif %}
         <li class="SiteNav-item">
             <a href="{% url 'visitors_info' %}" class="SiteNav-link">Info</a>
         </li>
