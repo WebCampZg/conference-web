@@ -23,11 +23,17 @@ def venue(request):
 def visitors_info(request):
     return render(request, 'ui/visitors_information.html', {})
 
+
 def timeline(request):
     return render(request, 'ui/timeline.html', {})
 
+
 def voting(request):
     return render(request, 'ui/voting.html', {})
+
+
+def tickets(request):
+    return render(request, 'ui/tickets.html', {})
 
 
 def signup_success(request):
@@ -36,4 +42,3 @@ def signup_success(request):
 
 def custom_404(request):
     return render(request, 'ui/404.html', status=404)
-
