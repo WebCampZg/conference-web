@@ -62,6 +62,7 @@ def webcamp(request):
         "links": {
             "sponsors_pdf": abs_uri('/media/webcampzg_2016_sponsors.pdf'),
             "volunteer_application": "http://goo.gl/forms/1LYfr3TEGs",
+            "entrio": "https://www.entrio.hr/en/event/webcamp-zagreb-2016-3213",
         },
         "webcamp": {
             "title": "WebCamp Zagreb 2016",
@@ -73,5 +74,30 @@ def webcamp(request):
                 "width": 600,
                 "height": 300
             }
-        }
+        },
+        "usergroups": [{
+            "name": "Frontman Zagreb",
+            "url": "http://www.meetup.com/FrontmanZg/",
+        }, {
+            "name": "Javascript Zagreb",
+            "url": "http://www.meetup.com/JavaScript-Zagreb/",
+        }, {
+            "name": "Lambda Zagreb",
+            "url": "http://www.meetup.com/lambdazagreb/",
+        }, {
+            "name": "Microsoft Community Hrvatska",
+            "url": "http://www.mscommunity.hr/",
+        }, {
+            "name": "Python Hrvatska",
+            "url": "http://www.meetup.com/Python-Hrvatska/",
+        }, {
+            "name": "RubyZG",
+            "url": "http://www.meetup.com/rubyzg/",
+        }, {
+            "name": "Web Designers Hrvatska",
+            "url": "http://www.meetup.com/Web-Designers-Hrvatska-ZG-Meetup/",
+        }, {
+            "name": "ZgPHP",
+            "url": "http://zgphp.org/",
+        }]
     }

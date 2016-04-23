@@ -5,7 +5,7 @@
 {% block title %}Tickets for sale - {{ webcamp.extended_title }}{% endblock %}
 
 {% block head %}
-    <meta name="description" content="Tickets are available and valid for both conference days. They include a T-shirt and a swag bag with goodies. The price is 500HRK (~€65). Grab them now!">
+    <meta name="description" content="Tickets are available and valid for both conference days. They include a T-shirt and a swag bag with goodies. The price is 500kn (~€65). Grab them now!">
 {% endblock %}
 
 {% block og %}
@@ -25,10 +25,31 @@
             <div class="Passage">
                 <h2 class="Spotlight-title">Acquiring tickets</h2>
                 <div class="Spotlight-body">
-                    <p>Tickets are sold via <a href="https://www.entrio.hr/en/event/webcamp-zagreb-2015-2150">Entrio online shop</a>. You can pay by credit card (Mastercard, Maestro, Visa, Amex, Diners) or bank transfer. The latter may take a few days to process though.</p>
-                    <p>There's only one category of tickets, which will get you entrance to both conference days and includes a T-shirt and a swag bag with goodies. The price of the ticket is 500HRK (~€65).</p>
-                    <p>We will host a number of quality <a href="/talks">talks</a> including two keyspeakers. Furthermore, this year we introduced a concept of <a href="/blog/view/introducing-popular-vote/">popular vote</a>, which means that ticket holders voted on three more talks to be included in an official talks roster.</p>
-                    <p>If you don't want to pay for a ticket, submit a talk to one of our user groups today: <a href="http://www.meetup.com/FrontmanZg/">Frontman Zagreb</a>, <a href="http://www.meetup.com/JavaScript-Zagreb/">Javascript Zagreb</a>, <a href="http://www.meetup.com/lambdazagreb/">Lambda Zagreb</a>, <a href="http://www.mscommunity.hr/">Microsoft Community Hrvatska</a>, <a href="http://www.meetup.com/Python-Hrvatska/">Python Hrvatska</a>, <a href="http://www.meetup.com/rubyzg/">RubyZG</a>, <a href="http://www.meetup.com/Web-Designers-Hrvatska-ZG-Meetup/">Web Designers Hrvatska</a> or <a href="http://zgphp.org/"  target="_blank">ZgPHP</a>. All speakers who speak at a meetup before the conference will get a free ticket.</p>
+
+                    <p>Tickets are sold via <a href="{{ links.entrio }}">Entrio online shop</a>.
+                    You can pay by credit card (Mastercard, Maestro, Visa, Amex, Diners) or bank
+                    transfer.</p>
+
+                    <p>There's only one category of tickets, which will get you entrance to both
+                    conference days and includes a T-shirt and a swag bag with goodies. The price
+                    of the ticket is <em>300kn (~€40)</em> during the early bird period which ends
+                    on <strong>June 26th</strong>. After that the price of the ticket will be 500kn
+                    (~€65).</p>
+
+                    <p>We will host a number of quality talks. Last year we introduced the concept of
+                    the <a href="http://2015.webcampzg.org/blog/view/introducing-popular-vote/">popular vote</a>,
+                    which means that ticket holders will get a chance to vote on a number of talks
+                    to be included in the official talks roster.</p>
+
+                    <p>If you don't want to pay for a ticket, submit a talk to one of our user
+                    groups today:
+                    {% for ug in usergroups %}
+                        {% if not forloop.first and not forloop.last %},{% endif %}
+                        {% if forloop.last %}, or {% endif %}
+                        <a href="{{ ug.url }}">{{ ug.name }}</a>
+                    {% endfor %}.
+                    All speakers who speak at one of our meetups in the period since WebCamp
+                    Zagreb 2015 until this year's conference will get a free ticket.</p>
                     <p>By buying a ticket, you agree to follow our <a href="/code">Code of Conduct</a>.</p>
                     <p>Tickets are in limited number so get them while you can!</p>
 
