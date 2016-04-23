@@ -52,11 +52,17 @@ def webcamp(request):
     """Conference-related strings"""
     # TODO: move to database?
 
+    abs_uri = request.build_absolute_uri
+
     image_path = "images/webcamp-zagreb-conference.jpg"
-    image_url = request.build_absolute_uri(static(image_path))
+    image_url = abs_uri(static(image_path))
 
     return {
-        "base_url": request.build_absolute_uri('/').rstrip('/'),
+        "base_url": abs_uri('/').rstrip('/'),
+        "links": {
+            "sponsors_pdf": abs_uri('/media/webcampzg_2016_sponsors.pdf'),
+            "volunteer_application": "http://goo.gl/forms/1LYfr3TEGs",
+        },
         "webcamp": {
             "title": "WebCamp Zagreb 2016",
             "extended_title": "WebCamp Zagreb Conference 2016",
