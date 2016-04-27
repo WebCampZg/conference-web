@@ -67,7 +67,7 @@ def webcamp(request):
             "tagline": "Technology oriented conference for developers & designers",
             "dates": "October 28th & 29th, 2016",
             "og_image": {
-                "url": abs_uri(static("images/og_image.jpg")),
+                "url": abs_uri(static("images/og_image.png")),
                 "width": 600,
                 "height": 300
             }
