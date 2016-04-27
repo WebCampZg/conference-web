@@ -25,12 +25,16 @@
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_US" />
         <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
+
         {% block og %}
             <meta property="og:title" content="{{ webcamp.extended_title }}" />
             <meta property="og:description" content="Technology oriented conference for developers and designers" />
+        {% endblock %}
+
+        {% block og_image %}
             <meta property="og:image" content="{{ webcamp.og_image.url }}"/>
-            <meta property="og:image:width" content="600" />
-            <meta property="og:image:height" content="315" />
+            <meta property="og:image:width" content="{{ webcamp.og_image.width }}" />
+            <meta property="og:image:height" content="{{ webcamp.og_image.height }}" />
         {% endblock %}
     </head>
     <body class="{% block body_class %}{% endblock %}">
