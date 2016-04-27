@@ -54,9 +54,6 @@ def webcamp(request):
 
     abs_uri = request.build_absolute_uri
 
-    image_path = "images/webcamp-zagreb-conference.jpg"
-    image_url = abs_uri(static(image_path))
-
     return {
         "base_url": abs_uri('/').rstrip('/'),
         "links": {
@@ -70,7 +67,7 @@ def webcamp(request):
             "tagline": "Technology oriented conference for developers & designers",
             "dates": "October 28th & 29th, 2016",
             "og_image": {
-                "url": image_url,
+                "url": abs_uri(static("images/og_image.jpg")),
                 "width": 600,
                 "height": 300
             }
