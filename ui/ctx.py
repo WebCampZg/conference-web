@@ -68,8 +68,8 @@ def webcamp(request):
             "dates": "October 28th & 29th, 2016",
             "og_image": {
                 "url": abs_uri(static("images/og_image.png")),
-                "width": 600,
-                "height": 300
+                "width": 1200,
+                "height": 630
             }
         },
         "usergroups": [{
