@@ -62,6 +62,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.sitemaps',
 
+    'raven.contrib.django.raven_compat',
     'tinymce',
     'grappelli.dashboard',
     'grappelli',
@@ -272,7 +273,6 @@ BASE_LOGGING = {
 }
 
 LOGGING = BASE_LOGGING
-# TODO: add sentry for exception handling
 
 TINYMCE_DEFAULT_CONFIG = {
     'theme': "advanced",

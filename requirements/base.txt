@@ -11,3 +11,4 @@ django-model-utils==2.2
 django-filebrowser==3.5.7
 django-grappelli==2.6.3
 django-markdown-deux==1.0.5
+raven==5.13.0
