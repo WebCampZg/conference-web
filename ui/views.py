@@ -32,10 +32,6 @@ def voting(request):
     return render(request, 'ui/voting.html', {})
 
 
-def tickets(request):
-    return render(request, 'ui/tickets.html', {})
-
-
 def signup_success(request):
     return render(request, 'account/signup-success.html')
 
