@@ -1,0 +1,36 @@
+{% extends 'ui/base.html' %}
+{% load static django_markdown %}
+
+{% block title %}{{ page.title }} - {{ webcamp.extended_title }}{% endblock %}
+
+{% block head %}
+    <meta name="description" content="{{ page.meta_description }}">
+{% endblock %}
+
+{% block og %}
+    <meta property="og:title" content="{{ page.title }}" />
+    <meta property="og:description" content="{{ page.meta_description }}" />
+{% endblock %}
+
+{% block content %}
+    {% include "partials/header.html" with hero_type=page.hero_type %}
+
+    <section class="Blog Spotlight Spotlight--beta">
+        <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
+            <article class="Article Article--detail">
+                <h1 class="Article-title">
+                    {{ page.title }}
+                </h1>
+                <div class="Article-body">
+                    <div class="Passage">
+                        {{ page.content|markdown }}
+                    </div>
+                </div>
+                {% include "partials/share.html" with title="Share this page" %}
+            </article>
+        </div>
+    </section>
+
+    {% include "partials/groups/bottom_default.html" %}
+
+{% endblock %}

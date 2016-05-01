@@ -33,6 +33,7 @@ urlpatterns = patterns('',
     # url(r'^talks/', include('talks.urls')),
     # url(r'^voting/$', 'ui.views.voting', name='voting'),
     # url(r'^voting/', include('voting.urls')),
+    url('^markdown/', include( 'django_markdown.urls')),
 )
 
 if settings.DEBUG:

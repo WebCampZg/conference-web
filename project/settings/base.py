@@ -54,20 +54,22 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 # Application definition
 
 INSTALLED_APPS = (
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    'django.contrib.flatpages',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.sites',
+    'django.contrib.sessions',
     'django.contrib.sitemaps',
+    'django.contrib.sites',
+    'django.contrib.staticfiles',
 
     'raven.contrib.django.raven_compat',
     'tinymce',
     'grappelli.dashboard',
     'grappelli',
     'filebrowser',
-    'django.contrib.admin',
+    'django_markdown',
     'markdown_deux',
 
     'ui',
@@ -84,6 +86,7 @@ INSTALLED_APPS = (
     'talks',
     'voting',
     'schedule',
+    'pages'
 )
 
 
@@ -147,6 +150,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'pages.middleware.PageFallbackMiddleware',
 )
 
 AUTHENTICATION_BACKENDS = (
