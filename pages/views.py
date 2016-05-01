@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.contrib.sites.shortcuts import get_current_site
 from django.http import Http404, HttpResponse, HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
 from django.template import loader, RequestContext
@@ -26,13 +25,12 @@ def page(request, url):
     """
     if not url.startswith('/'):
         url = '/' + url
-    site_id = get_current_site(request).id
     try:
-        f = get_object_or_404(Page, url=url, sites=site_id)
+        f = get_object_or_404(Page, url=url)
     except Http404:
         if not url.endswith('/') and settings.APPEND_SLASH:
             url += '/'
-            f = get_object_or_404(Page, url=url, sites=site_id)
+            f = get_object_or_404(Page, url=url)
             return HttpResponsePermanentRedirect('%s/' % request.path)
         else:
             raise
