@@ -307,3 +307,6 @@ VOTING_ENABLED = False
 # We still use cfp.is_active as a checking mechanism while submitting the form
 CFP_ENABLED = True
 ACTIVE_CFP_ID = 2
+
+# Allow tables and other stuff in markdown
+MARKDOWN_EXTENSIONS = ['extra']
