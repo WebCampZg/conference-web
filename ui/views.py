@@ -12,22 +12,6 @@ def index(request):
     return render(request, 'ui/index.html', ctx)
 
 
-def code_of_conduct(request):
-    return render(request, 'ui/code_of_conduct.html', {})
-
-
-def venue(request):
-    return render(request, 'ui/venue.html', {})
-
-
-def visitors_info(request):
-    return render(request, 'ui/visitors_information.html', {})
-
-
-def timeline(request):
-    return render(request, 'ui/timeline.html', {})
-
-
 def voting(request):
     return render(request, 'ui/voting.html', {})
 
