@@ -17,3 +17,7 @@ class Page(FlatPage):
     meta_description = models.TextField(help_text="Used for og:description")
     hero_type = models.CharField(max_length=20, choices=HERO_TYPE_CHOICES,
             default=HERO_TYPE_MAIN, help_text="Switches the header image.")
+    title_in_hero= models.BooleanField(default=False,
+            help_text="If enabled, the title will be displayed in the hero unit. "
+                      "Otherwise, it will be displayed in page body.",
+            verbose_name="Title in hero unit")

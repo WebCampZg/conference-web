@@ -17,7 +17,7 @@ class PageAdmin(FlatPageAdmin):
     form = PageForm
     fieldsets = (
         (None, {
-            'fields': ('url', 'title', 'content', 'meta_description', 'hero_type')
+            'fields': ('url', 'title', 'content', 'meta_description', 'title_in_hero', 'hero_type')
         }),
         ('Advanced options', {
             'fields': ('registration_required', 'template_name')

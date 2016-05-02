@@ -13,14 +13,20 @@
 {% endblock %}
 
 {% block content %}
-    {% include "partials/header.html" with hero_type=page.hero_type %}
+    {% if page.title_in_hero %}
+        {% include "partials/header.html" with hero_type=page.hero_type title=page.title %}
+    {% else %}
+        {% include "partials/header.html" with hero_type=page.hero_type %}
+    {% endif %}
 
     <section class="Blog Spotlight Spotlight--beta">
         <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
             <article class="Article Article--detail">
-                <h1 class="Article-title">
-                    {{ page.title }}
-                </h1>
+                {% if not page.title_in_hero %}
+                    <h1 class="Article-title">
+                        {{ page.title }}
+                    </h1>
+                {% endif %}
                 <div class="Article-body">
                     <div class="Passage">
                         {{ page.content|markdown }}
