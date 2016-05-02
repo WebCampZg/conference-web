@@ -15,6 +15,8 @@ class PageForm(FlatpageForm):
 
 class PageAdmin(FlatPageAdmin):
     form = PageForm
+    list_display = ('url', 'title', 'meta_description',)
+    list_filter = ()
     fieldsets = (
         (None, {
             'fields': ('url', 'title', 'content', 'meta_description', 'title_in_hero', 'hero_type')
