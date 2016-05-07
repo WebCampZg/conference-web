@@ -5,14 +5,13 @@ from django.conf import settings
 
 from cfp.views import PaperApplicationCreateView, PaperApplicationUpdateView
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^(?P<cfp_id>\d+)/new$', PaperApplicationCreateView.as_view(), name='application_create'),
     url(r'^(?P<cfp_id>\d+)/application/(?P<pk>\d+)$', PaperApplicationUpdateView.as_view(), name='application_update'),
-)
+]
 
 if settings.CFP_ENABLED:
-    urlpatterns += patterns('',
+    urlpatterns += [
         url(r'^$', cfp.views.cfp_announcement, name='cfp_announcement'),
         url(r'^new/$', PaperApplicationCreateView.as_view(), name='application_create'),
-    )
-
+    ]
