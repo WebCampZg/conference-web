@@ -162,13 +162,11 @@ AUTHENTICATION_BACKENDS = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + \
-    ('django.core.context_processors.request',
-     'allauth.account.context_processors.account',
-     'allauth.socialaccount.context_processors.socialaccount',
+    ['django.core.context_processors.request',
      'ui.ctx.sponsors',
      'ui.ctx.talks',
      'ui.ctx.webcamp',
-)
+    ]
 
 ROOT_URLCONF = 'project.urls'
 
