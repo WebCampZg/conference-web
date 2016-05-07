@@ -1,7 +1,7 @@
 from .base import *
 
 
-DEBUG = TEMPLATE_DEBUG = True
+DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 try:

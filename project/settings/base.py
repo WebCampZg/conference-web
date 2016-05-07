@@ -45,8 +45,6 @@ from secret import SECRET_KEY  # noqa
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-TEMPLATE_DEBUG = True
-
 ALLOWED_HOSTS = []
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
@@ -161,13 +159,6 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
-TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + \
-    ['django.core.context_processors.request',
-     'ui.ctx.sponsors',
-     'ui.ctx.talks',
-     'ui.ctx.webcamp',
-    ]
-
 ROOT_URLCONF = 'project.urls'
 
 WSGI_APPLICATION = 'project.wsgi.application'
@@ -210,18 +201,9 @@ STATICFILES_FINDERS = (
 )
 
 
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
-
 # Additional locations of static files
 STATICFILES_DIRS = (
     ABS_PATH('staticfiles'),
-)
-
-TEMPLATE_DIRS = (
-    ABS_PATH('templates'),
 )
 
 SITE_ID = 1
@@ -308,3 +290,31 @@ ACTIVE_CFP_ID = 2
 
 # Allow tables and other stuff in markdown
 MARKDOWN_EXTENSIONS = ['extra']
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [
+            ABS_PATH('templates'),
+        ],
+        'OPTIONS': {
+            'context_processors': [
+                'django.core.context_processors.request',
+                'ui.ctx.sponsors',
+                'ui.ctx.talks',
+                'ui.ctx.webcamp',
+                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.debug',
+                'django.template.context_processors.i18n',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
+                'django.template.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+            ],
+            'loaders': [
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+            ]
+        },
+    },
+]
