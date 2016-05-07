@@ -1,3 +1,6 @@
+import ui.views
+import django.views.static
+
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
@@ -8,19 +11,18 @@ from .sitemaps import sitemaps
 
 handler404 = 'ui.views.custom_404'
 
-urlpatterns = patterns('',
-
-    url(r'^$', 'ui.views.index', name="ui_index"),
+urlpatterns = [
+    url(r'^$', ui.views.index, name="ui_index"),
     url(r'^blog/', include('blog.urls')),
-    (r'^tinymce/', include('tinymce.urls')),
-    url(r'^signup/success/$', 'ui.views.signup_success'),
+    url(r'^tinymce/', include('tinymce.urls')),
+    url(r'^signup/success/$', ui.views.signup_success),
     url(r'^jobs/', include('jobs.urls')),
     url(r'^sponsors/', include('sponsors.urls')),
     url(r'^cfp/', include('cfp.urls')),
     url(r'^admin/filebrowser/', include(site.urls)),
-    (r'^grappelli/', include('grappelli.urls')),
+    url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    (r'^accounts/', include('allauth.urls')),
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^accounts/profile/', UserProfileView.as_view(), name='user_profile'),
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
         name='django.contrib.sitemaps.views.sitemap'),
@@ -29,13 +31,12 @@ urlpatterns = patterns('',
     # url(r'^voting/$', 'ui.views.voting', name='voting'),
     # url(r'^voting/', include('voting.urls')),
     url('^markdown/', include( 'django_markdown.urls')),
-)
+]
 
 if settings.DEBUG:
-    urlpatterns += patterns('',
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve',
+    urlpatterns += [
+        url(r'^media/(?P<path>.*)$', django.views.static.serve,
             {'document_root': settings.MEDIA_ROOT}),
-        (r'^static/(?P<path>.*)$', 'django.views.static.serve',
+        url(r'^static/(?P<path>.*)$', django.views.static.serve,
             {'document_root': settings.STATIC_ROOT}),
-    )
-
+    ]
