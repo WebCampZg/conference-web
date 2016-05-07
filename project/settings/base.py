@@ -299,7 +299,7 @@ TEMPLATES = [
         ],
         'OPTIONS': {
             'context_processors': [
-                'django.core.context_processors.request',
+                'django.template.context_processors.request',
                 'ui.ctx.sponsors',
                 'ui.ctx.talks',
                 'ui.ctx.webcamp',
