@@ -1,3 +1,6 @@
+import ui.views
+import django.views.static
+
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
@@ -10,10 +13,10 @@ handler404 = 'ui.views.custom_404'
 
 urlpatterns = patterns('',
 
-    url(r'^$', 'ui.views.index', name="ui_index"),
+    url(r'^$', ui.views.index, name="ui_index"),
     url(r'^blog/', include('blog.urls')),
     (r'^tinymce/', include('tinymce.urls')),
-    url(r'^signup/success/$', 'ui.views.signup_success'),
+    url(r'^signup/success/$', ui.views.signup_success),
     url(r'^jobs/', include('jobs.urls')),
     url(r'^sponsors/', include('sponsors.urls')),
     url(r'^cfp/', include('cfp.urls')),
@@ -33,9 +36,9 @@ urlpatterns = patterns('',
 
 if settings.DEBUG:
     urlpatterns += patterns('',
-        (r'^media/(?P<path>.*)$', 'django.views.static.serve',
+        (r'^media/(?P<path>.*)$', django.views.static.serve,
             {'document_root': settings.MEDIA_ROOT}),
-        (r'^static/(?P<path>.*)$', 'django.views.static.serve',
+        (r'^static/(?P<path>.*)$', django.views.static.serve,
             {'document_root': settings.STATIC_ROOT}),
     )
 

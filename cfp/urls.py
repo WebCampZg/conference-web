@@ -1,3 +1,5 @@
+import cfp
+
 from django.conf.urls import patterns, url
 from django.conf import settings
 
@@ -10,7 +12,7 @@ urlpatterns = patterns('',
 
 if settings.CFP_ENABLED:
     urlpatterns += patterns('',
-        url(r'^$', 'cfp.views.cfp_announcement', name='cfp_announcement'),
+        url(r'^$', cfp.views.cfp_announcement, name='cfp_announcement'),
         url(r'^new/$', PaperApplicationCreateView.as_view(), name='application_create'),
     )
 
