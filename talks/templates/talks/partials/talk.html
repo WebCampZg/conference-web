@@ -37,6 +37,9 @@
             <div class="QuickTalk-body">
                 {{ talk.about }}
             </div>
+            <div class="QuickTalk-level">
+                Skill level: <em>{{ talk.skill_level }}</em>
+            </div>
             <aside class="QuickTalk-social">
                 <ul>
                     {% if talk.application.applicant.user.twitter %}
