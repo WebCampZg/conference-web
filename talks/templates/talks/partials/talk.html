@@ -11,9 +11,17 @@
             </figure>
         </div>
         <div class="Grid-cell Grid-cell--2of3">
-            <p class="QuickTalk-speaker"><span>Speaker:</span> <a href="{% url 'talks_view_talk' slug=talk.slug %}#speaker">{{ talk.application.applicant.user.get_full_name }}</a></p>
             {% if talk.co_presenter %}
-            <p class="QuickTalk-speaker"><span>Co-Speaker:</span> <a href="{% url 'talks_view_talk' slug=talk.slug %}#speaker2">{{ talk.co_presenter.user.get_full_name }}</a></p>
+                <p class="QuickTalk-speaker">
+                    <span>Speakers:</span>
+                    <a href="{% url 'talks_view_talk' slug=talk.slug %}#speaker">{{ talk.application.applicant.user.get_full_name }}</a>,
+                    <a href="{% url 'talks_view_talk' slug=talk.slug %}#speaker2">{{ talk.co_presenter.user.get_full_name }}</a>
+                </p>
+            {% else %}
+                <p class="QuickTalk-speaker">
+                    <span>Speaker:</span>
+                    <a href="{% url 'talks_view_talk' slug=talk.slug %}#speaker">{{ talk.application.applicant.user.get_full_name }}</a>
+                </p>
             {% endif %}
             <h3 class="QuickTalk-title"><a href="{% url 'talks_view_talk' slug=talk.slug %}">{% if talk.keynote %}Keynote: {% endif %}{{ talk.title }}
             {% if talk.is_sponsored or talk.is_community_chosen %}
