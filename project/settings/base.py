@@ -84,7 +84,8 @@ INSTALLED_APPS = (
     'talks',
     'voting',
     'schedule',
-    'pages'
+    'pages',
+    'usergroups',
 )
 
 
