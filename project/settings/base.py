@@ -304,6 +304,7 @@ TEMPLATES = [
                 'ui.ctx.sponsors',
                 'ui.ctx.talks',
                 'ui.ctx.webcamp',
+                'ui.ctx.usergroups',
                 'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.i18n',

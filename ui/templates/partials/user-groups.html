@@ -5,30 +5,12 @@
     </div>
     <div class="Promote-body">
         <ul class="UserGroups-list">
-            <li class="UserGroups-item UserGroups-item--frontman-zagreb">
-                <a class="UserGroups-link" href="http://www.meetup.com/FrontmanZg/"><img src="{% static 'images/user-groups/frontman-zagreb.svg' %}" alt="Frontman Zagreb logo" class="UserGroups-logo" /></a>
-            </li>
-            <li class="UserGroups-item UserGroups-item--javascript-zagreb">
-                <a class="UserGroups-link" href="http://www.meetup.com/JavaScript-Zagreb/"><img src="{% static 'images/user-groups/javascript-zagreb.svg' %}" alt="Javascript Zagreb logo" class="UserGroups-logo" /></a>
-            </li>
-            <li class="UserGroups-item UserGroups-item--lambda-zagreb">
-                <a class="UserGroups-link" href="http://www.meetup.com/lambdazagreb/"><img src="{% static 'images/user-groups/lambda-zagreb.svg' %}" alt="Lambda Zagreb logo" class="UserGroups-logo" /></a>
-            </li>
-            <li class="UserGroups-item UserGroups-item--python-hrvatska">
-                <a class="UserGroups-link" href="http://www.meetup.com/Python-Hrvatska/"><img src="{% static 'images/user-groups/python-hrvatska.svg' %}" alt="Python Hrvatska logo" class="UserGroups-logo" /></a>
-            </li>
-            <li class="UserGroups-item UserGroups-item--ruby-zagreb">
-                <a class="UserGroups-link" href="http://www.meetup.com/rubyzg/"><img src="{% static 'images/user-groups/ruby-zagreb.svg' %}" alt="Ruby Zagreb logo" class="UserGroups-logo" /></a>
-            </li>
-            <li class="UserGroups-item UserGroups-item--wdhr">
-                <a class="UserGroups-link" href="http://www.meetup.com/Web-Designers-Hrvatska-ZG-Meetup/"><img src="{% static 'images/user-groups/wdhr.svg' %}" alt="Web Designers Hrvatska logo" class="UserGroups-logo" /></a>
-            </li>
-            <li class="UserGroups-item UserGroups-item--zagreb-stc">
-                <a class="UserGroups-link" href="https://groups.google.com/forum/#!forum/zagreb-stc"><img src="{% static 'images/user-groups/zagreb-stc.svg' %}" alt="Zagreb Software Testing Club logo" class="UserGroups-logo" /></a>
-            </li>
-            <li class="UserGroups-item UserGroups-item--zgphp">
-                <a class="UserGroups-link" href="http://zgphp.org/"><img src="{% static 'images/user-groups/zgphp.svg' %}" alt="ZgPHP logo" class="UserGroups-logo" /></a>
-            </li>
+            {% for group in usergroups %}
+                <li class="UserGroups-item UserGroups-item--{{ group.slug }}">
+                    <a class="UserGroups-link" href="{{ group.website_url }}" title="{{ group.name }}">
+                        <img src="{{ MEDIA_URL }}{{ group.image }}" alt="{{ group.name }} logo" class="UserGroups-logo" /></a>
+                </li>
+            {% endfor %}
         </ul>
     </div>
 </section>

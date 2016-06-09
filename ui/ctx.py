@@ -1,9 +1,11 @@
 from django.conf import settings
-from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.contrib.sites.shortcuts import get_current_site
-from sponsors.models import Sponsor
+from django.contrib.staticfiles.templatetags.staticfiles import static
 from sponsors.choices import SPONSOR_TYPES
+from sponsors.models import Sponsor
 from talks.models import Talk
+from usergroups.models import UserGroup
+
 
 def get_sponsors():
     diamond_sponsors = Sponsor.objects.filter(
@@ -36,6 +38,11 @@ def sponsors(request):
     ctx.update(sponsors)
 
     return ctx
+
+def usergroups(request):
+    return {
+        "usergroups": UserGroup.objects.order_by("name").filter(is_active=True)
+    }
 
 
 def talks(request):
@@ -71,30 +78,5 @@ def webcamp(request):
                 "width": 1200,
                 "height": 630
             }
-        },
-        "usergroups": [{
-            "name": "Frontman Zagreb",
-            "url": "http://www.meetup.com/FrontmanZg/",
-        }, {
-            "name": "Javascript Zagreb",
-            "url": "http://www.meetup.com/JavaScript-Zagreb/",
-        }, {
-            "name": "Lambda Zagreb",
-            "url": "http://www.meetup.com/lambdazagreb/",
-        }, {
-            "name": "Microsoft Community Hrvatska",
-            "url": "http://www.mscommunity.hr/",
-        }, {
-            "name": "Python Hrvatska",
-            "url": "http://www.meetup.com/Python-Hrvatska/",
-        }, {
-            "name": "RubyZG",
-            "url": "http://www.meetup.com/rubyzg/",
-        }, {
-            "name": "Web Designers Hrvatska",
-            "url": "http://www.meetup.com/Web-Designers-Hrvatska-ZG-Meetup/",
-        }, {
-            "name": "ZgPHP",
-            "url": "http://zgphp.org/",
-        }]
+        }
     }
