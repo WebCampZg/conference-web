@@ -7,6 +7,8 @@ class SponsorAdmin(admin.ModelAdmin):
     fields = ('name', 'slug', 'type', 'about', 'url', 'image', 'is_active', 'order')
     prepopulated_fields = {'slug': ('name',)}
     list_display = ('name', 'type', 'is_active', 'order')
+    list_filter = ('is_active', 'type',)
+    ordering = ('-is_active', 'type', 'order')
 
 
 admin.site.register(Sponsor, SponsorAdmin)
