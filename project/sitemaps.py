@@ -4,6 +4,7 @@ from django.core.urlresolvers import reverse
 
 from blog.models import Post
 from talks.models import Talk
+from pages.models import Page
 
 
 class StaticViewSitemap(sitemaps.Sitemap):
@@ -14,10 +15,7 @@ class StaticViewSitemap(sitemaps.Sitemap):
         return [
             'ui_index',
             'blog_list_posts',
-            'code_of_conduct',
             'talks_list_talks',
-            'tickets',
-            'voting',
         ]
 
     def location(self, item):
@@ -26,6 +24,9 @@ class StaticViewSitemap(sitemaps.Sitemap):
 
 sitemaps = {
     'static': StaticViewSitemap,
+    'pages': GenericSitemap({
+        'queryset': Page.objects.all(),
+    }),
     'news': GenericSitemap({
         'queryset': Post.objects.all(),
         'date_field': 'updated_at',
