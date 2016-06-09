@@ -1,13 +1,13 @@
 import ui.views
 import django.views.static
 
-from django.conf.urls import patterns, include, url
-from django.contrib import admin
 from django.conf import settings
-from people.views import UserProfileView
-from filebrowser.sites import site
+from django.conf.urls import include, url
+from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
-from .sitemaps import sitemaps
+from filebrowser.sites import site
+from people.views import UserProfileView
+from project.sitemaps import sitemaps
 
 handler404 = 'ui.views.custom_404'
 
