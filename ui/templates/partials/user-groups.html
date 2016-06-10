@@ -7,7 +7,7 @@
         <ul class="UserGroups-list">
             {% for group in usergroups %}
                 <li class="UserGroups-item UserGroups-item--{{ group.slug }}">
-                    <a class="UserGroups-link" href="{{ group.website_url }}" title="{{ group.name }}">
+                    <a class="UserGroups-link" href="{{ group.webpage_url }}" title="{{ group.name }}">
                         <img src="{{ MEDIA_URL }}{{ group.image }}" alt="{{ group.name }} logo" class="UserGroups-logo" /></a>
                 </li>
             {% endfor %}
