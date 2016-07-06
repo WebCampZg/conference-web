@@ -22,15 +22,12 @@
     <section class="Spotlight Spotlight--beta">
         <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
             <article class="Talk">
-                <h1 class="Talk-title">{{ talk.title }} {% if talk.is_sponsored or talk.is_community_chosen %}
-                <span class="ArticleFlag Flag Flag--alpha">
-                    {% if talk.is_sponsored %}
-                    Sponsored
-                    {% else %}
-                    Community chosen
-                    {% endif %}
-                </span>
-                {% endif %}</h1>
+                <h1 class="Talk-title">
+                    {{ talk.title }}
+                </h1>
+                <div class="Talk-flags">
+                    {% include "talks/partials/flags.html" %}
+                </div>
                 <div class="Talk-excerpt">
                     {{ talk.about }}
                 </div>
