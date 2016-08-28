@@ -1,3 +1,4 @@
+from django.contrib.auth import login
 from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
@@ -6,20 +7,33 @@ from cfp.models import PaperApplication
 from cfp.choices import TALK_DURATIONS
 from talks.models import Talk
 from django.db import IntegrityError
-from django.http import JsonResponse
+from django.http import JsonResponse, Http404
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 
 from .decorators import require_ticket_holder
-from .models import Vote
+from .models import Vote, VoteToken
 
 
-def voting(request):
+def authenticate_by_vote_token(request, vote_token):
+    try:
+        user = VoteToken.objects.get(ticket_code=vote_token).user
+        user.backend = settings.AUTHENTICATION_BACKENDS[0]
+        login(request, user)
+    except VoteToken.DoesNotExist:
+        raise Http404()
+
+
+def voting(request, vote_token=None):
+
+    if vote_token:
+        authenticate_by_vote_token(request, vote_token)
+
     already_picked = [t.application_id for t in Talk.objects.all()]
     applications = PaperApplication.objects.filter(
-            duration=TALK_DURATIONS.MIN_25).exclude(
-                    id__in=already_picked).exclude(
-                    exclude=True).order_by('title')
+        duration=TALK_DURATIONS.MIN_25).exclude(
+        id__in=already_picked
+    ).exclude(exclude=True).order_by('title')
 
     if request.user.is_authenticated() and request.user.is_ticket_holder():
         # Include boolean attribute to check if the user alerady voted for this talk

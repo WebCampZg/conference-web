@@ -5,6 +5,8 @@ from django.conf import settings
 urlpatterns = patterns('voting.views',
     url(r'^$', 'voting',
         name='voting_index'),
+    url(r'^(?P<vote_token>[0-9]+)/$', 'voting',
+        name='voting_index'),
 )
 
 if settings.VOTING_ENABLED:
