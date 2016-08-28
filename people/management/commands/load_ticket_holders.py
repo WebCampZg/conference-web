@@ -9,6 +9,8 @@ from django.contrib.auth.models import Group
 
 import requests
 
+from voting.models import VoteToken
+
 UserModel = get_user_model()
 
 
@@ -26,21 +28,35 @@ class Command(NoArgsCommand):
         try:
             r = requests.get(url)
             if r.status_code != 200:
-                logging.error('Unexpected response from Entrio API. Status code: {0}'.format(r.status_code))
+                logging.error(
+                    'Unexpected response from Entrio API. Status code: {0}'.format(r.status_code)
+                )
             else:
                 ticket_holders = r.json()
                 for user in ticket_holders:
+                    email = user['E-mail'].strip()
+                    ticket_code = user['ticket_code'].strip()
                     try:
                         with transaction.atomic():
                             u = UserModel.objects.create_user(
-                                email=user['E-mail'],
+                                email=email,
                                 first_name=user['First name'],
                                 last_name=user['Last name'],
-                                password=user['ticket_code'])
+                                password=ticket_code)
                             group.user_set.add(u)
-                    except IntegrityError:
-                        u = UserModel.objects.get(email=user['E-mail'])
-                        group.user_set.add(u)
+
+                    except IntegrityError as e:
+                        u = UserModel.objects.get(email=email)
+                        if not u.is_ticket_holder:
+                            group.user_set.add(u)
+
+                    token, created = VoteToken.objects.get_or_create(
+                        user=u,
+                        defaults={
+                            'ticket_code': ticket_code,
+                            'user': u,
+                        }
+                    )
+
         except requests.exceptions.RequestException as e:
             logging.error('Requests error when talking to the Entrio API: {0}'.format(e))
-
