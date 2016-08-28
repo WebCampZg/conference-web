@@ -30,7 +30,6 @@ module.exports = {
 
         });
 
-
         var $voteTalkButton = $('.VoteTalk-action');
 
         jQuery(document).ready(function(){
