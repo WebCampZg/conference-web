@@ -20,7 +20,7 @@ class VoteToken(models.Model):
 
     @property
     def absolute_vote_url(self):
-        return '{0}/{1}'.format(
+        return '{0}{1}'.format(
             get_current_site(request=None).domain,
             reverse_lazy('voting_index', kwargs={'vote_token': self.ticket_code})
         )

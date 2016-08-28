@@ -2,7 +2,8 @@ import datetime
 
 from django.core.mail.message import EmailMultiAlternatives
 from django.core.management.base import BaseCommand
-from django.template import Context, Template
+from django.template import Context
+from django.template.loader import get_template
 
 from project import settings
 from voting.models import VoteToken
@@ -18,8 +19,8 @@ class Command(BaseCommand):
 
         vote_tokens = VoteToken.objects.filter(token_sent__isnull=True).select_related('user')
 
-        txt_template = Template('voting/email/vote_invite.txt')
-        html_template = Template('voting/email/vote_invite.html')
+        txt_template = get_template('voting/email/vote_invite.txt')
+        html_template = get_template('voting/email/vote_invite.html')
 
         for vote_token in vote_tokens:
             context = Context({'token': vote_token})
@@ -33,6 +34,7 @@ class Command(BaseCommand):
             )
 
             msg.attach_alternative(html, "text/html")
+            msg.send()
 
             vote_token.token_sent = datetime.datetime.now()
             vote_token.save()
