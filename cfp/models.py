@@ -10,6 +10,7 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
 
+from django.utils import timezone as tz
 from cfp.choices import TALK_DURATIONS
 from tinymce.models import HTMLField
 from utils.behaviors import Timestampable
@@ -38,6 +39,18 @@ class CallForPaper(models.Model):
     def is_active(self):
         today = timezone.now().date()
         return today >= self.begin_date and (not self.end_date or today <= self.end_date)
+
+    @property
+    def applications(self):
+        return self.paperapplication_set.all()
+
+    @property
+    def application_count(self):
+        return self.paperapplication_set.count()
+
+    def is_open():
+        now = tz.now()
+        return self.begin_date < now < self.end_date
 
 
 class Applicant(models.Model):
@@ -117,6 +130,19 @@ class PaperApplication(Timestampable):
     @property
     def votes_count(self):
         return self.votes.all().count()
+
+    @property
+    def next(self):
+        return PaperApplication.objects.filter(cfp=self.cfp, id__gt=self.id).order_by('id').first()
+
+    @property
+    def prev(self):
+        return PaperApplication.objects.filter(cfp=self.cfp, id__lt=self.id).order_by('-id').first()
+
+    @property
+    def ordinal(self):
+        """The ordinal number of the application within it's CFP"""
+        return PaperApplication.objects.filter(cfp=self.cfp, id__lt=self.id).count() + 1
 
 
 @receiver(post_save, sender=PaperApplication)

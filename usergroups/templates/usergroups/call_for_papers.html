@@ -1,0 +1,54 @@
+{% extends "usergroups/base.html" %}
+
+{% block head %}
+    <style type="text/css">
+        #applications-table { font-size: smaller }
+        button.rate-application,
+        button.unrate-application { margin-bottom: 0; }
+        tr.selected { background-color: green; }
+        td.voting { white-space: nowrap; }
+    </style>
+{% endblock head %}
+
+{% block content %}
+    <ul class="breadcrumbs">
+        <li><a href="{% url 'usergroups:dashboard' %}">Dashboard</a></li>
+    </ul>
+    <h1>{{ object.title }}</h1>
+    <h3>Applications</h3>
+
+    <table id="applications-table" class="table hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Submitted</th>
+                <th>Speaker</th>
+                <th>Title</th>
+                <th>Duration</th>
+                <th>Level</th>
+                <th>Voting</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for application in applications %}
+                <tr {% if application.talk %}class="success"{% endif %} data-application-id="{{ application.id }}">
+                    <td>{{ forloop.counter }}</td>
+                    <td class="no-wrap">{{ application.created_at|date:"Y-m-d H:i" }}</td>
+                    <td>{{ application.applicant }}</td>
+                    <td>
+                        <a href="{% url 'usergroups:application_detail' cfp_id=application.cfp_id pk=application.id %}">{{ application.title }}</a>
+                    </td>
+                    <td>{{ application.duration }} min</td>
+                    <td>{{ application.skill_level }}</td>
+                    <td class="voting">
+                        {% if application.talk %}
+                            <i class="fa fa-check"></i> Selected
+                        {% else %}
+                            {% include "usergroups/partials/stars.html" with application_id=application.id rating=None %}
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
