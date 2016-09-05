@@ -1,6 +1,8 @@
 from django.db import models
+from django.db.models import PROTECT
 from people.models import User
 from utils.behaviors import Permalinkable
+from cfp.models import PaperApplication, CallForPaper
 
 
 class UserGroup(Permalinkable):
@@ -13,3 +15,13 @@ class UserGroup(Permalinkable):
 
     def __unicode__(self):
         return self.name
+
+
+class Vote(models.Model):
+    user = models.ForeignKey(User, PROTECT, related_name='usergroup_votes')
+    usergroup = models.ForeignKey(UserGroup, PROTECT, related_name='votes')
+    application = models.ForeignKey(PaperApplication, PROTECT, related_name='usergroup_votes')
+    score = models.PositiveSmallIntegerField()
+
+    class Meta:
+        unique_together = (('user', 'usergroup', 'application'),)

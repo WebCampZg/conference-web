@@ -12,36 +12,109 @@ function follow_link($link) {
     }
 }
 
-$(document).ready(function () {
-    $(document).keydown(function(e) {
-        var rating;
-        if (e.which >= 97 && e.which <= 101) {
-            rating = e.which - 96;
-        } else if (e.which >= 49 && e.which <= 53) {
-            rating = e.which - 48;
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (settings.type == 'POST' && !this.crossDomain) {
+            var csrfToken = getCookie('csrftoken');
+            xhr.setRequestHeader("X-CSRFToken", csrfToken);
         }
+    }
+});
 
-        if (rating !== undefined) {
-            e.preventDefault();
-            $("button.rate-application[data-rating='" + rating + "']").click();
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookiesokie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
         }
+    }
+    return cookieValue;
+}
+
+function rateApplication(applicationID, usergroupID, score) {
+    var url = "/usergroups/applications/rate/";
+
+    var data = {
+        "application_id": applicationID,
+        "usergroup_id": usergroupID,
+        "score": score,
+    }
+
+    $.post(url, data)
+        .done(function(data) {
+            var $application = $('.application[data-application-id="' + applicationID + '"]');
+            $application.find('button[data-score]').removeClass('secondary');
+            $application.find('button[data-score="' +  score +'"]').addClass('secondary')
+        });
+}
+
+function unrateApplication(applicationID, usergroupID) {
+    var url = "/usergroups/applications/unrate/";
+
+    var data = {
+        "application_id": applicationID,
+        "usergroup_id": usergroupID,
+    }
+
+    $.post(url, data)
+        .done(function(data) {
+            var $application = $('.application[data-application-id="' + applicationID + '"]');
+            $application.find('button[data-score]').removeClass('secondary');
+        });
+}
+
+$(document).keydown(function(e) {
+    switch(e.which) {
+        case 48: // 0
+            e.preventDefault();
+            $("button.unrate-application").click();
+            break;
+
+        case 49: // 1
+        case 50: // 2
+        case 51: // 3
+        case 52: // 4
+        case 53: // 5
+            var score = e.which - 48;
+            e.preventDefault();
+            $("button.rate-application[data-score='" + score + "']").click();
+            break;
+
+        case 37: // left
+        case 75: // k
+            e.preventDefault();
+            follow_link($('#prev_application'));
+            break;
+
+        case 39: // right
+        case 74: // j
+            e.preventDefault();
+            follow_link($('#next_application'));
+            break;
+    }
+});
+
+$(document).ready(function () {
+    // TODO: add a usergroup chooser widget
+    var usergroupID = {{ request.user.usergroup_set.first.id }};
+
+    $("button.rate-application").click(function() {
+        var applicationID = $(this).data('application-id');
+        var score = $(this).data('score');
+
+        rateApplication(applicationID, usergroupID, score);
     });
 
-    $(document).keydown(function(e) {
-        console.log(e.which)
-        switch(e.which) {
-            case 37: // left
-            case 75: // k
-                e.preventDefault();
-                follow_link($('#prev_application'));
-                break;
+    $("button.unrate-application").click(function() {
+        var applicationID = $(this).data('application-id');
 
-            case 39: // right
-            case 74: // j
-                e.preventDefault();
-                follow_link($('#next_application'));
-                break;
-        }
+        unrateApplication(applicationID, usergroupID);
     });
 });
 </script>
@@ -77,7 +150,8 @@ $(document).ready(function () {
 
             <p>
                 <strong>Your vote:</strong><br />
-                {% include 'usergroups/partials/stars.html' with application_id=application.id rating=None %}
+                {% include 'usergroups/partials/stars.html' with application_id=application.id score=None %}
+                <p>Voting as {{ request.user.usergroup_set.first }}</p>
             </p>
 
 
