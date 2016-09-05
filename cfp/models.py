@@ -5,7 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
@@ -48,7 +48,7 @@ class CallForPaper(models.Model):
     def application_count(self):
         return self.paperapplication_set.count()
 
-    def is_open():
+    def is_open(self):
         now = tz.now()
         return self.begin_date < now < self.end_date
 
