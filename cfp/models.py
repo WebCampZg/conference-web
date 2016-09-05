@@ -48,9 +48,9 @@ class CallForPaper(models.Model):
     def application_count(self):
         return self.paperapplication_set.count()
 
-    def is_open(self):
-        now = tz.now()
-        return self.begin_date < now < self.end_date
+    @property
+    def duration(self):
+        return (self.end_date - self.begin_date) if self.end_date else None
 
 
 class Applicant(models.Model):
@@ -154,3 +154,4 @@ def update_talk_instance(sender, instance, created, **kwargs):
         instance.talk.save()
     except ObjectDoesNotExist:
         pass
+

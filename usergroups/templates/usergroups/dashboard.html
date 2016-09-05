@@ -29,7 +29,14 @@
                 </td>
                 <td>{{ cfp.application_count }}</td>
                 <td>
-                    <i class="fa fa-{{ cfp.is_open|yesno:"check,times" }}"></i>
+                    {{ cfp.begin_date }} - {{ cfp.end_date }}
+                    {% if cfp.duration %}
+                        ({{ cfp.duration.days }} days)
+                    {% endif %}
+                </td>
+                <td>
+                    <i class="fa fa-{{ cfp.is_active|yesno:"check,times" }}"></i>
+                </td>
             </tr>
             {% endfor %}
         </tbody>
