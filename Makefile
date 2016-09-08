@@ -91,3 +91,5 @@ db-restore:
 superuser:
 	@docker exec -it `docker-compose ps -q web` python manage.py createsuperuser
 
+sync-media:
+	rsync -rv webcamp:web/conference-web/project/media/uploads project/media/uploads

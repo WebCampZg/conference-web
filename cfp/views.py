@@ -1,6 +1,6 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.core.urlresolvers import reverse
-from django.http.response import HttpResponse, Http404
+from django.http.response import Http404, HttpResponseForbidden
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView
 
@@ -29,8 +29,6 @@ class PaperApplicationBaseView(SuccessMessageMixin, LoginRequiredMixin):
         return c
 
     def form_valid(self, form):
-        if not self.cfp.is_active():
-            return HttpResponse('CFP is not active anymore.', status=403)
         applicant = self._build_or_update_applicant(form)
         form.instance.applicant_id = applicant.pk
         form.instance.cfp_id = self.cfp.pk
@@ -70,7 +68,11 @@ class PaperApplicationBaseView(SuccessMessageMixin, LoginRequiredMixin):
 
 
 class PaperApplicationCreateView(PaperApplicationBaseView, CreateView):
-    pass
+    def dispatch(self, request, *args, **kwargs):
+        if not get_active_cfp().is_active():
+            return HttpResponseForbidden("Call for proposals is not active.")
+
+        return super(PaperApplicationCreateView, self).dispatch(request, *args, **kwargs)
 
 
 class PaperApplicationUpdateView(PaperApplicationBaseView, UpdateView):

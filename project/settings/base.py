@@ -283,10 +283,8 @@ ALLOW_TALK_UPDATES = True
 TICKET_HOLDER_GROUP_NAME = 'TicketHolders'
 VOTING_ENABLED = False
 
-# This is just to remove the entries from cfp/urls.py and
-# and to remove the button to add a new talk from the profile pages.
-# We still use cfp.is_active as a checking mechanism while submitting the form
-CFP_ENABLED = True
+# The currently active CFP, leave this even after the CFP has ended so that
+# the CFP description may be displayed with a note that it has ended
 ACTIVE_CFP_ID = 2
 
 # Allow tables and other stuff in markdown
@@ -301,6 +299,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
+                'ui.ctx.cfp',
                 'ui.ctx.sponsors',
                 'ui.ctx.talks',
                 'ui.ctx.webcamp',
@@ -316,7 +315,8 @@ TEMPLATES = [
             'loaders': [
                 'django.template.loaders.filesystem.Loader',
                 'django.template.loaders.app_directories.Loader',
-            ]
+            ],
+            'string_if_invalid': '<< MISSING VARIABLE "%s" >>' if DEBUG else '',
         },
     },
 ]
