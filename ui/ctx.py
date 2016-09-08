@@ -5,6 +5,7 @@ from sponsors.choices import SPONSOR_TYPES
 from sponsors.models import Sponsor
 from talks.models import Talk
 from usergroups.models import UserGroup
+from cfp.models import get_active_cfp
 
 
 def get_sponsors():
@@ -39,6 +40,7 @@ def sponsors(request):
 
     return ctx
 
+
 def usergroups(request):
     return {
         "usergroups": UserGroup.objects.order_by("name").filter(is_active=True)
@@ -47,13 +49,21 @@ def usergroups(request):
 
 def talks(request):
     ctx = {}
-    ctx['cfp_enabled'] = settings.CFP_ENABLED
     keynotes = {'keynotes': Talk.objects.filter(keynote=True).select_related('application__applicant')}
     talks = {'talks': Talk.objects.all().order_by('?').select_related('application__applicant')[:3]}
     ctx.update(talks)
     ctx.update(keynotes)
 
     return ctx
+
+
+def cfp(request):
+    cfp = get_active_cfp()
+
+    return {
+        'cfp_enabled': cfp and cfp.is_active()
+    }
+
 
 def webcamp(request):
     """Conference-related strings"""

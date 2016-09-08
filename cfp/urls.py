@@ -1,17 +1,10 @@
-import cfp
+from django.conf.urls import url
 
-from django.conf.urls import patterns, url
-from django.conf import settings
-
-from cfp.views import PaperApplicationCreateView, PaperApplicationUpdateView
+from cfp import views
 
 urlpatterns = [
-    url(r'^(?P<cfp_id>\d+)/new$', PaperApplicationCreateView.as_view(), name='application_create'),
-    url(r'^(?P<cfp_id>\d+)/application/(?P<pk>\d+)$', PaperApplicationUpdateView.as_view(), name='application_update'),
+    url(r'^(?P<cfp_id>\d+)/new$', views.PaperApplicationCreateView.as_view(), name='application_create'),
+    url(r'^(?P<cfp_id>\d+)/application/(?P<pk>\d+)$', views.PaperApplicationUpdateView.as_view(), name='application_update'),
+    url(r'^$', views.cfp_announcement, name='cfp_announcement'),
+    url(r'^new/$', views.PaperApplicationCreateView.as_view(), name='application_create'),
 ]
-
-if settings.CFP_ENABLED:
-    urlpatterns += [
-        url(r'^$', cfp.views.cfp_announcement, name='cfp_announcement'),
-        url(r'^new/$', PaperApplicationCreateView.as_view(), name='application_create'),
-    ]
