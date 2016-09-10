@@ -1,0 +1,44 @@
+{% extends "usergroups/base.html" %}
+
+{% block head %}
+    <style type="text/css">
+    </style>
+{% endblock head %}
+
+{% block content %}
+    <h3>Calls for proposal</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Submissions</th>
+                <th>Duration</th>
+                <th>Open?</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cfp in cfps %}
+            <tr>
+                <td>{{ cfp.id }}</td>
+                <td>
+                    <a href="{% url 'usergroups:call_for_papers' pk=cfp.id %}">
+                        {{ cfp.title }}
+                    </a>
+                </td>
+                <td>{{ cfp.application_count }}</td>
+                <td>
+                    {{ cfp.begin_date }} - {{ cfp.end_date }}
+                    {% if cfp.duration %}
+                        ({{ cfp.duration.days }} days)
+                    {% endif %}
+                </td>
+                <td>
+                    <i class="fa fa-{{ cfp.is_active|yesno:"check,times" }}"></i>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

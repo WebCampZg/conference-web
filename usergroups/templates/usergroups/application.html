@@ -1,0 +1,239 @@
+{% extends 'usergroups/base.html' %}
+
+{% load markdown_deux_tags %}
+
+{% block script %}
+<script type="text/javascript">
+
+function follow_link($link) {
+    var href = $link.prop('href');
+    if (href !== undefined) {
+        window.location = href;
+    }
+}
+
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (settings.type == 'POST' && !this.crossDomain) {
+            var csrfToken = getCookie('csrftoken');
+            xhr.setRequestHeader("X-CSRFToken", csrfToken);
+        }
+    }
+});
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookiesokie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+function rateApplication(applicationID, usergroupID, score) {
+    var url = "/usergroups/applications/rate/";
+
+    var data = {
+        "application_id": applicationID,
+        "usergroup_id": usergroupID,
+        "score": score,
+    }
+
+    $.post(url, data)
+        .done(function(data) {
+            var $application = $('.application[data-application-id="' + applicationID + '"]');
+            $application.find('button[data-score]').removeClass('secondary');
+            $application.find('button[data-score="' +  score +'"]').addClass('secondary')
+        });
+}
+
+function unrateApplication(applicationID, usergroupID) {
+    var url = "/usergroups/applications/unrate/";
+
+    var data = {
+        "application_id": applicationID,
+        "usergroup_id": usergroupID,
+    }
+
+    $.post(url, data)
+        .done(function(data) {
+            var $application = $('.application[data-application-id="' + applicationID + '"]');
+            $application.find('button[data-score]').removeClass('secondary');
+        });
+}
+
+$(document).keydown(function(e) {
+    switch(e.which) {
+        case 48: // 0
+            e.preventDefault();
+            $("button.unrate-application").click();
+            break;
+
+        case 49: // 1
+        case 50: // 2
+        case 51: // 3
+        case 52: // 4
+        case 53: // 5
+            var score = e.which - 48;
+            e.preventDefault();
+            $("button.rate-application[data-score='" + score + "']").click();
+            break;
+
+        case 37: // left
+        case 75: // k
+            e.preventDefault();
+            follow_link($('#prev_application'));
+            break;
+
+        case 39: // right
+        case 74: // j
+            e.preventDefault();
+            follow_link($('#next_application'));
+            break;
+    }
+});
+
+$(document).ready(function () {
+    // TODO: add a usergroup chooser widget
+    var usergroupID = {{ request.user.usergroup_set.first.id }};
+
+    $("button.rate-application").click(function() {
+        var applicationID = $(this).data('application-id');
+        var score = $(this).data('score');
+
+        rateApplication(applicationID, usergroupID, score);
+    });
+
+    $("button.unrate-application").click(function() {
+        var applicationID = $(this).data('application-id');
+
+        unrateApplication(applicationID, usergroupID);
+    });
+});
+</script>
+{% endblock %}
+
+{% block content %}
+    <ul class="breadcrumbs">
+        <li><a href="{% url 'usergroups:dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'usergroups:call_for_papers' pk=application.cfp.id %}">{{ application.cfp.title }}</a></li>
+        <li>{{ application.title }}</li>
+    </ul>
+    <div class="row medium-unstack">
+        <div class="columns application" data-application-id="{{ application.id }}">
+            <h3>{{ application.title }}</h3>
+
+            <p>
+                <span class="label">{{ application.duration }} min</span>
+                <span class="label">{{ application.skill_level }}</span>
+            </p>
+            <p>{{ application.about|markdown }}</p>
+
+            {% if application.about|length > 140 %}
+                <p class="callout alert">Short description too long ({{ application.about|length }} chars).</p>
+            {% endif %}
+
+            <h4>Abstract</h4>
+            {{ application.abstract|markdown }}
+
+            {% if application.extra_info %}
+                <h4>Extra info</h4>
+                {{ application.extra_info|markdown }}
+            {% endif %}
+
+            <p>
+                <strong>Your vote:</strong><br />
+                {% include 'usergroups/partials/stars.html' with application_id=application.id score=None %}
+                <p>Voting as {{ request.user.usergroup_set.first }}</p>
+            </p>
+
+
+            {% if false %}
+            <h4>Votes</h4>
+
+            <table class="table table-condensed" style="width: auto">
+                <thead>
+                    <tr>
+                        <th>Group</th>
+                        <th>Vote</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td>{{ user }}</td>
+                            <td{% if user == app.user.username %} class="current-user-vote"{% endif %}>todo</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>Average</td>
+                        <td>
+                            <span class="avg-score">todo</span>
+                            (<span class="votes">{{ votes }}</span> votes)
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            {% endif %}
+        </div>
+
+        {% with applicant=application.applicant %}
+        <div class="columns">
+            <h3>{{ applicant.user.full_name }}</h3>
+            <div class="row">
+                <div class="small-6 columns">
+                    <p>{{ applicant.about }}</p>
+                    <p>
+                        <a href="mailto:{{ applicant.email }}">{{ applicant.email }}</a>
+                        {% if applicant.twitter %}
+                            <br /><a target="_blank" href="https://twitter.com/{{ applicant.twitter }}">@{{ applicant.twitter }}</a>
+                        {% endif %}
+                        {% if applicant.github %}
+                            <br /><a target="_blank" href="https://github.com/{{ applicant.github }}">github.com/{{ applicant.github }}</a>
+                        {% endif %}
+                    </p>
+                </div>
+                <div class="small-6 columns">
+                    <img class="thumbnail" src="{{ applicant.image.url }}" />
+                </div>
+            </div>
+
+            <h4>Biography</h4>
+            {{ applicant.biography|markdown }}
+
+            <h4>Experience</h4>
+            <p>{{ applicant.speaker_experience|markdown }}</p>
+        </div>
+        {% endwith %}
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="columns">
+            {% if application.prev %}
+                <a href="{% url 'usergroups:application_detail' cfp_id=application.cfp_id pk=application.prev.pk %}" id="prev_application">
+                    &laquo;&nbsp;{{ application.prev.title }}</a>
+                {% endif %}
+        </div>
+        <div class="columns text-center">
+            {{ application.ordinal }} / {{ application.cfp.application_count }}
+        </div>
+        <div class="columns text-right">
+            {% if application.next %}
+                <a href="{% url 'usergroups:application_detail' cfp_id=application.cfp_id pk=application.next.pk %}" id="next_application">
+                    {{ application.next.title }}&nbsp;&raquo;
+                </a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

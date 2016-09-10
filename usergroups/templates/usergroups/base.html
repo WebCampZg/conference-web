@@ -1,0 +1,55 @@
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation-flex.min.css" integrity="sha256-ysU01HJ2jZTp1Ub4madABiODkiMk7oU8DL9/V0YfbXQ="crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" integrity="sha256-AIodEDkC8V/bHBkfyxzolUMw57jeQ9CauwhVW6YJ9CA="crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.foundation.min.css" integrity="sha256-jCcDwgt67K1BZG9pM18moqx+ftg/AV70PtqQudYSA7k="crossorigin="anonymous">
+    <style type="text/css">
+        .top-bar {
+            margin-bottom: 20px;
+        }
+        .breadcrumbs {
+            margin-bottom: 0;
+        }
+        .top-bar-left img {
+            background-color: white;
+            border: 1px solid gray;
+            padding: 4px 2px;
+            height: 30px;
+        }
+        .no-wrap {
+            white-space: nowrap;
+        }
+
+        tr.success td { background-color: #dff0d8; }
+    </style>
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <div class="row column">
+        <div class="top-bar">
+            <div class="top-bar-left">
+                <img alt="WebCamp <3" src="{% static "images/tiny-logo.png" %}" />
+                WebCamp Submissions
+            </div>
+            <div class="top-bar-right text-right">
+                {{ user.email }}
+            </div>
+        </div>
+
+        <div id="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.2.3/foundation.min.js" integrity="sha256-orE03LSc9KVys7WmCWaOa5LauIvfUpJeaiKbggQBB+8=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/jquery.dataTables.min.js" integrity="sha256-TX6POJQ2u5/aJmHTJ/XUL5vWCbuOw0AQdgUEzk4vYMc=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/js/dataTables.foundation.min.js" integrity="sha256-W/6IA4fKtHEYSjfWs60CEtvLg4eYXv076pfcyzSD+XA=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        $(document).foundation();
+    </script>
+    {% block script %}{% endblock %}
+</body>
+</html>
