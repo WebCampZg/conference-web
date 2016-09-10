@@ -121,11 +121,15 @@ class PaperApplication(Timestampable):
 
     exclude = models.BooleanField(default=False)
 
+    class Meta:
+        ordering = ['title', ]
+
     def __unicode__(self):
-        return u'{0} - {1} - {2}'.format(
-                self.applicant.user.get_full_name(),
+        return u'{} - {} - {} min (CFP #{})'.format(
                 self.title,
-                self.duration)
+                self.applicant,
+                self.duration,
+                self.cfp_id)
 
     @property
     def votes_count(self):
