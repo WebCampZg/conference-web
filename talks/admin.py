@@ -23,5 +23,18 @@ class TalkAdmin(admin.ModelAdmin):
 
     actions = [mark_as_sponsored, mark_as_community_chosen]
 
+    def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
+        field = super(TalkAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
+
+        if db_field.name == "application":
+            field.queryset = (field.queryset
+                    .prefetch_related('applicant')
+                    .prefetch_related('applicant__user'))
+
+        if db_field.name == "co_presenter":
+            field.queryset = field.queryset.prefetch_related('user')
+
+        return field
+
 admin.site.register(Talk, TalkAdmin)
 
