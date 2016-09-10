@@ -25,12 +25,15 @@
                 <h1 class="Talk-title">
                     {{ talk.title }}
                 </h1>
+
                 <div class="Talk-flags">
                     {% include "talks/partials/flags.html" %}
                 </div>
+
                 <div class="Talk-excerpt">
                     {{ talk.about }}
                 </div>
+
                 <div class="Talk-body">
                     <div class="Passage">
                         {{ talk.abstract|markdown }}
@@ -42,10 +45,21 @@
                         {% endif %}
                     </div>
                 </div>
+
                 <div class="Talk-level">
                     Skill level: <b>{{ talk.skill_level }}</b><br />
                     Duration: <b>{{ talk.duration }} min</b>
                 </div>
+
+                {% if talk.sponsor %}
+                <div class="Talk-sponsor">
+                    <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=talk.sponsor.slug %}">
+                        <img src="{{MEDIA_URL}}{{ talk.sponsor.image }}" alt="{{ talk.sponsor.name }}" class="Sponsors-logo" />
+                    </a>
+                    <p>This talk is sponsored by {{ talk.sponsor.name }}.</p>
+                </div>
+                {% endif %}
+
                 {% if talk.youtube_id %}
                 <div class="Talk-video">
                     <div class="FlexEmbed">

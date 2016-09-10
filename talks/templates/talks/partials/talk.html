@@ -28,11 +28,11 @@
                     {{ talk.title }}
                 </a>
             </h3>
-            <div class="QuickTalk-flags">
-                {% include "talks/partials/flags.html" %}
-            </div>
             <div class="QuickTalk-body">
                 {{ talk.about }}
+            </div>
+            <div class="QuickTalk-flags">
+                {% include "talks/partials/flags.html" %}
             </div>
             <div class="QuickTalk-level">
                 Skill level: <em>{{ talk.skill_level }}</em><br />
