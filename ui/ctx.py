@@ -1,11 +1,12 @@
 from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.staticfiles.templatetags.staticfiles import static
+
+from cfp.models import get_active_cfp
 from sponsors.choices import SPONSOR_TYPES
 from sponsors.models import Sponsor
 from talks.models import Talk
 from usergroups.models import UserGroup
-from cfp.models import get_active_cfp
 
 
 def get_sponsors():
@@ -34,11 +35,9 @@ def get_sponsors():
 
 
 def sponsors(request):
-    ctx = {}
-    sponsors = get_sponsors()
-    ctx.update(sponsors)
-
-    return ctx
+    return {
+        "sponsors": get_sponsors()
+    }
 
 
 def usergroups(request):
@@ -48,13 +47,11 @@ def usergroups(request):
 
 
 def talks(request):
-    ctx = {}
-    keynotes = {'keynotes': Talk.objects.filter(keynote=True).select_related('application__applicant')}
-    talks = {'talks': Talk.objects.all().order_by('?').select_related('application__applicant')[:3]}
-    ctx.update(talks)
-    ctx.update(keynotes)
+    keynotes = Talk.objects.filter(keynote=True).select_related('application__applicant')
 
-    return ctx
+    return {
+        "keynotes": keynotes
+    }
 
 
 def cfp(request):

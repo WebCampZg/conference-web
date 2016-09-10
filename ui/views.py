@@ -1,15 +1,17 @@
 from django.shortcuts import render
 
 from blog.models import Post
+from talks.models import Talk
 
 
 def index(request):
     posts = Post.objects.all()[:3]
+    talks = Talk.objects.filter(keynote=False).order_by('?')[:3]
 
-    ctx = {}
-    ctx['posts'] = posts
-
-    return render(request, 'ui/index.html', ctx)
+    return render(request, 'ui/index.html', {
+        "posts": posts,
+        "talks": talks,
+    })
 
 
 def voting(request):
