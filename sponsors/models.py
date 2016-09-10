@@ -5,6 +5,11 @@ from tinymce.models import HTMLField
 from utils.behaviors import Permalinkable
 from .choices import SPONSOR_TYPES
 
+class SponsorManager(models.Manager):
+
+    def active(self):
+        return self.get_queryset().filter(is_active=True)
+
 
 class Sponsor(Permalinkable):
     name = models.CharField(max_length=255, unique=True)
@@ -20,3 +25,4 @@ class Sponsor(Permalinkable):
     def __unicode__(self):
         return self.name
 
+    objects = SponsorManager()
