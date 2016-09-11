@@ -27,9 +27,9 @@ class Command(BaseCommand):
             txt = txt_template.render(context)
             html = html_template.render(context)
             msg = EmailMultiAlternatives(
-                'Community voting opened',
+                'Community voting open',
                 txt,
-                'info@webcampzg.org',
+                'WebCamp Zagreb <info@webcampzg.org>',
                 [vote_token.user.email],
             )
 
