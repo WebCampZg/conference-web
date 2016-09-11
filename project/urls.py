@@ -27,9 +27,9 @@ urlpatterns = [
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
         name='django.contrib.sitemaps.views.sitemap'),
     # url(r'^schedule/', include('schedule.urls')),
-    # url(r'^talks/', include('talks.urls')),
+    url(r'^talks/', include('talks.urls')),
     # url(r'^voting/$', 'ui.views.voting', name='voting'),
-    # url(r'^voting/', include('voting.urls')),
+    url(r'^voting/', include('voting.urls')),
     url('^markdown/', include( 'django_markdown.urls')),
 ]
 
