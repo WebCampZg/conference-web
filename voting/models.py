@@ -11,6 +11,7 @@ class Vote(models.Model):
         unique_together = (("user", 'application'),)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     application = models.ForeignKey(PaperApplication, related_name='votes')
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 class VoteToken(models.Model):
