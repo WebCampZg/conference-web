@@ -1,0 +1,20 @@
+<html>
+    <head>
+    </head>
+    <body>
+    <p>
+        Dear {{ token.user.first_name }},
+    </p>
+    <p>
+        it's time to exercise your right and influence WebCamp Zagreb once again.
+        Vote for talks you want to hear this year and add them to the official WebCamp Zagreb 2016 conference schedule.
+    </p>
+    <p>
+        You can vote for talks on the following URL {{ token.absolute_vote_url }}
+    </p>
+    <p>
+        Sincerely,<br>
+        WebCamp Zagreb team
+    </p>
+</body>
+</html>

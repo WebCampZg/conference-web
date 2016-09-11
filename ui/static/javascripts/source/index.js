@@ -6,3 +6,4 @@ require('./components/highlights-nav').init();
 require('./components/track-outbound-links').init();
 require('./components/job').init();
 require('./components/schedule-nav').init();
+require('./components/vote-talk').init();

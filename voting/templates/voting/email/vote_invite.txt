@@ -1,0 +1,8 @@
+Dear {{ token.user.first_name }},
+
+it's time to exercise your right and influence WebCamp Zagreb once again. Vote for talks you want to hear this year and add them to the official WebCamp Zagreb 2016 conference schedule.
+
+You can vote for talks on the following URL {{ token.absolute_vote_url }}
+
+Sincerely,
+WebCamp Zagreb team
