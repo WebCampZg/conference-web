@@ -1,0 +1,3 @@
+{{ token.user.first_name }}, time for voting is upon us.
+
+You can vote for talks on the following url {{ token.absolute_vote_url }}
