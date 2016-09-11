@@ -31,9 +31,10 @@ def voting(request, vote_token=None):
 
     already_picked = [t.application_id for t in Talk.objects.all()]
     applications = PaperApplication.objects.filter(
-        duration=TALK_DURATIONS.MIN_25).exclude(
-        id__in=already_picked
-    ).exclude(exclude=True).order_by('title')
+        cfp_id=settings.ACTIVE_CFP_ID, duration=TALK_DURATIONS.MIN_25
+    ).exclude(
+        id__in=already_picked, exclude=True
+    ).order_by('title')
 
     if request.user.is_authenticated() and request.user.is_ticket_holder():
         # Include boolean attribute to check if the user alerady voted for this talk
