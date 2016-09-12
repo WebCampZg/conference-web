@@ -35,11 +35,13 @@
         }
     }
 
-    &-sponsor {
+    &-sponsor,
+    &-usergroup {
         margin-top:1em;
         color:tint($color-base, 40%);
         img {
             max-width: 10rem;
+            max-height: 5rem;
         }
     }
 
