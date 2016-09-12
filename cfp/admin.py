@@ -21,6 +21,7 @@ class ApplicantAdmin(admin.ModelAdmin):
 class PaperApplicationAdmin(admin.ModelAdmin):
     list_display = ('title', 'link_to_applicant', 'about', 'abstract', 'skill_level',
             'duration', 'exclude', 'accomodation_required', 'extra_info', 'votes_count')
+    list_filter = ('cfp', 'exclude', 'duration')
     fields = ('cfp', 'applicant', 'title', 'about', 'abstract', 'skill_level',
             'duration', 'extra_info', 'accomodation_required')
     actions = [mark_as_excluded]
