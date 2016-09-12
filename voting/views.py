@@ -7,7 +7,7 @@ from cfp.models import PaperApplication
 from cfp.choices import TALK_DURATIONS
 from talks.models import Talk
 from django.db import IntegrityError
-from django.http import JsonResponse, Http404, HttpResponseForbidden
+from django.http import JsonResponse, Http404
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 
@@ -28,9 +28,6 @@ def voting(request, vote_token=None):
 
     if vote_token:
         authenticate_by_vote_token(request, vote_token)
-
-    if not request.user.is_ticket_holder():
-        return HttpResponseForbidden("You need to be a ticket holder to participate in user voting.")
 
     already_picked = [t.application_id for t in Talk.objects.all()]
     applications = PaperApplication.objects.filter(
