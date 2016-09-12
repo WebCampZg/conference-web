@@ -30,13 +30,16 @@ def voting(request, vote_token=None):
         authenticate_by_vote_token(request, vote_token)
 
     already_picked = [t.application_id for t in Talk.objects.all()]
-    applications = PaperApplication.objects.filter(
-        cfp_id=settings.ACTIVE_CFP_ID, duration=TALK_DURATIONS.MIN_25
-    ).exclude(
-        id__in=already_picked, exclude=True
-    ).order_by('title')
 
-    if request.user.is_authenticated() and request.user.is_ticket_holder():
+    applications = (PaperApplication.objects
+        .filter(cfp_id=settings.ACTIVE_CFP_ID, duration=TALK_DURATIONS.MIN_25)
+        .exclude(id__in=already_picked, exclude=True)
+        .prefetch_related('applicant', 'applicant__user', 'applicant__user__groups')
+        .order_by('title'))
+
+    is_ticket_holder = request.user.is_authenticated() and request.user.is_ticket_holder()
+
+    if is_ticket_holder:
         # Include boolean attribute to check if the user alerady voted for this talk
         votes = Vote.objects.filter(user=request.user,
                                     application_id__in=[x.pk for x in applications])\
@@ -49,7 +52,8 @@ def voting(request, vote_token=None):
 
     return render(request, 'voting/voting.html', {
         'applications': applications,
-        'voting_enabled': settings.VOTING_ENABLED
+        'voting_enabled': settings.VOTING_ENABLED,
+        'is_ticket_holder': is_ticket_holder,
     })
 
 
