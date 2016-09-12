@@ -62,9 +62,7 @@
 
                 {% if talk.usergroup %}
                 <div class="Talk-usergroup">
-                    <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=talk.usergroup.slug %}">
-                        <img src="{{MEDIA_URL}}{{ talk.usergroup.image }}" alt="{{ talk.usergroup.name }}" class="Sponsors-logo" />
-                    </a>
+                    <img src="{{ MEDIA_URL }}{{ talk.usergroup.image }}" alt="{{ talk.usergroup.name }}" class="Sponsors-logo" />
                     <p>This talk was chosen by <strong>{{ talk.usergroup.name }}</strong> user group.</p>
                 </div>
                 {% endif %}
