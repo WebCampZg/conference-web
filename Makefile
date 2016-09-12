@@ -93,3 +93,10 @@ superuser:
 
 sync-media:
 	rsync -rv webcamp:web/conference-web/project/media/uploads project/media/uploads
+
+css:
+	node_modules/.bin/grunt css
+
+js:
+	node_modules/.bin/grunt js
+
