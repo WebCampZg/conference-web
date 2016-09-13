@@ -148,6 +148,10 @@ class PaperApplication(Timestampable):
         """The ordinal number of the application within it's CFP"""
         return PaperApplication.objects.filter(cfp=self.cfp, id__lt=self.id).count() + 1
 
+    @property
+    def has_talk(self):
+        return hasattr(self, "talk")
+
 
 @receiver(post_save, sender=PaperApplication)
 def update_talk_instance(sender, instance, created, **kwargs):

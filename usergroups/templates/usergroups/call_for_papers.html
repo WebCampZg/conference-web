@@ -26,12 +26,12 @@
                 <th>Title</th>
                 <th>Duration</th>
                 <th>Level</th>
-                <th>Voting</th>
+                <th>Selected</th>
             </tr>
         </thead>
         <tbody>
             {% for application in applications %}
-                <tr {% if application.talk %}class="success"{% endif %} data-application-id="{{ application.id }}">
+                <tr {% if application.has_talk %}class="success"{% endif %} data-application-id="{{ application.id }}">
                     <td>{{ forloop.counter }}</td>
                     <td class="no-wrap">{{ application.created_at|date:"Y-m-d H:i" }}</td>
                     <td>{{ application.applicant }}</td>
@@ -41,10 +41,8 @@
                     <td>{{ application.duration }} min</td>
                     <td>{{ application.skill_level }}</td>
                     <td class="voting">
-                        {% if application.talk %}
+                        {% if application.has_talk %}
                             <i class="fa fa-check"></i> Selected
-                        {% else %}
-                            {% include "usergroups/partials/stars.html" with application_id=application.id rating=None %}
                         {% endif %}
                     </td>
                 </tr>
