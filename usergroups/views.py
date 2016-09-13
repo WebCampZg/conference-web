@@ -15,8 +15,8 @@ class AuthMixin(UserPassesTestMixin):
         if not self.request.user.is_authenticated():
             return False
 
-        # if not self.request.user.usergroup_set.exists():
-        #     raise PermissionDenied("Must be a user group representative")
+        if not self.request.user.is_admin():
+            return False
 
         return True
 
