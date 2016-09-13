@@ -1,5 +1,4 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
-from django.core.exceptions import PermissionDenied
 from django.core.exceptions import ValidationError
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
@@ -10,18 +9,19 @@ from cfp.models import CallForPaper, PaperApplication
 from .models import UserGroup, Vote
 
 
-class AuthMixin(UserPassesTestMixin):
+class ViewAuthMixin(UserPassesTestMixin):
     def test_func(self):
-        if not self.request.user.is_authenticated():
-            return False
-
-        if not self.request.user.is_admin():
-            return False
-
-        return True
+        user = self.request.user
+        return user.is_authenticated() and user.is_superuser
 
 
-class DashboardView(AuthMixin, TemplateView):
+class VoteAuthMixin(UserPassesTestMixin):
+    def test_func(self):
+        user = self.request.user
+        return user.is_authenticated() and user.usergroup_set.count() > 0
+
+
+class DashboardView(ViewAuthMixin, TemplateView):
     template_name = 'usergroups/dashboard.html'
 
     def get_context_data(self, **kwargs):
@@ -30,7 +30,7 @@ class DashboardView(AuthMixin, TemplateView):
         return ctx
 
 
-class CallForPapersView(AuthMixin, DetailView):
+class CallForPapersView(ViewAuthMixin, DetailView):
     model = CallForPaper
     template_name = 'usergroups/call_for_papers.html'
 
@@ -44,13 +44,13 @@ class CallForPapersView(AuthMixin, DetailView):
         return ctx
 
 
-class ApplicationDetailView(AuthMixin, DetailView):
+class ApplicationDetailView(ViewAuthMixin, DetailView):
     model = PaperApplication
     template_name = 'usergroups/application.html'
     context_object_name = 'application'
 
 
-class ApplicationRateView(AuthMixin, View):
+class ApplicationRateView(VoteAuthMixin, View):
 
     def post(self, request, *args, **kwargs):
         application_id = int(request.POST.get('application_id'))
@@ -83,7 +83,7 @@ class ApplicationRateView(AuthMixin, View):
         return HttpResponse("You have voted successfully.")
 
 
-class ApplicationUnrateView(AuthMixin, View):
+class ApplicationUnrateView(VoteAuthMixin, View):
 
     def post(self, request, *args, **kwargs):
         application_id = int(request.POST.get('application_id'))
