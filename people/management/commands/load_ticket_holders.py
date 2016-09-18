@@ -62,3 +62,6 @@ class Command(NoArgsCommand):
                     'user': u,
                 }
             )
+
+            if created:
+                print("Created voting token for %r" % token.user)
