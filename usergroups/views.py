@@ -1,13 +1,14 @@
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.core.exceptions import ValidationError
+from django.db.models.aggregates import Count
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.views.generic import View, DetailView, TemplateView
 
+
 from cfp.models import CallForPaper, PaperApplication
-
-from .models import UserGroup, Vote
-
+from usergroups.models import UserGroup, Vote
+from voting.models import Vote as CommunityVote
 
 class ViewAuthMixin(UserPassesTestMixin):
     def test_func(self):
@@ -95,3 +96,20 @@ class ApplicationUnrateView(VoteAuthMixin, View):
         Vote.objects.filter(user=request.user, usergroup=usergroup, application=application).delete()
 
         return HttpResponse("You have unvoted successfully.")
+
+
+class CommunityVoteView(ViewAuthMixin, TemplateView):
+    template_name = 'usergroups/community-vote.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(CommunityVoteView, self).get_context_data(**kwargs)
+
+        ctx['vote_count'] = CommunityVote.objects.count()
+
+        applications = (PaperApplication.objects
+            .filter(exclude=False)
+            .prefetch_related('votes', 'applicant', 'applicant__user', 'skill_level'))
+
+        ctx['applications'] = sorted(applications, key=lambda x: x.votes_count, reverse=True)
+
+        return ctx

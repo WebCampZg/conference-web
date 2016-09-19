@@ -1,0 +1,62 @@
+{% extends "usergroups/base.html" %}
+
+{% block head %}
+    <style type="text/css">
+        #applications-table { font-size: smaller }
+        button.rate-application,
+        button.unrate-application { margin-bottom: 0; }
+        tr.selected { background-color: green; }
+        td.voting { white-space: nowrap; }
+    </style>
+{% endblock head %}
+
+{% block content %}
+<ul class="breadcrumbs">
+    <li><a href="{% url 'usergroups:dashboard' %}">Dashboard</a></li>
+    <li>Community vote</li>
+</ul>
+
+<h1>Community vote results</h1>
+
+<p>Total votes cast: {{ vote_count }}</p>
+
+<table id="votes-table" class="table hover">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Speaker</th>
+            <th>Level</th>
+            <th>Votes</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for application in applications %}
+            <tr>
+                <td>{{ application.id }}</td>
+                <td>
+                    <a href="{% url 'usergroups:application_detail' cfp_id=application.cfp_id pk=application.id %}">{{ application.title }}</a>
+                </td>
+                <td>{{ application.applicant }}</td>
+                <td>{{ application.skill_level }}</td>
+                <td>
+                    <a data-open="application-{{ application.id }}">
+                        {{ application.votes_count }}
+                    </a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% for application in applications %}
+<div class="reveal" id="application-{{ application.id }}" data-reveal>
+    <ul>
+        {% for vote in application.votes.all %}
+            <li>{{ vote.user.full_name }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endfor %}
+
+{% endblock %}
