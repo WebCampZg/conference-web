@@ -25,6 +25,10 @@
                     <h1>Welcome to the community vote</h1>
 
                     <p>Here are the 30 top talks which were not chosen during our call for papers. Feel free to vote for as many or as few talks as you wish. The top 3 highest rated talks will appear on this years lineup.</p>
+
+                    {% if not user.is_authenticated or not is_ticket_holder %}
+                    <p style="margin-top: 1rem;">You need to be <a href="{% url 'account_login' %}?next={% url 'voting_index' %}">logged in</a> and <a href="/tickets/">a ticket holder</a> to vote.</p>
+                    {% endif %}
                 </li>
                 {% for application in applications %}
                 <li class="Listing-item">
