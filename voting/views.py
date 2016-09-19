@@ -33,7 +33,8 @@ def voting(request, vote_token=None):
 
     applications = (PaperApplication.objects
         .filter(cfp_id=settings.ACTIVE_CFP_ID, duration=TALK_DURATIONS.MIN_25)
-        .exclude(id__in=already_picked, exclude=True)
+        .exclude(exclude=True)
+        .exclude(id__in=already_picked)
         .prefetch_related('applicant', 'applicant__user', 'applicant__user__groups')
         .order_by('title'))
 
