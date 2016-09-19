@@ -21,6 +21,11 @@
         <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
             {% if voting_enabled %}
             <ul class="Listing-list">
+                <li class="Listing-item">
+                    <h1>Welcome to the community vote</h1>
+
+                    <p>Here are the 30 top talks which were not chosen during our call for papers. Feel free to vote for as many or as few talks as you wish. The top 3 highest rated talks will appear on this years lineup.</p>
+                </li>
                 {% for application in applications %}
                 <li class="Listing-item">
                     <article class="VoteTalk">
