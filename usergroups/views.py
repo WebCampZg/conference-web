@@ -8,7 +8,7 @@ from django.views.generic import View, DetailView, TemplateView
 
 from cfp.models import CallForPaper, PaperApplication
 from usergroups.models import UserGroup, Vote
-from voting.models import Vote as CommunityVote
+from voting.models import Vote as CommunityVote, VoteToken
 
 class ViewAuthMixin(UserPassesTestMixin):
     def test_func(self):
@@ -105,6 +105,8 @@ class CommunityVoteView(ViewAuthMixin, TemplateView):
         ctx = super(CommunityVoteView, self).get_context_data(**kwargs)
 
         ctx['vote_count'] = CommunityVote.objects.count()
+        ctx['participants_voted'] = CommunityVote.objects.values('user').distinct().count()
+        ctx['participants_total'] = VoteToken.objects.count()
 
         applications = (PaperApplication.objects
             .filter(exclude=False)
