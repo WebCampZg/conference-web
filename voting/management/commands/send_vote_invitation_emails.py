@@ -36,5 +36,7 @@ class Command(BaseCommand):
             msg.attach_alternative(html, "text/html")
             msg.send()
 
+            print "Voting email sent to %r" % vote_token.user.email
+
             vote_token.token_sent = datetime.datetime.now()
             vote_token.save()
