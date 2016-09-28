@@ -74,17 +74,18 @@ INSTALLED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
 
-    'conferences',
-    'people',
-    'cfp',
     'blog',
-    'sponsors',
+    'cfp',
+    'conferences',
+    'dashboard',
     'jobs',
-    'talks',
-    'voting',
-    'schedule',
     'pages',
+    'people',
+    'schedule',
+    'sponsors',
+    'talks',
     'usergroups',
+    'voting',
 )
 
 

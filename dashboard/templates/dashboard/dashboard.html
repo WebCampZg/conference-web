@@ -1,4 +1,4 @@
-{% extends "usergroups/base.html" %}
+{% extends "dashboard/base.html" %}
 
 {% block head %}
     <style type="text/css">
@@ -23,7 +23,7 @@
             <tr>
                 <td>{{ cfp.id }}</td>
                 <td>
-                    <a href="{% url 'usergroups:call_for_papers' pk=cfp.id %}">
+                    <a href="{% url 'dashboard:call_for_papers' pk=cfp.id %}">
                         {{ cfp.title }}
                     </a>
                 </td>

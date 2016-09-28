@@ -1,4 +1,4 @@
-{% extends "usergroups/base.html" %}
+{% extends "dashboard/base.html" %}
 
 {% block head %}
     <style type="text/css">
@@ -12,7 +12,7 @@
 
 {% block content %}
 <ul class="breadcrumbs">
-    <li><a href="{% url 'usergroups:dashboard' %}">Dashboard</a></li>
+    <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
     <li>Community vote</li>
 </ul>
 
@@ -38,7 +38,7 @@
             <tr>
                 <td>{{ application.id }}</td>
                 <td>
-                    <a href="{% url 'usergroups:application_detail' cfp_id=application.cfp_id pk=application.id %}">{{ application.title }}</a>
+                    <a href="{% url 'dashboard:application_detail' cfp_id=application.cfp_id pk=application.id %}">{{ application.title }}</a>
                 </td>
                 <td>{{ application.applicant }}</td>
                 <td>{{ application.skill_level }}</td>

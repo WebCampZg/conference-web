@@ -5,7 +5,6 @@ from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.views.generic import View, DetailView, TemplateView
 
-
 from cfp.models import CallForPaper, PaperApplication
 from usergroups.models import UserGroup, Vote
 from voting.models import Vote as CommunityVote, VoteToken
@@ -23,7 +22,7 @@ class VoteAuthMixin(UserPassesTestMixin):
 
 
 class DashboardView(ViewAuthMixin, TemplateView):
-    template_name = 'usergroups/dashboard.html'
+    template_name = 'dashboard/dashboard.html'
 
     def get_context_data(self, **kwargs):
         ctx = super(DashboardView, self).get_context_data(**kwargs)
@@ -33,7 +32,7 @@ class DashboardView(ViewAuthMixin, TemplateView):
 
 class CallForPapersView(ViewAuthMixin, DetailView):
     model = CallForPaper
-    template_name = 'usergroups/call_for_papers.html'
+    template_name = 'dashboard/call_for_papers.html'
 
     def get_context_data(self, **kwargs):
         ctx = super(CallForPapersView, self).get_context_data(**kwargs)
@@ -47,7 +46,7 @@ class CallForPapersView(ViewAuthMixin, DetailView):
 
 class ApplicationDetailView(ViewAuthMixin, DetailView):
     model = PaperApplication
-    template_name = 'usergroups/application.html'
+    template_name = 'dashboard/application.html'
     context_object_name = 'application'
 
 
@@ -99,7 +98,7 @@ class ApplicationUnrateView(VoteAuthMixin, View):
 
 
 class CommunityVoteView(ViewAuthMixin, TemplateView):
-    template_name = 'usergroups/community-vote.html'
+    template_name = 'dashboard/community-vote.html'
 
     def get_context_data(self, **kwargs):
         ctx = super(CommunityVoteView, self).get_context_data(**kwargs)

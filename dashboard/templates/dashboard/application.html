@@ -1,4 +1,4 @@
-{% extends 'usergroups/base.html' %}
+{% extends 'dashboard/base.html' %}
 
 {% load markdown_deux_tags %}
 
@@ -38,7 +38,7 @@ function getCookie(name) {
 }
 
 function rateApplication(applicationID, usergroupID, score) {
-    var url = "/usergroups/applications/rate/";
+    var url = "/dashboard/applications/rate/";
 
     var data = {
         "application_id": applicationID,
@@ -55,7 +55,7 @@ function rateApplication(applicationID, usergroupID, score) {
 }
 
 function unrateApplication(applicationID, usergroupID) {
-    var url = "/usergroups/applications/unrate/";
+    var url = "/dashboard/applications/unrate/";
 
     var data = {
         "application_id": applicationID,
@@ -122,8 +122,8 @@ $(document).ready(function () {
 
 {% block content %}
     <ul class="breadcrumbs">
-        <li><a href="{% url 'usergroups:dashboard' %}">Dashboard</a></li>
-        <li><a href="{% url 'usergroups:call_for_papers' pk=application.cfp.id %}">{{ application.cfp.title }}</a></li>
+        <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'dashboard:call_for_papers' pk=application.cfp.id %}">{{ application.cfp.title }}</a></li>
         <li>{{ application.title }}</li>
     </ul>
     <div class="row medium-unstack">
@@ -150,7 +150,7 @@ $(document).ready(function () {
 
             <p>
                 <strong>Your vote:</strong><br />
-                {% include 'usergroups/partials/stars.html' with application_id=application.id score=None %}
+                {% include 'dashboard/partials/stars.html' with application_id=application.id score=None %}
                 <p>Voting as {{ request.user.usergroup_set.first }}</p>
             </p>
 
@@ -221,7 +221,7 @@ $(document).ready(function () {
     <div class="row">
         <div class="columns">
             {% if application.prev %}
-                <a href="{% url 'usergroups:application_detail' cfp_id=application.cfp_id pk=application.prev.pk %}" id="prev_application">
+                <a href="{% url 'dashboard:application_detail' cfp_id=application.cfp_id pk=application.prev.pk %}" id="prev_application">
                     &laquo;&nbsp;{{ application.prev.title }}</a>
                 {% endif %}
         </div>
@@ -230,7 +230,7 @@ $(document).ready(function () {
         </div>
         <div class="columns text-right">
             {% if application.next %}
-                <a href="{% url 'usergroups:application_detail' cfp_id=application.cfp_id pk=application.next.pk %}" id="next_application">
+                <a href="{% url 'dashboard:application_detail' cfp_id=application.cfp_id pk=application.next.pk %}" id="next_application">
                     {{ application.next.title }}&nbsp;&raquo;
                 </a>
             {% endif %}
