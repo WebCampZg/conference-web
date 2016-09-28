@@ -76,6 +76,7 @@ INSTALLED_APPS = (
     'allauth.account',
     'allauth.socialaccount',
 
+    'conferences',
     'people',
     'cfp',
     'blog',
