@@ -20,7 +20,6 @@ urlpatterns = [
     url(r'^sponsors/', include('sponsors.urls')),
     url(r'^cfp/', include('cfp.urls')),
     url(r'^admin/filebrowser/', include(site.urls)),
-    url(r'^grappelli/', include('grappelli.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^accounts/profile/', UserProfileView.as_view(), name='user_profile'),
