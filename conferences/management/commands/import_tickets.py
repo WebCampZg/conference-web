@@ -8,6 +8,7 @@ from conferences.models import Conference, Ticket
 from datetime import datetime
 from json import loads
 from urllib2 import urlopen, URLError
+from people.models import User
 
 class Command(BaseCommand):
     help = "Loads tickets from Entrio"
@@ -43,25 +44,26 @@ class Command(BaseCommand):
 
         twitter = item.get('Twitter').replace("@", "").replace("https://twitter.com/", "")
 
+        email = item.get('E-mail')
+        user = User.objects.filter(email=email).first() if email else None
+
         parsed = {
             "conference_id": conference_id,
             "code": item.get('ticket_code'),
-            "email": item.get('E-mail'),
+            "email": email,
+            "user": user,
             "first_name": item.get('First name'),
             "last_name": item.get('Last name'),
             "country": item.get('Country'),
             "twitter": twitter,
             "company": item.get('Company'),
             "category": item.get('ticket_category'),
-            "promo_code": item.get('promo_discount_group'),
+            "promo_code": item.get('promo_discount_group') or "",
             "purchased_at": purchased_at,
             "dietary_preferences": item.get('Dietary preferences'),
         }
 
-        # Convert None values to empty strings
-        sanitized = {k: v if v is not None else '' for k, v in parsed.items()}
-
-        return Ticket(**sanitized)
+        return Ticket(**parsed)
 
     def validate_options(self, conference_id, source_url):
         try:
