@@ -3,6 +3,9 @@ from __future__ import unicode_literals
 from django.db import models
 from django.db.models.deletion import CASCADE
 
+from people.models import User
+
+
 class Conference(models.Model):
     title = models.CharField(max_length=1024)
     tagline = models.TextField(blank=True)
@@ -12,9 +15,11 @@ class Conference(models.Model):
     def __unicode__(self):
         return self.title
 
+
 class Ticket(models.Model):
     """Ticket data imported from Entrio"""
     conference = models.ForeignKey(Conference, CASCADE)
+    user = models.ForeignKey(User, CASCADE, blank=True, null=True, related_name='tickets')
     category = models.CharField(max_length=1024)
     code = models.CharField(max_length=1024)
     first_name = models.CharField(max_length=1024)
