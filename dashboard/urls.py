@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^applications/(?P<pk>\d+)/$', views.CallForPapersView.as_view(), name='call_for_papers'),
     url(r'^applications/(?P<cfp_id>\d+)/(?P<pk>\d+)/$', views.ApplicationDetailView.as_view(), name='application_detail'),
     url(r'^community-vote/$', views.CommunityVoteView.as_view(), name='community-vote'),
+    url(r'^tickets/$', views.ConferenceTicketsView.as_view(), name='conference-tickets'),
 
     # Ajax views
     url(r'^applications/rate/$', views.ApplicationRateView.as_view(), name='application_rate'),

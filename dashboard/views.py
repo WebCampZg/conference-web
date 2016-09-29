@@ -3,9 +3,10 @@ from django.core.exceptions import ValidationError
 from django.db.models.aggregates import Count
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
-from django.views.generic import View, DetailView, TemplateView
+from django.views.generic import View, DetailView, TemplateView, ListView
 
 from cfp.models import CallForPaper, PaperApplication
+from conferences.models import Conference, Ticket
 from usergroups.models import UserGroup, Vote
 from voting.models import Vote as CommunityVote, VoteToken
 
@@ -112,5 +113,30 @@ class CommunityVoteView(ViewAuthMixin, TemplateView):
             .prefetch_related('votes', 'applicant', 'applicant__user', 'skill_level'))
 
         ctx['applications'] = sorted(applications, key=lambda x: x.votes_count, reverse=True)
+
+        return ctx
+
+
+from collections import Counter
+
+class ConferenceTicketsView(ViewAuthMixin, ListView):
+    model = Ticket
+    template_name = 'dashboard/conference-tickets.html'
+    context_object_name = 'tickets'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ConferenceTicketsView, self).get_context_data(**kwargs)
+
+        tickets = self.object_list
+
+        countries = Counter([t.country for t in tickets]).most_common()
+        countries_max = sum([c[1] for c in countries])
+        countries = [(x[0], x[1], float(100 * x[1]) / countries_max) for x in countries]
+
+        categories = Counter([t.category for t in tickets]).most_common()
+
+        ctx['countries'] = countries
+        ctx['countries_max'] = countries_max
+        ctx['categories'] = categories
 
         return ctx

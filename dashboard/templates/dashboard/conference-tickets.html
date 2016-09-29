@@ -1,0 +1,52 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<ul class="breadcrumbs">
+    <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
+    <li>Tickets</li>
+</ul>
+
+<h1>Tickets</h1>
+
+
+
+<div class="row">
+    <div class="columns">
+        <h3>Countries</h3>
+
+        {% for country, count, width in countries %}
+        <div class="row">
+            <div class="shrink columns">
+                <div class="label" style="width: 2.3rem">{{ country }}</div>
+            </div>
+            <div class="columns">
+                <div style="height: 1.5rem" class="progress" role="progressbar" tabindex="0" aria-valuenow="{{ count }}" aria-valuemin="0" aria-valuemax="{{ countries_max }}">
+                  <div class="progress-meter" style="width: {{ width }}%">
+                      <p class="progress-meter-text">{{ count }}</p>
+                  </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="columns">
+        <h3>Categories</h3>
+        <table>
+            <tbody>
+            {% for category, count in categories %}
+                <tr>
+                    <td>{{ category }}</td>
+                    <td class="text-right">{{ count }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Total</th>
+                    <td class="text-right">{{ tickets.count }}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+{% endblock %}
