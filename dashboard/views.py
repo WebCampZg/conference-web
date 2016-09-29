@@ -130,13 +130,14 @@ class ConferenceTicketsView(ViewAuthMixin, ListView):
         tickets = self.object_list
 
         countries = Counter([t.country for t in tickets]).most_common()
-        countries_max = sum([c[1] for c in countries])
-        countries = [(x[0], x[1], float(100 * x[1]) / countries_max) for x in countries]
+        countries_total = sum([c[1] for c in countries])
+        width = lambda x: (float(100 * x[1]) / countries_total) # get progress bar width in %
+        countries = [x + (width(x),) for x in countries]
 
         categories = Counter([t.category for t in tickets]).most_common()
 
         ctx['countries'] = countries
-        ctx['countries_max'] = countries_max
+        ctx['countries_total'] = countries_total
         ctx['categories'] = categories
 
         return ctx

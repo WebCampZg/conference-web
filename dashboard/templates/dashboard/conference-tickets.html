@@ -1,5 +1,12 @@
 {% extends 'dashboard/base.html' %}
 
+{% block head %}
+<style type="text/css">
+    .label { text-shadow: 1px 1px 2px black;  }
+    .progress-meter-text { color: white; text-shadow: 1px 1px 2px black;  }
+</style>
+{% endblock %}
+
 {% block content %}
 <ul class="breadcrumbs">
     <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
@@ -8,9 +15,7 @@
 
 <h1>Tickets</h1>
 
-
-
-<div class="row">
+<div class="row medium-unstack">
     <div class="columns">
         <h3>Countries</h3>
 
@@ -20,7 +25,7 @@
                 <div class="label" style="width: 2.3rem">{{ country }}</div>
             </div>
             <div class="columns">
-                <div style="height: 1.5rem" class="progress" role="progressbar" tabindex="0" aria-valuenow="{{ count }}" aria-valuemin="0" aria-valuemax="{{ countries_max }}">
+                <div style="height: 1.5rem" class="progress" role="progressbar" tabindex="0" aria-valuenow="{{ count }}" aria-valuemin="0" aria-valuemax="{{ countries_total }}">
                   <div class="progress-meter" style="width: {{ width }}%">
                       <p class="progress-meter-text">{{ count }}</p>
                   </div>
