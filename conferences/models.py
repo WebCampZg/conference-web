@@ -1,9 +1,9 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.db.models.deletion import CASCADE
+from django.db.models.deletion import CASCADE, PROTECT
 
-from people.models import User
+from people.models import User, TShirtSize
 
 
 class Conference(models.Model):
@@ -20,6 +20,7 @@ class Ticket(models.Model):
     """Ticket data imported from Entrio"""
     conference = models.ForeignKey(Conference, CASCADE)
     user = models.ForeignKey(User, CASCADE, blank=True, null=True, related_name='tickets')
+    tshirt_size = models.ForeignKey(TShirtSize, PROTECT, blank=True, null=True)
     category = models.CharField(max_length=1024)
     code = models.CharField(max_length=1024)
     first_name = models.CharField(max_length=1024)

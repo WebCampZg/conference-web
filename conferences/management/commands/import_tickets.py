@@ -8,7 +8,7 @@ from conferences.models import Conference, Ticket
 from datetime import datetime
 from json import loads
 from urllib2 import urlopen, URLError
-from people.models import User
+from people.models import User, TShirtSize
 
 class Command(BaseCommand):
     help = "Loads tickets from Entrio"
@@ -47,6 +47,9 @@ class Command(BaseCommand):
         email = item.get('E-mail')
         user = User.objects.filter(email=email).first() if email else None
 
+        tshirt = item['T-Shirt Size'].replace('-', ' ')
+        tshirt = TShirtSize.objects.get(name=tshirt)
+
         parsed = {
             "conference_id": conference_id,
             "code": item.get('ticket_code'),
@@ -61,6 +64,7 @@ class Command(BaseCommand):
             "promo_code": item.get('promo_discount_group') or "",
             "purchased_at": purchased_at,
             "dietary_preferences": item.get('Dietary preferences'),
+            "tshirt_size": tshirt,
         }
 
         return Ticket(**parsed)
