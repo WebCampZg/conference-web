@@ -19,7 +19,6 @@ class TicketAdmin(admin.ModelAdmin):
             return label
 
     _user.allow_tags = True
-    # _user.short_description = 'User'
 
 
 admin.site.register(Conference, ConferenceAdmin)

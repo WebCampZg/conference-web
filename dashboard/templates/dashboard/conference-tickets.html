@@ -19,38 +19,50 @@
     <div class="columns">
         <h3>Countries</h3>
 
-        {% for country, count, width in countries %}
+        {% for item in countries %}
         <div class="row">
             <div class="shrink columns">
-                <div class="label" style="width: 2.3rem">{{ country }}</div>
+                <div class="label" style="width: 2.3rem">{{ item.value }}</div>
             </div>
             <div class="columns">
                 <div style="height: 1.5rem" class="progress" role="progressbar" tabindex="0" aria-valuenow="{{ count }}" aria-valuemin="0" aria-valuemax="{{ countries_total }}">
-                  <div class="progress-meter" style="width: {{ width }}%">
-                      <p class="progress-meter-text">{{ count }}</p>
+                  <div class="progress-meter" style="width: {{ item.width }}%">
+                      <p class="progress-meter-text">{{ item.count }}</p>
+                  </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <h3>Tshirts</h3>
+
+        {% for item in tshirts %}
+        <div class="row">
+            <div class="shrink columns">
+                <div class="label" style="width: 5rem">{{ item.value }}</div>
+            </div>
+            <div class="columns">
+                <div style="height: 1.5rem" class="progress" role="progressbar" tabindex="0" aria-valuenow="{{ count }}" aria-valuemin="0" aria-valuemax="{{ countries_total }}">
+                  <div class="progress-meter" style="width: {{ item.width }}%">
+                      <p class="progress-meter-text">{{ item.count }}</p>
                   </div>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
+
     <div class="columns">
         <h3>Categories</h3>
         <table>
             <tbody>
-            {% for category, count in categories %}
+            {% for item in categories %}
                 <tr>
-                    <td>{{ category }}</td>
-                    <td class="text-right">{{ count }}</td>
+                    <td>{{ item.value }}</td>
+                    <td class="text-right">{{ item.count }}</td>
                 </tr>
             {% endfor %}
             </tbody>
-            <tfoot>
-                <tr>
-                    <th>Total</th>
-                    <td class="text-right">{{ tickets.count }}</td>
-                </tr>
-            </tfoot>
         </table>
     </div>
 </div>

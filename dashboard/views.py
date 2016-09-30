@@ -1,12 +1,14 @@
+from collections import Counter
+
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.core.exceptions import ValidationError
-from django.db.models.aggregates import Count
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.views.generic import View, DetailView, TemplateView, ListView
 
 from cfp.models import CallForPaper, PaperApplication
-from conferences.models import Conference, Ticket
+from conferences.models import Ticket
+from people.models import TShirtSize
 from usergroups.models import UserGroup, Vote
 from voting.models import Vote as CommunityVote, VoteToken
 
@@ -117,8 +119,6 @@ class CommunityVoteView(ViewAuthMixin, TemplateView):
         return ctx
 
 
-from collections import Counter
-
 class ConferenceTicketsView(ViewAuthMixin, ListView):
     model = Ticket
     template_name = 'dashboard/conference-tickets.html'
@@ -127,17 +127,32 @@ class ConferenceTicketsView(ViewAuthMixin, ListView):
     def get_context_data(self, **kwargs):
         ctx = super(ConferenceTicketsView, self).get_context_data(**kwargs)
 
-        tickets = self.object_list
+        tickets = self.object_list.prefetch_related('tshirt_size')
 
-        countries = Counter([t.country for t in tickets]).most_common()
-        countries_total = sum([c[1] for c in countries])
-        width = lambda x: (float(100 * x[1]) / countries_total) # get progress bar width in %
-        countries = [x + (width(x),) for x in countries]
-
-        categories = Counter([t.category for t in tickets]).most_common()
-
-        ctx['countries'] = countries
-        ctx['countries_total'] = countries_total
-        ctx['categories'] = categories
+        ctx['countries'] = self.most_common(tickets, lambda t: t.country)
+        ctx['categories'] = self.most_common(tickets, lambda t: t.category)
+        ctx['tshirts'] = self.tshirt_sizes(tickets)
 
         return ctx
+
+    def tshirt_sizes(self, tickets):
+        sizes = [t.tshirt_size_id for t in tickets]
+        most_common = Counter(sizes).most_common()
+        most_common_dict = dict(most_common)
+        top_count = most_common[0][1]
+
+        return [{
+            "value": size.name,
+            "count": most_common_dict.get(size.id, 0),
+            "width": most_common_dict.get(size.id, 0) * 100 / top_count,
+        } for size in TShirtSize.objects.all()]
+
+    def most_common(self, tickets, value_fn):
+        values = [value_fn(t) for t in tickets]
+        most_common = Counter(values).most_common()
+
+        return [{
+            "value": x[0],
+            "count": x[1],
+            "width": (float(100 * x[1]) / most_common[0][1]), # for drawing progress bars
+        } for x in most_common]
