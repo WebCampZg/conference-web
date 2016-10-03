@@ -1,14 +1,16 @@
 {% extends 'ui/base.html' %}
 
+{% load schedule_tags %}
+
 {% block title %}Schedule - {{ webcamp.extended_title }}{% endblock %}
 
 {% block head %}
-    <meta name="description" content="WebCamp Zagreb 2015. conference talks schedule. 2 days, 2 tracks, 2 keynote speakers and 28 talks at WebCamp Zagreb 2015. conference for web devs & designers.">
+    <meta name="description" content="WebCamp Zagreb 2016. conference talks schedule. 2 days, 2 tracks, 2 keynote speakers and 28 talks at WebCamp Zagreb 2016. conference for web devs & designers.">
 {% endblock %}
 
 {% block og %}
     <meta property="og:title" content="Schedule - {{ webcamp.extended_title }}" />
-    <meta property="og:description" content="WebCamp Zagreb 2015. conference talks schedule. 2 days, 2 tracks, 2 keynote speakers and 28 talks at WebCamp Zagreb 2015. conference for web devs & designers." />
+    <meta property="og:description" content="WebCamp Zagreb 2016. conference talks schedule. 2 days, 2 tracks, 2 keynote speakers and 28 talks at WebCamp Zagreb 2016. conference for web devs & designers." />
 {% endblock %}
 
 {% block content %}
@@ -19,11 +21,11 @@
         <div class="Wrapper Wrapper--wide Wrapper--withFlair">
             <div class="Schedule">
                 <nav class="Schedule-nav">
-                    <a href="#day-1" class="Schedule-navLink Button Button--alpha Button--rounded is-sansFocus" data-block="schedule-day-1">Day 1</a>
-                    <a href="#day-2" class="Schedule-navLink Button Button--gamma Button--rounded is-sansFocus" data-block="schedule-day-2">Day 2</a>
+                    <a href="#day-1" class="Schedule-navLink Button Button--alpha Button--rounded is-sansFocus" data-block="schedule-day-1">Friday</a>
+                    <a href="#day-2" class="Schedule-navLink Button Button--gamma Button--rounded is-sansFocus" data-block="schedule-day-2">Saturday</a>
                 </nav>
                 <table id="schedule-day-1" class="Schedule-table" cellpadding="0" cellspacing="0">
-                    <caption>Saturday, October 3rd</caption>
+                    <caption>Friday, October 28th</caption>
                     <thead>
                         <tr>
                             <th aria-hidden="true">&nbsp;</th>
@@ -32,351 +34,52 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">08:00</td>
-                            <td colspan="2" class="Schedule-simple Schedule-spacer">Doors open</td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">09:00</td>
-                            <td colspan="2" class="Schedule-simple Schedule-spacer">Opening word</td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">09:15</td>
-                            <td colspan="2" class="Schedule-simple Schedule-talkWrap">
-                                <a href="{% url 'talks_view_talk' slug='functional-programming' %}" class="Schedule-talk Schedule-spacer">
-                                    <span class="Schedule-talkTitle">Functional programming: academic curiosity or industry's secret weapon? <span class="ArticleFlag Flag Flag--alpha">Keynote</span></span>
-                                    <span class="Schedule-talkSpeaker">Bob Ippolito</span>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">10:15</td>
-                            <td colspan="2" class="Schedule-simple Schedule-spacer">Division break</td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">10:40</td>
-                            <td class="Schedule-talkWrap">
-                                <a href="{% url 'talks_view_talk' slug='building-video-replies-at-intercom' %}" class="Schedule-talk Schedule-spacer">
-                                    <span class="Schedule-talkTitle">Building Video Replies at Intercom <span class="ArticleFlag Flag Flag--alpha">Sponsored</span></span>
-                                    <span class="Schedule-talkSpeaker">Mike Stewart</span>
-                                    <span class="Schedule-talkTrack" aria-hidden="true">Intercom track</span>
-                                </a>
-                            </td>
-                            <td class="Schedule-talkWrap">
-                                <a href="{% url 'talks_view_talk' slug='the-why-should-you-talk-talk' %}" class="Schedule-talk Schedule-spacer">
-                                    <span class="Schedule-talkTitle">The "Why Should You Talk"-Talk</span>
-                                    <span class="Schedule-talkSpeaker">Christian Grobmeier</span>
-                                    <span class="Schedule-talkTrack" aria-hidden="true">ReversingLabs track</span>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">11:10</td>
-                            <td class="Schedule-talkWrap">
-                                <a href="{% url 'talks_view_talk' slug='http2-what-does-it-bring-and-does-it-matter' %}" class="Schedule-talk Schedule-spacer">
-                                    <span class="Schedule-talkTitle">HTTP/2 - what does it bring and does it matter?</span>
-                                    <span class="Schedule-talkSpeaker">Zdeslav Vojković</span>
-                                    <span class="Schedule-talkTrack" aria-hidden="true">Intercom track</span>
-                                </a>
-                            </td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='users-first' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">Users First!</span>
-                                     <span class="Schedule-talkSpeaker">Emanuel Blagonić</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">ReversingLabs track</span>
-                                 </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">11:40</td>
-                            <td colspan="2" class="Schedule-simple Schedule-spacer">Break</td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">11:45</td>
-                            <td class="Schedule-simple Schedule-spacer">Recruitment session</td>
-                            <td class="Schedule-simple Schedule-spacer">Break</td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">12:45</td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='seriously-advanced-ab-testing' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">Seriously advanced A/B testing</span>
-                                     <span class="Schedule-talkSpeaker">Lev Tatarov</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">Intercom track</span>
-                                 </a>
-                            </td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='how-to-work-with-clients-youve-never-met-in-person' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">How to work with clients you’ve never met in person <span class="ArticleFlag Flag Flag--alpha">Community chosen</span></span>
-                                     <span class="Schedule-talkSpeaker">Anna Danes</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">ReversingLabs track</span>
-                                 </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">13:15</td>
-                            <td colspan="2" class="Schedule-simple Schedule-spacer">Lunch</td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">14:30</td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='introducing-distributed-databases' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">Introducing Distributed Databases</span>
-                                     <span class="Schedule-talkSpeaker">Chris Ward</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">Intercom track</span>
-                                 </a>
-                            </td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='building-plugin-free-video-chat-in-browser' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">Building plugin free video chat in browser</span>
-                                     <span class="Schedule-talkSpeaker">Mykhailo Lieibenson</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">ReversingLabs track</span>
-                                 </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">15:20</td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='lua-as-a-second-language' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">Lua as a second language</span>
-                                     <span class="Schedule-talkSpeaker">Luka Mužinić</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">Intercom track</span>
-                                 </a>
-                            </td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='state-of-remote-freelancing' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">State of Remote Freelancing <span class="ArticleFlag Flag Flag--alpha">Sponsored</span></span>
-                                     <span class="Schedule-talkSpeaker">Radan Skorić & Bozhidar Batsov</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">ReversingLabs track</span>
-                                 </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">15:50</td>
-                            <td colspan="2" class="Schedule-simple Schedule-spacer">Break</td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">16:05</td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='continuous-deployment-at-etsy' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">Continuous deployment at Etsy</span>
-                                     <span class="Schedule-talkSpeaker">Premshree Pillai</span>
-                                     <span class="Schedule-talkTrack">Intercom track</span>
-                                 </a>
-                            </td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='the-promise-of-agile-could-fail' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">The Promise of Agile could fail! <span class="ArticleFlag Flag Flag--alpha">Community chosen</span></span>
-                                     <span class="Schedule-talkSpeaker">Ozren Crnogorac</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">ReversingLabs track</span>
-                                 </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">16:35</td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='stop-wasting-time-not-writing-tests' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">Stop wasting time NOT writing tests <span class="ArticleFlag Flag Flag--alpha">Community chosen</span></span>
-                                     <span class="Schedule-talkSpeaker">Damir Svrtan</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">Intercom track</span>
-                                 </a>
-                            </td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='fast-and-fpsious' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">Fast and fpsious <span class="ArticleFlag Flag Flag--alpha">Community chosen</span></span>
-                                     <span class="Schedule-talkSpeaker">Ivan Vuković</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">ReversingLabs track</span>
-                                 </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">17:05</td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='real-time-asynchronous-collaboration-on-json' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">Real-time, asynchronous collaboration on JSON</span>
-                                     <span class="Schedule-talkSpeaker">Tomek Wytrębowicz</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">Intercom track</span>
-                                 </a>
-                            </td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='inside-the-mind-of-a-development-manager' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">Inside the mind of a development manager <span class="ArticleFlag Flag Flag--alpha">Community chosen</span></span>
-                                     <span class="Schedule-talkSpeaker">Srđan Stanić</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">ReversingLabs track</span>
-                                 </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">17:35</td>
-                            <td colspan="2" class="Schedule-simple Schedule-spacer">Division break</td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">17:50</td>
-                            <td colspan="2" class="Schedule-simple Schedule-spacer">Lightnings + Closing</td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">18:50</td>
-                            <td colspan="2" class="Schedule-simple Schedule-spacer">Drinkup</td>
-                        </tr>
+                        {% include "schedule/partials/spacer.html" with time="08:30" text="Doors open" %}
+                        {% include "schedule/partials/spacer.html" with time="10:00" text="Opening word" %}
+                        {% include "schedule/partials/keynote.html" with time="10:15" slug="the-code-manifesto-empowering-our-community" %}
+                        {% include "schedule/partials/spacer.html" with time="11:15" text="Division break" %}
+                        {% include "schedule/partials/talk_pair.html" with time="11:45" left="making-react-part-of-something-greater" right="self-testable-api-docs-docs-shouldnt-lie" %}
+                        {% include "schedule/partials/talk_pair.html" with time="12:15" left="event-sourcing-the-good-the-bad-and-the-complicated" right="client-experience-design" %}
+                        {% include "schedule/partials/talk_pair.html" with time="13:05" left="security-in-the-age-of-frameworks" right="ps-i-love-you" %}
+                        {% include "schedule/partials/spacer.html" with time="13:35" text="Lunch" %}
+                        {% include "schedule/partials/talk_pair.html" with time="15:05" left="when-a-bigger-boat-is-not-an-option-scaling-beyond-biggest-mysql-box" right="what-goes-wrong-with-javascript-and-what-can-we-do-about-it" %}
+                        {% include "schedule/partials/talk_pair.html" with time="15:35" left="elm-or-how-i-learned-to-love-front-end-development" right="things-i-was-unprepared-for-as-a-lead-developer" %}
+                        {% include "schedule/partials/spacer.html" with time="16:25" text="Break" %}
+                        {% include "schedule/partials/talk_pair.html" with time="16:55" left="distributed-domain-destruction-adventures-in-building-distributed-systems" right="bots-ai-apis-and-messy-interactions" %}
+                        {% include "schedule/partials/talk_pair.html" with time="17:25" left="how-to-build-a-website-that-will-eventually-work-on-mars" right="code-review-beyond-code-style" %}
+                        {% include "schedule/partials/spacer.html" with time="17:55" text="Division break" %}
+                        {% include "schedule/partials/spacer.html" with time="18:25" text="Ligtning talks" %}
+                        {% include "schedule/partials/spacer.html" with time="19:10" text="Drinkup" %}
                     </tbody>
                 </table>
+
+
                 <table id="schedule-day-2" class="Schedule-table is-hidden">
-                    <caption>Sunday, October 4th</caption>
+                    <caption>Saturday, October 29th</caption>
                     <thead>
                         <tr>
                             <th aria-hidden="true">&nbsp;</th>
-                            <th class="Schedule-track"><img src="https://2015.webcampzg.org/media/uploads/sponsors/intercom.svg" alt="Intercom" class="Schedule-trackLogo"></th>
-                            <th class="Schedule-track"><img src="https://2015.webcampzg.org/media/uploads/sponsors/logo-reversinglabs.svg" alt="ReversingLabs" class="Schedule-trackLogo"></th>
+                            <th class="Schedule-track"><img src="{{ MEDIA_URL }}uploads/sponsors/intercom.svg" alt="Intercom" class="Schedule-trackLogo"></th>
+                            <th class="Schedule-track"><img src="{{ MEDIA_URL }}uploads/sponsors/logo-reversinglabs.svg" alt="ReversingLabs" class="Schedule-trackLogo"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">09:00</td>
-                            <td colspan="2" class="Schedule-simple Schedule-spacer">Doors open</td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">09:45</td>
-                            <td colspan="2" class="Schedule-simple Schedule-spacer">Opening word</td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">10:00</td>
-                            <td colspan="2" class="Schedule-simple Schedule-talkWrap">
-                                <a href="{% url 'talks_view_talk' slug='what-the-hell-is-ux-strategy-and-why-its-crucial' %}" class="Schedule-talk Schedule-spacer">
-                                    <span class="Schedule-talkTitle">What the hell is UX Strategy and why it's crucial! <span class="ArticleFlag Flag Flag--alpha">Keynote</span></span>
-                                    <span class="Schedule-talkSpeaker">Jaime Levy</span>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">11:00</td>
-                            <td colspan="2" class="Schedule-simple Schedule-spacer">Division break</td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">11:25</td>
-                            <td class="Schedule-talkWrap">
-                                <a href="{% url 'talks_view_talk' slug='101-steps-to-avoid-a-security-disaster-in-the-cloud' %}" class="Schedule-talk Schedule-spacer">
-                                    <span class="Schedule-talkTitle">101 Steps to Avoid a Security Disaster in the Cloud</span>
-                                    <span class="Schedule-talkSpeaker">Philipp Krenn</span>
-                                    <span class="Schedule-talkTrack" aria-hidden="true">Intercom track</span>
-                                </a>
-                            </td>
-                            <td class="Schedule-talkWrap">
-                                <a href="{% url 'talks_view_talk' slug='elements-of-modern-web-applications' %}" class="Schedule-talk Schedule-spacer">
-                                    <span class="Schedule-talkTitle">Elements of modern web applications <span class="ArticleFlag Flag Flag--alpha">Sponsored</span></span>
-                                    <span class="Schedule-talkSpeaker">Joshua Mahoney</span>
-                                    <span class="Schedule-talkTrack" aria-hidden="true">ReversingLabs track</span>
-                                </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">11:55</td>
-                            <td class="Schedule-talkWrap">
-                                <a href="{% url 'talks_view_talk' slug='let-your-devices-talk-to-each-other' %}" class="Schedule-talk Schedule-spacer">
-                                    <span class="Schedule-talkTitle">Let your devices talk to each others</span>
-                                    <span class="Schedule-talkSpeaker">Laurent Doguin</span>
-                                    <span class="Schedule-talkTrack" aria-hidden="true">Intercom track</span>
-                                </a>
-                            </td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='modular-and-bulletproof-user-interfaces' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">Modular and Bulletproof User Interfaces </span>
-                                     <span class="Schedule-talkSpeaker">Lucijan Blagonić</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">ReversingLabs track</span>
-                                 </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">12:25</td>
-                            <td colspan="2" class="Schedule-simple Schedule-spacer">Break</td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">12:40</td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='the-api-of-the-api' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">The API of the API</span>
-                                     <span class="Schedule-talkSpeaker">Johannes Edelstam</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">Intercom track</span>
-                                 </a>
-                            </td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='the-elements-of-style-in-programming' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">The Elements of Style in Programming</span>
-                                     <span class="Schedule-talkSpeaker">Bozhidar Batsov</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">ReversingLabs track</span>
-                                 </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">13:30</td>
-                            <td colspan="2" class="Schedule-simple Schedule-spacer">Lunch</td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">14:45</td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='building-highly-available-and-fault-tolerant-sites-on-a-budget' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">Building highly available and fault tolerant sites on a budget </span>
-                                     <span class="Schedule-talkSpeaker">Senko Rašić</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">Intercom track</span>
-                                 </a>
-                            </td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='boxcars-and-cabooses-when-one-more-xhr-is-too-much' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">Boxcars and Cabooses: When one more XHR is too much</span>
-                                     <span class="Schedule-talkSpeaker">Peter Chittum</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">ReversingLabs track</span>
-                                 </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">15:35</td>
-                            <td colspan="2" class="Schedule-simple Schedule-spacer">Break</td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">15:50</td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='how-you-can-maintain-30-sites-and-still-have-time-for-new-projects' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">How You can Maintain 30+ sites and still have time for New Projects</span>
-                                     <span class="Schedule-talkSpeaker">Jure Čuhalev</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">Intercom track</span>
-                                 </a>
-                            </td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='htmljavascript-based-iptv-solution' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">HTML/JavaScript based IPTV solution</span>
-                                     <span class="Schedule-talkSpeaker">Dorijan Jelinčić</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">ReversingLabs track</span>
-                                 </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">16:20</td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='its-my-way-or-the-highway-how-to-make-your-code-usable-by-others' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">It's my way or the highway - How to make your code usable by others</span>
-                                     <span class="Schedule-talkSpeaker">Bogdan Habić</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">Intercom track</span>
-                                 </a>
-                            </td>
-                            <td class="Schedule-talkWrap">
-                                 <a href="{% url 'talks_view_talk' slug='building-uis-with-react' %}" class="Schedule-talk Schedule-spacer">
-                                     <span class="Schedule-talkTitle">Building UIs with React <span class="ArticleFlag Flag Flag--alpha">Community chosen</span></span>
-                                     <span class="Schedule-talkSpeaker">Filip Petkovski</span>
-                                     <span class="Schedule-talkTrack" aria-hidden="true">ReversingLabs track</span>
-                                 </a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">16:50</td>
-                            <td colspan="2" class="Schedule-simple Schedule-spacer">Division Break</td>
-                        </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">17:05</td>
-                            <td colspan="2" class="Schedule-simple Schedule-spacer">Closing</td>
-                         </tr>
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">17:35</td>
-                            <td colspan="2" class="Schedule-simple Schedule-spacer">END</td>
-                        </tr>
+                        {% include "schedule/partials/spacer.html" with time="08:30" text="Doors open" %}
+                        {% include "schedule/partials/spacer.html" with time="10:00" text="Opening word" %}
+                        {% include "schedule/partials/keynote.html" with time="10:15" slug="superintelligence-the-idea-that-eats-smart-people" %}
+                        {% include "schedule/partials/spacer.html" with time="11:15" text="Division break" %}
+                        {% include "schedule/partials/talk_pair.html" with time="11:45" left="building-event-driven-services" right="being-a-remote-developer" %}
+                        {% include "schedule/partials/talk_pair.html" with time="12:15" left="se7en-deadly-deployment-sins" right="avoiding-release-paralysis" %}
+                        {% include "schedule/partials/talk_pair.html" with time="13:05" left="bullseye-an-introduction-to-dart" right="end-design-revision-hell" %}
+                        {% include "schedule/partials/spacer.html" with time="13:35" text="Lunch" %}
+                        {% include "schedule/partials/talk_pair.html" with time="15:05" left="how-to-overengineer-a-meme-generator" right="how-to-flourish-in-an-age-of-digital-distraction" %}
+                        {% include "schedule/partials/talk_pair.html" with time="15:35" left="whats-the-fuss-about-phoenix" right="2fa-wtf" %}
+                        {% include "schedule/partials/spacer.html" with time="16:25" text="Break" %}
+                        {% include "schedule/partials/talk_pair.html" with time="16:55" left="battling-complexity" right="building-dashboards-people-actually-use" %}
+                        {% include "schedule/partials/talk_pair.html" with time="17:25" left="" right="how-to-communicate-as-a-programmer" %}
+                        {% include "schedule/partials/spacer.html" with time="17:55" text="Division break" %}
+                        {% include "schedule/partials/spacer.html" with time="18:25" text="Ligtning talks" %}
+                        {% include "schedule/partials/spacer.html" with time="19:10" text="Drinkup" %}
                     </tbody>
                 </table>
             </div>

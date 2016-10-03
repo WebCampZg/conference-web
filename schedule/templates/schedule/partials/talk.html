@@ -1,0 +1,17 @@
+<td class="Schedule-talkWrap">
+    {% if talk %}
+    <a href="{% url 'talks_view_talk' slug=talk.slug %}" class="Schedule-talk Schedule-spacer">
+        <span class="Schedule-talkTitle">
+            {{ talk.title }}
+            {% if talk.is_sponsored %}
+                <span class="ArticleFlag Flag Flag--alpha">Sponsored</span>
+            {% endif %}
+            {% if talk.is_community_chosen %}
+                <span class="ArticleFlag Flag Flag--alpha">Community</span>
+            {% endif %}
+        </span>
+        <span class="Schedule-talkSpeaker">{{ talk.application.applicant.user.full_name }}</span>
+        <span class="Schedule-talkTrack" aria-hidden="true">{{ track }}</span>
+    </a>
+    {% endif %}
+</td>

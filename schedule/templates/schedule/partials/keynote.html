@@ -1,0 +1,13 @@
+{% load schedule_tags %}
+
+{% with talk=schedule_talks|find_talk:slug  %}
+<tr>
+    <td class="Schedule-time Schedule-spacer">{{ time }}</td>
+    <td colspan="2" class="Schedule-simple Schedule-talkWrap">
+        <a href="{% url 'talks_view_talk' slug=talk.slug %}" class="Schedule-talk Schedule-spacer">
+            <span class="Schedule-talkTitle">{{ talk.title }} <span class="ArticleFlag Flag Flag--alpha">Keynote</span></span>
+            <span class="Schedule-talkSpeaker">{{ talk.application.applicant.user.full_name }}</span>
+        </a>
+    </td>
+</tr>
+{% endwith %}

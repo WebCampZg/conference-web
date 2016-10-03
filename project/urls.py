@@ -27,7 +27,7 @@ urlpatterns = [
         name='django.contrib.sitemaps.views.sitemap'),
     url(r'^talks/', include('talks.urls')),
     url(r'^dashboard/', include('dashboard.urls', namespace='dashboard')),
-    # url(r'^schedule/', include('schedule.urls')),
+    url(r'^schedule/', include('schedule.urls')),
     url(r'^voting/', include('voting.urls')),
     url('^markdown/', include( 'django_markdown.urls')),
 ]
