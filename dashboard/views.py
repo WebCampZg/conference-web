@@ -1,4 +1,5 @@
-from collections import Counter
+import datetime
+from collections import Counter, OrderedDict
 
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.core.exceptions import ValidationError
@@ -7,7 +8,7 @@ from django.shortcuts import get_object_or_404
 from django.views.generic import View, DetailView, TemplateView, ListView
 
 from cfp.models import CallForPaper, PaperApplication
-from conferences.models import Ticket
+from conferences.models import Conference, Ticket
 from people.models import TShirtSize
 from usergroups.models import UserGroup, Vote
 from voting.models import Vote as CommunityVote, VoteToken
@@ -124,6 +125,12 @@ class ConferenceTicketsView(ViewAuthMixin, ListView):
     template_name = 'dashboard/conference-tickets.html'
     context_object_name = 'tickets'
 
+    def get_queryset(self):
+        qs = super(ConferenceTicketsView, self).get_queryset()
+        conference_id = self.kwargs.get('pk')
+        self.conference = get_object_or_404(Conference, pk=conference_id)
+        return qs.filter(conference=self.conference)
+
     def get_context_data(self, **kwargs):
         ctx = super(ConferenceTicketsView, self).get_context_data(**kwargs)
 
@@ -132,8 +139,30 @@ class ConferenceTicketsView(ViewAuthMixin, ListView):
         ctx['countries'] = self.most_common(tickets, lambda t: t.country)
         ctx['categories'] = self.most_common(tickets, lambda t: t.category)
         ctx['tshirts'] = self.tshirt_sizes(tickets)
+        ctx['tickets_by_date'] = self.tickets_by_date(tickets)
+        ctx['conference'] = self.conference
 
         return ctx
+
+    def date_range(self, start, end):
+        dates = []
+        date = start
+        while date <= end:
+            dates.append(date)
+            date += datetime.timedelta(days=1)
+        return dates
+
+    def tickets_by_date(self, tickets):
+        from itertools import groupby
+        groups = groupby(tickets, lambda t: t.purchased_at.date())
+        tickets_by_date =  {k: len(list(v)) for k, v in groups}
+
+        # Create a list of all dates from the first ticket bought until today
+        start_date = min(tickets_by_date.keys())
+        today = datetime.date.today()
+        dates = self.date_range(start_date, today)
+
+        return [(date, tickets_by_date.get(date, 0)) for date in dates]
 
     def tshirt_sizes(self, tickets):
         sizes = [t.tshirt_size_id for t in tickets]
