@@ -32,6 +32,7 @@ class Ticket(models.Model):
     twitter = models.CharField(max_length=1024, blank=True)
     dietary_preferences = models.CharField(max_length=1024, blank=True)
     purchased_at = models.DateTimeField()
+    used_at = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         unique_together = ("conference", "code")
