@@ -76,7 +76,7 @@ INSTALLED_APPS = (
 
     'blog',
     'cfp',
-    'conferences',
+    'events',
     'dashboard',
     'jobs',
     'pages',

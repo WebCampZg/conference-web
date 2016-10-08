@@ -1,0 +1,52 @@
+[
+    {
+        "model": "events.Event",
+        "pk": 1,
+        "fields": {
+            "title": "WebCamp Zagreb 2012",
+            "slug": "webcamp-zagreb-2012",
+            "begin_date": "2012-11-24",
+            "end_date": "2012-11-24"
+        }
+    },
+    {
+        "model": "events.Event",
+        "pk": 2,
+        "fields": {
+            "title": "WebCamp Zagreb 2013",
+            "slug": "webcamp-zagreb-2013",
+            "begin_date": "2013-10-26",
+            "end_date": "2013-10-26"
+        }
+    },
+    {
+        "model": "events.Event",
+        "pk": 3,
+        "fields": {
+            "title": "WebCamp Zagreb 2014",
+            "slug": "webcamp-zagreb-2014",
+            "begin_date": "2014-10-04",
+            "end_date": "2014-10-05"
+        }
+    },
+    {
+        "model": "events.Event",
+        "pk": 4,
+        "fields": {
+            "title": "WebCamp Zagreb 2015",
+            "slug": "webcamp-zagreb-2015",
+            "begin_date": "2015-10-03",
+            "end_date": "2015-10-04"
+        }
+    },
+    {
+        "model": "events.Event",
+        "pk": 5,
+        "fields": {
+            "title": "WebCamp Zagreb 2016",
+            "slug": "webcamp-zagreb-2016",
+            "begin_date": "2016-10-28",
+            "end_date": "2016-10-29"
+        }
+    }
+]

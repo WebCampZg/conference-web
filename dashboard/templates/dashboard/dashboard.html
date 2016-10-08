@@ -1,41 +1,35 @@
 {% extends "dashboard/base.html" %}
 
-{% block head %}
-    <style type="text/css">
-    </style>
-{% endblock head %}
-
 {% block content %}
-    <h3>Calls for proposal</h3>
+    <h3>Events</h3>
 
     <table>
         <thead>
             <tr>
-                <th>#</th>
                 <th>Title</th>
-                <th>Submissions</th>
-                <th>Duration</th>
-                <th>Open?</th>
+                <th>Dates</th>
+                <th>Tickets</th>
             </tr>
         </thead>
         <tbody>
-            {% for cfp in cfps %}
+            {% for event in events %}
             <tr>
-                <td>{{ cfp.id }}</td>
                 <td>
-                    <a href="{% url 'dashboard:call_for_papers' pk=cfp.id %}">
-                        {{ cfp.title }}
+                    <a href="{% url 'dashboard:event-detail' pk=event.id %}">
+                        {{ event.title }}
                     </a>
                 </td>
-                <td>{{ cfp.application_count }}</td>
                 <td>
-                    {{ cfp.begin_date }} - {{ cfp.end_date }}
-                    {% if cfp.duration %}
-                        ({{ cfp.duration.days }} days)
+                    {% if event.begin_date == event.end_date %}
+                        {{ event.begin_date }}
+                    {% else %}
+                        {{ event.begin_date }} - {{ event.end_date }}
                     {% endif %}
                 </td>
                 <td>
-                    <i class="fa fa-{{ cfp.is_active|yesno:"check,times" }}"></i>
+                    <a href="{% url 'dashboard:event-tickets' pk=event.pk %}">
+                        <i class="fa fa-ticket"></i> Tickets
+                    </a>
                 </td>
             </tr>
             {% endfor %}

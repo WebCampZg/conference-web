@@ -1,26 +1,28 @@
 import sys
 
+from datetime import datetime
+from json import loads
+from urllib2 import urlopen, URLError
+
 from django.core.management.base import BaseCommand
 from django.core.validators import URLValidator, ValidationError
 from django.utils import timezone as tz
 
-from conferences.models import Conference, Ticket
-from datetime import datetime
-from json import loads
-from urllib2 import urlopen, URLError
+from events.models import Event, Ticket
 from people.models import User, TShirtSize
+
 
 class Command(BaseCommand):
     help = "Loads tickets from Entrio"
 
     def add_arguments(self, parser):
-        parser.add_argument('conference_id')
+        parser.add_argument('event_id')
         parser.add_argument('source_url')
 
     def handle(self, *args, **options):
-        conference_id = options.get('conference_id')
+        event_id = options.get('event_id')
         source_url = options.get('source_url')
-        self.validate_options(conference_id, source_url)
+        self.validate_options(event_id, source_url)
 
         print "Loading data from %s" % source_url
         data = self.fetch_entrio_data(source_url)
@@ -28,15 +30,15 @@ class Command(BaseCommand):
         print "Loaded %d tickets" % len(data)
 
         for item in data:
-            ticket = self.to_ticket(item, conference_id)
-            exists = Ticket.objects.filter(code=ticket.code, conference_id=conference_id).exists()
+            ticket = self.to_ticket(item, event_id)
+            exists = Ticket.objects.filter(code=ticket.code, event_id=event_id).exists()
             if not exists:
                 ticket.save()
                 print "Created ticket #%s" % str(ticket)
 
         print "Done"
 
-    def to_ticket(self, item, conference_id):
+    def to_ticket(self, item, event_id):
         purchased_at = item.get('purchase_datetime')
         if purchased_at:
             purchased_at = datetime.strptime(purchased_at, "%Y-%m-%d %H:%M:%S")
@@ -51,7 +53,7 @@ class Command(BaseCommand):
         tshirt = TShirtSize.objects.get(name=tshirt)
 
         parsed = {
-            "conference_id": conference_id,
+            "event_id": event_id,
             "code": item.get('ticket_code'),
             "email": email,
             "user": user,
@@ -69,7 +71,7 @@ class Command(BaseCommand):
 
         return Ticket(**parsed)
 
-    def validate_options(self, conference_id, source_url):
+    def validate_options(self, event_id, source_url):
         try:
             validator = URLValidator()
             validator(source_url)
@@ -78,13 +80,13 @@ class Command(BaseCommand):
             sys.exit(1)
 
         try:
-            conference_id = int(conference_id)
+            event_id = int(event_id)
         except ValueError:
-            print self.style.ERROR("Given conference_id must be an integer.")
+            print self.style.ERROR("Given event_id must be an integer.")
             sys.exit(1)
 
-        if not Conference.objects.filter(pk=conference_id).exists():
-            print self.style.ERROR("Conference with id %d does not exist." % conference_id)
+        if not Event.objects.filter(pk=event_id).exists():
+            print self.style.ERROR("Event with id %d does not exist." % event_id)
             sys.exit(1)
 
     def fetch_entrio_data(self, source_url):

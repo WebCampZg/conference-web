@@ -1,5 +1,6 @@
 import datetime
-from collections import Counter, OrderedDict
+from collections import Counter
+from itertools import groupby
 
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.core.exceptions import ValidationError
@@ -8,10 +9,11 @@ from django.shortcuts import get_object_or_404
 from django.views.generic import View, DetailView, TemplateView, ListView
 
 from cfp.models import CallForPaper, PaperApplication
-from conferences.models import Conference, Ticket
+from events.models import Event, Ticket
 from people.models import TShirtSize
 from usergroups.models import UserGroup, Vote
 from voting.models import Vote as CommunityVote, VoteToken
+
 
 class ViewAuthMixin(UserPassesTestMixin):
     def test_func(self):
@@ -30,8 +32,13 @@ class DashboardView(ViewAuthMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         ctx = super(DashboardView, self).get_context_data(**kwargs)
-        ctx['cfps'] = CallForPaper.objects.order_by("-pk")
+        ctx['events'] = Event.objects.order_by("-pk")
         return ctx
+
+
+class EventDetailView(ViewAuthMixin, DetailView):
+    model = Event
+    template_name = 'dashboard/event.html'
 
 
 class CallForPapersView(ViewAuthMixin, DetailView):
@@ -120,27 +127,30 @@ class CommunityVoteView(ViewAuthMixin, TemplateView):
         return ctx
 
 
-class ConferenceTicketsView(ViewAuthMixin, ListView):
+class EventTicketsView(ViewAuthMixin, ListView):
     model = Ticket
-    template_name = 'dashboard/conference-tickets.html'
+    template_name = 'dashboard/event-tickets.html'
     context_object_name = 'tickets'
 
     def get_queryset(self):
-        qs = super(ConferenceTicketsView, self).get_queryset()
-        conference_id = self.kwargs.get('pk')
-        self.conference = get_object_or_404(Conference, pk=conference_id)
-        return qs.filter(conference=self.conference)
+        qs = super(EventTicketsView, self).get_queryset()
+        event_id = self.kwargs.get('pk')
+        self.event = get_object_or_404(Event, pk=event_id)
+        return qs.filter(event=self.event)
 
     def get_context_data(self, **kwargs):
-        ctx = super(ConferenceTicketsView, self).get_context_data(**kwargs)
+        ctx = super(EventTicketsView, self).get_context_data(**kwargs)
 
         tickets = self.object_list.prefetch_related('tshirt_size')
 
-        ctx['countries'] = self.most_common(tickets, lambda t: t.country)
-        ctx['categories'] = self.most_common(tickets, lambda t: t.category)
-        ctx['tshirts'] = self.tshirt_sizes(tickets)
-        ctx['tickets_by_date'] = self.tickets_by_date(tickets)
-        ctx['conference'] = self.conference
+        if tickets:
+            ctx['countries'] = self.most_common(tickets, lambda t: t.country)
+            ctx['categories'] = self.most_common(tickets, lambda t: t.category)
+            ctx['tshirts'] = self.tshirt_sizes(tickets)
+            ctx['tickets_by_date'] = self.tickets_by_date(tickets)
+
+        ctx['event'] = self.event
+        ctx['tickets'] = tickets
 
         return ctx
 
@@ -153,9 +163,8 @@ class ConferenceTicketsView(ViewAuthMixin, ListView):
         return dates
 
     def tickets_by_date(self, tickets):
-        from itertools import groupby
         groups = groupby(tickets, lambda t: t.purchased_at.date())
-        tickets_by_date =  {k: len(list(v)) for k, v in groups}
+        tickets_by_date = {k: len(list(v)) for k, v in groups}
 
         # Create a list of all dates from the first ticket bought until today
         start_date = min(tickets_by_date.keys())

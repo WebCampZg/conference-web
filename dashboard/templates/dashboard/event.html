@@ -1,0 +1,15 @@
+{% extends "dashboard/base.html" %}
+
+{% block content %}
+    <ul class="breadcrumbs">
+        <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
+        <li>Events</li>
+        <li>{{ event.title }}</li>
+    </ul>
+
+    <h3>{{ event.title }}</h3>
+
+    <a class="button" href="{% url 'dashboard:event-tickets' pk=event.pk %}" >
+        Tickets ({{ event.tickets.count}})
+    </a>
+{% endblock %}
