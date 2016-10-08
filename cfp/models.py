@@ -10,8 +10,9 @@ from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
 
-from django.utils import timezone as tz
 from cfp.choices import TALK_DURATIONS
+from django.utils import timezone as tz
+from events.models import Event
 from tinymce.models import HTMLField
 from utils.behaviors import Timestampable
 
@@ -27,6 +28,7 @@ def get_applicant_avatar_path(instance, filename):
 
 
 class CallForPaper(models.Model):
+    event = models.ForeignKey(Event)
     title = models.CharField(max_length=1024)
     description = HTMLField()
     announcement = HTMLField(blank=True, null=True)
