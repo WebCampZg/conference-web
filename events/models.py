@@ -18,6 +18,18 @@ class Event(Permalinkable):
 
 
 class Ticket(models.Model):
+    EARLY_BIRD = "Early bird tickets"
+    FREE = "Free tickets"
+    FREE_LATE = "Late free tickets"
+    LATE_BIRD = "Late bird tickets"
+    REGULAR = "Regular tickets"
+    SPEAKER = "Speaker tickets"
+    SPONSOR = "Sponsor tickets"
+    STUDENT = "Student tickets"
+    STUDENT_LATE = "Late student tickets"
+    VOLUNTEER = "Volunteer tickets"
+    VIP = "VIP tickets"
+
     """Ticket data imported from Entrio"""
     event = models.ForeignKey(Event, CASCADE, related_name='tickets')
     user = models.ForeignKey(User, CASCADE, blank=True, null=True, related_name='tickets')
