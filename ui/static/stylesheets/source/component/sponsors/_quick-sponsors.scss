@@ -94,13 +94,12 @@
                     }
                 }
 
-                @media screen and (min-width:700px) {
+                .Sponsors-item--five {
+                    .Sponsors-logo {
+                        max-height: 2.5rem;
 
-                    .Sponsors-item--aduroIdeja {
-                        position:relative; left:4%;
-
-                        .Sponsors-link {
-                            padding:0;
+                        @media screen and (min-width: 650px) and (max-width:1519px) {
+                            max-height: 1.6rem
                         }
                     }
                 }

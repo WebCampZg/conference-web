@@ -4,14 +4,18 @@
         <ul class="Sponsors-list">
             {% for sponsor in sponsors.diamond %}
             {% if listing_type == 'quick' %}
-            <li class="Sponsors-item">
-                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+            <li class="Sponsors-item Sponsors-item--{{ sponsor.slug }}">
+                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
+                    <img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" />
+                </a>
             </li>
             {% else %}
-            <li class="Sponsors-item">
+            <li class="Sponsors-item Sponsors-item--{{ sponsor.slug }}">
                 <div class="Sponsors-block Block Block--alpha">
                     <span class="Sponsors-flag Flag Flag--alpha">Diamond sponsor</span>
-                    <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
+                    <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
+                        <img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" />
+                    </a>
                 </div>
             </li>
             {% endif %}
@@ -24,14 +28,18 @@
         <ul class="Sponsors-list">
             {% for sponsor in sponsors.track %}
             {% if listing_type == 'quick' %}
-            <li class="Sponsors-item">
-                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+            <li class="Sponsors-item Sponsors-item--{{ sponsor.slug }}">
+                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
+                    <img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" />
+                </a>
             </li>
             {% else %}
-            <li class="Sponsors-item">
+            <li class="Sponsors-item Sponsors-item--{{ sponsor.slug }}">
                 <div class="Sponsors-block Block Block--alpha">
                     <span class="Sponsors-flag Flag Flag--alpha">Track sponsor</span>
-                    <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
+                    <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
+                        <img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" />
+                    </a>
                 </div>
             </li>
             {% endif %}
@@ -44,14 +52,18 @@
         <ul class="Sponsors-list">
             {% for sponsor in sponsors.foodanddrinks %}
             {% if listing_type == 'quick' %}
-            <li class="Sponsors-item">
-                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+            <li class="Sponsors-item Sponsors-item--{{ sponsor.slug }}">
+                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
+                    <img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" />
+                </a>
             </li>
             {% else %}
-            <li class="Sponsors-item">
+            <li class="Sponsors-item Sponsors-item--{{ sponsor.slug }}">
                 <div class="Sponsors-block Block Block--alpha">
                     <span class="Sponsors-flag Flag Flag--alpha">Food and Drinks sponsors</span>
-                    <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
+                    <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
+                        <img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" />
+                    </a>
                 </div>
             </li>
             {% endif %}
@@ -64,8 +76,10 @@
         {% if listing_type == 'quick' %}
         <ul class="Sponsors-list">
             {% for sponsor in sponsors.standard %}
-            <li class="Sponsors-item {% if sponsor.name == 'Aduro Ideja' %}Sponsors-item--aduroIdeja{% endif %}">
-                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+            <li class="Sponsors-item Sponsors-item--{{ sponsor.slug }}">
+                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
+                    <img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" />
+                </a>
             </li>
             {% endfor %}
         </ul>
@@ -75,7 +89,9 @@
             <ul class="Sponsors-list">
                 {% for sponsor in sponsors.standard %}
                 <li class="Sponsors-item {% if sponsor.name == 'Aduro Idea' %}Sponsors-item--aduroIdeja{% endif %}">
-                    <a class="Sponsors-link Block Block--alpha" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
+                    <a class="Sponsors-link Block Block--alpha" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
+                        <img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" />
+                    </a>
                 </li>
                 {% endfor %}
             </ul>
@@ -88,8 +104,10 @@
         {% if listing_type == 'quick' %}
         <ul class="Sponsors-list">
             {% for sponsor in sponsors.supporter %}
-            <li class="Sponsors-item {% if sponsor.name == 'Mašinerija' %}Sponsors-item--masinerija{% endif %}">
-                <a class="Sponsors-link" href="{{ sponsor.url }}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+            <li class="Sponsors-item Sponsors-item--{{ sponsor.slug }}">
+                <a class="Sponsors-link" href="{{ sponsor.url }}">
+                    <img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" />
+                </a>
             </li>
             {% endfor %}
         </ul>
@@ -98,8 +116,10 @@
             <span class="Sponsors-flag Flag Flag--alpha">Support sponsors</span>
             <ul class="Sponsors-list">
                 {% for sponsor in sponsors.supporter %}
-                <li class="Sponsors-item {% if sponsor.name == 'Mašinerija' %}Sponsors-item--masinerija{% endif %}">
-                    <a class="Sponsors-link Block Block--alpha" href="{{ sponsor.url }}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
+                <li class="Sponsors-item Sponsors-item--{{ sponsor.slug }}">
+                    <a class="Sponsors-link Block Block--alpha" href="{{ sponsor.url }}">
+                        <img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" />
+                    </a>
                 </li>
                 {% endfor %}
             </ul>
@@ -121,7 +141,9 @@
             {% endfor %}
             {% for sponsor in sponsors.media %}
             <li class="Sponsors-item Sponsors-item--media">
-                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" /></a>
+                <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
+                    <img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="Sponsors-logo" />
+                </a>
             </li>
             {% endfor %}
         </ul>
@@ -131,7 +153,9 @@
             <li class="Sponsors-item Sponsors-item--mainMedia">
                 <div class="Sponsors-block Block Block--alpha">
                     <span class="Sponsors-flag Flag Flag--alpha">Main media sponsor</span>
-                    <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
+                    <a class="Sponsors-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
+                        <img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" />
+                    </a>
                 </div>
             </li>
             {% endfor %}
@@ -140,8 +164,10 @@
                     <span class="Sponsors-flag Flag Flag--alpha">Media sponsors</span>
                     <ul class="Sponsors-list">
                         {% for sponsor in sponsors.media %}
-                        <li class="Sponsors-item">
-                            <a class="Sponsors-link Block Block--alpha" href="{{ sponsor.url }}"><img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" /></a>
+                        <li class="Sponsors-item Sponsors-item--{{ sponsor.slug }}">
+                            <a class="Sponsors-link Block Block--alpha" href="{{ sponsor.url }}">
+                                <img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsors-logo" />
+                            </a>
                         </li>
                         {% endfor %}
                     </ul>
