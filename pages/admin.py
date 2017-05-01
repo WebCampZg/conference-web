@@ -3,11 +3,9 @@ from django.contrib import admin
 from django.contrib.flatpages.admin import FlatpageForm, FlatPageAdmin
 from django.contrib.flatpages.models import FlatPage
 from pages.models import Page
-from django_markdown.widgets import AdminMarkdownWidget
 
 
 class PageForm(FlatpageForm):
-    content = forms.CharField(widget=AdminMarkdownWidget)
     class Meta:
         model = Page
         fields = '__all__'

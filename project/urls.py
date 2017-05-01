@@ -30,7 +30,6 @@ urlpatterns = [
     url(r'^dashboard/', include('dashboard.urls', namespace='dashboard')),
     url(r'^schedule/', include('schedule.urls')),
     url(r'^voting/', include('voting.urls')),
-    url('^markdown/', include( 'django_markdown.urls')),
 ]
 
 if settings.DEBUG:

@@ -9,6 +9,5 @@ six==1.10.0
 django-tinymce==2.3.0
 django-model-utils==2.5
 django-filebrowser==3.7.1
-django-markdown==0.8.4
 django-markdown-deux==1.0.5
 raven==5.13.0
