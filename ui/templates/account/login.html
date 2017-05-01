@@ -1,63 +1,38 @@
-{% extends 'ui/base.html' %}
-{% block body_class %}Page Page--login Page--stickyFooter{% endblock %}
+{% extends 'ui/page.html' %}
+
 {% block title %}Login{% endblock %}
+
 {% block content %}
+<section class="Account">
+    <h1 class="red-arrow">Login_</h1>
 
-    <header class="Header" role="banner">
-        <div class="Wrapper Wrapper--wide">
-            {% include "partials/site-nav.html" %}
-        </div>
-    </header>
+    <form action="." method="post">{% csrf_token %}
+        <fieldset>
+            {% if form.non_field_errors %}
+            <div class="Form-errors">
+                <div class="Passage">
+                    {{ form.non_field_errors }}
+                </div>
+            </div>
+            {% endif %}
 
-    <main role="main" class="Page-content Aligner">
-        <div class="Wrapper Wrapper--narrow Aligner-item">
-            <section class="Account">
+            {% include "partials/form-field.html" with field=form.login  field_type="text" %}
+            {% include "partials/form-field.html" with field=form.password  field_type="text" %}
 
-                <form action="." method="post" class="Form Form--beta">{% csrf_token %}
-                    <div class="Form-constrain">
+            {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
 
-                        <fieldset class="Form-fieldset">
-                            <legend class="Form-legend">Login</legend>
+            <label for="remember_me" class="Togglable">
+                <input id="remember_me" type="checkbox" name="remember" value="0" />
+                Remember me
+            </label>
 
-                            {% if form.non_field_errors %}
-                            <div class="Form-errors">
-                                <div class="Passage">
-                                    {{ form.non_field_errors }}
-                                </div>
-                            </div>
-                            {% endif %}
+            <button type="submit" class="purple arrow button">Login</button>
 
-                            {% include "partials/form-field.html" with field=form.login  field_type="text" %}
-                            {% include "partials/form-field.html" with field=form.password  field_type="text" %}
-                            {% if redirect_field_value %}
-                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                            {% endif %}
-
-                            <div class="Form-item">
-                                <label for="remember_me" class="Togglable">
-                                    <input id="remember_me" type="checkbox" name="remember" value="0" />
-                                    <span class="Togglable-caption">Remember me</span>
-                                </label>
-                            </div>
-
-                            <div class="Form-actions">
-                                <button type="submit" class="Button Button--beta Form-action Form-action--submit">Login</button>
-                            </div>
-
-                            <div class="Form-actionHelp">
-                                <div class="u-textCenter">
-                                    <p><a href="{% url 'account_reset_password' %}">Forgot password?</a></p>
-                                    <p><a href="{% url 'account_signup' %}">Don't have an account yet? Sign up here!</a></p>
-                                </div>
-                            </div>
-
-                        </fieldset>
-
-                    </div>
-                </form>
-
-            </section>
-        </div>
-    </main>
-
+            <p><a href="{% url 'account_reset_password' %}">Forgot password?</a></p>
+            <p><a href="{% url 'account_signup' %}">Don't have an account yet? Sign up here!</a></p>
+        </fieldset>
+    </form>
+</section>
 {% endblock %}

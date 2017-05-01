@@ -62,9 +62,15 @@ def webcamp(request):
     return {
         "base_url": abs_uri('/').rstrip('/'),
         "links": {
-            "sponsors_pdf": abs_uri('/media/webcampzg_2016_sponsors.pdf'),
+            "sponsors_pdf": abs_uri('/media/wczg_2017_sponsors_brochure.pdf'),
             "volunteer_application": "http://goo.gl/forms/1LYfr3TEGs",
             "entrio": "https://www.entrio.hr/en/event/webcamp-zagreb-2016-3213",
+            "facebook": "https://www.facebook.com/WebCampZg/",
+            "twitter": "https://twitter.com/WebCampZg/",
+            "youtube": "https://www.youtube.com/user/WebCampZg",
+            "linkedin": "https://www.linkedin.com/company-beta/6397140/",
+            "github": "https://github.com/webcampzg",
+            "google_plus": "https://plus.google.com/+WebcampzgOrgHR",
         },
         "webcamp": {
             "title": "WebCamp Zagreb 2016",

@@ -1,80 +1,57 @@
-{% extends 'ui/base.html' %}
+{% extends 'ui/page.html' %}
+
 {% block title %}Profile{% endblock %}
-{% block body_class %}Page Page--login Page--stickyFooter{% endblock %}
+
 {% block content %}
-    <header class="Header" role="banner">
-        <div class="Wrapper Wrapper--wide">
-            {% include "partials/site-nav.html" %}
-        </div>
-    </header>
 
-    <main role="main" class="Page-content Aligner">
-        <div class="Wrapper Wrapper--narrow Aligner-item">
+    {% if applications %}
+    <section>
+        <h3 class="red-arrow">Submitted_talks_</h3>
 
-            <section class="Account">
+        <ul>
+        {% for application in applications %}
+            <li><a href="{% url 'application_update' 1 application.pk %}">
+                {{ application.title }}
+            </a></li>
+        {% endfor %}
+        </ul>
 
-                {% if applications %}
-                <div class="Account-talks">
-                    <div class="Form Form--beta">
-                        <h2 class="Form-legend">Your submitted talks</h2>
-                        <div class="Passage">
-                            <ul class="Account-talkList">
-                                {% for application in applications %}
-                                <li><a href="{% url 'application_update' 1 application.pk %}">{{ application }}</a></li>
-                                {% endfor %}
-                            </ul>
-                            {% if cfp_enabled %}
-                            <div class="Form-constrain">
-                                <div class="Form-actions">
-                                    <a class="Button Button--beta Form-action Form-action--submit" href="{% url "application_create" %}">Submit another talk</a>
-                                </div>
-                            </div>
-                            {% endif %}
-                        </div>
-                     </div>
+        {% if cfp_enabled %}
+        <p>
+            <a class="yellow arrow button" href="{% url "application_create" %}">
+                Submit another talk
+            </a>
+        </p>
+        {% endif %}
+    </section>
+    {% endif %}
+
+    <section>
+        <h3 class="red-arrow">Edit_profile_</h3>
+
+        <form method="post" class="Form Form--beta">{% csrf_token %}
+            <fieldset>
+                {% if form.errors %}
+                <div class="alert callout">
+                    <div class="Passage">
+                        <p>Please fix the errors below:</p>
+                        {{form.non_field_errors}}
+                    </div>
                 </div>
                 {% endif %}
 
-                <form method="post" class="Form Form--beta">{% csrf_token %}
-                    <fieldset class="Form-fieldset">
-                        <legend class="Form-legend">Edit Profile</legend>
+                {% include "partials/form-field.html" with field=form.email field_type="text" %}
+                {% include "partials/form-field.html" with field=form.first_name field_type="text" %}
+                {% include "partials/form-field.html" with field=form.last_name field_type="text" %}
+                {% include "partials/form-field.html" with field=form.tshirt_size field_type="text" %}
+                {% include "partials/form-field.html" with field=form.github field_type="text" vanity_field="github" %}
+                {% include "partials/form-field.html" with field=form.twitter field_type="text" vanity_field="twitter" %}
 
-                        {% if form.errors %}
-                        <div class="Form-errors">
-                            <div class="Passage">
-                                <p>Please fix the errors below:</p>
-                                {{form.non_field_errors}}
-                            </div>
-                        </div>
-                        {% endif %}
+                <button type="submit" class="purple yellow-arrow button"><b>SAVE</b></button>
+                <a href="{% url 'account_logout' %}" class="yellow arrow button">LOGOUT</a>
 
-                        <div class="Grid">
-                            <div class="Grid-cell Grid-cell--1of2">
+            </fieldset>
+        </form>
 
-                                {% include "partials/form-field.html" with field=form.email field_type="text" %}
-                                {% include "partials/form-field.html" with field=form.first_name field_type="text" %}
-                                {% include "partials/form-field.html" with field=form.last_name field_type="text" %}
-
-                            </div>
-                            <div class="Grid-cell Grid-cell--1of2">
-
-                                {% include "partials/form-field.html" with field=form.tshirt_size field_type="text" %}
-                                {% include "partials/form-field.html" with field=form.github field_type="text" vanity_field="github" %}
-                                {% include "partials/form-field.html" with field=form.twitter field_type="text" vanity_field="twitter" %}
-
-                            </div>
-                        </div>
-
-                        <div class="Form-constrain">
-                            <div class="Form-actions">
-                                <button type="submit" class="Button Button--beta Form-action Form-action--submit">Update profile</button>
-                            </div>
-                        </div>
-
-                    </fieldset>
-                </form>
-
-            </section>
-        </div>
-    </main>
+    </section>
 {% endblock %}

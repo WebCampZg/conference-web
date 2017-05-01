@@ -1,4 +1,4 @@
-{% extends 'ui/base.html' %}
+{% extends 'ui/page.html' %}
 
 {% load schedule_tags %}
 
@@ -14,98 +14,94 @@
 {% endblock %}
 
 {% block content %}
+    <section class="schedule">
+        <h1 class="red-arrow">Schedule_</h1>
 
-    {% include "partials/header.html" with hero_type="cfp" title="Schedule" %}
+        <h3>Friday, October 28th</h3>
+        <table id="schedule-day-1" class="schedule-table hover unstriped">
+            <thead>
+                <tr>
+                    <th aria-hidden="true">&nbsp;</th>
+                    <th class="text-center">
+                        <img src="{{ MEDIA_URL }}uploads/sponsors/Intercom_logo.svg" alt="Intercom" class="track-logo">
+                    </th>
+                    <th class="text-center">
+                        <img src="{{ MEDIA_URL }}uploads/sponsors/logo-reversinglabs.svg" alt="ReversingLabs" class="track-logo">
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% include "schedule/partials/spacer.html" with time="08:30" text="Doors open" %}
+                {% include "schedule/partials/spacer.html" with time="10:00" text="Opening word" %}
+                {% include "schedule/partials/keynote.html" with time="10:15" slug="the-code-manifesto-empowering-our-community" %}
+                {% include "schedule/partials/spacer.html" with time="11:15" text="Division break" %}
+                {% include "schedule/partials/talk_pair.html" with time="11:45" left="making-react-part-of-something-greater" right="self-testable-api-docs-docs-shouldnt-lie" %}
+                {% include "schedule/partials/talk_pair.html" with time="12:15" left="event-sourcing-the-good-the-bad-and-the-complicated" right="client-experience-design" %}
+                {% include "schedule/partials/talk_pair.html" with time="13:05" left="security-in-the-age-of-frameworks" right="helpful-interactions-in-the-socially-awkward-community" %}
+                {% include "schedule/partials/spacer.html" with time="13:35" text="Lunch" %}
+                {% include "schedule/partials/talk_pair.html" with time="15:05" left="when-a-bigger-boat-is-not-an-option-scaling-beyond-biggest-mysql-box" right="what-goes-wrong-with-javascript-and-what-can-we-do-about-it" %}
+                {% include "schedule/partials/talk_pair.html" with time="15:35" left="elm-or-how-i-learned-to-love-front-end-development" right="things-i-was-unprepared-for-as-a-lead-developer" %}
+                {% include "schedule/partials/spacer.html" with time="16:25" text="Break" %}
+                {% include "schedule/partials/talk_pair.html" with time="16:55" left="distributed-domain-destruction-adventures-in-building-distributed-systems" right="bots-ai-apis-and-messy-interactions" %}
+                {% include "schedule/partials/talk_pair.html" with time="17:25" left="how-to-build-a-website-that-will-eventually-work-on-mars" right="code-review-beyond-code-style" %}
+                {% include "schedule/partials/spacer.html" with time="17:55" text="Division break" %}
+                {% include "schedule/partials/spacer.html" with time="18:25" text="Ligtning talks" %}
+                {% include "schedule/partials/drinkup.html" with time="19:10" text="Drinkup" %}
+            </tbody>
+        </table>
 
-    <section class="Spotlight Spotlight--beta">
-        <div class="Wrapper Wrapper--wide Wrapper--withFlair">
-            <div class="Schedule">
-                <nav class="Schedule-nav">
-                    <a href="#day-1" class="Schedule-navLink Button Button--alpha Button--rounded is-sansFocus" data-block="schedule-day-1">Friday</a>
-                    <a href="#day-2" class="Schedule-navLink Button Button--gamma Button--rounded is-sansFocus" data-block="schedule-day-2">Saturday</a>
-                </nav>
-                <table id="schedule-day-1" class="Schedule-table" cellpadding="0" cellspacing="0">
-                    <caption>Friday, October 28th</caption>
-                    <thead>
-                        <tr>
-                            <th aria-hidden="true">&nbsp;</th>
-                            <th class="Schedule-track"><img src="{{ MEDIA_URL }}uploads/sponsors/Intercom_logo.svg" alt="Intercom" class="Schedule-trackLogo"></th>
-                            <th class="Schedule-track"><img src="{{ MEDIA_URL }}uploads/sponsors/logo-reversinglabs.svg" alt="ReversingLabs" class="Schedule-trackLogo"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% include "schedule/partials/spacer.html" with time="08:30" text="Doors open" %}
-                        {% include "schedule/partials/spacer.html" with time="10:00" text="Opening word" %}
-                        {% include "schedule/partials/keynote.html" with time="10:15" slug="the-code-manifesto-empowering-our-community" %}
-                        {% include "schedule/partials/spacer.html" with time="11:15" text="Division break" %}
-                        {% include "schedule/partials/talk_pair.html" with time="11:45" left="making-react-part-of-something-greater" right="self-testable-api-docs-docs-shouldnt-lie" %}
-                        {% include "schedule/partials/talk_pair.html" with time="12:15" left="event-sourcing-the-good-the-bad-and-the-complicated" right="client-experience-design" %}
-                        {% include "schedule/partials/talk_pair.html" with time="13:05" left="security-in-the-age-of-frameworks" right="helpful-interactions-in-the-socially-awkward-community" %}
-                        {% include "schedule/partials/spacer.html" with time="13:35" text="Lunch" %}
-                        {% include "schedule/partials/talk_pair.html" with time="15:05" left="when-a-bigger-boat-is-not-an-option-scaling-beyond-biggest-mysql-box" right="what-goes-wrong-with-javascript-and-what-can-we-do-about-it" %}
-                        {% include "schedule/partials/talk_pair.html" with time="15:35" left="elm-or-how-i-learned-to-love-front-end-development" right="things-i-was-unprepared-for-as-a-lead-developer" %}
-                        {% include "schedule/partials/spacer.html" with time="16:25" text="Break" %}
-                        {% include "schedule/partials/talk_pair.html" with time="16:55" left="distributed-domain-destruction-adventures-in-building-distributed-systems" right="bots-ai-apis-and-messy-interactions" %}
-                        {% include "schedule/partials/talk_pair.html" with time="17:25" left="how-to-build-a-website-that-will-eventually-work-on-mars" right="code-review-beyond-code-style" %}
-                        {% include "schedule/partials/spacer.html" with time="17:55" text="Division break" %}
-                        {% include "schedule/partials/spacer.html" with time="18:25" text="Ligtning talks" %}
-                        {% include "schedule/partials/drinkup.html" with time="19:10" text="Drinkup" %}
-                    </tbody>
-                </table>
+        <hr />
 
-
-                <table id="schedule-day-2" class="Schedule-table is-hidden">
-                    <caption>Saturday, October 29th</caption>
-                    <thead>
-                        <tr>
-                            <th aria-hidden="true">&nbsp;</th>
-                            <th class="Schedule-track"><img src="{{ MEDIA_URL }}uploads/sponsors/Intercom_logo.svg" alt="Intercom" class="Schedule-trackLogo"></th>
-                            <th class="Schedule-track"><img src="{{ MEDIA_URL }}uploads/sponsors/logo-reversinglabs.svg" alt="ReversingLabs" class="Schedule-trackLogo"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% include "schedule/partials/spacer.html" with time="08:30"    text="Doors open" %}
-                        {% include "schedule/partials/spacer.html" with time="10:00"    text="Opening word" %}
-                        {% include "schedule/partials/keynote.html" with time="10:15"   slug="superintelligence-the-idea-that-eats-smart-people" %}
-                        {% include "schedule/partials/spacer.html" with time="11:15"    text="Division break" %}
-                        {% include "schedule/partials/talk_pair.html" with time="11:45" left="building-event-driven-services" right="being-a-remote-developer" %}
-                        {% include "schedule/partials/talk_pair.html" with time="12:15" left="se7en-deadly-deployment-sins" right="avoiding-release-paralysis" %}
-                        {% include "schedule/partials/talk_pair.html" with time="13:05" left="bullseye-an-introduction-to-dart" right="end-design-revision-hell" %}
-                        {% include "schedule/partials/spacer.html" with time="13:35"    text="Lunch" %}
-                        {% include "schedule/partials/talk_pair.html" with time="15:05" left="how-to-overengineer-a-meme-generator" right="how-to-flourish-in-an-age-of-digital-distraction" %}
-                        {% include "schedule/partials/talk_pair.html" with time="15:35" left="whats-the-fuss-about-phoenix" right="2fa-wtf" %}
-                        {% include "schedule/partials/spacer.html" with time="16:25"    text="Break" %}
-                        {% include "schedule/partials/talk_pair.html" with time="16:55" left="battling-complexity" right="how-to-communicate-as-a-programmer" %}
-                        <tr>
-                            <td class="Schedule-time Schedule-spacer">17:25</td>
-                                <td class="Schedule-talkWrap">
-                                    <a href="/talks/view/using-sqlite-to-take-user-built-maps-offline-on-mobile-devices/" class="Schedule-talk Schedule-spacer">
-                                        <span class="Schedule-talkTitle">
-                                            Using SQLite to take user-built maps offline on mobile devices
-                                        </span>
-                                        <span class="Schedule-talkSpeaker">Dino Ravnic</span>
-                                        <span class="Schedule-talkTrack" aria-hidden="true">Intercom track</span>
-                                    </a>
-                                </td>
-                                <td class="Schedule-talkWrap">
-                                <span class="Schedule-talk Schedule-spacer">
-                                    <span class="Schedule-talkTitle">
-                                        Mystery panel
-                                    </span>
-                                    <span class="Schedule-talkSpeaker">To be announced soon</span>
-                                    <span class="Schedule-talkTrack" aria-hidden="true">ReversingLabs track</span>
+        <h3 class="arrow">Saturday, October 29th</h3>
+        <table id="schedule-day-2" class="schedule-table hover unstriped">
+            <thead>
+                <tr>
+                    <th aria-hidden="true">&nbsp;</th>
+                    <th class="text-center">
+                        <img src="{{ MEDIA_URL }}uploads/sponsors/Intercom_logo.svg" alt="Intercom" class="track-logo">
+                    </th>
+                    <th class="text-center">
+                        <img src="{{ MEDIA_URL }}uploads/sponsors/logo-reversinglabs.svg" alt="ReversingLabs" class="track-logo">
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% include "schedule/partials/spacer.html" with time="08:30"    text="Doors open" %}
+                {% include "schedule/partials/spacer.html" with time="10:00"    text="Opening word" %}
+                {% include "schedule/partials/keynote.html" with time="10:15"   slug="superintelligence-the-idea-that-eats-smart-people" %}
+                {% include "schedule/partials/spacer.html" with time="11:15"    text="Division break" %}
+                {% include "schedule/partials/talk_pair.html" with time="11:45" left="building-event-driven-services" right="being-a-remote-developer" %}
+                {% include "schedule/partials/talk_pair.html" with time="12:15" left="se7en-deadly-deployment-sins" right="avoiding-release-paralysis" %}
+                {% include "schedule/partials/talk_pair.html" with time="13:05" left="bullseye-an-introduction-to-dart" right="end-design-revision-hell" %}
+                {% include "schedule/partials/spacer.html" with time="13:35"    text="Lunch" %}
+                {% include "schedule/partials/talk_pair.html" with time="15:05" left="how-to-overengineer-a-meme-generator" right="how-to-flourish-in-an-age-of-digital-distraction" %}
+                {% include "schedule/partials/talk_pair.html" with time="15:35" left="whats-the-fuss-about-phoenix" right="2fa-wtf" %}
+                {% include "schedule/partials/spacer.html" with time="16:25"    text="Break" %}
+                {% include "schedule/partials/talk_pair.html" with time="16:55" left="battling-complexity" right="how-to-communicate-as-a-programmer" %}
+                <tr>
+                    <td class="Schedule-time Schedule-spacer">17:25</td>
+                        <td class="Schedule-talkWrap">
+                            <a href="/talks/view/using-sqlite-to-take-user-built-maps-offline-on-mobile-devices/" class="Schedule-talk Schedule-spacer">
+                                <span class="Schedule-talkTitle">
+                                    Using SQLite to take user-built maps offline on mobile devices
                                 </span>
-                            </td>
-                        </tr>
-                        {% include "schedule/partials/spacer.html" with time="17:55"    text="Division break" %}
-                        {% include "schedule/partials/spacer.html" with time="18:25"    text="Closing" %}
-                    </tbody>
-                </table>
-            </div>
-        </div>
+                                <span class="Schedule-talkSpeaker">Dino Ravnic</span>
+                                <span class="Schedule-talkTrack" aria-hidden="true">Intercom track</span>
+                            </a>
+                        </td>
+                        <td class="Schedule-talkWrap">
+                        <span class="Schedule-talk Schedule-spacer">
+                            <span class="Schedule-talkTitle">
+                                Mystery panel
+                            </span>
+                            <span class="Schedule-talkSpeaker">To be announced soon</span>
+                            <span class="Schedule-talkTrack" aria-hidden="true">ReversingLabs track</span>
+                        </span>
+                    </td>
+                </tr>
+                {% include "schedule/partials/spacer.html" with time="17:55"    text="Division break" %}
+                {% include "schedule/partials/spacer.html" with time="18:25"    text="Closing" %}
+            </tbody>
+        </table>
     </section>
-
-    {% include "partials/groups/bottom_default.html" %}
-
 {% endblock %}
-

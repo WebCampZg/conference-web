@@ -1,0 +1,53 @@
+.sponsors-wrapper {
+    padding: 2rem 0;
+
+    h1 {
+        margin-top: 0rem;
+    }
+}
+
+.sponsor-list {
+    margin-top: 2rem;
+
+    &.diamond img {
+        max-height: 10rem;
+    }
+
+    &.track img {
+        max-height: 6rem;
+    }
+
+    &.foodanddrinks img {
+        max-height: 5rem;
+    }
+
+    &.standard img {
+        max-height: 4rem;
+    }
+
+    &.supporter img {
+        max-height: 2rem;
+    }
+
+    .column {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+}
+
+.usergroups-wrapper {
+    background-color: $light-gray;
+    padding: 2rem 0;
+    h1 {
+        margin-top: 0rem;
+    }
+}
+
+.usergroup-list-item {
+    img {
+        max-height: 4rem;
+        max-width: 12rem;
+    }
+
+    margin-bottom: 2rem;
+}

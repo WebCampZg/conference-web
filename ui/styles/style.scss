@@ -1,0 +1,194 @@
+@import "palette";
+@import "settings";
+@import "foundation";
+
+@include foundation-everything(true);
+
+@import "footer";
+@import "forms";
+@import "hero";
+@import "jobs";
+@import "newsletter";
+@import "posts";
+@import "schedule";
+@import "sponsors";
+@import "talks";
+@import "tickets";
+@import "top-bar";
+
+// Basic typography adjustments
+
+a {
+    font-weight: bold;
+
+    .normal {
+        font-weight: normal;
+    }
+}
+
+
+h1 {
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+h3 {
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
+
+h4 {
+    margin-bottom: 1rem;
+}
+
+
+// Basic elements
+
+.content {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+// Colors
+
+.light-blue {
+    color: $light-blue;
+}
+
+.dark-blue {
+    color: $dark-blue;
+}
+
+.red {
+    color: $red;
+}
+
+.purple {
+    color: $purple;
+}
+
+.green {
+    color: $green;
+}
+
+.yellow {
+    color: $yellow;
+}
+
+.gray {
+    color: $dark-gray;
+}
+
+a:not(.button).yellow {
+    &:visited {
+        color: $yellow;
+    }
+    &:hover {
+        color: scale-color($yellow, $lightness: -10%);
+    }
+}
+
+// Labels
+
+.label.purple {
+    background-color: $purple;
+    color: $white;
+}
+
+.label.blue {
+    background-color: $dark-blue;
+    color: $white;
+}
+
+.label.green {
+    background-color: $green;
+    color: $white;
+}
+
+.label.yellow {
+    background-color: $yellow;
+    color: $black;
+}
+
+
+// Arrows
+
+@mixin arrow($color) {
+    &::before {
+        content: ">";
+        padding-right: 1rem;
+        color: $color;
+        font-weight: normal;
+    }
+}
+
+.arrow {
+    @include arrow("inherit");
+}
+
+.red-arrow {
+    @include arrow($red);
+}
+
+.yellow-arrow {
+    @include arrow($yellow);
+}
+
+.green-arrow {
+    @include arrow($green);
+}
+
+// Buttons
+.button {
+    &.purple {
+        color: $white;
+        background-color: $purple;
+
+        &:hover {
+            background-color: scale-color($purple, $lightness: -15%);
+        }
+    }
+
+    &.light-blue {
+        color: $white;
+        background-color: $light-blue;
+
+        &:hover {
+            background-color: scale-color($light-blue, $lightness: -15%);
+        }
+    }
+
+    &.yellow {
+        color: $black;
+        background-color: $yellow;
+
+        &:hover {
+            background-color: scale-color($yellow, $lightness: -15%);
+        }
+    }
+
+    &.green {
+        color: $black;
+        background-color: $green;
+
+        &:hover {
+            background-color: scale-color($green, $lightness: -15%);
+        }
+    }
+}
+
+// Utils
+
+.no-margin {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0;
+}

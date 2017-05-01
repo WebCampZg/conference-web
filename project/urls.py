@@ -13,6 +13,7 @@ handler404 = 'ui.views.custom_404'
 
 urlpatterns = [
     url(r'^$', ui.views.index, name="ui_index"),
+    url(r'^404/', ui.views.custom_404),
     url(r'^blog/', include('blog.urls')),
     url(r'^tinymce/', include('tinymce.urls')),
     url(r'^signup/success/$', ui.views.signup_success),

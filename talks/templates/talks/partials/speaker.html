@@ -1,0 +1,18 @@
+{% load fb_versions %}
+{% load markdown_deux_tags %}
+
+<hr />
+
+<div class="row">
+    <div class="hide-for-small medium-3 columns">
+        <img src="{% version applicant.image 'big' %}" alt="Photo of {{ applicant.user.get_full_name }}" />
+    </div>
+
+    <div class="small-12 medium-8 columns">
+        <h3>{{ applicant.user.get_full_name }}</h3>
+
+        {{ applicant.biography|markdown }}
+
+        {% include "talks/partials/speaker-links.html" %}
+    </div>
+</div>

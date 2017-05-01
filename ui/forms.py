@@ -8,7 +8,7 @@ class SignupForm(forms.Form):
     last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': _('Last name')}))
     github = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': _('Github username')}))
     twitter = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': _('Twitter handle')}))
-    tshirt_size = forms.ModelChoiceField(queryset=TShirtSize.objects.all(), empty_label=None,
+    tshirt_size = forms.ModelChoiceField(queryset=TShirtSize.objects.all(), empty_label="--- Choose one ---",
                                          widget=forms.Select(attrs={'placeholder': _('T-shirt size')}))
 
     def signup(self, request, user):

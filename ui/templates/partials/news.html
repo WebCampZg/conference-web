@@ -1,0 +1,29 @@
+<div class="posts">
+    <div class="row column">
+        <h1 class="red-arrow">Latest_news_</h1>
+
+        <div class="row" data-equalizer data-equalize-on="medium">
+        {% for post in posts %}
+            <div class="small-12 medium-4 columns">
+                <div class="post" data-equalizer-watch>
+                    <time class="gray" datetime="{{ post.created_at|date:"c" }}">
+                        {{ post.created_at|date:"d.m.Y." }}
+                    </time>
+
+                    <h3>
+                        <a href="{% url 'blog_view_post' slug=post.slug %}">{{ post.title }}</a>
+                        {% if post.is_sponsored %}
+                            <span class="label">Sponsored</span>
+                        {% endif %}
+                    </h3>
+
+                    <p>{{ post.lead|safe }}</p>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        <div class="archive text-center">
+            <a href="#">{ view archive }</a>
+        </div>
+    </div>
+</div>

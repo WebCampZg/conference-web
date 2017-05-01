@@ -181,28 +181,22 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
+# https://docs.djangoproject.com/en/1.10/howto/static-files/
 
+# URL to use when referring to static files located in STATIC_ROOT.
 STATIC_URL = '/static/'
+
+# Additional locations the staticfiles app will traverse.
+STATICFILES_DIRS = [
+    ABS_PATH('../ui/dist'),
+]
+
+# The absolute path to the directory where collectstatic will collect static files for deployment.
 STATIC_ROOT = ABS_PATH('static')
 
 AUTH_USER_MODEL = 'people.User'
 
 MEDIA_URL = '/media/'
-
-
-# List of finder classes that know how to find static files in
-# various locations.
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-)
-
-
-# Additional locations of static files
-STATICFILES_DIRS = (
-    ABS_PATH('staticfiles'),
-)
 
 SITE_ID = 1
 

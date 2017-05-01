@@ -1,0 +1,58 @@
+.top-bar {
+    background-color: $white;
+    border-bottom: 2px solid black;
+    height: 4rem;
+    padding-right: 0;
+
+    .top-bar-title {
+        width: 10rem;
+    }
+
+    .logo {
+        position: absolute;
+        top: 0.5rem;
+        left: 1rem;
+        max-width: 8rem;
+        height: auto;
+        background-color: $white;
+        z-index: 10;
+    }
+    .menu {
+        background-color: $white;
+
+        .item:not(:last-child) > a {
+            padding-right: 0;
+            &::after {
+                content: ":";
+                margin-left: 1rem;
+                color: $dark-blue;
+            }
+        }
+    }
+
+    .heart {
+        color: $red;
+        font-weight: 500;
+        margin-left: 3rem;
+        margin-right: 1rem;
+    }
+
+    .top-bar-right ul {
+        background-color: $light-gray;
+        height: calc(4rem - 2px);
+
+        &:hover {
+            background-color: scale-color($light-gray, $lightness: -5%);
+        }
+    }
+
+    a {
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: .9rem;
+
+        &:not(.button) {
+            color: $black;
+        }
+    }
+}

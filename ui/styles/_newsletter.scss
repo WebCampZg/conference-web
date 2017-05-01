@@ -1,0 +1,29 @@
+.newsletter {
+    background-color: $dark-blue;
+    color: $white;
+    text-align: center;
+    padding: 5rem 0;
+
+    h2 {
+        margin-bottom: 3rem;
+    }
+
+    input, button {
+        height: 4rem;
+        display: inline-block;
+        margin: 0;
+    }
+    input {
+        max-width: 35rem;
+        padding-left: 1rem;
+    }
+    button {
+        text-transform: uppercase;
+        font-weight: bold;
+        font-family: $body-font-family;
+        // Holy hackage Batman.
+        // If anyone knows a better way to join the button and input, let me know.
+        margin-left: -10px;
+        margin-top: -1px;
+    }
+}

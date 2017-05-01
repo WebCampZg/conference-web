@@ -1,59 +1,34 @@
-{% load fb_versions %}
-
-<header class="Header Hero Hero--{{ hero_type }}" role="banner">
-    <div class="Hero-inner">
-        <div class="Wrapper Wrapper--wide">
-            {% include "partials/site-nav.html" %}
+{% load static %}
+<div class="top-bar show-for-medium">
+    <div class="top-bar-title">
+        <div class="logo">
+            <a href="{% url 'ui_index' %}">
+                <img src="{% static "images/header-logo.svg" %}" />
+            </a>
         </div>
-        <div class="Punchline {% if keynote and keynotes %}Punchline--keynotes{% endif %}">
-            <div class="Wrapper Wrapper--narrow">
-                {% if sponsors_cta %}
-                    <div class="HeaderCTA HeaderCTA--sponsors">
-                        <a href="{{ links.sponsors_pdf }}" class="HeaderCTA-action Button Button--beta Button--rounded">Become a sponsor</a>
-                    </div>
-                {% else %}
-                    {% if title %}
-                        <h2 class="Punchline-info">{{ title }}</h2>
-                    {% else %}
-                        <h2 class="Punchline-info">Technology oriented conference for <b>developers&nbsp;&amp;&nbsp;designers</b></h2>
-                        <div class="Punchline-event">
-                            <p class="Punchline-date">October 28th &amp; 29th, 2016</p>
-                            <p class="Punchline-location"><span>Hypo Expo XXI</span> <span>Slavonska avenija 6</span> Zagreb, Croatia</p>
-                        </div>
-                    {% endif %}
-                {% endif %}
-           </div>
-        </div>
-
-        {% if keynote and keynotes %}
-        <div class="Wrapper Wrapper--wide">
-            <ul class="Keynotes">
-                {% for talk in keynotes %}
-                <li class="Keynote">
-                    <a href="{% url 'talks_view_talk' slug=talk.slug %}" class="Keynote-link">
-                        <h4 class="Keynote-title">
-                            Keynote
-                        </h4>
-                        <div class="Keynote-content">
-                            <div class="Grid">
-                                <div class="Grid-cell Grid-cell--1of3">
-                                    <figure class="Keynote-figure">
-                                        <div class="FlairFigure">
-                                            <img src="{% version talk.application.applicant.image 'big' %}" alt="Photo of {{ talk.application.applicant.user.get_full_name }}" />
-                                        </div>
-                                    </figure>
-                                </div>
-                                <div class="Grid-cell Grid-cell--2of3">
-                                    <p class="Keynote-speaker">{{ talk.application.applicant.user.get_full_name }}</p>
-                                    <h3 class="Keynote-description">{{ talk.title }}</h3>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-        {% endif %}
     </div>
-</header>
+    <div class="top-bar-left">
+
+        <ul class="menu">
+            <li><a href="/tickets/" class="purple arrow button show-for-large">Buy tickets</a></li>
+            <li class="heart show-for-large">&lt;3</li>
+            <li class="item"><a href="/info/">Info</a></li>
+            <li class="item"><a href="{% url 'talks_list_talks' %}">Talks</a></li>
+            <li class="item"><a href="{% url 'schedule_list_schedule' %}">Schedule</a></li>
+            <li class="item"><a href="{% url 'blog_list_posts' %}">News</a></li>
+            <li class="item"><a href="{% url 'jobs_list_jobs' %}">Jobs</a></li>
+            <li class="item"><a href="/code/">Conduct</a></li>
+        </ul>
+    </div>
+    <div class="top-bar-right">
+        <ul class="menu">
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'user_profile' %}">
+                <i class="fa fa-user"></i>&nbsp;{{user.get_full_name}}
+            </a></li>
+            {% else %}
+            <li><a href="{% url 'account_login' %}" class="arrow">Login</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</div>

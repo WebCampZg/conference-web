@@ -95,8 +95,7 @@ sync-media:
 	rsync -rv webcamp:web/conference-web/project/media/uploads project/media/uploads
 
 css:
-	node_modules/.bin/grunt css
+	node_modules/.bin/node-sass ui/styles/style.scss ui/dist/styles/style.css --include-path=node_modules/foundation-sites/scss --source-map=true
 
-js:
-	node_modules/.bin/grunt js
-
+css-watch:
+	node_modules/.bin/node-sass ui/styles/style.scss ui/dist/styles/style.css --include-path=node_modules/foundation-sites/scss --source-map=true --watch

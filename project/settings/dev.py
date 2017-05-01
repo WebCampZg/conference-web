@@ -1,4 +1,4 @@
-from .base import *
+from .base import *  # noqa
 
 
 DEBUG = True
@@ -39,4 +39,3 @@ except ImportError:
 
 
 LOGGING = BASE_LOGGING
-

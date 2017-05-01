@@ -1,54 +1,37 @@
 {% load static %}
 {% load fb_versions %}
 
-<article class="QuickTalk">
-    <div class="Grid">
-        <div class="Grid-cell Grid-cell--1of3">
-            <figure class="QuickTalk-figure">
-                <div class="FlairFigure">
-                    <img src="{% version talk.application.applicant.image 'big' %}" alt="Photo of {{ talk.application.applicant.user.get_full_name }}">
-                </div>
-            </figure>
+<article class="talk-short">
+    <div class="row">
+        <div class="show-for-medium medium-3 columns">
+            <img src="{% version talk.application.applicant.image 'big' %}" alt="Photo of {{ talk.application.applicant.user.get_full_name }}">
         </div>
-        <div class="Grid-cell Grid-cell--2of3">
+
+        <div class="small-12 medium-9 columns">
             {% if talk.co_presenter %}
-                <p class="QuickTalk-speaker">
+                <p>
                     <span>Speakers:</span>
                     <a href="{% url 'talks_view_talk' slug=talk.slug %}#speaker">{{ talk.application.applicant.user.get_full_name }}</a>,
                     <a href="{% url 'talks_view_talk' slug=talk.slug %}#speaker2">{{ talk.co_presenter.user.get_full_name }}</a>
                 </p>
             {% else %}
-                <p class="QuickTalk-speaker">
+                <p>
                     <span>Speaker:</span>
                     <a href="{% url 'talks_view_talk' slug=talk.slug %}#speaker">{{ talk.application.applicant.user.get_full_name }}</a>
                 </p>
             {% endif %}
-            <h3 class="QuickTalk-title">
+
+            <h3>
                 <a href="{% url 'talks_view_talk' slug=talk.slug %}">
                     {{ talk.title }}
                 </a>
             </h3>
-            <div class="QuickTalk-body">
-                {{ talk.about }}
-            </div>
-            <div class="QuickTalk-flags">
-                {% include "talks/partials/flags.html" %}
-            </div>
-            <div class="QuickTalk-level">
-                Skill level: <em>{{ talk.skill_level }}</em><br />
-                Duration: <b>{{ talk.duration }} min</b>
-            </div>
-            <aside class="QuickTalk-social">
-                <ul>
-                    {% if talk.application.applicant.user.twitter %}
-                    <li><a href="https://twitter.com/{{ talk.application.applicant.user.twitter }}"><svg class="Icon Icon--social"><title>Twitter profile</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-twitter"></use></svg></a></a></li>
-                    {% endif %}
-                    {% if talk.application.applicant.user.github %}
-                    <li><a href="https://github.com/{{ talk.application.applicant.user.github }}"><svg class="Icon Icon--social"><title>GitHub profile</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-github"></use></svg></a></a></li>
-                    {% endif %}
-                </ul>
-            </aside>
+
+            {% include "talks/partials/flags.html" %}
+
+            <p>{{ talk.about }}</p>
+
+            <p>{% include "talks/partials/attributes.html" %}</p>
         </div>
     </div>
 </article>
-
