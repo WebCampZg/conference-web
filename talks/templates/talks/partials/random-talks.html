@@ -1,0 +1,19 @@
+<div class="talk-grid">
+    <div class="row column">
+        <h1 class="blue-arrow">Talks_</h1>
+
+        <div class="row" data-equalizer data-equalize-on="medium">
+            {% for talk in talks %}
+                <div class="small-12 medium-4 columns">
+                    {% include "talks/partials/random-talk.html" %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center">
+            <a class="purple" href="{% url 'talks_list_talks' %}">
+                {&nbsp;all_talks&nbsp;}
+            </a>
+        </div>
+    </div>
+</div>

@@ -82,7 +82,7 @@ h4 {
 }
 
 .gray {
-    color: $dark-gray;
+    color: #8a8a8a;
 }
 
 a:not(.button).yellow {
@@ -142,6 +142,10 @@ a:not(.button).yellow {
 
 .green-arrow {
     @include arrow($green);
+}
+
+.blue-arrow {
+    @include arrow($light-blue);
 }
 
 // Buttons

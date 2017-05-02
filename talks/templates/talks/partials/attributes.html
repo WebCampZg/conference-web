@@ -1,4 +1,6 @@
 <span class="purple">&gt; </span>
-Skill level: <em>{{ talk.skill_level }}</em><br />
+Skill level:
+{% include "talks/partials/skill-level-label.html" with talk=talk only %}
+<br />
 <span class="purple">&gt; </span>
-Duration: <em>{{ talk.duration }} min</em>
+Duration: <em class="gray">{{ talk.duration }} min</em>
