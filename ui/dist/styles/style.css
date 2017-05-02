@@ -3745,19 +3745,15 @@ a.thumbnail {
   padding: 5rem 0; }
   .newsletter h2 {
     margin-bottom: 3rem; }
-  .newsletter input, .newsletter button {
-    height: 4rem;
-    display: inline-block;
-    margin: 0; }
+
+/* Large and up */
+@media screen and (min-width: 64em) {
   .newsletter input {
-    max-width: 35rem;
-    padding-left: 1rem; }
-  .newsletter button {
-    text-transform: uppercase;
-    font-weight: bold;
-    font-family: "Fira Code", monospace;
-    margin-left: -10px;
-    margin-top: -1px; }
+    height: 4rem; }
+    .newsletter input[type='email'] {
+      padding-left: 2rem; }
+    .newsletter input[type='button'] {
+      font-size: 20px; } }
 
 .posts {
   background-color: #f7f7f7;
@@ -3940,8 +3936,7 @@ h1 {
   margin-bottom: 2rem; }
 
 h2 {
-  font-size: 32px;
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 2rem; }
 
 h3 {
