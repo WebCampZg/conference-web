@@ -36,6 +36,3 @@ try:
     }
 except ImportError:
     pass
-
-
-LOGGING = BASE_LOGGING

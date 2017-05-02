@@ -5,7 +5,6 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
-from filebrowser.sites import site
 from people.views import UserProfileView
 from project.sitemaps import sitemaps
 
@@ -20,7 +19,6 @@ urlpatterns = [
     url(r'^jobs/', include('jobs.urls')),
     url(r'^sponsors/', include('sponsors.urls')),
     url(r'^cfp/', include('cfp.urls')),
-    url(r'^admin/filebrowser/', include(site.urls)),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^accounts/profile/', UserProfileView.as_view(), name='user_profile'),

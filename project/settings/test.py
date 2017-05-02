@@ -16,8 +16,6 @@ PASSWORD_HASHERS = (
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-LOGGING = BASE_LOGGING
-
 # Disable cache
 CACHES = {
     'default': {
@@ -26,4 +24,3 @@ CACHES = {
 }
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
-

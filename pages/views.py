@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.http import Http404, HttpResponse, HttpResponsePermanentRedirect
 from django.shortcuts import get_object_or_404
-from django.template import loader, RequestContext
+from django.template import loader
 from django.utils.safestring import mark_safe
 from django.views.decorators.csrf import csrf_protect
 from pages.models import Page
@@ -11,6 +11,7 @@ DEFAULT_TEMPLATE = 'pages/default.html'
 #
 # Taken from django.contrib.flatpages.views
 #
+
 
 def page(request, url):
     """
@@ -44,7 +45,7 @@ def render_page(request, f):
     """
     # If registration is required for accessing this page, and the user isn't
     # logged in, redirect to the login page.
-    if f.registration_required and not request.user.is_authenticated():
+    if f.registration_required and not request.user.is_authenticated:
         from django.contrib.auth.views import redirect_to_login
         return redirect_to_login(request.path)
     if f.template_name:
@@ -58,8 +59,5 @@ def render_page(request, f):
     f.title = mark_safe(f.title)
     f.content = mark_safe(f.content)
 
-    c = RequestContext(request, {
-        'page': f,
-    })
-    response = HttpResponse(t.render(c))
+    response = HttpResponse(t.render({'page': f}, request))
     return response
