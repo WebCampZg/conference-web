@@ -265,6 +265,23 @@ TEMPLATES = [
     },
 ]
 
+# Markdown deux settings
+# https://github.com/trentm/django-markdown-deux#settings
+MARKDOWN_DEUX_STYLES = {
+    "default": {
+        "extras": {
+            "code-friendly": None,
+        },
+        "safe_mode": "escape",
+    },
+    # A trusted style which doesn't escape html
+    "trusted": {
+        "extras": {
+            "code-friendly": None,
+        },
+        "safe_mode": False,
+    }
+}
 
 #
 # WebCamp custom settings
