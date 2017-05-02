@@ -1,6 +1,5 @@
 {% extends 'ui/page.html' %}
 
-{% load fb_versions %}
 {% load markdown_deux_tags %}
 
 {% block title %}
@@ -15,7 +14,7 @@
 {% block og %}
     <meta property="og:title" content="{{ talk.application.applicant.user.get_full_name }}: {{ talk.title }} - {{ webcamp.extended_title }}" />
     <meta property="og:description" content="{{ talk.about }}" />
-    <meta property="og:image" content="{{ base_url }}{% version talk.application.applicant.image 'big' %}" />
+    <meta property="og:image" content="{{ MEDIA_URL }}{{ talk.application.applicant.image }}" />
 {% endblock %}
 
 {% block content %}
@@ -28,10 +27,10 @@
 
         <p>{% include "talks/partials/attributes.html" %}</p>
 
-        {% include "talks/partials/speaker.html" with applicant=talk.application.applicant only %}
+        {% include "talks/partials/speaker.html" with applicant=talk.application.applicant %}
 
         {% if talk.co_presenter %}
-            {% include "talks/partials/speaker.html" with applicant=talk.co_presenter only %}
+            {% include "talks/partials/speaker.html" with applicant=talk.co_presenter %}
         {% endif %}
     </article>
 {% endblock %}
