@@ -17,7 +17,7 @@ class PageAdmin(FlatPageAdmin):
     list_filter = ()
     fieldsets = (
         (None, {
-            'fields': ('url', 'title', 'content', 'meta_description', 'title_in_hero', 'hero_type')
+            'fields': ('url', 'title', 'content', 'meta_description')
         }),
         ('Advanced options', {
             'fields': ('registration_required', 'template_name')
