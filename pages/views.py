@@ -27,37 +27,37 @@ def page(request, url):
     if not url.startswith('/'):
         url = '/' + url
     try:
-        f = get_object_or_404(Page, url=url)
+        page = get_object_or_404(Page, url=url)
     except Http404:
         if not url.endswith('/') and settings.APPEND_SLASH:
             url += '/'
-            f = get_object_or_404(Page, url=url)
+            page = get_object_or_404(Page, url=url)
             return HttpResponsePermanentRedirect('%s/' % request.path)
         else:
             raise
-    return render_page(request, f)
+    return render_page(request, page)
 
 
 @csrf_protect
-def render_page(request, f):
+def render_page(request, page):
     """
     Internal interface to the flat page view.
     """
     # If registration is required for accessing this page, and the user isn't
     # logged in, redirect to the login page.
-    if f.registration_required and not request.user.is_authenticated:
+    if page.registration_required and not request.user.is_authenticated:
         from django.contrib.auth.views import redirect_to_login
         return redirect_to_login(request.path)
-    if f.template_name:
-        t = loader.select_template((f.template_name, DEFAULT_TEMPLATE))
+    if page.template_name:
+        template = loader.select_template((page.template_name, DEFAULT_TEMPLATE))
     else:
-        t = loader.get_template(DEFAULT_TEMPLATE)
+        template = loader.get_template(DEFAULT_TEMPLATE)
 
     # To avoid having to always use the "|safe" filter in flatpage templates,
     # mark the title and content as already safe (since they are raw HTML
     # content in the first place).
-    f.title = mark_safe(f.title)
-    f.content = mark_safe(f.content)
+    page.title = mark_safe(page.title)
+    page.content = mark_safe(page.content)
 
-    response = HttpResponse(t.render({'page': f}, request))
+    response = HttpResponse(template.render({'page': page}, request))
     return response
