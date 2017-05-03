@@ -1,34 +1,64 @@
 {% load static %}
-<div class="top-bar show-for-medium">
-    <div class="top-bar-title">
-        <div class="logo">
+
+{# Navbar for large screens #}
+<div class="nav-bar show-for-large">
+    <div class="logo">
+        <a href="{% url 'ui_index' %}">
+            <img src="{% static "images/header-logo.svg" %}" />
+        </a>
+    </div>
+
+    <div class="nav-left">
+        <a href="/tickets/" class="purple arrow button show-for-large no-margin no-wrap">
+            Buy tickets
+        </a>
+    </div>
+
+    <div class="nav-links">
+        <div class="heart">&lt;3</div>
+        <div class="link"><a href="/info/">Info</a></div>
+        <div class="link"><a href="{% url 'talks_list_talks' %}">Talks</a></div>
+        <div class="link"><a href="{% url 'schedule_list_schedule' %}">Schedule</a></div>
+        <div class="link"><a href="{% url 'blog_list_posts' %}">News</a></div>
+        <div class="link"><a href="{% url 'jobs_list_jobs' %}">Jobs</a></div>
+        <div class="link"><a href="/code/">Conduct</a></div>
+    </div>
+
+    <div class="nav-right no-wrap">
+        {% if user.is_authenticated %}
+            <a href="{% url 'user_profile' %}">
+                <i class="fa fa-user"></i>&nbsp;{{user.get_full_name}}
+            </a>
+        {% else %}
+            <a href="{% url 'account_login' %}" class="arrow">Login</a>
+        {% endif %}
+    </div>
+</div>
+
+{# Navbar for small and medium screens #}
+<div class="mobile-nav-bar hide-for-large">
+    <div class="row align-middle">
+        <div class="columns">
             <a href="{% url 'ui_index' %}">
-                <img src="{% static "images/header-logo.svg" %}" />
+                <img src="{% static "images/small-header.png" %}">
+            </a>
+        </div>
+        <div class="columns shrink">
+            <a data-toggle="mobile-nav-links">
+                <i class="fa fa-2x fa-bars"></i>
             </a>
         </div>
     </div>
-    <div class="top-bar-left">
+</div>
 
-        <ul class="menu">
-            <li><a href="/tickets/" class="purple arrow button show-for-large">Buy tickets</a></li>
-            <li class="heart show-for-large">&lt;3</li>
-            <li class="item"><a href="/info/">Info</a></li>
-            <li class="item"><a href="{% url 'talks_list_talks' %}">Talks</a></li>
-            <li class="item"><a href="{% url 'schedule_list_schedule' %}">Schedule</a></li>
-            <li class="item"><a href="{% url 'blog_list_posts' %}">News</a></li>
-            <li class="item"><a href="{% url 'jobs_list_jobs' %}">Jobs</a></li>
-            <li class="item"><a href="/code/">Conduct</a></li>
-        </ul>
-    </div>
-    <div class="top-bar-right">
-        <ul class="menu">
-            {% if user.is_authenticated %}
-            <li><a href="{% url 'user_profile' %}">
-                <i class="fa fa-user"></i>&nbsp;{{user.get_full_name}}
-            </a></li>
-            {% else %}
-            <li><a href="{% url 'account_login' %}" class="arrow">Login</a></li>
-            {% endif %}
-        </ul>
-    </div>
+<div id="mobile-nav-links" class="hide" data-toggler=".hide">
+    <ul class="vertical menu align-center">
+        <li class="text-center red">&lt;3</li>
+        <li><a href="/info/">Info</a></li>
+        <li><a href="{% url 'talks_list_talks' %}">Talks</a></li>
+        <li><a href="{% url 'schedule_list_schedule' %}">Schedule</a></li>
+        <li><a href="{% url 'blog_list_posts' %}">News</a></li>
+        <li><a href="{% url 'jobs_list_jobs' %}">Jobs</a></li>
+        <li><a href="/code/">Conduct</a></li>
+    </ul>
 </div>

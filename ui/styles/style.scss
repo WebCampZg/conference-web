@@ -8,13 +8,13 @@
 @import "forms";
 @import "hero";
 @import "jobs";
+@import "navigation";
 @import "newsletter";
 @import "posts";
 @import "schedule";
 @import "sponsors";
 @import "talks";
 @import "tickets";
-@import "top-bar";
 
 // Basic typography adjustments
 
@@ -194,4 +194,8 @@ a:not(.button).yellow {
 
 .no-padding {
     padding: 0;
+}
+
+.no-wrap {
+    white-space: nowrap;
 }
