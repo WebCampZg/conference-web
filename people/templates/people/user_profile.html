@@ -1,12 +1,83 @@
 {% extends 'ui/page.html' %}
 
+{% load markdown_deux_tags %}
+
 {% block title %}Profile{% endblock %}
+
+{% block head %}
+<style type="text/css">
+    th { width: 30%; }
+    .speaker-info th { vertical-align: top  }
+</style>
+{% endblock %}
 
 {% block content %}
 
+    <h1 class="red-arrow">Account_</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ user.get_full_name }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>T-shirt size</th>
+                <td>{{ user.tshirt_size }}</td>
+            </tr>
+            <tr>
+                <th><i class="fa fa-github"></i> Github</th>
+                <td><span class="gray">https://github.com/</span>{{ user.github }}</td>
+            </tr>
+            <tr>
+                <th><i class="fa fa-twitter"></i> Twitter</th>
+                <td><span class="gray">https://twitter.com/</span>{{ user.twitter }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{% url 'user_profile_update' %}" class="yellow arrow button">Edit account</a>
+    <a href="{% url 'account_logout' %}" class="purple arrow button">Log out</a>
+
+    <hr />
+
+    {% if user.get_applicant %}
+        <h2>Speaker_info_</h2>
+
+        <p>Tell us about yourself so that we may know you.</p>
+
+        <table class="speaker-info">
+            <tbody>
+                <tr>
+                    <th>About</th>
+                    <td>{{ user.applicant.about|markdown }}</td>
+                </tr>
+                <tr>
+                    <th>Biography</th>
+                    <td>{{ user.applicant.biography|markdown }}</td>
+                </tr>
+                <tr>
+                    <th>Speaker experience</th>
+                    <td>{{ user.applicant.speaker_experience|markdown }}</td>
+                </tr>
+                <tr>
+                    <th>Image</th>
+                    <td>
+                        <img class="medium thumbnail" src="{{ MEDIA_URL }}uploads/{{ user.applicant.image }}">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <hr />
+    {% endif %}
+
+    <h2 class="red-arrow">Submitted_talks_</h2>
     {% if applications %}
-    <section>
-        <h3 class="red-arrow">Submitted_talks_</h3>
 
         <ul>
         {% for application in applications %}
@@ -15,43 +86,16 @@
             </a></li>
         {% endfor %}
         </ul>
-
-        {% if cfp_enabled %}
-        <p>
-            <a class="yellow arrow button" href="{% url "application_create" %}">
-                Submit another talk
-            </a>
-        </p>
-        {% endif %}
-    </section>
+    {% else %}
+        <p>You don't have any submitted talks.</p>
     {% endif %}
 
-    <section>
-        <h3 class="red-arrow">Edit_profile_</h3>
+    {% if cfp_enabled %}
+    <p>
+        <a class="yellow arrow button" href="{% url "application_create" %}">
+            Submit a talk
+        </a>
+    </p>
+    {% endif %}
 
-        <form method="post" class="Form Form--beta">{% csrf_token %}
-            <fieldset>
-                {% if form.errors %}
-                <div class="alert callout">
-                    <div class="Passage">
-                        <p>Please fix the errors below:</p>
-                        {{form.non_field_errors}}
-                    </div>
-                </div>
-                {% endif %}
-
-                {% include "partials/form-field.html" with field=form.email field_type="text" %}
-                {% include "partials/form-field.html" with field=form.first_name field_type="text" %}
-                {% include "partials/form-field.html" with field=form.last_name field_type="text" %}
-                {% include "partials/form-field.html" with field=form.tshirt_size field_type="text" %}
-                {% include "partials/form-field.html" with field=form.github field_type="text" vanity_field="github" %}
-                {% include "partials/form-field.html" with field=form.twitter field_type="text" vanity_field="twitter" %}
-
-                <button type="submit" class="purple yellow-arrow button"><b>SAVE</b></button>
-                <a href="{% url 'account_logout' %}" class="yellow arrow button">LOGOUT</a>
-
-            </fieldset>
-        </form>
-
-    </section>
 {% endblock %}

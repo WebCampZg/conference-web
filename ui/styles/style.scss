@@ -161,3 +161,15 @@ a:not(.button).yellow {
 .no-wrap {
     white-space: nowrap;
 }
+
+
+// Thumbnails
+
+.thumbnail {
+    &.small {
+        max-width: 5rem;
+    }
+    &.medium {
+        max-width: 8rem;
+    }
+}

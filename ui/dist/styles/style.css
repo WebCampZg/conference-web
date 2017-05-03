@@ -4085,4 +4085,10 @@ a:not(.button).yellow:hover {
 .no-wrap {
   white-space: nowrap; }
 
+.thumbnail.small {
+  max-width: 5rem; }
+
+.thumbnail.medium {
+  max-width: 8rem; }
+
 /*# sourceMappingURL=style.css.map */

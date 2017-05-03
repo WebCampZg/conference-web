@@ -1,0 +1,32 @@
+{% extends 'ui/page.html' %}
+
+{% block title %}Update Profile{% endblock %}
+
+{% block content %}
+    <section>
+        <h1 class="red-arrow">Edit_profile_</h1>
+
+        <form method="post" class="Form Form--beta">{% csrf_token %}
+            <fieldset>
+                {% if form.errors %}
+                <div class="alert callout">
+                    <div class="Passage">
+                        <p>Please fix the errors below:</p>
+                        {{form.non_field_errors}}
+                    </div>
+                </div>
+                {% endif %}
+
+                {% include "partials/form-field.html" with field=form.email field_type="text" %}
+                {% include "partials/form-field.html" with field=form.first_name field_type="text" %}
+                {% include "partials/form-field.html" with field=form.last_name field_type="text" %}
+                {% include "partials/form-field.html" with field=form.tshirt_size field_type="text" %}
+                {% include "partials/form-field.html" with field=form.github field_type="text" vanity_field="github" %}
+                {% include "partials/form-field.html" with field=form.twitter field_type="text" vanity_field="twitter" %}
+
+                <button type="submit" class="purple arrow button">Save</button>
+                <a href="{% url 'user_profile' %}" class="yellow arrow button">Cancel</a>
+            </fieldset>
+        </form>
+    </section>
+{% endblock %}
