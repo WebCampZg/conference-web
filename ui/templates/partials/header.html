@@ -30,7 +30,9 @@
                 <i class="fa fa-user"></i>&nbsp;{{user.get_full_name}}
             </a>
         {% else %}
-            <a href="{% url 'account_login' %}" class="arrow">Login</a>
+            <a href="{% url 'account_login' %}?next={{ request.path }}" class="arrow">
+                Login
+            </a>
         {% endif %}
     </div>
 </div>
@@ -68,10 +70,10 @@
             </li>
         {% else %}
             <li>
-                <a href="{% url 'account_login' %}" class="arrow">Login</a>
+                <a href="{% url 'account_login' %}?next={{ request.path }}" class="arrow">
+                    Login
+                </a>
             </li>
         {% endif %}
-
-
     </ul>
 </div>
