@@ -4,6 +4,7 @@
 
 @include foundation-everything(true);
 
+@import "buttons";
 @import "footer";
 @import "forms";
 @import "hero";
@@ -121,7 +122,7 @@ a:not(.button).yellow {
 @mixin arrow($color) {
     &::before {
         content: ">";
-        padding-right: 1rem;
+        padding-right: .5rem;
         color: $color;
         font-weight: normal;
     }
@@ -145,45 +146,6 @@ a:not(.button).yellow {
 
 .blue-arrow {
     @include arrow($light-blue);
-}
-
-// Buttons
-.button {
-    &.purple {
-        color: $white;
-        background-color: $purple;
-
-        &:hover {
-            background-color: scale-color($purple, $lightness: -15%);
-        }
-    }
-
-    &.light-blue {
-        color: $white;
-        background-color: $light-blue;
-
-        &:hover {
-            background-color: scale-color($light-blue, $lightness: -15%);
-        }
-    }
-
-    &.yellow {
-        color: $black;
-        background-color: $yellow;
-
-        &:hover {
-            background-color: scale-color($yellow, $lightness: -15%);
-        }
-    }
-
-    &.green {
-        color: $black;
-        background-color: $green;
-
-        &:hover {
-            background-color: scale-color($green, $lightness: -15%);
-        }
-    }
 }
 
 // Utils
