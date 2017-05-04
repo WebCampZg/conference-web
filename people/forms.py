@@ -47,9 +47,10 @@ class CustomUserChangeForm(forms.ModelForm):
         model = UserModel
         exclude = ('date_joined', 'last_login')
 
-    password = ReadOnlyPasswordHashField(help_text=("Raw passwords are not stored, so there is no way to see "
-                    "this user's password, but you can change the password "
-                    "using <a href=\"password/\">this form</a>."))
+    password = ReadOnlyPasswordHashField(help_text=(
+        "Raw passwords are not stored, so there is no way to see "
+        "this user's password, but you can change the password "
+        "using <a href=\"password/\">this form</a>."))
 
     def clean_password(self):
         # Regardless of what the user provides, return the
@@ -62,5 +63,4 @@ class CustomUserChangeForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserModel
-        fields = ['email', 'first_name', 'last_name', 'github', 'twitter', 'tshirt_size',]
-
+        fields = ['email', 'first_name', 'last_name', 'github', 'twitter', 'tshirt_size']

@@ -61,7 +61,7 @@ deploy: update
 	sudo service restart conference-web
 
 lint:
-	flake8 --exclude=.git,migrations --max-complexity=10 .
+	-@flake8 .
 
 docker-check:
 	@command -v docker >/dev/null 2>&1 || \

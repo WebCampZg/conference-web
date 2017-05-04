@@ -11,7 +11,6 @@ from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
 
 from cfp.choices import TALK_DURATIONS
-from django.utils import timezone as tz
 from events.models import Event
 from tinymce.models import HTMLField
 from utils.behaviors import Timestampable
@@ -164,4 +163,3 @@ def update_talk_instance(sender, instance, created, **kwargs):
         instance.talk.save()
     except ObjectDoesNotExist:
         pass
-

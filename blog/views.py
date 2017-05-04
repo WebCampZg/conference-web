@@ -30,4 +30,3 @@ def view_post(request, slug):
     ctx['next'] = next
 
     return render(request, 'blog/view_post.html', ctx)
-

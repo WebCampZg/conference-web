@@ -21,4 +21,3 @@ class Post(Timestampable, Permalinkable):
 
     def __unicode__(self):
         return self.title
-
