@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^accounts/profile/update/$', UserProfileUpdateView.as_view(), name='user_profile_update'),
 
     # Apps
-    url(r'^blog/', include('blog.urls')),
+    url(r'^news/', include('blog.urls')),
     url(r'^cfp/', include('cfp.urls')),
     url(r'^dashboard/', include('dashboard.urls', namespace='dashboard')),
     url(r'^jobs/', include('jobs.urls')),
