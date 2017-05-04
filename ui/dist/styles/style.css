@@ -3845,7 +3845,7 @@ a.thumbnail {
     height: 4rem; }
     .newsletter input[type='email'] {
       padding-left: 2rem; }
-    .newsletter input[type='button'] {
+    .newsletter input[type='submit'] {
       font-size: 20px; } }
 
 .posts {
