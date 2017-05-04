@@ -1,0 +1,29 @@
+.footer {
+    padding: 3rem 0;
+    background-color: #222222;
+    color: $dark-gray;
+
+    a {
+        color: $dark-gray;
+    }
+
+    hr {
+        border-color: $dark-gray;
+        margin: 2rem 0;
+    }
+
+
+
+    .footer-row {
+        > .columns {
+            padding: 0 2rem;
+        }
+        > .columns:not(:last-child) {
+            border-right: 1px solid $dark-gray;
+        }
+    }
+
+    .logo {
+        background-color: #222222;
+    }
+}

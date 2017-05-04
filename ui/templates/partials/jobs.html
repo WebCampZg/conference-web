@@ -1,16 +1,30 @@
-<ul class="Jobs-list">
-    {% for job in jobs %}
-    <li class="Job Block Block--alpha">
-        <button type="button" class="Link Link--delta Job-readMore" data-job-slug="{{ job.title|slugify }}">{{ job.title }} {% if show_sponsor_name %} - <b>{{ job.sponsor }}</b>{% endif %}</button>
-        <div class="Job-body" data-job-slug="{{ job.title|slugify }}">
-            <div class="Passage">
-                <p class="Job-location">Location: {{ job.location }}</p>
-                {{ job.text|safe }}
+{% for job in jobs %}
+<div class="job callout">
+    <div class="job-toggler" data-toggle="job-{{ job.id }}">
+
+        <div class="row">
+            <div class="medium-7 small-12 columns">
+                <h3>{{ job.title }}</h3>
             </div>
-            <div class="Job-apply">
-                <a href="{{ job.url }}" class="Button Button--gamma Button--rounded">View on {{ job.sponsor.name }}&nbsp;web!</a>
+            <div class="medium-4 small-12 columns">
+                <img src="{{ MEDIA_URL }}{{ job.sponsor.image }}" />
+            </div>
+            <div class="medium-1 show-for-medium columns">
+                <i class="fa fa-plus"></i>
             </div>
         </div>
-    </li>
-    {% endfor %}
-</ul>
+    </div>
+
+    <div id="job-{{ job.id }}" class="hide" data-toggler=".hide">
+        <p>Location: {{ job.location }}</p>
+
+        {{ job.text|safe }}
+
+        <div class="text-center">
+            <a href="{{ job.url }}" class="purple arrow button">
+                View on {{ job.sponsor.name }}&nbsp;web!
+            </a>
+        </div>
+    </div>
+</div>
+{% endfor %}

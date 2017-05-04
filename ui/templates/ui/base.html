@@ -1,80 +1,80 @@
-{% load static %}<!doctype html>
-<!--[if lt IE 9]>     <html class="no-js lte-ie8"><![endif]-->
-<!--[if gt IE 8]><!--><html class="no-js"><!--<![endif]-->
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <title>{% block title %}{{ webcamp.extended_title }}{% endblock %}</title>
-        <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-        <meta name="google-site-verification" content="obrkJ3sS7-j1pyueXEHAbHICO3DYZ6Rx-BMB265HmYs" />
-        <link rel="shortcut icon" href="/static/images/favicon/favicon.ico" />
-        <link rel="apple-touch-icon-precomposed" href="/static/images/favicon/apple-touch-icon-precomposed.png" />
-        <link rel="stylesheet" href="{% static 'stylesheets/site.css' %}" />
-        <script>!function(){"use strict";function e(e,t,n){e.addEventListener?e.addEventListener(t,n,!1):e.attachEvent&&e.attachEvent("on"+t,n)}function t(e){return window.localStorage&&localStorage.font_css_cache&&localStorage.font_css_cache_file===e}function n(){if(window.localStorage&&window.XMLHttpRequest)if(t(o))c(localStorage.font_css_cache);else{var n=new XMLHttpRequest;n.open("GET",o,!0),e(n,"load",function(){4===n.readyState&&(c(n.responseText),localStorage.font_css_cache=n.responseText,localStorage.font_css_cache_file=o)}),n.send()}else{var a=document.createElement("link");a.href=o,a.rel="stylesheet",a.type="text/css",document.getElementsByTagName("head")[0].appendChild(a),document.cookie="font_css_cache"}}function c(e){var t=document.createElement("style");t.innerHTML=e,document.getElementsByTagName("head")[0].appendChild(t)}var o="/static/stylesheets/font.css";window.localStorage&&localStorage.font_css_cache||document.cookie.indexOf("font_css_cache")>-1?n():e(window,"load",n)}();</script>
-        <script>
-              (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-              (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-              })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-              ga('create', 'UA-35198834-3', 'auto');
-              ga('send', 'pageview');
-        </script>
-        {% block head %}{% endblock %}
+<!DOCTYPE html>
+{% load static %}
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <meta property="og:site_name" content="{{ webcamp.extended_title }}"/>
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="en_US" />
-        <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
+    <title>{% block title %}{{ webcamp.extended_title }}{% endblock %}</title>
 
-        {% block og %}
-            <meta property="og:title" content="{{ webcamp.extended_title }}" />
-            <meta property="og:description" content="Technology oriented conference for developers and designers" />
-        {% endblock %}
+    <link rel="stylesheet" href="{% static "fonts/fira_code/fira_code.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{% static "styles/style.css" %}">
 
-        {% block og_image %}
-            <meta property="og:image" content="{{ webcamp.og_image.url }}"/>
-            <meta property="og:image:width" content="{{ webcamp.og_image.width }}" />
-            <meta property="og:image:height" content="{{ webcamp.og_image.height }}" />
-        {% endblock %}
-    </head>
-    <body class="{% block body_class %}{% endblock %}">
-        {% if messages %}
-        <ul class="Notice Messages">
+    <link rel="shortcut icon" href="{% static "images/favicon/favicon.ico" %}" />
+    <link rel="apple-touch-icon-precomposed" href="{% static "images/favicon/apple-touch-icon-precomposed.png" %}" />
+
+    <meta property="og:site_name" content="{{ webcamp.extended_title }}"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
+
+    {% block og %}
+        <meta property="og:title" content="{{ webcamp.extended_title }}" />
+        <meta property="og:description" content="Technology oriented conference for developers and designers" />
+    {% endblock %}
+
+    {% block og_image %}
+        <meta property="og:image" content="{{ webcamp.og_image.url }}"/>
+        <meta property="og:image:width" content="{{ webcamp.og_image.width }}" />
+        <meta property="og:image:height" content="{{ webcamp.og_image.height }}" />
+    {% endblock %}
+
+    {% block head %}{% endblock %}
+</head>
+<body>
+    {% include "partials/header.html" %}
+
+    {% if messages %}
+    <div class="row column">
+        <ul class="callout">
             {% for message in messages %}
-            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                {{ message }}
+            </p>
             {% endfor %}
         </ul>
-        {% endif %}
-        {% block content %}
-        {% endblock %}
-        {% block footer %}
-        <footer class="Footer" role="contentinfo">
-            <div class="Wrapper Wrapper--narrow">
-                <ul class="QuickSocial">
-                    <li>
-                        <a href="https://www.facebook.com/WebCampZg"><svg class="Icon Icon--social"><title>Facebook</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-facebook"></use></svg></a>
-                    </li>
-                    <li>
-                        <a href="https://twitter.com/webcampzg"><svg class="Icon Icon--social"><title>Twitter</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-twitter"></use></svg></a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/webcampzg"><svg class="Icon Icon--social"><title>Github</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-github"></use></svg></a>
-                    </li>
-                    <li>
-                        <a href="https://plus.google.com/+WebcampzgOrgHR"><svg class="Icon Icon--social"><title>Google+</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-google-plus"></use></svg></a>
-                    </li>
-                    <li>
-                        <a href="https://www.linkedin.com/company/webcamp-zagreb"><svg class="Icon Icon--social"><title>LinkedIn</title><use xlink:href="{% static 'images/sprite.svg' %}#Sprite-linkedin"></use></svg></a>
-                    </li>
-                </ul>
-            </div>
-            <div class="Wrapper Wrapper--wide">
-                <div class="Footer-copyright">
-                    &copy; WebCamp Zagreb 2012 &mdash; {% now "Y" %}
-                </div>
-            </div>
-        </footer>
-        {% endblock %}
-        <script src="{% static 'javascripts/site.js' %}"></script>
-    </body>
+    </div>
+    {% endif %}
+
+    {% block basecontent %}{% endblock %}
+
+    {% include "partials/footer.html" %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        $(document).foundation();
+
+        $(document).ready(function () {
+
+            $("[data-scroll-to-top]").click(function (e) {
+                e.preventDefault();
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+            });
+        });
+    </script>
+
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-35198834-4', 'auto');
+        ga('send', 'pageview');
+    </script>
+</body>
 </html>

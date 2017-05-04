@@ -1,17 +1,21 @@
-{% if talk.sponsor %}
-    <a href="{% url 'sponsors_view_sponsor' slug=talk.sponsor.slug %}">
-        <span class="ArticleFlag Flag Flag--alpha" title="This talk is sponsored by {{ talk.sponsor.name }}">
-            Sponsored
+{% if talk.sponsor or talk.is_community_chosen or talk.keynote %}
+<p>
+    {% if talk.sponsor %}
+        <a href="{% url 'sponsors_view_sponsor' slug=talk.sponsor.slug %}">
+            <span class="blue label" title="This talk is sponsored by {{ talk.sponsor.name }}">
+                Sponsored
+            </span>
+        </a>
+    {% endif %}
+
+    {% if talk.is_community_chosen %}
+        <span class="yellow label" title="This talk was chosen by the community vote">
+            Community
         </span>
-    </a>
-{% endif %}
+    {% endif %}
 
-{% if talk.is_community_chosen %}
-    <span class="ArticleFlag Flag Flag--alpha" title="This talk was chosen by the community vote">
-        Community
-    </span>
-{% endif %}
-
-{% if talk.keynote %}
-    <span class="ArticleFlag Flag Flag--alpha">Keynote</span>
+    {% if talk.keynote %}
+        <span class="purple label">Keynote</span>
+    {% endif %}
+</p>
 {% endif %}

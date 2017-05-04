@@ -1,0 +1,32 @@
+{% with applicant=talk.application.applicant %}
+<div class="talk-grid-item">
+    <a href="{% url 'talks_view_talk' slug=talk.slug %}">
+        <div class="talk-photo" style="background-image: url('{{ MEDIA_URL }}{{ applicant.image }}')">
+            <div class="talk-photo-overlay {% if talk.skill_level.name == "Elementary" %}green{% elif talk.skill_level.name == "Intermediate" %}purple{% elif talk.skill_level.name == "Advanced" %}red{% endif %}"></div>
+        </div>
+    </a>
+
+    <div class="talk-data" data-equalizer-watch>
+        <div class="speaker">
+            {{ applicant.full_name }}
+        </div>
+
+        <div class="talk-title">
+            <a href="{% url 'talks_view_talk' slug=talk.slug %}">
+                {{ talk.title }}
+            </a>
+        </div>
+    </div>
+
+    <div class="talk-meta">
+        <div class="row">
+            <div class="columns">
+                {% include "talks/partials/skill-level-label.html" with talk=talk only %}
+            </div>
+            <div class="shrink columns text-right">
+                <span class="gray">{{ talk.duration }} min</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endwith %}

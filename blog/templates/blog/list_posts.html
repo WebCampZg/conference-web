@@ -1,36 +1,31 @@
-{% extends 'ui/base.html' %}
+{% extends 'ui/page.html' %}
 
 {% block title %}News - {{ webcamp.extended_title }}{% endblock %}
 
 {% block content %}
+    <h1 class="red-arrow">News_archive_</h1>
 
-    {% include "partials/header.html" with hero_type="main" %}
+    {% for post in posts %}
+        <article>
+            <time class="gray" datetime="{{ post.created_at|date:"c" }}">
+                {{ post.created_at|date:"d.m.Y." }}
+            </time>
 
-    <section class="Listing Spotlight Spotlight--beta">
-        <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
-            <h1 class="Spotlight-title">News Archive</h1>
-            <ul class="Listing-list">
-                {% for post in posts %}
-                <li class="Listing-item">
-                    <article class="Article">
-                        <time class="Article-pubDate" pubdate="pubdate" datetime="{{ post.created_at }}">{{ post.created_at|date:"d.m.Y." }}</time>
-                        <h3 class="Article-title">
-                            <a href="{% url 'blog_view_post' slug=post.slug %}">{{ post.title }}</a>
-                            {% if post.is_sponsored %}
-                            <span class="ArticleFlag Flag Flag--alpha">Sponsored</span>
-                            {% endif %}
-                        </h3>
-                        <div class="Article-excerpt">
-                            {{ post.lead|safe }}
-                        </div>
-                    </article>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
-    </section>
+            <h3>
+                <a href="{% url 'blog_view_post' slug=post.slug %}">{{ post.title }}</a>
+                {% if post.is_sponsored %}
+                    <span class="label">Sponsored</span>
+                {% endif %}
+            </h3>
 
-    {% include "partials/groups/bottom_default.html" %}
+            <div>
+                {{ post.lead|safe }}
+            </div>
+        </article>
 
+        {% if not forloop.last %}
+            <hr />
+        {% endif %}
+    {% endfor %}
 {% endblock %}
 

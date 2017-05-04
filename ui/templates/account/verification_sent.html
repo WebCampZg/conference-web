@@ -1,35 +1,16 @@
-{% extends 'ui/base.html' %}
+{% extends 'ui/page.html' %}
+
 {% block title %}Sign Up success{% endblock %}
-{% block body_class %}Page Page--login Page--stickyFooter{% endblock %}
 
 {% block content %}
-    <header class="Header" role="banner">
-        <div class="Wrapper Wrapper--wide">
-            {% include "partials/site-nav.html" %}
-        </div>
-    </header>
 
-    <main role="main" class="Page-content Aligner">
-        <div class="Wrapper Wrapper--narrow Aligner-item">
-            <section class="Account">
+    <h1 class="red-arrow">Sign_up_success_</h1>
 
-                <div class="Form Form--beta">
+    <p>Thanks! <br />Check your e-mail and verify&nbsp;account!</p>
 
-                    <p class="Form-actionDone u-textCenter">Thanks! <br />Check your e-mail and verify&nbsp;account!</p>
+    <a href="/accounts/login/" class="purple arrow button">Login</a>
 
-                    <div class="Form-constrain">
-                        <div class="u-textCenter">
-                            <a href="/accounts/login/" class="Button Button--beta Button--full">Login</a>
-                        </div>
-                        <div class="Form-actionHelp u-textCenter">
-                            Didn’t get verification e-mail? Please&nbsp;contact&nbsp;us.
-                        </div>
-                    </div>
-
-                </div>
-
-            </section>
-        </div>
-    </main>
-
+    <div class="help-text">
+        Didn’t get the verification e-mail? Please <a href="mailto:info@webcampzg.org">contact us</a>.
+    </div>
 {% endblock %}

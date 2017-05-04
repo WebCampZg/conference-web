@@ -1,0 +1,11 @@
+{% extends "ui/base.html" %}
+
+{% block basecontent %}
+    <div class="row column">
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    {% include "partials/groups/bottom_default.html" %}
+{% endblock %}

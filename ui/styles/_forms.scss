@@ -1,0 +1,11 @@
+.form-field-error {
+    color: $red;
+    font-weight: bold;
+    &::before {
+        content: "^^^ ";
+    }
+}
+
+.help-text {
+    color: $dark-gray;
+}

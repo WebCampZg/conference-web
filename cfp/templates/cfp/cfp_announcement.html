@@ -1,31 +1,20 @@
-{% extends 'ui/base.html' %}
+{% extends 'ui/page.html' %}
+
 {% block title %}Call for Proposals - {{ webcamp.extended_title }}{% endblock %}
+
 {% block content %}
+    <h2 class="red-arrow">{{ cfp.title }}</h2>
 
-    {% include "partials/header.html" with hero_type="cfp" title="Call for Proposals" %}
+    {{ cfp.announcement|safe }}
 
-    <section class="Spotlight">
-        <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
-            <div class="Passage">
-                <h2 class="Spotlight-title">{{ cfp.title }}</h2>
-                <div class="Spotlight-body">
-                    {{ cfp.announcement|safe }}
-
-                    {% if cfp.is_active %}
-                        <div class="u-textCenter">
-                            <a href="{% url 'application_create' %}" class="Button Button--beta Button--rounded">Submit a talk</a>
-                        </div>
-                    {% else %}
-                        <hr />
-                        <div class="u-textCenter">
-                            <p style="font-size: 2rem">The CFP is now closed.</p>
-                        </div>
-                    {% endif %}
-                </div>
-            </div>
+    {% if cfp.is_active %}
+        <div class="text-center">
+            <a href="{% url 'application_create' %}" class="large purple arrow button">Submit a talk</a>
         </div>
-    </section>
-
-    {% include "partials/groups/bottom_default.html" %}
-
+    {% else %}
+        <hr />
+        <div class="u-textCenter">
+            <p style="font-size: 2rem">The CFP is now closed.</p>
+        </div>
+    {% endif %}
 {% endblock %}

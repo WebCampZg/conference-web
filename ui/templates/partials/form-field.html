@@ -1,23 +1,33 @@
 {% if field.is_hidden %}
     {{ field }}
 {% else %}
-<div class="Form-item">
-    <label class="Form-label" for="{{ field.id }}">{{ field.label }} {% if field.field.required %}<abbr class="Form-requiredFlag" title="Required field">*</abbr>{% endif %}</label>
+<div>
+    <label for="{{ field.id }}">
+        {% if vanity_field %}
+            <i class="fa fa-{{ vanity_field }}"></i>
+        {% endif %}
+
+        {{ field.label }}
+
+        {% if field.field.required %}
+            <abbr title="Required field">*</abbr>
+        {% endif %}
+    </label>
+
+    <div class="form-field">
+        <div class="{% if field.errors %} is-invalid {% endif %}">
+            {{ field }}
+        </div>
+
+        {% for error in field.errors %}
+            <p class="form-field-error">{{ error }}</p>
+        {% endfor %}
+    </div>
+
     {% if field.help_text %}
-    <p class="Form-fieldDesc">
+    <p class="help-text">
         {{ field.help_text|safe }}
     </p>
     {% endif %}
-    <div class="Form-field">
-        {% if vanity_field %}<div class="VanityField VanityField--{{ vanity_field }}">{% endif %}
-        <div class="Field Field--{{ field_type }} {% if field.errors %} is-invalid {% endif %}">
-            {{ field }}
-        </div>
-        {% if vanity_field %}</div>{% endif %}
-        {% for error in field.errors %}
-            <p class="Form-fieldError">{{ error }}</p>
-        {% endfor %}
-    </div>
 </div>
 {% endif %}
-

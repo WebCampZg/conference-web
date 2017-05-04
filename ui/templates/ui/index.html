@@ -1,68 +1,19 @@
 {% extends 'ui/base.html' %}
-{% load fb_versions %}
+
 {% load static %}
 
 {% block title %}{{ webcamp.extended_title }} - {{ webcamp.tagline }}{% endblock %}
 
 {% block head %}
-    <meta name="description" content="WebCamp Zagreb is a technology oriented conference for developers & designers taking place on {{ webcamp.dates|safe }} in Zagreb, Croatia.">
+    <meta name="description" content="WebCamp Zagreb is a technology oriented conference for developers &amp; designers taking place on {{ webcamp.dates|safe }} in Zagreb, Croatia.">
 {% endblock %}
 
-{% block content %}
-
-    {% include "partials/header.html" with hero_type="main" keynote="true" %}
-
-    <section class="Spotlight Spotlight--beta">
-        <div class="Wrapper Wrapper--narrow Wrapper--withFlair is-flairRightInactive">
-            <div class="Highlights">
-                <nav class="Highlights-nav">
-                    <ul>
-                         <li><a href="#highlights-posts" class="Highlights-navLink Highlights-navLink--posts Highlights-navLink--leftSide is-active" data-block="highlights-posts">Latest news</a></li>
-                         <li><a href="#highlights-talks" class="Highlights-navLink Highlights-navLink--talks" data-block="highlights-talks">Talks</a></li>
-                    </ul>
-                </nav>
-
-                <div class="Highlights-block  is-active" id="highlights-posts">
-                    <div class="Listing">
-                        <ul class="Listing-list">
-                            {% for post in posts %}
-                            <li class="Listing-item">
-                                <article class="Article">
-                                    <time class="Article-pubDate" pubdate="pubdate" datetime="{{ post.created_at }}">{{ post.created_at|date:"d.m.Y." }}</time>
-                                    <h3 class="Article-title">
-                                        <a href="{% url 'blog_view_post' slug=post.slug %}">{{ post.title }}</a>
-                                        {% if post.is_sponsored %}
-                                        <span class="ArticleFlag Flag Flag--alpha">Sponsored</span>
-                                        {% endif %}
-                                    </h3>
-                                    <div class="Article-excerpt">
-                                        {{ post.lead|safe }}
-                                    </div>
-                                </article>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                        <nav class="Listing-nav">
-                            <p><a class="Listing-link Button Button--gamma Button--rounded" href="{% url 'blog_list_posts' %}">View Archive</a></p>
-                        </nav>
-                    </div>
-                </div>
-
-                <div class="Highlights-block" id="highlights-talks">
-                    <div class="Listing">
-                        <ul class="Listing-list">
-                            {% include "partials/random_talks.html" %}
-                        </ul>
-                        <nav class="Listing-nav">
-                            <p><a class="Listing-link Button Button--gamma Button--rounded" href="{% url 'talks_list_talks' %}">All Talks</a></p>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    {% include "partials/groups/bottom_frontpage.html" %}
-
+{% block basecontent %}
+    {% include "partials/hero.html" %}
+    {% include "partials/newsletter.html" %}
+    {% include "talks/partials/random-talks.html" %}
+    {% include "partials/tickets.html" %}
+    {% include "partials/news.html" %}
+    {% include "partials/sponsors.html" %}
+    {% include "partials/user-groups.html" %}
 {% endblock %}
-

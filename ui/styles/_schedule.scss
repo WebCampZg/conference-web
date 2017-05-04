@@ -1,0 +1,20 @@
+.schedule {
+    .track-logo {
+        max-height: 3.5rem;
+    }
+
+    .schedule-table {
+        td {
+            width: 45%;
+        }
+        td:first-child {
+            width: 10%;
+            text-align: center;
+        }
+
+        .spacer {
+            background-color: $light-gray;
+            text-align: center;
+        }
+    }
+}

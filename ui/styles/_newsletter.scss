@@ -1,0 +1,27 @@
+.newsletter {
+    background-color: $dark-blue;
+    color: $white;
+    text-align: center;
+    padding: 5rem 0;
+
+    h2 {
+        margin-bottom: 3rem;
+    }
+}
+
+/* Large and up */
+@media screen and (min-width: 64em) {
+    .newsletter {
+        input {
+            height: 4rem;
+
+            &[type='email'] {
+                padding-left: 2rem;
+            }
+
+            &[type='button'] {
+                font-size: 20px;
+            }
+        }
+    }
+}

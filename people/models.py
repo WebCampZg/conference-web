@@ -93,6 +93,11 @@ class User(AbstractBaseUser, PermissionsMixin):
     def full_name(self):
         return "%s %s" % (self.first_name, self.last_name)
 
+    def get_applicant(self):
+        try:
+            return self.applicant
+        except:
+            return None
 
     objects = UserManager()
 

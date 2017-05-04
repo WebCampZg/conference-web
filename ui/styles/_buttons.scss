@@ -1,0 +1,65 @@
+.button {
+    font-weight: 500;
+    text-transform: uppercase;
+    font-family: $body-font-family;
+
+    &.purple {
+        color: $white;
+        background-color: $purple;
+
+        &:hover {
+            background-color: scale-color($purple, $lightness: -15%);
+        }
+
+        &.arrow {
+            &:before {
+                color: $yellow;
+            }
+        }
+    }
+
+    &.blue {
+        color: $white;
+        background-color: $light-blue;
+
+        &:hover {
+            background-color: scale-color($light-blue, $lightness: -15%);
+        }
+
+        &.arrow {
+            &:before {
+                color: $yellow;
+            }
+        }
+    }
+
+    &.yellow {
+        color: $black;
+        background-color: $yellow;
+
+        &:hover {
+            background-color: scale-color($yellow, $lightness: -15%);
+        }
+
+        &.arrow {
+            &:before {
+                color: $red;
+            }
+        }
+    }
+
+    &.green {
+        color: $black;
+        background-color: $green;
+
+        &:hover {
+            background-color: scale-color($green, $lightness: -15%);
+        }
+
+        &.arrow {
+            &:before {
+                color: $red;
+            }
+        }
+    }
+}

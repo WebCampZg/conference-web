@@ -1,4 +1,5 @@
-{% extends 'ui/base.html' %}
+{% extends 'ui/page.html' %}
+
 {% load static %}
 
 {% block title %}{{ sponsor.name }} - Sponsors - {{ webcamp.extended_title }}{% endblock %}
@@ -8,55 +9,46 @@
 {% endblock %}
 
 {% block content %}
+<div class="sponsor">
+    <p>
+        <span class="purple label">
+            {% if sponsor.type == 'diamond' %}
+            Diamond sponsor
+            {% elif sponsor.type == 'track' %}
+            Track sponsor
+            {% elif sponsor.type == 'standard' %}
+            Standard sponsor
+            {% elif sponsor.type == 'supporter' %}
+            Support sponsor
+            {% elif sponsor.type == 'foodanddrinks' %}
+            Food &amp; drinks sponsor
+            {% endif %}
+        </span>
+    </p>
 
-    {% include "partials/header.html" with hero_type="main" title="Sponsors" sponsors_cta="true" %}
-
-    <section class="Spotlight Spotlight--beta">
-        <div class="Wrapper Wrapper--wide Wrapper--withFlair">
-
-            <div class="Sponsor">
-                <div class="Sponsor-block Block Block--alpha">
-                    <span class="Sponsor-flag Flag Flag--alpha">
-                        {% if sponsor.type == 'diamond' %}
-                        Diamond sponsor
-                        {% elif sponsor.type == 'track' %}
-                        Track sponsor
-                        {% elif sponsor.type == 'standard' %}
-                        Standard sponsor
-                        {% elif sponsor.type == 'supporter' %}
-                        Support sponsor
-                        {% endif %}
-                    </span>
-                    <div class="Grid">
-                        <div class="Grid-cell Grid-cell--1of3">
-                            <figure class="Sponsor-logoWrap">
-                                <img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsor-logo" />
-                            </figure>
-                        </div>
-                        <div class="Grid-cell Grid-cell--2of3">
-                            <strong class="Sponsor-name">{{ sponsor.name }}</strong>
-                            <div class="Sponsor-body">
-                                <div class="Passage">
-                                    {{ sponsor.about|safe }}
-                                </div>
-                            </div>
-                            <div class="Sponsor-meta">
-                                <a href="{{ sponsor.url }}" target="_blank">{{ sponsor.url }}</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {% if jobs %}
-                <div class="Jobs">
-                    <h2 class="Sponsor-jobsHeading">Available job positions</h2>
-                    {% include "partials/jobs.html" with jobs=jobs %}
-                </div>
-                {% endif %}
-            </div>
-
+    <div class="row">
+        <div class="small-12 medium-4 columns">
+            <figure class="Sponsor-logoWrap">
+                <img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsor-logo" />
+            </figure>
         </div>
-    </section>
+        <div class="small-12 medium-8 columns">
+            <strong class="Sponsor-name">{{ sponsor.name }}</strong>
+            <div class="Sponsor-body">
+                <div class="Passage">
+                    {{ sponsor.about|safe }}
+                </div>
+            </div>
+            <div class="Sponsor-meta">
+                <a href="{{ sponsor.url }}" target="_blank">{{ sponsor.url }}</a>
+            </div>
+        </div>
+    </div>
 
-    {% include "partials/groups/bottom_default.html" %}
-
+    {% if jobs %}
+        <hr />
+        <h2>Available job positions</h2>
+        {% include "partials/jobs.html" with jobs=jobs %}
+    {% endif %}
+</div>
 {% endblock %}

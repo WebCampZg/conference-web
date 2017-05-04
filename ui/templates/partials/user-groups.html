@@ -1,16 +1,15 @@
-{% load static %}
-<section class="Promote UserGroups">
-    <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
-        <h2 class="Promote-title">Organized by</h2>
+<div class="usergroups-wrapper">
+    <div class="row column">
+        <h1 class="green-arrow">Organized_by_</h1>
+
+        <div class="row align-center align-middle small-up-2 medium-up-4 large-up-6">
+        {% for group in usergroups %}
+            <div class="usergroup-list-item column">
+                <a href="{{ group.webpage_url }}" title="{{ group.name }}">
+                    <img src="{{ MEDIA_URL }}{{ group.image }}" alt="{{ group.name }} logo" />
+                </a>
+            </div>
+        {% endfor %}
+        </div>
     </div>
-    <div class="Promote-body">
-        <ul class="UserGroups-list">
-            {% for group in usergroups %}
-                <li class="UserGroups-item UserGroups-item--{{ group.slug }}">
-                    <a class="UserGroups-link" href="{{ group.webpage_url }}" title="{{ group.name }}">
-                        <img src="{{ MEDIA_URL }}{{ group.image }}" alt="{{ group.name }} logo" class="UserGroups-logo" /></a>
-                </li>
-            {% endfor %}
-        </ul>
-    </div>
-</section>
+</div>

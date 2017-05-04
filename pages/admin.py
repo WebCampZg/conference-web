@@ -1,13 +1,11 @@
-from django import forms
 from django.contrib import admin
 from django.contrib.flatpages.admin import FlatpageForm, FlatPageAdmin
 from django.contrib.flatpages.models import FlatPage
+
 from pages.models import Page
-from django_markdown.widgets import AdminMarkdownWidget
 
 
 class PageForm(FlatpageForm):
-    content = forms.CharField(widget=AdminMarkdownWidget)
     class Meta:
         model = Page
         fields = '__all__'
@@ -19,7 +17,7 @@ class PageAdmin(FlatPageAdmin):
     list_filter = ()
     fieldsets = (
         (None, {
-            'fields': ('url', 'title', 'content', 'meta_description', 'title_in_hero', 'hero_type')
+            'fields': ('url', 'title', 'content', 'meta_description')
         }),
         ('Advanced options', {
             'fields': ('registration_required', 'template_name')

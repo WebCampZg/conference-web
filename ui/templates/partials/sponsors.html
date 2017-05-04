@@ -1,10 +1,9 @@
 {% load static %}
 
-<section class="Promote">
-    <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
-        <h2 class="Promote-title">Supported by</h2>
+<div class="sponsors-wrapper">
+    <div class="row column">
+        <h1 class="green-arrow">Supported by</h1>
+
+        {% include "partials/sponsors-list.html" %}
     </div>
-    <div class="Promote-body">
-        {% include "partials/sponsors-list.html" with listing_type="quick" %}
-    </div>
-</section>
+</div>

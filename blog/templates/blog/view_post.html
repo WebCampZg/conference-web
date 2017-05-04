@@ -1,4 +1,5 @@
-{% extends 'ui/base.html' %}
+{% extends 'ui/page.html' %}
+
 {% load static %}
 
 {% block title %}{{ post.title }} - {{ webcamp.extended_title }}{% endblock %}
@@ -8,43 +9,26 @@
 {% endblock %}
 
 {% block content %}
+    <article>
+        <time class="gray" datetime="{{ post.created_at|date:"c" }}">
+            {{ post.created_at|date:"d.m.Y." }}
+        </time>
 
-    {% include "partials/header.html" with hero_type="blog" %}
+        <h3>
+            <a href="{% url 'blog_view_post' slug=post.slug %}">
+                {{ post.title }}
+            </a>
+            {% if post.is_sponsored %}
+                <span class="label">Sponsored</span>
+            {% endif %}
+        </h3>
 
-    <section class="Blog Spotlight Spotlight--beta">
-        <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
-            <article class="Article Article--detail">
-                <time class="Article-pubDate" pubdate="pubdate" datetime="{{ post.created_at }}">{{ post.created_at|date:"d.m.Y." }}</time>
-                <h1 class="Article-title">
-                    {{ post.title }}
-                    {% if post.is_sponsored %}
-                    <span class="ArticleFlag Flag Flag--alpha">Sponsored</span>
-                    {% endif %}
-                </h1>
-                <p class="Article-excerpt">
-                    {{ post.lead|safe }}
-                </p>
-                <div class="Article-body">
-                    <div class="Passage">
-                        {{ post.body|safe }}
-                    </div>
-                </div>
-                {% include "partials/share.html" with title="Share this article" %}
-                <nav class="Nav">
-                    <ul class="Nav-list">
-                        {% if previous %}
-                            <li><a class="Article-link Button Button--gamma Button--rounded" href="{% url 'blog_view_post' slug=previous.slug %}">Previous article</a></li>
-                        {% endif %}
-                        {% if next %}
-                            <li><a class="Article-link Button Button--gamma Button--rounded" href="{% url 'blog_view_post' slug=next.slug %}">Next article</a></li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            </article>
-        </div>
-    </section>
+        <em>
+            {{ post.lead|safe }}
+        </em>
 
-    {% include "partials/groups/bottom_default.html" %}
+        {{ post.body|safe }}
 
+        {% include "partials/share.html" with title="Share this article" %}
+    </article>
 {% endblock %}
-

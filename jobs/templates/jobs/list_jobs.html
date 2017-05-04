@@ -1,4 +1,5 @@
-{% extends 'ui/base.html' %}
+{% extends 'ui/page.html' %}
+
 {% load static %}
 
 {% block title %}Jobs - {{ webcamp.extended_title }}{% endblock %}
@@ -8,21 +9,14 @@
 {% endblock %}
 
 {% block content %}
+    <section>
+        <h1 class="red-arrow">Jobs_</h1>
 
-    {% include "partials/header.html" with hero_type="main" title="Jobs" %}
-
-    <section class="Spotlight Spotlight--beta">
-        <div class="Wrapper Wrapper--wide Wrapper--withFlair">
-
-            {% if jobs %}
-            <div class="Jobs">
-                {% include "partials/jobs.html" with jobs=jobs show_sponsor_name="true" %}
-            </div>
-            {% endif %}
-
+        {% if jobs %}
+        <div class="Jobs">
+            {% include "partials/jobs.html" with jobs=jobs show_sponsor_name="true" %}
         </div>
+        {% endif %}
+
     </section>
-
-    {% include "partials/groups/bottom_default.html" %}
-
 {% endblock %}

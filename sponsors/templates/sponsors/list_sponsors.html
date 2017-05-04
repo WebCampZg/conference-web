@@ -1,4 +1,5 @@
-{% extends 'ui/base.html' %}
+{% extends 'ui/page.html' %}
+
 {% load static %}
 
 {% block title %}Sponsors - {{ webcamp.extended_title }}{% endblock %}
@@ -8,15 +9,5 @@
 {% endblock %}
 
 {% block content %}
-
-    {% include "partials/header.html" with hero_type="main" title="Sponsors" sponsors_cta="true" %}
-
-    <section class="Spotlight Spotlight--beta">
-        <div class="Wrapper Wrapper--wide Wrapper--withFlair">
-            {% include "partials/sponsors-list.html" with listing_type="detailed" %}
-        </div>
-    </section>
-
-    {% include "partials/user-groups.html" %}
-
+    {% include "partials/sponsors-list.html" with listing_type="detailed" %}
 {% endblock %}

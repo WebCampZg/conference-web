@@ -1,0 +1,28 @@
+.tickets-wrapper {
+    background-image: url("../images/tickets-background.png");
+    background-position-x: center;
+    background-repeat: no-repeat;
+    height: 330px;
+
+    .tickets {
+        background-color: $purple;
+        color: $white;
+        text-align: center;
+        padding: 2rem 0;
+        height: 330px;
+
+        h1 {
+            margin: 2rem 0;
+        }
+
+        .button {
+            margin-bottom: 2rem;
+        }
+
+        a:not(.button) {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+    }
+}
+

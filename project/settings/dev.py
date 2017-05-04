@@ -1,4 +1,4 @@
-from .base import *
+from .base import *  # noqa
 
 
 DEBUG = True
@@ -21,10 +21,11 @@ CACHES = {
     }
 }
 
+
 # set up Django Debug Toolbar if installed
 try:
     import debug_toolbar  # noqa
-    MIDDLEWARE_CLASSES += (
+    MIDDLEWARE += (
         'debug_toolbar.middleware.DebugToolbarMiddleware',
     )
     INSTALLED_APPS += (
@@ -32,11 +33,8 @@ try:
     )
     DEBUG_TOOLBAR_CONFIG = {
         'INTERCEPT_REDIRECTS': False,
-        'SHOW_TOOLBAR_CALLBACK': lambda *args, **kwargs: True
+        'SHOW_TOOLBAR_CALLBACK': lambda *args, **kwargs: True,
+        'JQUERY_URL': '',  # Use local jQuery
     }
 except ImportError:
     pass
-
-
-LOGGING = BASE_LOGGING
-

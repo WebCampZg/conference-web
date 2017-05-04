@@ -1,0 +1,37 @@
+.hero-wrapper {
+    background-image: url("../images/hero-background.png");
+    background-position-x: center;
+    background-repeat: no-repeat;
+    height: 429;
+
+    .hero {
+        height: 429;
+        padding: 0;
+        position: relative;
+
+        .title {
+            position: absolute;
+            top: 80px;
+            left: 215px;
+            color: white;
+            font-size: 30px;
+        }
+
+        .location {
+            position: absolute;
+            top: 130px;
+            left: 730px;
+            color: white;
+            font-size: 18px;
+        }
+
+        .date {
+            position: absolute;
+            top: 265px;
+            left: 550px;
+            color: black;
+            font-size: 30px;
+            text-align: center;
+        }
+    }
+}
