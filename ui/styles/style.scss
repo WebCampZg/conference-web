@@ -173,3 +173,17 @@ a:not(.button).yellow {
         max-width: 8rem;
     }
 }
+
+@keyframes pounding{
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.5);
+    }
+}
+
+.pounding:hover {
+    animation: pounding .5s linear infinite alternate;
+}
