@@ -5,7 +5,11 @@
 {% block title %}{{ sponsor.name }} - Sponsors - {{ webcamp.extended_title }}{% endblock %}
 
 {% block og %}
-    <meta property="og:title" content="Sponsors - {{ webcamp.extended_title }}" />
+    <meta property="og:title" content="{{ sponsor.name }} - Sponsor" />
+{% endblock %}
+
+{% block og_image %}
+    <meta property="og:image" content="{{ base_url }}{{ sponsor.image.url }}" />
 {% endblock %}
 
 {% block content %}
@@ -19,7 +23,7 @@
             {% elif sponsor.type == 'standard' %}
             Standard sponsor
             {% elif sponsor.type == 'supporter' %}
-            Support sponsor
+            Supporter
             {% elif sponsor.type == 'foodanddrinks' %}
             Food &amp; drinks sponsor
             {% endif %}

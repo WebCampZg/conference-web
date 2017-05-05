@@ -8,6 +8,11 @@
     <meta name="description" content="{{ post.lead|safe|striptags }}">
 {% endblock %}
 
+{% block og %}
+    <meta property="og:title" content="{{ post.title }}" />
+    <meta property="og:description" content="{{ post.lead|safe|striptags }}" />
+{% endblock %}
+
 {% block content %}
     <article>
         <time class="gray" datetime="{{ post.created_at|date:"c" }}">
