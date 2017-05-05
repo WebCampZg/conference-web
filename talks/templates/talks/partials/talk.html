@@ -3,8 +3,10 @@
 <article class="talk-short">
     <div class="row">
         <div class="show-for-medium medium-3 columns">
-            <img src="{{ MEDIA_URL }}{{ talk.application.applicant.image }}"
-                 alt="Photo of {{ talk.application.applicant.user.get_full_name }}">
+            <a href="{% url 'talks_view_talk' slug=talk.slug %}">
+                <img src="{{ MEDIA_URL }}{{ talk.application.applicant.image }}"
+                     alt="Photo of {{ talk.application.applicant.user.get_full_name }}">
+            </a>
         </div>
 
         <div class="small-12 medium-9 columns">
