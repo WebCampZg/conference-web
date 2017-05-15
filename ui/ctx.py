@@ -66,7 +66,7 @@ def webcamp(request):
             "volunteer_application": "http://goo.gl/forms/1LYfr3TEGs",
             "entrio": "https://www.entrio.hr/en/event/webcamp-zagreb-2016-3213",
             "facebook": "https://www.facebook.com/WebCampZg/",
-            "twitter": "https://twitter.com/WebCampZg/",
+            "twitter": "https://twitter.com/webcampzagreb/",
             "youtube": "https://www.youtube.com/user/WebCampZg",
             "linkedin": "https://www.linkedin.com/company-beta/6397140/",
             "github": "https://github.com/webcampzg",
