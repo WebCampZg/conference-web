@@ -2,11 +2,8 @@ PROJECT_NAME=project
 MANAGE=python manage.py
 SETTINGS=--settings=$(PROJECT_NAME).settings.test
 
-DOCKER_POSTGRES_REPO=postgres
-DOCKER_POSTGRES_TAG=9.3
 
-
-.PHONY: all test coverage clean requirements requirements-dev setup-test \
+.PHONY: all test coverage clean requirements requirements-dev \
 	docker-check db-restore db-prompt migrate \
 	superuser
 
@@ -62,34 +59,6 @@ deploy: update
 
 lint:
 	-@flake8 .
-
-docker-check:
-	@command -v docker >/dev/null 2>&1 || \
-		{ echo >&2 "Docker needs to be installed and on your PATH.  Aborting."; exit 1; }
-
-migrate:
-	@docker exec -it `docker-compose ps -q web` python manage.py migrate
-
-shell:
-	@docker exec -it `docker-compose ps -q web` /bin/bash
-
-run:
-	@docker-compose up
-
-db-prompt:
-	@echo "Starting interactive database prompt (current dir mounted to /tmp/codebase)...";
-	@docker exec -it `docker-compose ps -q db` psql -Upostgres
-
-db-restore:
-	@if [ ! -f webcampdb.sql ]; then \
-		echo "Aborting! Can't find backup file. Database backup file must be named webcampdb.sql and located in the current directory!"; \
-		exit 1; \
-	fi
-	@echo "Restoring database from backup file: webcampdb.sql"
-	@cat webcampdb.sql | docker exec -i `docker-compose ps -q db` psql -Upostgres
-
-superuser:
-	@docker exec -it `docker-compose ps -q web` python manage.py createsuperuser
 
 sync-media:
 	rsync -rv webcamp:web/conference-web/project/media/uploads project/media/uploads
