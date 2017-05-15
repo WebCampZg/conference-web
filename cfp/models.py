@@ -96,7 +96,7 @@ class PaperApplication(Timestampable):
     applicant = models.ForeignKey(Applicant, related_name='applications')
     title = models.CharField(
         max_length=255,
-        help_text=_('The title of your talk. Keep it short and catchy <b>foo</b>.'),
+        help_text=_('The title of your talk. Keep it short and catchy.'),
         verbose_name=_('Title'))
     about = models.TextField(help_text=_('Describe your talk in 140 characters or less.'),
                              verbose_name=_('What\'s it about'))
