@@ -3719,7 +3719,7 @@ a.thumbnail {
   .footer .footer-row > .columns:not(:last-child) {
     border-right: 1px solid #4a4a4a; }
   .footer .logo {
-    background-color: #222222; }
+    margin-bottom: 1rem; }
 
 .form-field-error {
   color: #FA4748;
@@ -3787,10 +3787,13 @@ select {
     position: absolute;
     top: 0.5rem;
     left: 1rem;
-    max-width: 8rem;
-    height: auto;
-    background-color: #fefefe;
+    height: 128px;
+    width: 128px;
+    background-image: url("../images/wczg2017_logo_cb.svg");
+    background-size: cover;
     z-index: 10; }
+    .nav-bar .logo:hover {
+      background-image: url("../images/wczg2017_logo_color.svg"); }
   .nav-bar .nav-left {
     margin-left: 12rem; }
   .nav-bar .nav-links {

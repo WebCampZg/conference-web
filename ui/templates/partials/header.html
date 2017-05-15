@@ -2,11 +2,7 @@
 
 {# Navbar for large screens #}
 <div class="nav-bar show-for-large">
-    <div class="logo">
-        <a href="{% url 'ui_index' %}">
-            <img src="{% static "images/header-logo.svg" %}" />
-        </a>
-    </div>
+    <a class="logo" href="{% url 'ui_index' %}"></a>
 
     <div class="nav-left">
         <a href="/tickets/" class="purple arrow button show-for-large no-margin no-wrap">

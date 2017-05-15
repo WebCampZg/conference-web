@@ -16,18 +16,18 @@
         <div class="row footer-row align-middle">
             <div class="columns">
                 <div class="row">
-                    <div class="columns">
+                    <div class="small-12 medium-4 columns">
                         <div class="logo">
-                            <img src="{% static "images/footer-logo.svg" %}" />
+                            <img src="{% static "images/wczg2017_logo_gray.svg" %}" />
                         </div>
                     </div>
-                    <div class="columns">
+                    <div class="small-12 medium-4 columns">
                         <p><a href="/info/">INFO</a></p>
                         <p><a href="{% url 'talks_list_talks' %}">TALKS</a></p>
                         <p><a href="{% url 'schedule_list_schedule' %}">SCHEDULE</a></p>
                         <p><a href="{% url 'blog_list_posts' %}">NEWS</a></p>
                     </div>
-                    <div class="columns">
+                    <div class="small-12 medium-4 columns">
                         <p><a href="{% url 'jobs_list_jobs' %}">JOBS</a></p>
                         <p><a href="/venue/">VENUE</a></p>
                         <p><a href="/tickets/">TICKETS</a></p>
@@ -37,11 +37,7 @@
             </div>
 
             <div class="columns">
-                <div class="row">
-                    <div class="columns">
-                        <p><b>FOLLOW WEBCAMP ZAGREB</b></p>
-                    </div>
-                </div>
+                <p>FOLLOW WEBCAMP ZAGREB</p>
                 <div class="row">
                     <div class="columns">
                         <p><a href="{{ links.facebook }}">facebook</a></p>
@@ -58,7 +54,7 @@
 
             <div class="columns text-center">
                 <a data-scroll-to-top href="#">
-                    <img src="{% static "images/scroll-up.png" %}" />
+                    <img src="{% static "images/scroll-up.svg" %}" />
                     <br/>
                     {&nbsp;back_to_top&nbsp;}
                 </a>
