@@ -1,13 +1,13 @@
-Django==1.11
-Pillow==3.2.0
-dj-database-url==0.4.2
-psycopg2==2.7.1
-django-allauth==0.32.0
-django-braces==1.10.0
-django-tinymce==2.6.0
-django-model-utils==3.0.0
-django-markdown-deux==1.0.5
-raven==6.0.0
+Django~=1.11.0
+Pillow~=3.2.0
+dj-database-url~=0.4.2
+psycopg2~=2.7.1
+django-allauth~=0.32.0
+django-braces~=1.10.0
+django-tinymce~=2.6.0
+django-model-utils~=3.0.0
+django-markdown-deux~=1.0.5
+raven~=6.0.0
 
 # No longer user. Should be removed once migrations for talks and
 # sponsors have been squashed.
