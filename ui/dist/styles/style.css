@@ -3730,6 +3730,9 @@ a.thumbnail {
 .help-text {
   color: #4a4a4a; }
 
+select {
+  appearance: none; }
+
 .hero-wrapper {
   background-image: url("../images/hero-background.png");
   background-position-x: center;

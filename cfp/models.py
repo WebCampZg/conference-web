@@ -94,8 +94,10 @@ class AudienceSkillLevel(models.Model):
 class PaperApplication(Timestampable):
     cfp = models.ForeignKey(CallForPaper)
     applicant = models.ForeignKey(Applicant, related_name='applications')
-    title = models.CharField(max_length=255, help_text=_('The title of your talk. Keep it short and catchy.'),
-                             verbose_name=_('Title'))
+    title = models.CharField(
+        max_length=255,
+        help_text=_('The title of your talk. Keep it short and catchy <b>foo</b>.'),
+        verbose_name=_('Title'))
     about = models.TextField(help_text=_('Describe your talk in 140 characters or less.'),
                              verbose_name=_('What\'s it about'))
     abstract = models.TextField(help_text=_('You may go in more depth here. Up to 10 sentnces, please.'),

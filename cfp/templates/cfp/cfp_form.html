@@ -7,28 +7,28 @@
 
 {{ cfp_description|safe }}
 
-<form method="post" enctype="multipart/form-data" class="Form">{% csrf_token %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
 
     <h1 class="red-arrow">Talk</h1>
 
     <fieldset>
-        {% include "partials/form-field.html" with field=form.title  field_type="text" %}
-        {% include "partials/form-field.html" with field=form.about  field_type="text" %}
-        {% include "partials/form-field.html" with field=form.abstract  field_type="text" %}
-        {% include "partials/form-field.html" with field=form.skill_level field_type="text" %}
-        {% include "partials/form-field.html" with field=form.duration field_type="text" %}
-        {% include "partials/form-field.html" with field=form.accomodation_required field_type="checkbox" %}
-        {% include "partials/form-field.html" with field=form.extra_info field_type="text" %}
-
+        {% include "partials/form-field.html" with field=form.title  %}
+        {% include "partials/form-field.html" with field=form.about  %}
+        {% include "partials/form-field.html" with field=form.abstract  %}
+        {% include "partials/form-field.html" with field=form.skill_level %}
+        {% include "partials/form-field.html" with field=form.duration %}
+        {% include "partials/form-field.html" with field=form.accomodation_required %}
+        {% include "partials/form-field.html" with field=form.extra_info %}
     </fieldset>
 
     <h1 class="red-arrow">Speaker</h1>
 
     <fieldset>
-        {% include "partials/form-field.html" with field=form.about_applicant field_type="text" %}
-        {% include "partials/form-field.html" with field=form.biography field_type="text" %}
-        {% include "partials/form-field.html" with field=form.speaker_experience field_type="text" %}
-        {% include "partials/form-field.html" with field=form.image field_type="file" %}
+        {% include "partials/form-field.html" with field=form.about_applicant %}
+        {% include "partials/form-field.html" with field=form.biography %}
+        {% include "partials/form-field.html" with field=form.speaker_experience %}
+        {% include "partials/form-field.html" with field=form.image %}
     </fieldset>
 
     <button type="submit" class="purple arrow button">Submit</button>
