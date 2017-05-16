@@ -74,10 +74,6 @@ def webcamp(request):
             "google_plus": "https://plus.google.com/+WebcampzgOrgHR",
         },
         "webcamp": {
-            # "title": "WebCamp Zagreb 2017",
-            "extended_title": "WebCamp Zagreb Conference 2017",
-            # "tagline": "Technology oriented conference for developers & designers",
-            "dates": "October 6th & 7th, 2017",
             "og_image": {
                 "url": abs_uri(static("images/og-image.png")),
                 "width": 1200,

@@ -10,9 +10,11 @@ from utils.behaviors import Permalinkable
 
 class Event(Permalinkable):
     title = models.CharField(max_length=1024)
+    extended_title = models.CharField(max_length=1024)
     tagline = models.TextField(blank=True)
     begin_date = models.DateField()
     end_date = models.DateField()
+    dates_text = models.CharField(max_length=1024)
 
     def get_active_cfp(self):
         """Returns the currently active CFP or None"""
