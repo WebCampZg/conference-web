@@ -4,9 +4,11 @@
         "pk": 1,
         "fields": {
             "title": "WebCamp Zagreb 2012",
+            "extended_title": "WebCamp Zagreb Conference 2012",
             "slug": "webcamp-zagreb-2012",
             "begin_date": "2012-11-24",
-            "end_date": "2012-11-24"
+            "end_date": "2012-11-24",
+            "dates_text": ""
         }
     },
     {
@@ -14,9 +16,11 @@
         "pk": 2,
         "fields": {
             "title": "WebCamp Zagreb 2013",
+            "extended_title": "WebCamp Zagreb Conference 2013",
             "slug": "webcamp-zagreb-2013",
             "begin_date": "2013-10-26",
-            "end_date": "2013-10-26"
+            "end_date": "2013-10-26",
+            "dates_text": ""
         }
     },
     {
@@ -24,9 +28,11 @@
         "pk": 3,
         "fields": {
             "title": "WebCamp Zagreb 2014",
+            "extended_title": "WebCamp Zagreb Conference 2014",
             "slug": "webcamp-zagreb-2014",
             "begin_date": "2014-10-04",
-            "end_date": "2014-10-05"
+            "end_date": "2014-10-05",
+            "dates_text": ""
         }
     },
     {
@@ -34,9 +40,11 @@
         "pk": 4,
         "fields": {
             "title": "WebCamp Zagreb 2015",
+            "extended_title": "WebCamp Zagreb Conference 2015",
             "slug": "webcamp-zagreb-2015",
             "begin_date": "2015-10-03",
-            "end_date": "2015-10-04"
+            "end_date": "2015-10-04",
+            "dates_text": ""
         }
     },
     {
@@ -44,9 +52,11 @@
         "pk": 5,
         "fields": {
             "title": "WebCamp Zagreb 2016",
+            "extended_title": "WebCamp Zagreb Conference 2016",
             "slug": "webcamp-zagreb-2016",
             "begin_date": "2016-10-28",
-            "end_date": "2016-10-29"
+            "end_date": "2016-10-29",
+            "dates_text": ""
         }
     }
 ]

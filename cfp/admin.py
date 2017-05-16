@@ -33,7 +33,7 @@ class PaperApplicationAdmin(admin.ModelAdmin):
 
     def link_to_applicant(self, obj):
         link = urlresolvers.reverse("admin:cfp_applicant_change", args=[obj.applicant.id])
-        return u'<a href="%s">%s</a>' % (link, obj.applicant)
+        return '<a href="%s">%s</a>' % (link, obj.applicant)
     link_to_applicant.allow_tags = True
 
 admin.site.register(CallForPaper)

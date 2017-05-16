@@ -1,0 +1,11 @@
+[
+    {
+        "model": "config.SiteConfig",
+        "pk": 1,
+        "fields": {
+            "active_event_id": 5,
+            "allow_talk_updates": true,
+            "community_vote_enabled": false
+        }
+    }
+]

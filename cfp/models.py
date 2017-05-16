@@ -131,7 +131,7 @@ class PaperApplication(Timestampable):
         ordering = ['title', ]
 
     def __unicode__(self):
-        return u'{} - {} - {} min (CFP #{})'.format(
+        return '{} - {} - {} min (CFP #{})'.format(
                 self.title,
                 self.applicant,
                 self.duration,

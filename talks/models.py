@@ -33,7 +33,7 @@ class Talk(Timestampable):
         return reverse('talks_view_talk', args=[self.slug])
 
     def __unicode__(self):
-        return u'{0} - {1}'.format(
+        return '{0} - {1}'.format(
                 self.application.applicant.user.get_full_name(),
                 self.title)
 

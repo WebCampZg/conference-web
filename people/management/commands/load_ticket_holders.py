@@ -2,7 +2,8 @@ import logging
 import sys
 
 from json import loads
-from urllib2 import urlopen, URLError
+from urllib.request import urlopen
+from urllib.error import URLError
 
 from django.core.management.base import NoArgsCommand
 from django.contrib.auth import get_user_model

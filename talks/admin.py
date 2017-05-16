@@ -22,7 +22,7 @@ class TalkAdmin(admin.ModelAdmin):
     def link_to_applicant(self, obj):
         link = urlresolvers.reverse(
             "admin:cfp_applicant_change", args=[obj.application.applicant.id])
-        return u'<a href="%s">%s</a>' % (link, obj.application.applicant)
+        return '<a href="%s">%s</a>' % (link, obj.application.applicant)
     link_to_applicant.allow_tags = True
 
     actions = [mark_as_community_chosen]
