@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.db.models.deletion import CASCADE, PROTECT
+from django.utils import timezone as tz
 
 from people.models import User, TShirtSize
 from utils.behaviors import Permalinkable
@@ -12,6 +13,15 @@ class Event(Permalinkable):
     tagline = models.TextField(blank=True)
     begin_date = models.DateField()
     end_date = models.DateField()
+
+    def get_active_cfp(self):
+        """Returns the currently active CFP or None"""
+        today = tz.now().date()
+        return self.callforpaper_set.filter(end_date__gte=today, begin_date__lte=today).first()
+
+    def get_cfp(self):
+        """Returns the event's CFP or None. Presumes only one CFP per event."""
+        return self.callforpaper_set.first()
 
     def __unicode__(self):
         return self.title

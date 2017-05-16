@@ -3,9 +3,13 @@
 {% block title %}Call For Proposals - {{ webcamp.extended_title }}{% endblock %}
 
 {% block content %}
-<h2>Submit your talk for WebCamp Zagreb {{ current_year }}</h2>
+<h2>Submit your talk for {{ event.title }}</h2>
 
-{{ cfp_description|safe }}
+{{ cfp.description|safe }}
+
+<p>This call for papers ends on <b>{{ cfp.end_date|date:"Y-m-d" }}</b>.</p>
+
+<hr />
 
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}

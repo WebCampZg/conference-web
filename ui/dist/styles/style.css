@@ -4008,7 +4008,8 @@ h4 {
 
 .content {
   margin-top: 3rem;
-  margin-bottom: 3rem; }
+  margin-bottom: 3rem;
+  min-height: 20rem; }
 
 .light-blue {
   color: #46C5C2; }

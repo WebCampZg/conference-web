@@ -6,8 +6,8 @@ from django.views.generic.edit import CreateView, UpdateView
 
 from braces.views._access import LoginRequiredMixin
 from cfp.forms import PaperApplicationForm
-from cfp.models import Applicant, PaperApplication, get_active_cfp
-from datetime import datetime
+from cfp.models import Applicant, PaperApplication
+from config.utils import get_active_cfp
 
 
 class PaperApplicationBaseView(SuccessMessageMixin, LoginRequiredMixin):
@@ -22,10 +22,9 @@ class PaperApplicationBaseView(SuccessMessageMixin, LoginRequiredMixin):
 
     def get_context_data(self, **kwargs):
         c = super(PaperApplicationBaseView, self).get_context_data(**kwargs)
-        c['cfp_active'] = self.cfp.is_active()
-        c['cfp_title'] = self.cfp.title
-        c['cfp_description'] = self.cfp.description
-        c['current_year'] = datetime.now().year
+        c.update({
+            'cfp': self.cfp
+        })
         return c
 
     def form_valid(self, form):
@@ -69,7 +68,7 @@ class PaperApplicationBaseView(SuccessMessageMixin, LoginRequiredMixin):
 
 class PaperApplicationCreateView(PaperApplicationBaseView, CreateView):
     def dispatch(self, request, *args, **kwargs):
-        if not get_active_cfp().is_active():
+        if not get_active_cfp():
             return HttpResponseForbidden("Call for proposals is not active.")
 
         return super(PaperApplicationCreateView, self).dispatch(request, *args, **kwargs)
@@ -96,6 +95,4 @@ class PaperApplicationUpdateView(PaperApplicationBaseView, UpdateView):
 
 
 def cfp_announcement(request):
-    return render(request, 'cfp/cfp_announcement.html', {
-        "cfp": get_active_cfp()
-    })
+    return render(request, 'cfp/cfp_announcement.html')

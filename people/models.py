@@ -99,6 +99,11 @@ class User(AbstractBaseUser, PermissionsMixin):
         except:
             return None
 
+    def get_applications(self):
+        applicant = self.get_applicant()
+
+        return applicant.applications.all() if applicant else []
+
     objects = UserManager()
 
     USERNAME_FIELD = 'email'

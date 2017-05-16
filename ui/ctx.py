@@ -1,6 +1,6 @@
 from django.contrib.staticfiles.templatetags.staticfiles import static
 
-from cfp.models import get_active_cfp
+from config.utils import get_active_event
 from sponsors.choices import SPONSOR_TYPES
 from sponsors.models import Sponsor
 from talks.models import Talk
@@ -45,11 +45,12 @@ def talks(request):
     }
 
 
-def cfp(request):
-    cfp = get_active_cfp()
+def event(request):
+    event = get_active_event()
 
     return {
-        'cfp_enabled': cfp and cfp.is_active()
+        'event': event,
+        'cfp': event.get_cfp(),
     }
 
 
@@ -73,9 +74,9 @@ def webcamp(request):
             "google_plus": "https://plus.google.com/+WebcampzgOrgHR",
         },
         "webcamp": {
-            "title": "WebCamp Zagreb 2017",
+            # "title": "WebCamp Zagreb 2017",
             "extended_title": "WebCamp Zagreb Conference 2017",
-            "tagline": "Technology oriented conference for developers & designers",
+            # "tagline": "Technology oriented conference for developers & designers",
             "dates": "October 6th & 7th, 2017",
             "og_image": {
                 "url": abs_uri(static("images/og-image.png")),

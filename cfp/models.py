@@ -5,7 +5,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
@@ -16,14 +15,16 @@ from tinymce.models import HTMLField
 from utils.behaviors import Timestampable
 
 
-def get_active_cfp():
-    return get_object_or_404(CallForPaper, pk=settings.ACTIVE_CFP_ID)
-
-
 def get_applicant_avatar_path(instance, filename):
     return "uploads/applicant_images/{0}/{1}".format(
             slugify(instance.user.email),
             unicodedata.normalize('NFKD', filename).encode('ascii', 'ignore'))
+
+
+class CallForPaperManager(models.Manager):
+    def active(self):
+        today = timezone.now().date()
+        return self.filter(end_date__gte=today, begin_date__lte=today)
 
 
 class CallForPaper(models.Model):
@@ -52,6 +53,8 @@ class CallForPaper(models.Model):
     @property
     def duration(self):
         return (self.end_date - self.begin_date) if self.end_date else None
+
+    objects = CallForPaperManager
 
 
 class Applicant(models.Model):

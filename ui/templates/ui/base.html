@@ -6,7 +6,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>{% block title %}{{ webcamp.extended_title }}{% endblock %}</title>
+    <title>{% block title %}{{ event.title }}{% endblock %}</title>
 
     <link rel="stylesheet" href="{% static "fonts/fira_code/fira_code.css" %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
@@ -21,8 +21,8 @@
     <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
 
     {% block og %}
-        <meta property="og:title" content="{{ webcamp.extended_title }}" />
-        <meta property="og:description" content="Technology oriented conference for developers and designers" />
+        <meta property="og:title" content="{{ event.title }}" />
+        <meta property="og:description" content="{{ event.tagline }}" />
     {% endblock %}
 
     {% block og_image %}

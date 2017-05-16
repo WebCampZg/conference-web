@@ -76,8 +76,9 @@ INSTALLED_APPS = (
 
     'blog',
     'cfp',
-    'events',
+    'config',
     'dashboard',
+    'events',
     'jobs',
     'pages',
     'people',
@@ -254,7 +255,7 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
 
                 # Custom
-                'ui.ctx.cfp',
+                'ui.ctx.event',
                 'ui.ctx.sponsors',
                 'ui.ctx.talks',
                 'ui.ctx.webcamp',
@@ -294,6 +295,5 @@ TICKET_HOLDER_GROUP_NAME = 'TicketHolders'
 
 VOTING_ENABLED = False
 
-# The currently active CFP, leave this even after the CFP has ended so that
-# the CFP description may be displayed with a note that it has ended
-ACTIVE_CFP_ID = 2
+# The currently active Event
+ACTIVE_EVENT_ID = 6

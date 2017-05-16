@@ -45,57 +45,21 @@
 
     <hr />
 
-    {% if user.get_applicant %}
-        <h2>Speaker_info_</h2>
-
-        <p>Tell us about yourself so that we may know you.</p>
-
-        <table class="speaker-info">
-            <tbody>
-                <tr>
-                    <th>About</th>
-                    <td>{{ user.applicant.about|markdown }}</td>
-                </tr>
-                <tr>
-                    <th>Biography</th>
-                    <td>{{ user.applicant.biography|markdown }}</td>
-                </tr>
-                <tr>
-                    <th>Speaker experience</th>
-                    <td>{{ user.applicant.speaker_experience|markdown }}</td>
-                </tr>
-                <tr>
-                    <th>Image</th>
-                    <td>
-                        <img class="medium thumbnail" src="{{ MEDIA_URL }}uploads/{{ user.applicant.image }}">
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
-        <hr />
-    {% endif %}
-
     <h2 class="red-arrow">Submitted_talks_</h2>
-    {% if applications %}
 
-        <ul>
-        {% for application in applications %}
-            <li><a href="{% url 'application_update' 1 application.pk %}">
-                {{ application.title }}
-            </a></li>
-        {% endfor %}
-        </ul>
-    {% else %}
+    {% for application in user.get_applications %}
+        <div class="green-arrow">
+            <a href="{% url 'application_update' 1 application.pk %}">{{ application.title }}</a>
+        </div>
+    {% empty %}
         <p>You don't have any submitted talks.</p>
-    {% endif %}
+    {% endfor %}
 
-    {% if cfp_enabled %}
-    <p>
+    {% if cfp.is_active %}
+    <p style="margin-top: 2rem;">
         <a class="yellow arrow button" href="{% url "application_create" %}">
             Submit a talk
         </a>
     </p>
     {% endif %}
-
 {% endblock %}
