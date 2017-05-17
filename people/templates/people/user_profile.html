@@ -49,7 +49,7 @@
 
     {% for application in user.get_applications %}
         <div class="green-arrow">
-            <a href="{% url 'application_update' 1 application.pk %}">{{ application.title }}</a>
+            <a href="{% url 'application_update' application.pk %}">{{ application.title }}</a>
         </div>
     {% empty %}
         <p>You don't have any submitted talks.</p>
