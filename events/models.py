@@ -25,7 +25,7 @@ class Event(Permalinkable):
         """Returns the event's CFP or None. Presumes only one CFP per event."""
         return self.callforpaper_set.first()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
 
@@ -62,5 +62,5 @@ class Ticket(models.Model):
     class Meta:
         unique_together = ("event", "code")
 
-    def __unicode__(self):
+    def __str__(self):
         return "Ticket #%s (%s %s)" % (self.code, self.first_name, self.last_name)
