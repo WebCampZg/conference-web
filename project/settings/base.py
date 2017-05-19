@@ -42,7 +42,7 @@ def ensure_secret_key_file():
 
 
 ensure_secret_key_file()
-from secret import SECRET_KEY  # noqa
+from .secret import SECRET_KEY  # noqa
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True

@@ -2,14 +2,14 @@
 
 {% load static %}
 
-{% block title %}Speakers and Talks - {{ webcamp.extended_title }}{% endblock %}
+{% block title %}Speakers and Talks - {{ event.extended_title }}{% endblock %}
 
 {% block head %}
     <meta name="description" content="This years's WebCamp Zagreb conference speakers bring us interesting talks on various web dev topics.">
 {% endblock %}
 
 {% block og %}
-    <meta property="og:title" content="Speakers and Talks - {{ webcamp.extended_title }}" />
+    <meta property="og:title" content="Speakers and Talks - {{ event.extended_title }}" />
     <meta property="og:description" content="This years's WebCamp Zagreb conference speakers bring us interesting talks on various web dev topics." />
 {% endblock %}
 

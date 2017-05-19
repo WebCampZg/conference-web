@@ -1,4 +1,4 @@
-from __future__ import unicode_literals
+
 
 from django.db import models
 from django.db.models.deletion import CASCADE, PROTECT
@@ -10,9 +10,11 @@ from utils.behaviors import Permalinkable
 
 class Event(Permalinkable):
     title = models.CharField(max_length=1024)
+    extended_title = models.CharField(max_length=1024)
     tagline = models.TextField(blank=True)
     begin_date = models.DateField()
     end_date = models.DateField()
+    dates_text = models.CharField(max_length=1024)
 
     def get_active_cfp(self):
         """Returns the currently active CFP or None"""
@@ -23,7 +25,7 @@ class Event(Permalinkable):
         """Returns the event's CFP or None. Presumes only one CFP per event."""
         return self.callforpaper_set.first()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
 
@@ -60,5 +62,5 @@ class Ticket(models.Model):
     class Meta:
         unique_together = ("event", "code")
 
-    def __unicode__(self):
+    def __str__(self):
         return "Ticket #%s (%s %s)" % (self.code, self.first_name, self.last_name)

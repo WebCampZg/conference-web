@@ -14,7 +14,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         voting_enabled = settings.VOTING_ENABLED
         if not voting_enabled:
-            print 'Voting is disabled'
+            print('Voting is disabled')
             return
 
         vote_tokens = VoteToken.objects.filter(token_sent__isnull=True).select_related('user')
@@ -36,7 +36,7 @@ class Command(BaseCommand):
             msg.attach_alternative(html, "text/html")
             msg.send()
 
-            print "Voting email sent to %r" % vote_token.user.email
+            print("Voting email sent to %r" % vote_token.user.email)
 
             vote_token.token_sent = datetime.datetime.now()
             vote_token.save()

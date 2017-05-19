@@ -15,6 +15,6 @@ class Job(Timestampable, Permalinkable):
 
     sponsor = models.ForeignKey(Sponsor)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 

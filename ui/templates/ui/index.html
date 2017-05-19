@@ -5,7 +5,12 @@
 {% block title %}{{ event.title }} - {{ event.tagline }}{% endblock %}
 
 {% block head %}
-    <meta name="description" content="WebCamp Zagreb is a technology oriented conference for developers &amp; designers taking place on {{ webcamp.dates|safe }} in Zagreb, Croatia.">
+    <meta name="description" content="WebCamp Zagreb is a technology oriented conference for developers &amp; designers taking place on {{ event.dates_text }} in Zagreb, Croatia.">
+{% endblock %}
+
+{% block og %}
+    <meta property="og:title" content="{{ event.title }} - {{ event.tagline }}" />
+    <meta property="og:description" content="WebCamp Zagreb is a technology oriented conference for developers &amp; designers taking place on {{ event.dates_text }} in Zagreb, Croatia." />
 {% endblock %}
 
 {% block basecontent %}

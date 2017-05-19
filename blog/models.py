@@ -19,5 +19,5 @@ class Post(Timestampable, Permalinkable):
     body = HTMLField()
     lead = HTMLField()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title

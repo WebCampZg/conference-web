@@ -16,7 +16,7 @@ class UserGroup(Permalinkable):
     is_active = models.BooleanField(default=True)
     representatives = models.ManyToManyField(User, blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 

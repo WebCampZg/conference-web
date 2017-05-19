@@ -22,7 +22,7 @@ class Sponsor(Permalinkable):
     is_active = models.BooleanField(default=False)
     order = models.IntegerField(default=1)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     objects = SponsorManager()

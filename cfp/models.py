@@ -35,7 +35,7 @@ class CallForPaper(models.Model):
     begin_date = models.DateField()
     end_date = models.DateField(blank=True, null=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     def is_active(self):
@@ -64,12 +64,12 @@ class Applicant(models.Model):
     speaker_experience = models.TextField(null=True, blank=True)
     image = models.ImageField(max_length=255, upload_to=get_applicant_avatar_path)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.user.get_full_name()
 
     @property
     def full_name(self):
-        return self.__unicode__()
+        return self.__str__()
 
     @property
     def email(self):
@@ -87,7 +87,7 @@ class Applicant(models.Model):
 class AudienceSkillLevel(models.Model):
     name = models.CharField(max_length=50)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     class Meta:
@@ -130,8 +130,8 @@ class PaperApplication(Timestampable):
     class Meta:
         ordering = ['title', ]
 
-    def __unicode__(self):
-        return u'{} - {} - {} min (CFP #{})'.format(
+    def __str__(self):
+        return '{} - {} - {} min (CFP #{})'.format(
                 self.title,
                 self.applicant,
                 self.duration,

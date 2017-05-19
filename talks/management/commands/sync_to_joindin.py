@@ -18,9 +18,9 @@ class Command(BaseCommand):
     def __init__(self, *args, **kwargs):
         super(Command, self).__init__(*args, **kwargs)
 
-        print "Loading talks from JoindIn"
+        print("Loading talks from JoindIn")
         self.existing_talks = self.fetch_talks()
-        print "Found %d talks" % len(self.existing_talks)
+        print("Found %d talks" % len(self.existing_talks))
 
         api_token = os.getenv('JOINDIN_ACCESS_TOKEN')
         if not api_token:
@@ -66,29 +66,29 @@ class Command(BaseCommand):
             exit(1)
 
     def add_talk(self, talk):
-        print "CREATING: %s: %s" % (talk['speakers'][0], talk['talk_title'])
+        print("CREATING: %s: %s" % (talk['speakers'][0], talk['talk_title']))
         response = requests.post(TALKS_URL, json=talk, headers=self.auth_headers)
         response.raise_for_status()
 
     def update_talk(self, talk, uri):
         # TODO: see why we can't update talks
-        print "EXISTS %s: %s" % (talk['speakers'][0], talk['talk_title'])
+        print("EXISTS %s: %s" % (talk['speakers'][0], talk['talk_title']))
         return
 
-        print "UPDATING: %s: %s" % (talk['speakers'][0], talk['talk_title'])
+        print("UPDATING: %s: %s" % (talk['speakers'][0], talk['talk_title']))
         response = requests.put(uri, json=talk, headers=self.auth_headers)
         response.raise_for_status()
 
     def handle_error(self, http_error):
-        print http_error
-        print "Error response: %s" % http_error.response.text
+        print(http_error)
+        print("Error response: %s" % http_error.response.text)
 
-        print ""
-        print http_error.request
-        print "HEADERS:", http_error.request.headers
-        print "BODY:", http_error.request.body
+        print("")
+        print(http_error.request)
+        print("HEADERS:", http_error.request.headers)
+        print("BODY:", http_error.request.body)
 
-        print ""
-        print http_error.response
-        print "HEADERS:", http_error.response.headers
-        print "BODY:", http_error.response.text
+        print("")
+        print(http_error.response)
+        print("HEADERS:", http_error.response.headers)
+        print("BODY:", http_error.response.text)

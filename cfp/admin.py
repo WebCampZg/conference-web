@@ -18,6 +18,10 @@ class ApplicantAdmin(admin.ModelAdmin):
         return self.readonly_fields
 
 
+class CallForPaperAdmin(admin.ModelAdmin):
+    list_display = ('event', 'title', 'begin_date', 'end_date')
+
+
 class PaperApplicationAdmin(admin.ModelAdmin):
     list_display = ('title', 'link_to_applicant', 'about', 'abstract', 'skill_level',
             'duration', 'exclude', 'accomodation_required', 'extra_info', 'votes_count')
@@ -33,9 +37,9 @@ class PaperApplicationAdmin(admin.ModelAdmin):
 
     def link_to_applicant(self, obj):
         link = urlresolvers.reverse("admin:cfp_applicant_change", args=[obj.applicant.id])
-        return u'<a href="%s">%s</a>' % (link, obj.applicant)
+        return '<a href="%s">%s</a>' % (link, obj.applicant)
     link_to_applicant.allow_tags = True
 
-admin.site.register(CallForPaper)
+admin.site.register(CallForPaper, CallForPaperAdmin)
 admin.site.register(Applicant, ApplicantAdmin)
 admin.site.register(PaperApplication, PaperApplicationAdmin)
