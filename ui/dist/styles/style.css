@@ -3826,17 +3826,38 @@ select {
       background-color: #dbdbdb; }
 
 .mobile-nav-bar {
-  border-bottom: 2px solid #0a0a0a;
+  border-bottom: 3px solid #0a0a0a;
   padding: 0.5rem; }
 
-#mobile-nav-links {
-  padding: 1rem;
+#mobile-nav-menu {
   border-bottom: 2px solid #0a0a0a; }
-  #mobile-nav-links a {
-    line-height: 2rem;
-    font-size: 1.1rem;
-    text-align: center;
-    display: block; }
+  #mobile-nav-menu .mobile-nav-links {
+    padding: 1rem; }
+    #mobile-nav-menu .mobile-nav-links a {
+      line-height: 2rem;
+      font-size: 1.1rem;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 500;
+      display: block; }
+  #mobile-nav-menu .mobile-nav-buttons {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: stretch; }
+    #mobile-nav-menu .mobile-nav-buttons a {
+      width: 50%;
+      line-height: 3.5rem;
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: 500; }
+      #mobile-nav-menu .mobile-nav-buttons a:first-child {
+        background-color: #9013FD;
+        color: #e6e6e6; }
+      #mobile-nav-menu .mobile-nav-buttons a:last-child {
+        background-color: #f7f7f7;
+        color: #9b9b9b; }
 
 .newsletter {
   background-color: #42B9B6;

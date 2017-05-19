@@ -38,38 +38,43 @@
     <div class="row align-middle">
         <div class="columns">
             <a href="{% url 'ui_index' %}">
-                <img src="{% static "images/small-header.png" %}">
+                <img src="{% static "images/wczg2017_logo_mobile.svg" %}">
             </a>
         </div>
         <div class="columns shrink">
-            <a data-toggle="mobile-nav-links">
-                <i class="fa fa-2x fa-bars"></i>
+            <a data-toggle="mobile-nav-menu">
+                <img src="{% static "images/hamburger.svg" %}">
             </a>
         </div>
     </div>
 </div>
 
-<div id="mobile-nav-links" class="hide" data-toggler=".hide">
-    <ul class="vertical menu align-center">
-        <li class="text-center red">&lt;3</li>
-        <li><a href="/info/">Info</a></li>
-        <li><a href="{% url 'talks_list_talks' %}">Talks</a></li>
-        <li><a href="{% url 'schedule_list_schedule' %}">Schedule</a></li>
-        <li><a href="{% url 'blog_list_posts' %}">News</a></li>
-        <li><a href="{% url 'jobs_list_jobs' %}">Jobs</a></li>
-        <li><a href="/code/">Conduct</a></li>
+<div id="mobile-nav-menu" class="hide hide-for-large" data-toggler=".hide">
+    <div class="mobile-nav-links">
+        <ul class="vertical menu align-center">
+            <li class="text-center red">&lt;3</li>
+            <li><a href="/info/">Info</a></li>
+            <li><a href="{% url 'talks_list_talks' %}">Talks</a></li>
+            <li><a href="{% url 'schedule_list_schedule' %}">Schedule</a></li>
+            <li><a href="{% url 'blog_list_posts' %}">News</a></li>
+            <li><a href="{% url 'jobs_list_jobs' %}">Jobs</a></li>
+            <li><a href="/code/">Conduct</a></li>
+        </ul>
+    </div>
+
+    <div class="mobile-nav-buttons">
+        <a href="/tickets/" class="green-arrow">
+            Buy Tickets
+        </a>
         {% if user.is_authenticated %}
-            <li>
-                <a href="{% url 'user_profile' %}">
-                    <i class="fa fa-user"></i>&nbsp;{{user.get_full_name}}
-                </a>
-            </li>
+            <a href="{% url 'user_profile' %}" class="green-arrow">
+                Profile
+            </a>
         {% else %}
-            <li>
-                <a href="{% url 'account_login' %}?next={{ request.path }}" class="arrow">
-                    Login
-                </a>
-            </li>
+            <a href="{% url 'account_login' %}?next={{ request.path }}" class="green-arrow">
+                Login
+            </a>
         {% endif %}
-    </ul>
+    </div>
 </div>
+
