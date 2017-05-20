@@ -1,5 +1,4 @@
 from django.shortcuts import render, get_object_or_404
-from django.conf import settings
 
 from config.utils import get_active_event
 
@@ -21,6 +20,8 @@ def list_talks(request):
 
 
 def view_talk(request, slug):
-    talk = get_object_or_404(Talk, slug=slug, event_id=settings.ACTIVE_EVENT_ID)
+    event = get_active_event()
+    talk = get_object_or_404(Talk, slug=slug, event=event)
+
     return render(request, 'talks/view_talk.html', {
         'talk': talk})

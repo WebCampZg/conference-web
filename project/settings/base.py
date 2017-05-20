@@ -295,6 +295,3 @@ ALLOW_TALK_UPDATES = True
 TICKET_HOLDER_GROUP_NAME = 'TicketHolders'
 
 VOTING_ENABLED = False
-
-# The currently active Event
-ACTIVE_EVENT_ID = 6
