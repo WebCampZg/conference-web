@@ -10,7 +10,7 @@
 }
 
 /* Large and up */
-@media screen and (min-width: 64em) {
+@include breakpoint(large) {
     .newsletter {
         input {
             height: 4rem;

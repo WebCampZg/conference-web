@@ -1,0 +1,35 @@
+.keynotes-block {
+    .columns {
+        padding: 3rem 2rem;
+        text-align: center;
+    }
+
+    .columns:first-child {
+        background-color: $green;
+
+        @include breakpoint(medium) {
+            text-align: right;
+        }
+    }
+
+    .columns:last-child {
+        background-color: $light-blue;
+
+        @include breakpoint(medium) {
+            text-align: left;
+        }
+    }
+
+    .heart-center {
+        position: relative;
+
+        img {
+            position: absolute;
+            margin-left: auto;
+            margin-right: auto;
+            left: 0;
+            right: 0;
+            top: -30px;
+        }
+    }
+}
