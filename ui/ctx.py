@@ -1,10 +1,25 @@
 from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.urls import reverse
 
 from config.utils import get_active_event
 from sponsors.choices import SPONSOR_TYPES
 from sponsors.models import Sponsor
 from talks.models import Talk
 from usergroups.models import UserGroup
+
+
+def navigation(request):
+    return {
+        "navigation": [
+            ("Info", "/info/"),
+            ("Venue", "/venue/"),
+            ("Talks", reverse('talks_list_talks')),
+            ("Schedule", reverse('schedule_list_schedule')),
+            ("News", reverse('blog_list_posts')),
+            ("Jobs", reverse('jobs_list_jobs')),
+            ("Code", "/code/"),
+        ]
+    }
 
 
 def sponsors(request):

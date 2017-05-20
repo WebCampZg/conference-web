@@ -3720,6 +3720,9 @@ a.thumbnail {
     border-right: 1px solid #4A4A4A; }
   .footer .logo {
     margin-bottom: 1rem; }
+  .footer .footer-nav div {
+    padding-left: 1rem;
+    margin-bottom: 1rem; }
 
 .form-field-error {
   color: #FA4748;

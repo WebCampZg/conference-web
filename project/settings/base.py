@@ -256,10 +256,11 @@ TEMPLATES = [
 
                 # Custom
                 'ui.ctx.event',
+                'ui.ctx.navigation',
                 'ui.ctx.sponsors',
                 'ui.ctx.talks',
-                'ui.ctx.webcamp',
                 'ui.ctx.usergroups',
+                'ui.ctx.webcamp',
             ],
             'string_if_invalid': '<< MISSING VARIABLE "%s" >>' if DEBUG else '',
         },
