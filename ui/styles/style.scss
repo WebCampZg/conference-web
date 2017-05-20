@@ -59,12 +59,8 @@ h4 {
 
 // Colors
 
-.light-blue {
-    color: $light-blue;
-}
-
-.dark-blue {
-    color: $dark-blue;
+.blue {
+    color: $blue;
 }
 
 .red {
@@ -104,7 +100,7 @@ a:not(.button).yellow {
 }
 
 .label.blue {
-    background-color: $dark-blue;
+    background-color: $blue;
     color: $white;
 }
 
@@ -147,7 +143,7 @@ a:not(.button).yellow {
 }
 
 .blue-arrow {
-    @include arrow($light-blue);
+    @include arrow($blue);
 }
 
 // Utils

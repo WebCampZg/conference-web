@@ -20,10 +20,10 @@
 
     &.blue {
         color: $white;
-        background-color: $light-blue;
+        background-color: $blue;
 
         &:hover {
-            background-color: scale-color($light-blue, $lightness: -15%);
+            background-color: scale-color($blue, $lightness: -15%);
         }
 
         &.arrow {

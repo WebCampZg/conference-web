@@ -13,7 +13,7 @@
     }
 
     .columns:last-child {
-        background-color: $light-blue;
+        background-color: $blue;
 
         @include breakpoint(medium) {
             text-align: left;
