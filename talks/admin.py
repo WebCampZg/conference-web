@@ -27,6 +27,7 @@ class TalkAdmin(admin.ModelAdmin):
         'keynote',
         'is_community_chosen',
     )
+
     readonly_fields = (
         'event',
         'title',

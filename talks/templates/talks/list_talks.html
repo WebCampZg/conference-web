@@ -16,19 +16,12 @@
 {% block content %}
     <h1 class="red-arrow">Talks_</h1>
 
-    {% if event.has_talks %}
-        {% for talk in event.keynotes %}
-            {% include "talks/partials/talk.html" with talk=talk %}
+    {% for talk in talks %}
+        {% include "talks/partials/talk.html" with talk=talk %}
+        {% if not forloop.last %}
             <hr />
-        {% endfor %}
-
-        {% for talk in event.non_keynotes %}
-            {% include "talks/partials/talk.html" with talk=talk %}
-            {% if not forloop.last %}
-                <hr />
-            {% endif %}
-        {% endfor %}
-    {% else %}
+        {% endif %}
+    {% empty %}
         <p>No talks published yet.</p>
-    {% endif %}
+    {% endfor %}
 {% endblock %}
