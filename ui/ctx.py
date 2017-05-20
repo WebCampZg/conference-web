@@ -1,3 +1,5 @@
+from random import shuffle
+
 from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.urls import reverse
 
@@ -17,6 +19,7 @@ def navigation(request):
             ("News", reverse('blog_list_posts')),
             # ("Jobs", reverse('jobs_list_jobs')),
             ("Code", "/code/"),
+            ("Team", "/team/"),
         ]
     }
 
@@ -86,4 +89,51 @@ def webcamp(request):
                 "height": 630
             }
         }
+    }
+
+
+def team(request):
+    team = [
+        {
+            "name": "Luka Mužinić",
+            "image": "images/team/luka.jpg",
+            "twitter": "lmuzinic",
+            "job": "Glorious leader"
+        },
+        {
+            "name": "Maja Trepšić",
+            "image": "images/team/maja.jpg",
+            "twitter": "",
+            "job": "Speaker herder",
+        },
+        {
+            "name": "Martina Dumančić",
+            "image": "images/team/martina.jpg",
+            "twitter": "",
+            "job": "Procurement",
+        },
+        {
+            "name": "Nikola Plejić",
+            "image": "images/team/nikola.jpg",
+            "twitter": "nikolaplejic",
+            "job": "Sponsor wrangler",
+        },
+        {
+            "name": "Filip Gjurin",
+            "image": "images/team/filip.jpg",
+            "twitter": "FilipGjurin",
+            "job": "Graphic design",
+        },
+        {
+            "name": "Ivan Habunek",
+            "image": "images/team/ivan.jpg",
+            "twitter": "ihabunek",
+            "job": "Tech support"
+        },
+    ]
+
+    shuffle(team)
+
+    return {
+        "team": team
     }

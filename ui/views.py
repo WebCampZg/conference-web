@@ -14,6 +14,10 @@ def index(request):
     })
 
 
+def team(request):
+    return render(request, 'ui/team.html', {})
+
+
 def voting(request):
     return render(request, 'ui/voting.html', {})
 
