@@ -35,7 +35,7 @@
 {% endif %}
 
 {% if sponsors.standard %}
-<div class="row align-center align-middle small-up-1 medium-up-4 large-up-6 sponsor-list standard">
+<div class="row align-center align-middle small-up-1 medium-up-4 sponsor-list standard">
     {% for sponsor in sponsors.standard %}
         <div class="column">
             <a href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
@@ -47,7 +47,7 @@
 {% endif %}
 
 {% if sponsors.supporter %}
-<div class="row align-center align-middle small-up-1 medium-up-4 large-up-6 sponsor-list supporter">
+<div class="row align-center align-middle small-up-2 medium-up-6 sponsor-list supporter">
     {% for sponsor in sponsors.supporter %}
         <div class="column">
             <a href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
