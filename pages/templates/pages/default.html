@@ -14,6 +14,10 @@
 {% endblock %}
 
 {% block content %}
+    {% if user.is_superuser %}
+        <a class="button yellow-arrow float-right" href="{% url 'admin:pages_page_change' page.pk %}">Edit page</a>
+    {% endif %}
+
     <h1 class="red-arrow">
         {{ page.title.split|join:"_" }}_
     </h1>
