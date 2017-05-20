@@ -11,7 +11,9 @@ def mark_as_community_chosen(modeladmin, request, queryset):
 class TalkAdmin(admin.ModelAdmin):
     list_display = (
         'title',
-        'link_to_applicant',
+        'application_',
+        'applicant',
+        'event',
         'skill_level',
         'duration',
         'keynote',
@@ -19,11 +21,33 @@ class TalkAdmin(admin.ModelAdmin):
         'is_community_chosen',
     )
 
-    def link_to_applicant(self, obj):
+    list_filter = (
+        'event',
+        'duration',
+        'keynote',
+        'is_community_chosen',
+    )
+    readonly_fields = (
+        'event',
+        'title',
+        'slug',
+        'about',
+        'abstract',
+        'skill_level',
+        'duration',
+    )
+
+    def application_(self, obj):
+        link = urlresolvers.reverse(
+            "admin:cfp_paperapplication_change", args=[obj.application.id])
+        return '<a href="%s">%s</a>' % (link, "link")
+    application_.allow_tags = True
+
+    def applicant(self, obj):
         link = urlresolvers.reverse(
             "admin:cfp_applicant_change", args=[obj.application.applicant.id])
         return '<a href="%s">%s</a>' % (link, obj.application.applicant)
-    link_to_applicant.allow_tags = True
+    applicant.allow_tags = True
 
     actions = [mark_as_community_chosen]
 

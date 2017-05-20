@@ -1,10 +1,9 @@
-
-
 from django.db import models
 from django.db.models.deletion import CASCADE, PROTECT
 from django.utils import timezone as tz
 
 from people.models import User, TShirtSize
+from talks.models import Talk
 from utils.behaviors import Permalinkable
 
 
@@ -24,6 +23,15 @@ class Event(Permalinkable):
     def get_cfp(self):
         """Returns the event's CFP or None. Presumes only one CFP per event."""
         return self.callforpaper_set.first()
+
+    def has_talks(self):
+        return Talk.objects.filter(event=self).exists()
+
+    def keynotes(self):
+        return Talk.objects.filter(event=self, keynote=True).order_by('title')
+
+    def non_keynotes(self):
+        return Talk.objects.filter(event=self, keynote=False).order_by('title')
 
     def __str__(self):
         return self.title

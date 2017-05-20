@@ -10,7 +10,6 @@ from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
 
 from cfp.choices import TALK_DURATIONS
-from events.models import Event
 from tinymce.models import HTMLField
 from utils.behaviors import Timestampable
 
@@ -28,7 +27,7 @@ class CallForPaperManager(models.Manager):
 
 
 class CallForPaper(models.Model):
-    event = models.ForeignKey(Event)
+    event = models.ForeignKey('events.Event')
     title = models.CharField(max_length=1024)
     description = HTMLField()
     announcement = HTMLField(blank=True, null=True)

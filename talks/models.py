@@ -4,12 +4,13 @@ from django.template.defaultfilters import slugify
 
 from cfp.choices import TALK_DURATIONS
 from cfp.models import PaperApplication, AudienceSkillLevel, Applicant
+from sponsors.models import Sponsor
 from usergroups.models import UserGroup
 from utils.behaviors import Timestampable
-from sponsors.models import Sponsor
 
 
 class Talk(Timestampable):
+    event = models.ForeignKey('events.Event', PROTECT, related_name='talks')
     application = models.OneToOneField(PaperApplication, PROTECT, related_name='talk')
     co_presenter = models.ForeignKey(Applicant, PROTECT, blank=True, null=True, related_name='co_talks')
     sponsor = models.ForeignKey(Sponsor, PROTECT, blank=True, null=True, related_name="sponsored_talks")
@@ -38,6 +39,7 @@ class Talk(Timestampable):
                 self.title)
 
     def save(self, *args, **kwargs):
+        self.event = self.application.cfp.event
         self.title = self.application.title
         self.slug = slugify(self.application.title)
         self.about = self.application.about
@@ -45,4 +47,3 @@ class Talk(Timestampable):
         self.skill_level = self.application.skill_level
         self.duration = self.application.duration
         super(Talk, self).save(*args, **kwargs)
-

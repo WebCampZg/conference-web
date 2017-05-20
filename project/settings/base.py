@@ -258,7 +258,6 @@ TEMPLATES = [
                 'ui.ctx.event',
                 'ui.ctx.navigation',
                 'ui.ctx.sponsors',
-                'ui.ctx.talks',
                 'ui.ctx.usergroups',
                 'ui.ctx.webcamp',
             ],

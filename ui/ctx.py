@@ -4,7 +4,6 @@ from django.urls import reverse
 from config.utils import get_active_event
 from sponsors.choices import SPONSOR_TYPES
 from sponsors.models import Sponsor
-from talks.models import Talk
 from usergroups.models import UserGroup
 
 
@@ -49,14 +48,6 @@ def sponsors(request):
 def usergroups(request):
     return {
         "usergroups": UserGroup.objects.order_by("name").filter(is_active=True)
-    }
-
-
-def talks(request):
-    keynotes = Talk.objects.filter(keynote=True).select_related('application__applicant')
-
-    return {
-        "keynotes": keynotes
     }
 
 
