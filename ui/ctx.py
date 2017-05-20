@@ -74,7 +74,7 @@ def webcamp(request):
         "links": {
             "sponsors_pdf": abs_uri('/media/wczg_2017_sponsors_brochure.pdf'),
             "volunteer_application": "http://goo.gl/forms/1LYfr3TEGs",
-            "entrio": "https://www.entrio.hr/en/event/webcamp-zagreb-2016-3213",
+            "entrio": "https://www.entrio.hr/en/event/webcamp-zagreb-2017-4261",
             "facebook": "https://www.facebook.com/WebCampZg/",
             "twitter": "https://twitter.com/webcampzagreb/",
             "youtube": "https://www.youtube.com/user/WebCampZg",
