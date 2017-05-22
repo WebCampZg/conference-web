@@ -272,6 +272,7 @@ TEMPLATES = [
 MARKDOWN_DEUX_STYLES = {
     "default": {
         "extras": {
+            "tables": None,
             "code-friendly": None,
         },
         "safe_mode": "escape",
@@ -279,6 +280,7 @@ MARKDOWN_DEUX_STYLES = {
     # A trusted style which doesn't escape html
     "trusted": {
         "extras": {
+            "tables": None,
             "code-friendly": None,
         },
         "safe_mode": False,
