@@ -8,10 +8,14 @@ class PaperApplicationForm(forms.ModelForm):
         model = PaperApplication
         exclude = ['cfp', 'applicant', ]
 
+        widgets = {
+            "about": forms.Textarea(attrs={'rows': 4})
+        }
+
     about_applicant = forms.CharField(
         label=_('About you'),
-        help_text='Describe yourself in 140 characters or less. Plain text only. [Public]',
-        widget=forms.Textarea(attrs={'rows': 4}))
+        help_text='Describe yourself in 140 characters or fewer. Plain text only. [Public]',
+        widget=forms.Textarea(attrs={'rows': 4, 'maxlength': 140}))
 
     biography = forms.CharField(
         label=_('Biography'),

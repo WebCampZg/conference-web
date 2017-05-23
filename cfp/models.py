@@ -103,8 +103,9 @@ class PaperApplication(Timestampable):
         help_text=_('The title of your talk. Keep it short and catchy. [Public]'))
 
     about = models.TextField(
+        max_length=140,
         verbose_name=_('What\'s it about'),
-        help_text=_('Describe your talk in 140 characters or less. Plain text only. [Public]'))
+        help_text=_('Describe your talk in 140 characters or fewer. Plain text only. [Public]'))
 
     abstract = models.TextField(
         verbose_name=_('Abstract'),
