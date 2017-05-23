@@ -3715,7 +3715,8 @@ a.thumbnail {
     border-color: #4A4A4A;
     margin: 2rem 0; }
   .footer .footer-row > .columns {
-    padding: 0 2rem; }
+    padding: 0 2rem;
+    margin-bottom: 1rem; }
   .footer .footer-row > .columns:not(:last-child) {
     border-right: 1px solid #4A4A4A; }
   .footer .logo {
