@@ -17,6 +17,7 @@
     .footer-row {
         > .columns {
             padding: 0 2rem;
+	    margin-bottom: 1rem;
         }
         > .columns:not(:last-child) {
             border-right: 1px solid $dark-gray;
