@@ -104,11 +104,11 @@ class PaperApplication(Timestampable):
 
     about = models.TextField(
         verbose_name=_('What\'s it about'),
-        help_text=_('Describe your talk in 140 characters or less. [Public]'))
+        help_text=_('Describe your talk in 140 characters or less. Plain text only. [Public]'))
 
     abstract = models.TextField(
         verbose_name=_('Abstract'),
-        help_text=_('You may go in more depth here. Up to 10 sentnces, please. [Public]'))
+        help_text=_('You may go in more depth here. Up to 10 sentnces, use Markdown. [Public]'))
 
     skill_level = models.ForeignKey(
         AudienceSkillLevel, verbose_name=_('Audience level'),
