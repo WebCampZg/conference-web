@@ -104,7 +104,7 @@ def team(request):
             "name": "Maja Trepšić",
             "image": "images/team/maja.jpg",
             "twitter": "",
-            "job": "Speaker herder",
+            "job": "Speakers",
         },
         {
             "name": "Martina Dumančić",
