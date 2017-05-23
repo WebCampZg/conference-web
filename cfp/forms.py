@@ -9,15 +9,14 @@ class PaperApplicationForm(forms.ModelForm):
         exclude = ['cfp', 'applicant', ]
 
     about_applicant = forms.CharField(
-        help_text='Describe yourself in 140 characters or less. Plain text only.',
         label=_('About you'),
+        help_text='Describe yourself in 140 characters or less. Plain text only. [Public]',
         widget=forms.Textarea(attrs={'rows': 4}))
 
     biography = forms.CharField(
-        help_text=('Who are you? Where have you worked? What are your professional interests? '
-                   'This will be used on our web site if you\'re chosen. Up to 10 sentences, '
-                   'use Markdown.'),
         label=_('Biography'),
+        help_text=('Who are you? Where have you worked? What are your professional interests? '
+                   'Up to 10 sentences, use Markdown. [Public]'),
         widget=forms.Textarea(attrs={'rows': 8}))
 
     speaker_experience = forms.CharField(
@@ -26,6 +25,6 @@ class PaperApplicationForm(forms.ModelForm):
         widget=forms.Textarea(attrs={'rows': 8}))
 
     image = forms.ImageField(
+        label=_('Photo'),
         help_text=('Please upload your picture which we may use for our web site and materials. '
-                   'Make it square, PNG and at least 400x400px.'),
-        label=_('Photo'))
+                   'Make it square, PNG and at least 400x400px. [Public]'))

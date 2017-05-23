@@ -1,3 +1,5 @@
+{% load webcamp %}
+
 {% if field.is_hidden %}
     {{ field }}
 {% else %}
@@ -26,7 +28,7 @@
 
     {% if field.help_text %}
     <p class="help-text">
-        {{ field.help_text|safe }}
+        {{ field.help_text|labelize }}
     </p>
     {% endif %}
 </div>

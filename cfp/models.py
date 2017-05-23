@@ -60,7 +60,7 @@ class Applicant(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='applicant')
     about = models.TextField()
     biography = models.TextField()
-    speaker_experience = models.TextField(null=True, blank=True)
+    speaker_experience = models.TextField(blank=True)
     image = models.ImageField(max_length=255, upload_to=get_applicant_avatar_path)
 
     def __str__(self):
@@ -96,16 +96,24 @@ class AudienceSkillLevel(models.Model):
 class PaperApplication(Timestampable):
     cfp = models.ForeignKey(CallForPaper)
     applicant = models.ForeignKey(Applicant, related_name='applications')
+
     title = models.CharField(
         max_length=255,
-        help_text=_('The title of your talk. Keep it short and catchy.'),
-        verbose_name=_('Title'))
-    about = models.TextField(help_text=_('Describe your talk in 140 characters or less.'),
-                             verbose_name=_('What\'s it about'))
-    abstract = models.TextField(help_text=_('You may go in more depth here. Up to 10 sentnces, please.'),
-                                verbose_name=_('Abstract'))
-    skill_level = models.ForeignKey(AudienceSkillLevel, verbose_name=_('Audience level'),
-                                    help_text=_('Which skill level is this talk most appropriate for?'))
+        verbose_name=_('Title'),
+        help_text=_('The title of your talk. Keep it short and catchy. [Public]'))
+
+    about = models.TextField(
+        verbose_name=_('What\'s it about'),
+        help_text=_('Describe your talk in 140 characters or less. [Public]'))
+
+    abstract = models.TextField(
+        verbose_name=_('Abstract'),
+        help_text=_('You may go in more depth here. Up to 10 sentnces, please. [Public]'))
+
+    skill_level = models.ForeignKey(
+        AudienceSkillLevel, verbose_name=_('Audience level'),
+        help_text=_('Which skill level is this talk most appropriate for? [Public]'))
+
     duration = models.CharField(
             choices=TALK_DURATIONS,
             max_length=255,
