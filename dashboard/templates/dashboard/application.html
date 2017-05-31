@@ -100,9 +100,11 @@ $(document).keydown(function(e) {
     }
 });
 
+{% with ug=request.user.usergroup_set.first %}
+{% if ug %}
 $(document).ready(function () {
     // TODO: add a usergroup chooser widget
-    var usergroupID = {{ request.user.usergroup_set.first.id }};
+    var usergroupID = {{ ug.id }};
 
     $("button.rate-application").click(function() {
         var applicationID = $(this).data('application-id');
@@ -118,6 +120,9 @@ $(document).ready(function () {
     });
 });
 </script>
+{% endif %}
+{% endwith %}
+
 {% endblock %}
 
 {% block content %}
