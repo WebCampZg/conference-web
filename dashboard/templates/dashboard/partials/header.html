@@ -1,0 +1,24 @@
+<div class="nav-bar show-for-large">
+    <a class="logo" href="{% url 'ui_index' %}"></a>
+
+    <div class="nav-left">
+    </div>
+
+    <div class="nav-links">
+        <div class="pounding heart">&lt;3</div>
+        <div class="link"><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></div>
+        <div class="link"><a href="{% url 'ui_index' %}">Frontpage</a></div>
+    </div>
+
+    <div class="nav-right no-wrap">
+        {% if user.is_authenticated %}
+            <a href="{% url 'user_profile' %}">
+                <i class="fa fa-user"></i>&nbsp;{{user.get_full_name}}
+            </a>
+        {% else %}
+            <a href="{% url 'account_login' %}?next={{ request.path }}" class="arrow">
+                Login
+            </a>
+        {% endif %}
+    </div>
+</div>

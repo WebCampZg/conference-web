@@ -7,5 +7,7 @@
         </div>
     </div>
 
-    {% include "partials/groups/bottom_default.html" %}
+    {% block below_content %}
+        {% include "partials/newsletter.html" %}
+    {% endblock %}
 {% endblock %}

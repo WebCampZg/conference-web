@@ -123,7 +123,7 @@ $(document).ready(function () {
 {% block content %}
     <ul class="breadcrumbs">
         <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
-        <li><a href="{% url 'dashboard:call_for_papers' pk=application.cfp.id %}">{{ application.cfp.title }}</a></li>
+        <li><a href="{% url 'dashboard:call-for-papers' pk=application.cfp.id %}">{{ application.cfp.title }}</a></li>
         <li>{{ application.title }}</li>
     </ul>
     <div class="row medium-unstack">
@@ -131,8 +131,8 @@ $(document).ready(function () {
             <h3>{{ application.title }}</h3>
 
             <p>
-                <span class="label">{{ application.duration }} min</span>
-                <span class="label">{{ application.skill_level }}</span>
+                <span class="label purple">{{ application.duration }} min</span>
+                <span class="label yellow">{{ application.skill_level }}</span>
             </p>
             <p>{{ application.about|markdown }}</p>
 
@@ -148,14 +148,18 @@ $(document).ready(function () {
                 {{ application.extra_info|markdown }}
             {% endif %}
 
-            <p>
-                <strong>Your vote:</strong><br />
-                {% include 'dashboard/partials/stars.html' with application_id=application.id score=None %}
-                <p>Voting as {{ request.user.usergroup_set.first }}</p>
-            </p>
+            {% with ug=request.user.usergroup_set.first  %}
+            {% if ug %}
+                <p>
+                    <strong>Your vote:</strong><br />
+                    {% include 'dashboard/partials/stars.html' with application_id=application.id score=None %}
+                    <br />
+                    <small>Voting as {{ request.user.usergroup_set.first }}</small>
+                </p>
+            {% endif %}
+            {% endwith %}
 
-
-            {% if false %}
+            {% comment %}
             <h4>Votes</h4>
 
             <table class="table table-condensed" style="width: auto">
@@ -183,27 +187,35 @@ $(document).ready(function () {
                     </tr>
                 </tfoot>
             </table>
-            {% endif %}
+            {% endcomment %}
         </div>
 
         {% with applicant=application.applicant %}
         <div class="columns">
             <h3>{{ applicant.user.full_name }}</h3>
+
             <div class="row">
+                <div class="small-6 columns">
+                    <img class="thumbnail" src="{{ applicant.image.url }}" />
+                </div>
                 <div class="small-6 columns">
                     <p>{{ applicant.about }}</p>
                     <p>
-                        <a href="mailto:{{ applicant.email }}">{{ applicant.email }}</a>
+                        <span class="no-wrap">
+                            <i class="fa fa-envelope"></i>
+                            <a href="mailto:{{ applicant.email }}">{{ applicant.email }}</a>
+                        </span>
                         {% if applicant.twitter %}
-                            <br /><a target="_blank" href="https://twitter.com/{{ applicant.twitter }}">@{{ applicant.twitter }}</a>
+                            <br />
+                            <i class="fa fa-twitter"></i>
+                            <a target="_blank" href="https://twitter.com/{{ applicant.twitter }}">@{{ applicant.twitter }}</a>
                         {% endif %}
                         {% if applicant.github %}
-                            <br /><a target="_blank" href="https://github.com/{{ applicant.github }}">github.com/{{ applicant.github }}</a>
+                            <br />
+                            <i class="fa fa-github"></i>
+                            <a target="_blank" href="https://github.com/{{ applicant.github }}">{{ applicant.github }}</a>
                         {% endif %}
                     </p>
-                </div>
-                <div class="small-6 columns">
-                    <img class="thumbnail" src="{{ applicant.image.url }}" />
                 </div>
             </div>
 

@@ -12,4 +12,10 @@
     <a class="button" href="{% url 'dashboard:event-tickets' pk=event.pk %}" >
         Tickets ({{ event.tickets.count}})
     </a>
+
+    {% for cfp in event.callforpaper_set.all %}
+        <a class="yellow button" href="{% url 'dashboard:call-for-papers' pk=cfp.pk %}" >
+            {{cfp}} ({{ cfp.paperapplication_set.count }})
+        </a>
+    {% endfor %}
 {% endblock %}
