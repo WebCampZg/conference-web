@@ -1,13 +1,19 @@
+{% if cfp %}
 <div class="tickets-wrapper">
     <div class="row column tickets">
-        <h1>Call for papers is open</h1>
+        <h1>Call for Papers is Open</h1>
 
         <a href="/cfp/" class="blue xlarge yellow-arrow button">
             Submit a talk
         </a>
 
-        <div class="text-center">
+        <p class="text-center">
+            Hurry up, the last day to submit is <b>{{ cfp.end_date|date:"Y-m-d" }}</b>
+        </p>
+
+        <p class="text-center">
             <a class="yellow" href="{{ links.sponsors_pdf }}">{ or_become_sponsor }</a>
-        </div>
+        </p>
     </div>
 </div>
+{% endif %}
