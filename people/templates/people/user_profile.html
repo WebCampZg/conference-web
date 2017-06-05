@@ -60,8 +60,14 @@
     <h2 class="yellow-arrow">Submitted_talks_</h2>
 
     {% for application in user.get_applications %}
-        <div class="green-arrow">
-            <a href="{% url 'application_update' application.pk %}">{{ application.title }}</a>
+        <div class="">
+            <h5>
+                <a href="{% url 'application_update' application.pk %}">
+                    {{ application.title }}
+                </a>
+            </h5>
+
+            <p>{{ application.about }}</p>
         </div>
     {% empty %}
         <p>You don't have any submitted talks.</p>
