@@ -4157,4 +4157,7 @@ a:not(.button).yellow:hover {
 .pounding:hover {
   animation: pounding .5s linear infinite alternate; }
 
+table.align-top td, table.align-top th {
+  vertical-align: top; }
+
 /*# sourceMappingURL=style.css.map */

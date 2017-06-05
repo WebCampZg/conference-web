@@ -58,10 +58,27 @@ class CallForPaper(models.Model):
 
 class Applicant(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='applicant')
-    about = models.TextField()
-    biography = models.TextField()
-    speaker_experience = models.TextField(blank=True)
-    image = models.ImageField(max_length=255, upload_to=get_applicant_avatar_path)
+
+    about = models.TextField(
+        verbose_name=_('About you'),
+        help_text=_('Describe yourself in 140 characters or fewer. Plain text only. [Public]'))
+
+    biography = models.TextField(
+        verbose_name=_('Biography'),
+        help_text=_('Who are you? Where have you worked? What are your professional interests? '
+                    'Up to 10 sentences, use Markdown. [Public]'))
+
+    speaker_experience = models.TextField(
+        blank=True, verbose_name=_('Speaker experience'),
+        help_text=_('If you\'ve given talks at other events, please list them.'
+                    'Videos which show your english speaking skills are very helpful. '
+                    'Use markdown.'))
+
+    image = models.ImageField(
+        max_length=255, upload_to=get_applicant_avatar_path,
+        verbose_name=_('Photo'),
+        help_text=_('Please upload a picture of yourself which we may use for our web site and '
+                    'publications. Make it a square PNG of at least 400x400px. [Public]'))
 
     def __str__(self):
         return self.user.get_full_name()

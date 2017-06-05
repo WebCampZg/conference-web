@@ -185,3 +185,9 @@ a:not(.button).yellow {
 .pounding:hover {
     animation: pounding .5s linear infinite alternate;
 }
+
+table.align-top {
+    td, th {
+        vertical-align: top;
+    }
+}

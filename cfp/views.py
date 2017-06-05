@@ -5,7 +5,7 @@ from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView
 
 from braces.views._access import LoginRequiredMixin
-from cfp.forms import PaperApplicationForm
+from cfp.forms import PaperApplicationForm, ApplicantForm
 from cfp.models import Applicant, PaperApplication
 from config.utils import get_active_cfp
 
@@ -96,3 +96,17 @@ class PaperApplicationUpdateView(PaperApplicationBaseView, UpdateView):
 
 def cfp_announcement(request):
     return render(request, 'cfp/cfp_announcement.html')
+
+
+class ApplicantUpdateView(UpdateView):
+    form_class = ApplicantForm
+    template_name = "cfp/applicant_form.html"
+
+    def get_object(self):
+        try:
+            return self.request.user.applicant
+        except Applicant.DoesNotExist:
+            return Applicant(user=self.request.user)
+
+    def get_success_url(self):
+        return reverse('user_profile')

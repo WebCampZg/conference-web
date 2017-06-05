@@ -1,6 +1,5 @@
 from django import forms
-from cfp.models import PaperApplication
-from django.utils.translation import ugettext as _
+from cfp.models import PaperApplication, Applicant
 
 
 class PaperApplicationForm(forms.ModelForm):
@@ -13,22 +12,39 @@ class PaperApplicationForm(forms.ModelForm):
         }
 
     about_applicant = forms.CharField(
-        label=_('About you'),
-        help_text='Describe yourself in 140 characters or fewer. Plain text only. [Public]',
+        label=Applicant._meta.get_field('about').verbose_name,
+        help_text=Applicant._meta.get_field('about').help_text,
         widget=forms.Textarea(attrs={'rows': 4, 'maxlength': 140}))
 
     biography = forms.CharField(
-        label=_('Biography'),
-        help_text=('Who are you? Where have you worked? What are your professional interests? '
-                   'Up to 10 sentences, use Markdown. [Public]'),
+        label=Applicant._meta.get_field('biography').verbose_name,
+        help_text=Applicant._meta.get_field('biography').help_text,
         widget=forms.Textarea(attrs={'rows': 8}))
 
     speaker_experience = forms.CharField(
-        required=False, label=_('Speaker experience'),
-        help_text='If you\'ve given talks at other events, please list them.',
+        required=False,
+        label=Applicant._meta.get_field('speaker_experience').verbose_name,
+        help_text=Applicant._meta.get_field('speaker_experience').help_text,
         widget=forms.Textarea(attrs={'rows': 8}))
 
     image = forms.ImageField(
-        label=_('Photo'),
-        help_text=('Please upload your picture which we may use for our web site and materials. '
-                   'Make it square, PNG and at least 400x400px. [Public]'))
+        label=Applicant._meta.get_field('image').verbose_name,
+        help_text=Applicant._meta.get_field('image').help_text)
+
+
+class ApplicantForm(forms.ModelForm):
+    class Meta:
+        model = Applicant
+
+        fields = [
+            'about',
+            'biography',
+            'speaker_experience',
+            'image',
+        ]
+
+        widgets = {
+            'about': forms.Textarea(attrs={'rows': 4, 'maxlength': 140}),
+            'biography': forms.Textarea(attrs={'rows': 8}),
+            'speaker_experience': forms.Textarea(attrs={'rows': 8}),
+        }

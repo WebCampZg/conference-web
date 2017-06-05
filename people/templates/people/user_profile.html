@@ -31,11 +31,23 @@
             </tr>
             <tr>
                 <th><i class="fa fa-github"></i> Github</th>
-                <td><span class="gray">https://github.com/</span>{{ user.github }}</td>
+                <td>
+                    {% if user.github %}
+                        <span class="gray">https://github.com/</span>{{ user.github }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
             </tr>
             <tr>
                 <th><i class="fa fa-twitter"></i> Twitter</th>
-                <td><span class="gray">https://twitter.com/</span>{{ user.twitter }}</td>
+                <td>
+                    {% if user.twitter %}
+                        <span class="gray">https://twitter.com/</span>{{ user.twitter }}
+                    {% else %}
+                        -
+                    {% endif %}
+                </td>
             </tr>
         </tbody>
     </table>
@@ -45,7 +57,7 @@
 
     <hr />
 
-    <h2 class="red-arrow">Submitted_talks_</h2>
+    <h2 class="yellow-arrow">Submitted_talks_</h2>
 
     {% for application in user.get_applications %}
         <div class="green-arrow">
@@ -62,4 +74,38 @@
         </a>
     </p>
     {% endif %}
+
+    <hr />
+
+    <h2 class="green-arrow">Speaker_profile_</h2>
+
+    {% with applicant=user.get_applicant  %}
+    {% if applicant %}
+
+        <p><em>This is a preview of your speaker profile, as will appear online if a talk of yours is submitted. Make it awesome.</em></p>
+
+        <div class="row">
+            <div class="small-12 medium-4 columns">
+                <img class="thumbnail" src="{{ MEDIA_URL }}{{ applicant.image }}" alt="{{ user.full_name }}">
+            </div>
+            <div class="small-12 medium-8 columns">
+                <p>{{ applicant.about }}</p>
+
+                {% include "talks/partials/speaker-links.html" %}
+            </div>
+        </div>
+
+        <h3>Biography</h3>
+        {{ applicant.biography|markdown }}
+
+        <h3>Experience (visible only to organizers)</h3>
+        {{ applicant.speaker_experience|markdown }}
+
+        <a href="{% url 'applicant_update' %}" class="yellow arrow button">Edit profile</a>
+    {% else %}
+        <p>You don't have a speaker profile yet. One will be created when you submit your first talk.</p>
+
+        <a href="{% url 'applicant_update' %}" class="yellow arrow button">Create profile</a>
+    {% endif %}
+    {% endwith %}
 {% endblock %}

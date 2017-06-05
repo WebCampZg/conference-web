@@ -1,0 +1,23 @@
+{% extends 'ui/page.html' %}
+
+{% block title %}Speaker profile - {{ event.extended_title }}{% endblock %}
+
+{% block content %}
+<h1>Speaker_profile_</h1>
+
+{{ form.errors }}
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <fieldset>
+        {% include "partials/form-field.html" with field=form.about %}
+        {% include "partials/form-field.html" with field=form.biography %}
+        {% include "partials/form-field.html" with field=form.speaker_experience %}
+        {% include "partials/form-field.html" with field=form.image %}
+    </fieldset>
+
+    <button type="submit" class="purple arrow button">Submit</button>
+    <a href="{% url 'user_profile' %}" class="yellow arrow button">Cancel</a>
+</form>
+{% endblock %}
