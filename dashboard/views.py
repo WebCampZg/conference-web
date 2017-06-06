@@ -15,8 +15,8 @@ from dashboard.models import Comment
 from dashboard.forms import CommentForm
 from events.models import Event, Ticket
 from people.models import TShirtSize
-from usergroups.models import UserGroup, Vote
 from voting.models import Vote as CommunityVote, VoteToken
+from dashboard.models import Vote as CommitteeVote
 
 
 class ViewAuthMixin(UserPassesTestMixin):
@@ -35,7 +35,7 @@ class VoteAuthMixin(UserPassesTestMixin):
 
     def test_func(self):
         user = self.request.user
-        return user.is_authenticated() and user.usergroup_set.count() > 0
+        return user.is_authenticated() and user.is_talk_committee_member()
 
 
 class DashboardView(ViewAuthMixin, TemplateView):
@@ -72,9 +72,14 @@ class ApplicationDetailView(ViewAuthMixin, DetailView):
     context_object_name = 'application'
 
     def get_context_data(self, **kwargs):
+        user = self.request.user
+        vote = CommitteeVote.objects.filter(user=user, application=self.get_object()).first()
+
         ctx = super(ApplicationDetailView, self).get_context_data(**kwargs)
         ctx.update({
-            "comments": self.object.comments.order_by("created_at")
+            "comments": self.object.comments.order_by("created_at"),
+            "allow_voting": user.is_talk_committee_member,
+            "score": vote.score if vote else None,
         })
         return ctx
 
@@ -83,47 +88,29 @@ class ApplicationRateView(VoteAuthMixin, View):
 
     def post(self, request, *args, **kwargs):
         application_id = int(request.POST.get('application_id'))
-        usergroup_id = int(request.POST.get('usergroup_id'))
         score = int(request.POST.get('score'))
 
         if score < 1 or score > 5:
             raise ValidationError("Invalid score")
 
         application = get_object_or_404(PaperApplication, pk=application_id)
-        usergroup = get_object_or_404(UserGroup, pk=usergroup_id)
 
-        # See if a vote already exists
-        vote = Vote.objects.filter(
-            user=request.user,
-            usergroup=usergroup,
-            application=application).first()
+        obj, created = CommitteeVote.objects.update_or_create(
+            user=request.user, application=application, defaults={"score": score})
 
-        if vote:
-            vote.score = score
-            vote.save()
-        else:
-            vote = Vote.objects.create(
-                user=request.user,
-                usergroup=usergroup,
-                application=application,
-                score=score,
-            )
-
-        return HttpResponse("You have voted successfully.")
+        return HttpResponse(status=201 if created else 200)
 
 
 class ApplicationUnrateView(VoteAuthMixin, View):
 
     def post(self, request, *args, **kwargs):
         application_id = int(request.POST.get('application_id'))
-        usergroup_id = int(request.POST.get('usergroup_id'))
 
         application = get_object_or_404(PaperApplication, pk=application_id)
-        usergroup = get_object_or_404(UserGroup, pk=usergroup_id)
 
-        Vote.objects.filter(user=request.user, usergroup=usergroup, application=application).delete()
+        CommitteeVote.objects.filter(user=request.user, application=application).delete()
 
-        return HttpResponse("You have unvoted successfully.")
+        return HttpResponse(status=204)
 
 
 class CommunityVoteView(ViewAuthMixin, TemplateView):

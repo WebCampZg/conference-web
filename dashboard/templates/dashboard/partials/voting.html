@@ -1,0 +1,23 @@
+<div>
+    <strong>Your vote:</strong><br />
+    <div class="button-group small no-margin">
+        <button data-rate-application data-score="1" data-application-id="{{ application.pk }}"
+                class="button {% if score != 1 %}hollow{% endif %}">1</button>
+
+        <button data-rate-application data-score="2" data-application-id="{{ application.pk }}"
+                class="button {% if score != 2 %}hollow{% endif %}">2</button>
+
+        <button data-rate-application data-score="3" data-application-id="{{ application.pk }}"
+                class="button {% if score != 3 %}hollow{% endif %}">3</button>
+
+        <button data-rate-application data-score="4" data-application-id="{{ application.pk }}"
+                class="button {% if score != 4 %}hollow{% endif %}">4</button>
+
+        <button data-rate-application data-score="5" data-application-id="{{ application.pk }}"
+                class="button {% if score != 5 %}hollow{% endif %}">5</button>
+
+        <button data-unrate-application data-application-id="{{ application.pk }}" class="alert button">
+            <span class="fa fa-times"></span>
+        </button>
+    </div>
+</div>
