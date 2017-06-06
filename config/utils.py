@@ -1,7 +1,5 @@
-from .models import SiteConfig
-
-
 def get_site_config():
+    from .models import SiteConfig
     return SiteConfig.load()
 
 

@@ -8,6 +8,8 @@ from django.dispatch.dispatcher import receiver
 from django.utils.translation import ugettext as _
 from django.utils import timezone
 
+from config.utils import get_active_cfp
+
 
 class UserManager(BaseUserManager):
 
@@ -104,8 +106,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_applications(self):
         applicant = self.get_applicant()
+        cfp = get_active_cfp()
 
-        return applicant.applications.all() if applicant else []
+        return applicant.applications.filter(cfp=cfp) if applicant else []
 
     objects = UserManager()
 
@@ -119,4 +122,3 @@ def _update_session_after_password_change(sender, request, user, **kwargs):
     Django 1.7 session is invalidated after password change if using a custom password_change view
     '''
     update_session_auth_hash(request, user)
-
