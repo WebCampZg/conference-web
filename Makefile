@@ -61,7 +61,7 @@ lint:
 	-@flake8 .
 
 sync-media:
-	rsync -rv webcamp:web/conference-web/project/media/uploads project/media/uploads
+	rsync -av webcamp:web/conference-web/project/media/ project/media/
 
 css:
 	node_modules/.bin/node-sass ui/styles/style.scss ui/dist/styles/style.css --include-path=node_modules/foundation-sites/scss --source-map=true
