@@ -36,7 +36,7 @@
                     <td class="no-wrap">{{ application.created_at|date:"Y-m-d H:i" }}</td>
                     <td>{{ application.applicant }}</td>
                     <td>
-                        <a href="{% url 'dashboard:application_detail' cfp_id=application.cfp_id pk=application.id %}">{{ application.title }}</a>
+                        <a href="{% url 'dashboard:application_detail' pk=application.id %}">{{ application.title }}</a>
                     </td>
                     <td>{{ application.duration }} min</td>
                     <td>{{ application.skill_level }}</td>

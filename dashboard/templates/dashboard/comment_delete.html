@@ -1,0 +1,22 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+    <ul class="breadcrumbs">
+        <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'dashboard:cfp_detail' pk=application.cfp.pk %}">{{ application.cfp.title }}</a></li>
+        <li><a href="{% url 'dashboard:application_detail' pk=application.pk %}">{{ application.title }}</a></li>
+        <li>Add Comment</li>
+    </ul>
+
+    <h1>Delete Comment</h1>
+
+    <p>Are you sure that you want to delete this comment?</p>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <button class="arrow button" type="submit">Delete</button>
+        <a href="{% url 'dashboard:application_detail' pk=application.pk %}" class="yellow arrow button">Cancel</a>
+    </form>
+
+{% endblock %}

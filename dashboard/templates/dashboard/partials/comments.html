@@ -1,0 +1,42 @@
+{% load markdown_deux_tags %}
+
+<h3>Comments &amp; links</h3>
+
+{% for comment in comments %}
+<div class="callout">
+    {% if comment.author == request.user %}
+    <div class="float-right">
+        <a href="{% url 'dashboard:comment-update' application_pk=application.pk pk=comment.pk %}" class="small hollow button">
+            <i class="fa fa-lg fa-edit"></i>
+        </a>
+        <a href="{% url 'dashboard:comment-delete' application_pk=application.pk pk=comment.pk %}" class="small hollow button">
+            <i class="fa fa-lg fa-trash"></i>
+        </a>
+    </div>
+    {% endif %}
+
+    {% if comment.text %}
+        {{ comment.text|markdown }}
+    {% endif %}
+
+    {% if comment.link %}
+        <p>{{ comment.link|urlize }}</p>
+    {% endif %}
+
+    <div style="clear:both"></div>
+
+    <div class="text-right gray" >
+        <small>
+            <b>{{ comment.author.full_name }}</b> ||
+            {{ comment.created_at|date:"Y-m-d H:i" }}
+            {% if comment.updated_at > comment.created_at %}
+                 || <abbr title="Comment edited at {{ comment.updated_at|date:"Y-m-d H:i" }}">Edited</abbr>
+            {% endif %}
+        </small>
+    </div>
+</div>
+{% endfor %}
+
+<a href="{% url 'dashboard:comment-create' application_pk=application.pk %}" class="button">
+    <i class="fa fa-comment-o"></i> Comment
+</a>

@@ -14,7 +14,7 @@
     </a>
 
     {% for cfp in event.callforpaper_set.all %}
-        <a class="yellow button" href="{% url 'dashboard:call-for-papers' pk=cfp.pk %}" >
+        <a class="yellow button" href="{% url 'dashboard:cfp_detail' pk=cfp.pk %}" >
             {{cfp}} ({{ cfp.paperapplication_set.count }})
         </a>
     {% endfor %}

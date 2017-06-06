@@ -4,11 +4,15 @@ from itertools import groupby
 
 from django.contrib.auth.mixins import UserPassesTestMixin
 from django.core.exceptions import ValidationError
-from django.http import HttpResponse
+from django.core.urlresolvers import reverse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-from django.views.generic import View, DetailView, TemplateView, ListView
+from django.views.generic import View, DetailView, TemplateView, ListView, CreateView, UpdateView, DeleteView
+from django.views.generic.edit import ModelFormMixin, ProcessFormView
 
 from cfp.models import CallForPaper, PaperApplication
+from dashboard.models import Comment
+from dashboard.forms import CommentForm
 from events.models import Event, Ticket
 from people.models import TShirtSize
 from usergroups.models import UserGroup, Vote
@@ -16,12 +20,19 @@ from voting.models import Vote as CommunityVote, VoteToken
 
 
 class ViewAuthMixin(UserPassesTestMixin):
+    raise_exception = True
+
+    """Allow access to admins and people on the talk committee"""
     def test_func(self):
         user = self.request.user
-        return user.is_authenticated() and user.is_superuser
+        return user.is_authenticated() and (
+            user.is_superuser or user.is_talk_committee_member()
+        )
 
 
 class VoteAuthMixin(UserPassesTestMixin):
+    raise_exception = True
+
     def test_func(self):
         user = self.request.user
         return user.is_authenticated() and user.usergroup_set.count() > 0
@@ -59,6 +70,13 @@ class ApplicationDetailView(ViewAuthMixin, DetailView):
     model = PaperApplication
     template_name = 'dashboard/application.html'
     context_object_name = 'application'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(ApplicationDetailView, self).get_context_data(**kwargs)
+        ctx.update({
+            "comments": self.object.comments.order_by("created_at")
+        })
+        return ctx
 
 
 class ApplicationRateView(VoteAuthMixin, View):
@@ -194,3 +212,45 @@ class EventTicketsView(ViewAuthMixin, ListView):
             "count": x[1],
             "width": (float(100 * x[1]) / most_common[0][1]), # for drawing progress bars
         } for x in most_common]
+
+
+class BaseCommentEditView(ViewAuthMixin, ModelFormMixin, ProcessFormView):
+    model = Comment
+    form_class = CommentForm
+    template_name = 'dashboard/comment_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.application = PaperApplication.objects.get(pk=self.kwargs.get('application_pk'))
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx.update({
+            "application": self.application
+        })
+        return ctx
+
+    def get_success_url(self):
+        return reverse("dashboard:application_detail", kwargs={"pk": self.application.pk})
+
+
+class CommentCreateView(BaseCommentEditView, CreateView):
+    def form_valid(self, form):
+        comment = form.save(commit=False)
+        comment.application = self.application
+        comment.author = self.request.user
+        comment.save()
+
+        return HttpResponseRedirect(self.get_success_url())
+
+
+class CommentUpdateView(BaseCommentEditView, UpdateView):
+    def get_queryset(self):
+        return super().get_queryset().filter(author=self.request.user)
+
+
+class CommentDeleteView(BaseCommentEditView, DeleteView):
+    template_name = 'dashboard/comment_delete.html'
+
+    def get_queryset(self):
+        return super().get_queryset().filter(author=self.request.user)

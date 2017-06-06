@@ -128,9 +128,10 @@ $(document).ready(function () {
 {% block content %}
     <ul class="breadcrumbs">
         <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
-        <li><a href="{% url 'dashboard:call-for-papers' pk=application.cfp.id %}">{{ application.cfp.title }}</a></li>
+        <li><a href="{% url 'dashboard:cfp_detail' pk=application.cfp.id %}">{{ application.cfp.title }}</a></li>
         <li>{{ application.title }}</li>
     </ul>
+
     <div class="row medium-unstack">
         <div class="columns application" data-application-id="{{ application.id }}">
             <h3>{{ application.title }}</h3>
@@ -235,10 +236,14 @@ $(document).ready(function () {
 
     <hr />
 
+    {% include 'dashboard/partials/comments.html' %}
+
+    <hr />
+
     <div class="row">
         <div class="columns">
             {% if application.prev %}
-                <a href="{% url 'dashboard:application_detail' cfp_id=application.cfp_id pk=application.prev.pk %}" id="prev_application">
+                <a href="{% url 'dashboard:application_detail' pk=application.prev.pk %}" id="prev_application">
                     &laquo;&nbsp;{{ application.prev.title }}</a>
                 {% endif %}
         </div>
@@ -247,7 +252,7 @@ $(document).ready(function () {
         </div>
         <div class="columns text-right">
             {% if application.next %}
-                <a href="{% url 'dashboard:application_detail' cfp_id=application.cfp_id pk=application.next.pk %}" id="next_application">
+                <a href="{% url 'dashboard:application_detail' pk=application.next.pk %}" id="next_application">
                     {{ application.next.title }}&nbsp;&raquo;
                 </a>
             {% endif %}

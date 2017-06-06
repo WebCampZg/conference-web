@@ -1,0 +1,33 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+
+    <ul class="breadcrumbs">
+        <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'dashboard:cfp_detail' pk=application.cfp.pk %}">{{ application.cfp.title }}</a></li>
+        <li><a href="{% url 'dashboard:application_detail' pk=application.pk %}">{{ application.title }}</a></li>
+        <li>Add Comment</li>
+    </ul>
+
+    <h1>Add Comment</h1>
+
+    <p><em>Use Markdown for formatting comments, but avoid headers.</em></p>
+
+    {% if form.non_field_errors %}
+    <div class="callout alert">
+        {{ form.non_field_errors }}
+    </div>
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+
+        {% for field in form %}
+            {% include "partials/form-field.html" with field=field %}
+        {% endfor %}
+
+        <button class="arrow button" type="submit">Comment</button>
+        <a href="{% url 'dashboard:application_detail' pk=application.pk %}" class="yellow arrow button">Cancel</a>
+    </form>
+
+{% endblock %}
