@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^$', views.DashboardView.as_view(), name='dashboard'),
     url(r'^cfp/(?P<pk>\d+)/$', views.CallForPapersView.as_view(), name='cfp_detail'),
     url(r'^applications/(?P<pk>\d+)/$', views.ApplicationDetailView.as_view(), name='application_detail'),
+    url(r'^applicants/(?P<pk>\d+)/$', views.ApplicantDetailView.as_view(), name='applicant_detail'),
     url(r'^community-vote/$', views.CommunityVoteView.as_view(), name='community-vote'),
     url(r'^event/(?P<pk>\d+)/$', views.EventDetailView.as_view(), name='event-detail'),
     url(r'^event/(?P<pk>\d+)/tickets/$', views.EventTicketsView.as_view(), name='event-tickets'),

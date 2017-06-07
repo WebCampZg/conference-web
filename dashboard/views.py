@@ -10,7 +10,7 @@ from django.shortcuts import get_object_or_404
 from django.views.generic import View, DetailView, TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.views.generic.edit import ModelFormMixin, ProcessFormView
 
-from cfp.models import CallForPaper, PaperApplication
+from cfp.models import CallForPaper, PaperApplication, Applicant
 from dashboard.models import Comment
 from dashboard.forms import CommentForm
 from events.models import Event, Ticket
@@ -81,6 +81,21 @@ class ApplicationDetailView(ViewAuthMixin, DetailView):
             "comments": comments,
             "allow_voting": user.is_talk_committee_member,
             "score": vote.score if vote else None,
+        })
+        return ctx
+
+
+class ApplicantDetailView(ViewAuthMixin, DetailView):
+    model = Applicant
+    template_name = 'dashboard/applicant.html'
+
+    def get_context_data(self, **kwargs):
+        applicant = self.get_object()
+        applications = applicant.applications.order_by("-created_at")
+
+        ctx = super().get_context_data(**kwargs)
+        ctx.update({
+            "applications": applications,
         })
         return ctx
 

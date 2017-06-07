@@ -105,6 +105,12 @@ $(document).keydown(function(e) {
 
             <h4>Experience</h4>
             <p>{{ applicant.speaker_experience|markdown }}</p>
+
+            <p>
+                <a class="small yellow arrow button" href="{% url 'dashboard:applicant_detail' pk=applicant.pk %}">
+                    All applications ({{ applicant.applications.count }})
+                </a>
+             </p>
         </div>
         {% endwith %}
     </div>
