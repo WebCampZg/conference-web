@@ -74,10 +74,11 @@ class ApplicationDetailView(ViewAuthMixin, DetailView):
     def get_context_data(self, **kwargs):
         user = self.request.user
         vote = CommitteeVote.objects.filter(user=user, application=self.get_object()).first()
+        comments = self.object.comments.order_by("created_at").prefetch_related('author')
 
         ctx = super(ApplicationDetailView, self).get_context_data(**kwargs)
         ctx.update({
-            "comments": self.object.comments.order_by("created_at"),
+            "comments": comments,
             "allow_voting": user.is_talk_committee_member,
             "score": vote.score if vote else None,
         })
