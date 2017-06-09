@@ -2,8 +2,9 @@ import datetime
 from collections import Counter
 from itertools import groupby
 
-from django.contrib.auth.mixins import UserPassesTestMixin
-from django.core.exceptions import ValidationError
+from django.contrib.auth.mixins import UserPassesTestMixin, AccessMixin
+from django.contrib.auth.views import redirect_to_login
+from django.core.exceptions import ValidationError, PermissionDenied
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
@@ -19,15 +20,21 @@ from voting.models import Vote as CommunityVote, VoteToken
 from dashboard.models import Vote as CommitteeVote
 
 
-class ViewAuthMixin(UserPassesTestMixin):
+class ViewAuthMixin(AccessMixin):
+    """Allow access to admins and people on the talk committee"""
+
     raise_exception = True
 
-    """Allow access to admins and people on the talk committee"""
-    def test_func(self):
-        user = self.request.user
-        return user.is_authenticated() and (
-            user.is_superuser or user.is_talk_committee_member()
-        )
+    def dispatch(self, request, *args, **kwargs):
+        user = request.user
+
+        if not user.is_authenticated:
+            return redirect_to_login(self.request.get_full_path())
+
+        if not (user.is_superuser or user.is_talk_committee_member()):
+            raise PermissionDenied("Only admins and talk committee members have dashboard access.")
+
+        return super().dispatch(request, *args, **kwargs)
 
 
 class VoteAuthMixin(UserPassesTestMixin):
