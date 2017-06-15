@@ -87,6 +87,7 @@ INSTALLED_APPS = (
     'talks',
     'usergroups',
     'voting',
+    'workshops',
 )
 
 

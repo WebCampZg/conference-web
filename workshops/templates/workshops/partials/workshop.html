@@ -1,0 +1,35 @@
+{% load static %}
+
+<article class="workshop-short">
+    <div class="row">
+        <div class="show-for-medium medium-3 columns">
+            <a href="{% url 'workshops_view_workshop' slug=workshop.slug %}">
+                <img src="{{ MEDIA_URL }}{{ workshop.applicant.image }}"
+                     alt="Photo of {{ workshop.applicant.user.get_full_name }}">
+            </a>
+        </div>
+
+        <div class="small-12 medium-9 columns">
+            <p>
+                <span>Speaker:</span>
+                <a href="{% url 'workshops_view_workshop' slug=workshop.slug %}#speaker">
+                    {{ workshop.applicant.user.get_full_name }}
+                </a>
+            </p>
+
+            <h3>
+                <a href="{% url 'workshops_view_workshop' slug=workshop.slug %}">
+                    {{ workshop.title }}
+                </a>
+            </h3>
+
+            <p>{{ workshop.about }}</p>
+
+            <p>{{ workshop.starts_at|date:"l, Y-m-d @ H:i" }}</p>
+            <p>
+                <em>Skill level:</em>
+                {% include "partials/skill-level-label.html" with skill_level=workshop.skill_level only %}
+            </p>
+        </div>
+    </div>
+</article>

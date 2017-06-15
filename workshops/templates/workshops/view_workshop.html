@@ -1,0 +1,49 @@
+{% extends 'ui/page.html' %}
+
+{% load markdown_deux_tags %}
+
+{% block title %}
+    {{ workshop.applicant.user.get_full_name }}:
+    {{ workshop.title }} - {{ event.extended_title }}
+{% endblock %}
+
+{% block head %}
+    <meta name="description" content="{{ workshop.about }}">
+{% endblock %}
+
+{% block og %}
+    <meta property="og:title" content="{{ workshop.applicant.user.get_full_name }}: {{ workshop.title }}" />
+    <meta property="og:description" content="{{ workshop.about }}" />
+{% endblock %}
+
+{% block og_image %}
+    <meta property="og:image" content="{{ base_url }}{{ workshop.applicant.image.url }}" />
+    <meta property="og:image:width" content="{{ workshop.applicant.image.width }}" />
+    <meta property="og:image:height" content="{{ workshop.applicant.image.height }}" />
+{% endblock %}
+
+{% block content %}
+    <article class="workshop-detail">
+        <ul class="breadcrumbs">
+            <li><a href="{% url 'workshops_list_workshops' %}">Workshops</a></li>
+            <li>{{ workshop.title }}</li>
+        </ul>
+
+        <h1 class="red-arrow">{{ workshop.title }}</h1>
+
+        <p><em>{{ workshop.about }}</em></p>
+
+        {{ workshop.abstract|markdown }}
+
+        <p>
+            <em>Skill level:</em>
+            {% include "partials/skill-level-label.html" with skill_level=workshop.skill_level only %}
+        </p>
+
+        <hr />
+
+        {{ workshop.venue|markdown:"trusted" }}
+
+        {% include "talks/partials/speaker.html" with applicant=workshop.applicant %}
+    </article>
+{% endblock %}
