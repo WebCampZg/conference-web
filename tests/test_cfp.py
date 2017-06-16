@@ -133,7 +133,6 @@ def test_POST_create_application(user, applicant, client, active_cfp):
     }
 
     response = client.post(url, data)
-
     assert response.status_code == 302
     assert response.url == reverse('user_profile')
     assert PaperApplication.objects.count() == 1

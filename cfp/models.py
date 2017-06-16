@@ -68,6 +68,11 @@ class Applicant(models.Model):
         help_text=_('Who are you? Where have you worked? What are your professional interests? '
                     'Up to 10 sentences, use Markdown. [Public]'))
 
+    company_name = models.CharField(
+        max_length=100, blank=True,
+        verbose_name=_('Company name'),
+        help_text=_('Name of the company you work for. Optional.'))
+
     speaker_experience = models.TextField(
         blank=True, verbose_name=_('Speaker experience'),
         help_text=_('If you\'ve given talks at other events, please list them.'

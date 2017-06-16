@@ -104,7 +104,7 @@
         <h3>Biography</h3>
         {{ applicant.biography|markdown }}
 
-        <h3>Experience (visible only to organizers)</h3>
+        <h3>Experience <small>(visible only to organizers)</small></h3>
         {{ applicant.speaker_experience|markdown }}
 
         <a href="{% url 'applicant_update' %}" class="yellow arrow button">Edit profile</a>

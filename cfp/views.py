@@ -41,6 +41,7 @@ class PaperApplicationBaseView(SuccessMessageMixin, LoginRequiredMixin):
             initial.update({
                 'about_applicant': applicant.about,
                 'biography': applicant.biography,
+                'company_name': applicant.company_name,
                 'speaker_experience': applicant.speaker_experience,
                 'image': applicant.image,
             })
@@ -55,6 +56,7 @@ class PaperApplicationBaseView(SuccessMessageMixin, LoginRequiredMixin):
             'user': user,
             'about': form.cleaned_data['about_applicant'],
             'biography': form.cleaned_data['biography'],
+            'company_name': form.cleaned_data['company_name'],
             'speaker_experience': form.cleaned_data['speaker_experience'],
             'image': form.cleaned_data['image'],
         }

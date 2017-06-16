@@ -21,6 +21,11 @@ class PaperApplicationForm(forms.ModelForm):
         help_text=Applicant._meta.get_field('biography').help_text,
         widget=forms.Textarea(attrs={'rows': 8}))
 
+    company_name = forms.CharField(
+        required=False,
+        label=Applicant._meta.get_field('company_name').verbose_name,
+        help_text=Applicant._meta.get_field('company_name').help_text)
+
     speaker_experience = forms.CharField(
         required=False,
         label=Applicant._meta.get_field('speaker_experience').verbose_name,
@@ -39,6 +44,7 @@ class ApplicantForm(forms.ModelForm):
         fields = [
             'about',
             'biography',
+            'company_name',
             'speaker_experience',
             'image',
         ]
