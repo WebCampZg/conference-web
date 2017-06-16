@@ -4103,6 +4103,15 @@ a:not(.button).yellow:hover {
   background-color: #E5E513;
   color: #0A0A0A; }
 
+.skill-level.elementary {
+  color: #C0E413; }
+
+.skill-level.intermediate {
+  color: #9013FD; }
+
+.skill-level.advanced {
+  color: #FA4748; }
+
 .arrow::before {
   content: ">";
   padding-right: .5rem;

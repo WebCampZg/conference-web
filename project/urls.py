@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^schedule/', include('schedule.urls')),
     url(r'^sponsors/', include('sponsors.urls')),
     url(r'^talks/', include('talks.urls')),
+    url(r'^workshops/', include('workshops.urls')),
     # url(r'^voting/', include('voting.urls')),
 
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},

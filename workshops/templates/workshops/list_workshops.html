@@ -1,0 +1,27 @@
+{% extends 'ui/page.html' %}
+
+{% load static %}
+
+{% block title %}Workshops - {{ event.extended_title }}{% endblock %}
+
+{% block head %}
+    {% comment %}<meta name="description" content="">{% endcomment %}
+{% endblock %}
+
+{% block og %}
+    <meta property="og:title" content="Workshops - {{ event.extended_title }}" />
+    {% comment %}<meta property="og:description" content="" />{% endcomment %}
+{% endblock %}
+
+{% block content %}
+    <h1 class="red-arrow">Workshops_</h1>
+
+    {% for workshop in workshops %}
+        {% include "workshops/partials/workshop.html" with workshop=workshop %}
+        {% if not forloop.last %}
+            <hr />
+        {% endif %}
+    {% empty %}
+        <p>No workshops published yet.</p>
+    {% endfor %}
+{% endblock %}

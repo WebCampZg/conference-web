@@ -2,11 +2,13 @@ from django.shortcuts import render
 
 from blog.models import Post
 from talks.models import Talk
+from config.utils import get_active_event
 
 
 def index(request):
+    event = get_active_event()
     posts = Post.objects.all()[:3]
-    talks = Talk.objects.filter(keynote=False).order_by('?')[:3]
+    talks = Talk.objects.filter(event=event, keynote=False).order_by('?')[:3]
 
     return render(request, 'ui/index.html', {
         "posts": posts,
