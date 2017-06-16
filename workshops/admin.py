@@ -10,7 +10,7 @@ class WorkshopAdmin(admin.ModelAdmin):
         field = super().formfield_for_foreignkey(db_field, request, **kwargs)
 
         if db_field.name == "applicant":
-            field.queryset = field.queryset.prefetch_related('user')
+            field.queryset = field.queryset.prefetch_related('user').order_by('user__first_name', 'user__last_name')
 
         return field
 
