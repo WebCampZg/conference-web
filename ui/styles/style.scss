@@ -115,6 +115,20 @@ a:not(.button).yellow {
 }
 
 
+// Skill level lables
+
+.skill-level {
+    &.elementary {
+        color: $green;
+    }
+    &.intermediate {
+        color: $purple;
+    }
+    &.advanced {
+        color: $red;
+    }
+}
+
 // Arrows
 
 @mixin arrow($color) {
@@ -171,6 +185,8 @@ a:not(.button).yellow {
         max-width: 8rem;
     }
 }
+
+// Pounding heart animation
 
 @keyframes pounding{
     0% {

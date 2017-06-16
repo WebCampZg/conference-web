@@ -1,4 +1,5 @@
 {% load static %}
+{% load webcamp %}
 
 <article class="workshop-short">
     <div class="row">
@@ -28,7 +29,7 @@
             <p>{{ workshop.starts_at|date:"l, Y-m-d @ H:i" }}</p>
             <p>
                 <em>Skill level:</em>
-                {% include "partials/skill-level-label.html" with skill_level=workshop.skill_level only %}
+                {{ workshop.skill_level|skill_level }}
             </p>
         </div>
     </div>

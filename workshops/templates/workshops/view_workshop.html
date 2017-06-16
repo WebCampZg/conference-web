@@ -1,6 +1,7 @@
 {% extends 'ui/page.html' %}
 
 {% load markdown_deux_tags %}
+{% load webcamp %}
 
 {% block title %}
     {{ workshop.applicant.user.get_full_name }}:
@@ -37,7 +38,7 @@
 
         <p>
             <em>Skill level:</em>
-            {% include "partials/skill-level-label.html" with skill_level=workshop.skill_level only %}
+            {{ workshop.skill_level|skill_level }}
         </p>
 
         <hr />
