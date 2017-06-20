@@ -146,7 +146,7 @@ class PaperApplication(Timestampable):
 
     accomodation_required = models.BooleanField(
             'I require accomodation',
-            help_text='For people outside of the Zagreb area, we provide 2 nights in a hotel.',
+            help_text='For people outside of the Zagreb area, we provide 3 nights in a hotel.',
             default=False)
 
     extra_info = models.TextField(
