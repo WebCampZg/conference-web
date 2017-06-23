@@ -10,12 +10,26 @@
     </style>
 {% endblock head %}
 
+
+{% block morescript %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#applications-table").dataTable({
+                "paging": false,
+                "searching": false,
+            });
+        });
+    </script>
+{% endblock %}
+
+
 {% block content %}
     <ul class="breadcrumbs">
         <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
+        <li>{{ cfp.title }}</li>
     </ul>
+
     <h1>{{ object.title }}</h1>
-    <h3>Applications</h3>
 
     <table id="applications-table" class="table hover">
         <thead>
@@ -26,7 +40,6 @@
                 <th>Title</th>
                 <th>Duration</th>
                 <th>Level</th>
-                <th>Selected</th>
             </tr>
         </thead>
         <tbody>
@@ -40,11 +53,6 @@
                     </td>
                     <td>{{ application.duration }} min</td>
                     <td>{{ application.skill_level }}</td>
-                    <td class="voting">
-                        {% if application.has_talk %}
-                            <i class="fa fa-check"></i> Selected
-                        {% endif %}
-                    </td>
                 </tr>
             {% endfor %}
         </tbody>
