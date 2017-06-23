@@ -9,6 +9,7 @@
                 <th>Title</th>
                 <th>Dates</th>
                 <th>Tickets</th>
+                <th>Applications</th>
             </tr>
         </thead>
         <tbody>
@@ -30,6 +31,14 @@
                     <a href="{% url 'dashboard:event-tickets' pk=event.pk %}">
                         <i class="fa fa-ticket"></i> Tickets
                     </a>
+                </td>
+                <td>
+                    {% for cfp in event.callforpaper_set.all %}
+                    <div>
+                        <i class="fa fa-paper-plane-o"></i>
+                        <a href="{% url 'dashboard:cfp_detail' pk=cfp.pk %}">{{ cfp }}</a>
+                    </div>
+                    {% endfor %}
                 </td>
             </tr>
             {% endfor %}
