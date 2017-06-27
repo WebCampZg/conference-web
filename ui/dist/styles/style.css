@@ -3945,6 +3945,8 @@ select {
   margin-top: 2rem; }
   .sponsor-list.diamond img {
     max-height: 10rem; }
+  .sponsor-list.lanyard img {
+    max-height: 6rem; }
   .sponsor-list.track img {
     max-height: 6rem; }
   .sponsor-list.foodanddrinks img {
