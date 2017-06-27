@@ -10,6 +10,18 @@
 </div>
 {% endif %}
 
+{% if sponsors.lanyard %}
+<div class="row align-center align-middle small-up-1 sponsor-list lanyard">
+    {% for sponsor in sponsors.lanyard %}
+        <div class="column">
+            <a href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
+                <img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="" />
+            </a>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}
+
 {% if sponsors.track %}
 <div class="row align-center align-middle small-up-1 medium-up-2 sponsor-list track">
     {% for sponsor in sponsors.track %}
