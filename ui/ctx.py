@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from random import shuffle
 
 from django.contrib.staticfiles.templatetags.staticfiles import static
@@ -28,6 +30,7 @@ def sponsors(request):
     active = Sponsor.objects.active()
 
     diamond = active.filter(type=SPONSOR_TYPES.DIAMOND).order_by('id')
+    lanyard = active.filter(type=SPONSOR_TYPES.LANYARD).order_by('id')
     track = active.filter(type=SPONSOR_TYPES.TRACK).order_by('id')
     foodanddrinks = active.filter(type=SPONSOR_TYPES.FOOD_AND_DRINKS).order_by('id')
     standard = active.filter(type=SPONSOR_TYPES.STANDARD).order_by('id')
@@ -38,6 +41,7 @@ def sponsors(request):
     return {
         "sponsors": {
             'diamond': diamond,
+            'lanyard': lanyard,
             'track': track,
             'foodanddrinks': foodanddrinks,
             'standard': standard,
