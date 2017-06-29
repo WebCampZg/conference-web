@@ -1,5 +1,7 @@
 import re
 
+from urllib.parse import urlparse, parse_qs
+
 from django import template
 from django.utils.safestring import mark_safe
 
@@ -23,3 +25,51 @@ def skill_level(skill_level):
             <i class="fa fa-square"></i> {}
         </span>
     """.format(className, level))
+
+
+def embed_youtube(code):
+    return mark_safe("""
+        <div class="video-embed">
+            <div class="video-embed-inner">
+                <iframe width="640" height="360" src="https://www.youtube.com/embed/{}"
+                        frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>""".format(code))
+
+
+def embed_vimeo(code):
+    return mark_safe("""
+        <div class="video-embed">
+            <div class="video-embed-inner">
+                <iframe width="640" height="360" frameborder="0" src="https://player.vimeo.com/video/{}"
+                        webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+            </div>
+        </div>""".format(code))
+
+
+@register.filter
+def embed_video(url):
+    try:
+        parsed_url = urlparse(url)
+    except:
+        return ""
+
+    netloc = parsed_url.netloc
+    path = parsed_url.path
+    query = parse_qs(parsed_url.query)
+
+    if netloc in ['youtube.com', 'www.youtube.com'] and path == '/watch' and 'v' in query and query['v']:
+        return embed_youtube(query['v'][0])
+
+    if netloc in ['youtube.com', 'www.youtube.com'] and path.startswith('/embed/'):
+        matches = re.match('^/embed/([^/]+)$', path)
+        if matches:
+            return embed_youtube(matches.group(1))
+
+    if netloc == 'youtu.be' and path.startswith('/') and '/' not in path[1:]:
+        return embed_youtube(path[1:])
+
+    if netloc == 'vimeo.com' and path.startswith('/') and re.match('^\d+$', path[1:]):
+        return embed_vimeo(path[1:])
+
+    return ""

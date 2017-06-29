@@ -1,25 +1,16 @@
 {% load markdown_deux_tags %}
+{% load webcamp %}
 
 <h3>Comments &amp; links</h3>
 
 {% for comment in comments %}
 <div class="callout">
-    {% if comment.author == request.user %}
-    <div class="float-right">
-        <a href="{% url 'dashboard:comment-update' application_pk=application.pk pk=comment.pk %}" class="small hollow button">
-            <i class="fa fa-lg fa-edit"></i>
-        </a>
-        <a href="{% url 'dashboard:comment-delete' application_pk=application.pk pk=comment.pk %}" class="small hollow button">
-            <i class="fa fa-lg fa-trash"></i>
-        </a>
-    </div>
-    {% endif %}
-
     {% if comment.text %}
         {{ comment.text|markdown }}
     {% endif %}
 
     {% if comment.link %}
+        {{ comment.link|embed_video }}
         <p>{{ comment.link|urlize }}</p>
     {% endif %}
 
@@ -32,6 +23,15 @@
             {% if comment.updated_at > comment.created_at %}
                  || <abbr title="Comment edited at {{ comment.updated_at|date:"Y-m-d H:i" }}">Edited</abbr>
             {% endif %}
+            {% if comment.author == request.user %}
+            ||<a class="gray" href="{% url 'dashboard:comment-update' application_pk=application.pk pk=comment.pk %}">
+                Edit
+            </a>
+            || <a class="gray" href="{% url 'dashboard:comment-delete' application_pk=application.pk pk=comment.pk %}">
+                Delete
+            </a>
+            {% endif %}
+
         </small>
     </div>
 </div>

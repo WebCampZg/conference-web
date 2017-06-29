@@ -4171,4 +4171,25 @@ a:not(.button).yellow:hover {
 table.align-top td, table.align-top th {
   vertical-align: top; }
 
+@media print, screen and (min-width: 40em) {
+  .video-embed {
+    max-width: 80%; } }
+
+@media print, screen and (min-width: 64em) {
+  .video-embed {
+    max-width: 60%; } }
+
+.video-embed .video-embed-inner {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden; }
+
+.video-embed iframe, .video-embed object, .video-embed embed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+
 /*# sourceMappingURL=style.css.map */
