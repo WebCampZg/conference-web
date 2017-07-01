@@ -43,6 +43,7 @@
                 {% endfor %}
                 <th>Mean</th>
                 <th>StDev</th>
+                <th>Requires accommodation</th>
             </tr>
         </thead>
         <tbody>
@@ -58,6 +59,7 @@
                     {% endfor %}
                     <td><b>{{ application.mean|floatformat:1 }}</b></td>
                     <td><em>{{ application.stdev|floatformat:1 }}</em></td>
+                    <td>{{ application.accomodation_required|yesno }}</td>
                 </tr>
             {% endfor %}
         </tbody>
