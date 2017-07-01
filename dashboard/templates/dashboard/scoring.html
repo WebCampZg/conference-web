@@ -1,0 +1,65 @@
+{% extends "dashboard/base.html" %}
+
+{% block head %}
+    <style type="text/css">
+        body > .row.column { max-width: 100rem }
+        #scoring-table { font-size: smaller }
+        button.rate-application,
+        button.unrate-application { margin-bottom: 0; }
+        tr.selected { background-color: green; }
+        td.voting { white-space: nowrap; }
+    </style>
+{% endblock head %}
+
+
+{% block morescript %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#scoring-table").dataTable({
+                "paging": false,
+                "searching": false,
+            });
+        });
+    </script>
+{% endblock %}
+
+
+{% block content %}
+    <ul class="breadcrumbs">
+        <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
+        <li><a href="{% url 'dashboard:cfp_detail' pk=cfp.pk %}">{{ cfp.title }}</a></li>
+        <li>Scoring</li>
+    </ul>
+
+    <h1>Scores <small>{{ object.title }}</small></h1>
+
+    <table id="scoring-table" class="table hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Talk</th>
+                {% for voter in voters %}
+                    <th>{{ voter.first_name }}</th>
+                {% endfor %}
+                <th>Mean</th>
+                <th>StDev</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for application in applications %}
+                <tr {% if application.has_talk %}class="success"{% endif %} data-application-id="{{ application.id }}">
+                    <td>{{ forloop.counter }}</td>
+                    <td>
+                        {{ application.applicant }}:<br />
+                        <a href="{% url 'dashboard:application_detail' pk=application.id %}">{{ application.title }}</a>
+                    </td>
+                    {% for vote in application.processed_votes %}
+                        <td>{{ vote|default:"" }}</td>
+                    {% endfor %}
+                    <td><b>{{ application.mean|floatformat:1 }}</b></td>
+                    <td><em>{{ application.stdev|floatformat:1 }}</em></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

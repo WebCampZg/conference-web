@@ -1,4 +1,6 @@
 import datetime
+import statistics
+
 from collections import Counter
 from itertools import groupby
 
@@ -6,18 +8,18 @@ from django.contrib.auth.mixins import UserPassesTestMixin, AccessMixin
 from django.contrib.auth.views import redirect_to_login
 from django.core.exceptions import ValidationError, PermissionDenied
 from django.core.urlresolvers import reverse
+from django.db.models import Count
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import View, DetailView, TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.views.generic.edit import ModelFormMixin, ProcessFormView
 
 from cfp.models import CallForPaper, PaperApplication, Applicant
-from dashboard.models import Comment
 from dashboard.forms import CommentForm
+from dashboard.models import Comment, Vote as CommitteeVote
 from events.models import Event, Ticket
-from people.models import TShirtSize
+from people.models import TShirtSize, User
 from voting.models import Vote as CommunityVote, VoteToken
-from dashboard.models import Vote as CommitteeVote
 
 
 class ViewAuthMixin(AccessMixin):
@@ -264,3 +266,46 @@ class CommentDeleteView(BaseCommentEditView, DeleteView):
 
     def get_queryset(self):
         return super().get_queryset().filter(author=self.request.user)
+
+
+class ScoringView(ViewAuthMixin, DetailView):
+    model = CallForPaper
+    template_name = 'dashboard/scoring.html'
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+
+        voter_ids = (
+            CommitteeVote.objects
+                         .filter(application__cfp=self.object)
+                         .values_list('user_id', flat=True)
+                         .distinct())
+
+        voters = User.objects.filter(pk__in=voter_ids).order_by('first_name')
+
+        applications = (self.object.applications
+                            .prefetch_related('applicant', 'applicant__user',
+                                              'skill_level', 'talk', 'committee_votes')
+                            .annotate(vote_count=Count('committee_votes'))
+                            .order_by('pk'))
+
+        for application in applications:
+            application.processed_votes = []
+
+            app_votes = application.committee_votes.all()
+            for voter in voters:
+                user_votes = [v for v in app_votes if v.user_id == voter.pk]
+                application.processed_votes.append(
+                    user_votes[0].score if user_votes else None
+                )
+
+            scores = [v.score for v in app_votes]
+            application.mean = statistics.mean(scores) if scores else None
+            application.stdev = statistics.stdev(scores) if len(scores) > 1 else None
+
+        ctx.update({
+            "applications": applications,
+            "voters": voters,
+        })
+
+        return ctx

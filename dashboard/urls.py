@@ -5,6 +5,7 @@ from django.conf.urls import url, include
 urlpatterns = [
     url(r'^$', views.DashboardView.as_view(), name='dashboard'),
     url(r'^cfp/(?P<pk>\d+)/$', views.CallForPapersView.as_view(), name='cfp_detail'),
+    url(r'^cfp/(?P<pk>\d+)/scoring/$', views.ScoringView.as_view(), name='cfp_scoring'),
     url(r'^applications/(?P<pk>\d+)/$', views.ApplicationDetailView.as_view(), name='application_detail'),
     url(r'^applicants/(?P<pk>\d+)/$', views.ApplicantDetailView.as_view(), name='applicant_detail'),
     url(r'^community-vote/$', views.CommunityVoteView.as_view(), name='community-vote'),
