@@ -27,7 +27,10 @@
     <article class="workshop-detail">
         <ul class="breadcrumbs">
             <li><a href="{% url 'workshops_list_workshops' %}">Workshops</a></li>
-            <li>{{ workshop.title }}</li>
+            <li>
+                {{ workshop.applicant.user.get_full_name }}:
+                {{ workshop.title }}
+            </li>
         </ul>
 
         <h1 class="red-arrow">{{ workshop.title }}</h1>
@@ -36,14 +39,20 @@
 
         {{ workshop.abstract|markdown }}
 
-        <p>
-            <em>Skill level:</em>
-            {{ workshop.skill_level|skill_level }}
-        </p>
-
         <hr />
 
-        {{ workshop.venue|markdown:"trusted" }}
+        {% include "workshops/partials/workshop_flags.html" with applicant=workshop.applicant %}
+
+        {% if workshop.extra_info %}
+            {{ workshop.extra_info|markdown:"trusted" }}
+        {% endif %}
+
+        {% if workshop.tickets_link %}
+            <a href="" class="large yellow arrow button">Buy tickets</a>
+        {% else %}
+            <p><b>Tickets will be available soon.</b><br /> Subscribe to our newsletter
+            below to be notified when tickets become available.</p>
+        {% endif %}
 
         {% include "talks/partials/speaker.html" with applicant=workshop.applicant %}
     </article>

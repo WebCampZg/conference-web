@@ -18,7 +18,7 @@
                 </a>
             </p>
 
-            <h3>
+            <h3 class="green-arrow">
                 <a href="{% url 'workshops_view_workshop' slug=workshop.slug %}">
                     {{ workshop.title }}
                 </a>
@@ -26,10 +26,10 @@
 
             <p>{{ workshop.about }}</p>
 
-            <p>{{ workshop.starts_at|date:"l, Y-m-d @ H:i" }}</p>
             <p>
-                <em>Skill level:</em>
-                {{ workshop.skill_level|skill_level }}
+                {{ workshop.starts_at|date:"l, Y-m-d @ H:i" }}<br />
+                <em>Duration:</em> {{ workshop.duration_hours|floatformat }}h<br />
+                <em>Skill level:</em> {{ workshop.skill_level|skill_level }}<br />
             </p>
         </div>
     </div>

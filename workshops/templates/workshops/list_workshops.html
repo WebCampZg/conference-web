@@ -16,6 +16,15 @@
 {% block content %}
     <h1 class="red-arrow">Workshops_</h1>
 
+    <p>This year we present you only with the finest, hand-picked, locally
+        sourced, gluten-free and organic workshops. Tickets are limited so don't
+        waste time and get them while they're hot.</p>
+
+    <p>All workshops take place on the 1st floor of the
+        <a href="/venue/">Plaza Event Centar</a>.</p>
+
+    <hr />
+
     {% for workshop in workshops %}
         {% include "workshops/partials/workshop.html" with workshop=workshop %}
         {% if not forloop.last %}
