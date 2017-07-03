@@ -1177,11 +1177,11 @@ li {
   font-size: inherit; }
 
 ul {
-  margin-left: 1.25rem;
+  margin-left: 2rem;
   list-style-type: disc; }
 
 ol {
-  margin-left: 1.25rem; }
+  margin-left: 2rem; }
 
 ul ul, ol ul, ul ol, ol ol {
   margin-left: 1.25rem;
