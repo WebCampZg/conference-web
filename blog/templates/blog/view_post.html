@@ -19,6 +19,10 @@
             {{ post.created_at|date:"d.m.Y." }}
         </time>
 
+        {% if user.is_superuser %}
+            <a class="button yellow-arrow float-right" href="{% url 'admin:blog_post_change' post.pk %}">Edit</a>
+        {% endif %}
+
         <h3>
             <a href="{% url 'blog_view_post' slug=post.slug %}">
                 {{ post.title }}

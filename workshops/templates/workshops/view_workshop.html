@@ -33,6 +33,10 @@
             </li>
         </ul>
 
+        {% if user.is_superuser %}
+            <a class="button yellow-arrow float-right" href="{% url 'admin:workshops_workshop_change' workshop.pk %}">Edit</a>
+        {% endif %}
+
         <h1 class="red-arrow">{{ workshop.title }}</h1>
 
         <p><em>{{ workshop.about }}</em></p>
