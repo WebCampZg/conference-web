@@ -73,3 +73,13 @@ def embed_video(url):
         return embed_vimeo(path[1:])
 
     return ""
+
+
+@register.filter
+def smaller_headings(html, level=5):
+    """Reduce headings larger than h<level> to h<level>"""
+    tags = ["h{}".format(x) for x in range(1, level)]
+    search = '<(/)?({})>'.format("|".join(tags))
+    replace = '<\\1h{}>'.format(level)
+
+    return mark_safe(re.sub(search, replace, html))

@@ -2,6 +2,7 @@
 
 {% load markdown_deux_tags %}
 {% load static %}
+{% load webcamp %}
 
 {% block script %}
 <script type="text/javascript">
@@ -109,10 +110,10 @@ $(document).keydown(function(e) {
             </div>
 
             <h4>Biography</h4>
-            {{ applicant.biography|markdown }}
+            {{ applicant.biography|markdown|smaller_headings }}
 
             <h4>Experience</h4>
-            <p>{{ applicant.speaker_experience|markdown }}</p>
+            <p>{{ applicant.speaker_experience|markdown|smaller_headings }}</p>
 
             <p>
                 <a class="small yellow arrow button" href="{% url 'dashboard:applicant_detail' pk=applicant.pk %}">
