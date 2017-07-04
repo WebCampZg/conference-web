@@ -66,7 +66,7 @@ class Applicant(models.Model):
     biography = models.TextField(
         verbose_name=_('Biography'),
         help_text=_('Who are you? Where have you worked? What are your professional interests? '
-                    'Up to 10 sentences, use Markdown. [Public]'))
+                    'Up to 10 sentences, use Markdown but avoid headings. [Public]'))
 
     company_name = models.CharField(
         max_length=100, blank=True,
@@ -77,7 +77,7 @@ class Applicant(models.Model):
         blank=True, verbose_name=_('Speaker experience'),
         help_text=_('If you\'ve given talks at other events, please list them.'
                     'Videos which show your english speaking skills are very helpful. '
-                    'Use markdown.'))
+                    'Use Markdown but avoid headings.'))
 
     image = models.ImageField(
         max_length=255, upload_to=get_applicant_avatar_path,
@@ -131,7 +131,8 @@ class PaperApplication(Timestampable):
 
     abstract = models.TextField(
         verbose_name=_('Abstract'),
-        help_text=_('You may go in more depth here. Up to 10 sentnces, use Markdown. [Public]'))
+        help_text=_('You may go in more depth here. Up to 10 sentences, '
+                    'use Markdown but avoid headings. [Public]'))
 
     skill_level = models.ForeignKey(
         AudienceSkillLevel, verbose_name=_('Audience level'),
@@ -145,7 +146,7 @@ class PaperApplication(Timestampable):
             help_text=_('What talk duration slot would you like?'))
 
     accomodation_required = models.BooleanField(
-            'I require accomodation',
+            'I require accommodation',
             help_text='For people outside of the Zagreb area, we provide 3 nights in a hotel.',
             default=False)
 
