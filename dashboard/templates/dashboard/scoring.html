@@ -53,7 +53,9 @@
                 <tr {% if application.has_talk %}class="success"{% endif %} data-application-id="{{ application.id }}">
                     <td>{{ forloop.counter }}</td>
                     <td>
-                        {{ application.applicant }}:<br />
+                        {{ application.applicant }}
+                        {% if application.applicant.company_name %} ({{ application.applicant.company_name }}){% endif %}
+                        <br />
                         <a href="{% url 'dashboard:application_detail' pk=application.id %}">{{ application.title }}</a>
                     </td>
                     <td>{{ application.duration }}</td>

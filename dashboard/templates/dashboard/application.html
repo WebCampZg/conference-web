@@ -99,6 +99,11 @@ $(document).keydown(function(e) {
                             <i class="fa fa-github"></i>
                             <a target="_blank" href="https://github.com/{{ applicant.github }}">{{ applicant.github }}</a>
                         {% endif %}
+                        {% if applicant.company_name %}
+                            <br />
+                            <i class="fa fa-briefcase"></i>
+                            <b>{{ applicant.company_name }}</b>
+                        {% endif %}
                     </p>
                 </div>
             </div>
