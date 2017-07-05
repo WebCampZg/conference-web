@@ -46,7 +46,27 @@
         {% endfor %}
     </div>
 
-    <h2>User groups</h2>
+    <h2 class="green-arrow">Talks_committee_</h2>
+
+    <p>Talks submitted to WebCamp Zagreb are reviewed and selected by a group of your peers with various areas of expertise.</p>
+
+    <div class="row">
+        {% for member in committee %}
+        <div class="small-12 medium-3 columns text-center">
+            <img class="thumbnail" src="{% static member.image %}" alt="{{ member.name }}" />
+            <p>
+                <b>{{ member.name }}</b><br />
+                {% if member.twitter %}
+                    <i class="fa fa-twitter"></i>
+                    <a href="https://twitter.com/{{ member.twitter }}">@{{ member.twitter }}</a><br />
+                {% endif %}
+                <small>Knows about {{ member.knows_about }}</small>
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2 class="green-arrow">User_groups_</h2>
 
     <p>We support and are supported by local user groups.</p>
 

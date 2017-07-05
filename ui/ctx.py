@@ -120,7 +120,7 @@ def team(request):
             "name": "Nikola Plejić",
             "image": "images/team/nikola.jpg",
             "twitter": "nikolaplejic",
-            "job": "Sponsor wrangler",
+            "job": "Sponsors",
         },
         {
             "name": "Filip Gjurin",
@@ -134,10 +134,51 @@ def team(request):
             "twitter": "ihabunek",
             "job": "Tech support"
         },
+        {
+            "name": "Tomislav Capan",
+            "image": "images/team/tomislav.jpg",
+            "twitter": "tomislavcapan",
+            "job": "Volunteers"
+        },
+    ]
+
+    committee = [
+        {
+            "name": "Maja Trepšić",
+            "image": "images/team/maja.jpg",
+            "twitter": "",
+        },
+        {
+            "name": "Emanuel Blagonić",
+            "image": "images/team/emanuel.png",
+            "twitter": "eblagonic",
+        },
+        {
+            "name": "Lucijan Blagonić",
+            "image": "images/team/lucijan.jpg",
+            "twitter": "lblagonic",
+        },
+        {
+            "name": "Goran Juric",
+            "image": "images/team/goran.jpg",
+            "twitter": "goran_juric",
+        },
+        {
+            "name": "Saša Jurić",
+            "image": "images/team/sasa.png",
+            "twitter": "sasajuric",
+        },
+        {
+            "name": "Neven Munđar",
+            "image": "images/team/neven.jpg",
+            "twitter": "nmundar",
+        },
     ]
 
     shuffle(team)
+    shuffle(committee)
 
     return {
-        "team": team
+        "team": team,
+        "committee": committee,
     }
