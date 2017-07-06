@@ -53,11 +53,22 @@
 
         {% if workshop.tickets_link %}
             <a href="{{ workshop.tickets_link }}" class="large yellow arrow button">Buy tickets</a>
+
         {% else %}
             <p><b>Tickets will be available soon.</b><br /> Subscribe to our newsletter
             below to be notified when tickets become available.</p>
         {% endif %}
 
         {% include "talks/partials/speaker.html" with applicant=workshop.applicant %}
+
+        <hr />
+
+        <p><em>The organizer reserves the right to cancel the workshop in case
+            of unforseen circumstances such as speaker illness. In this case
+            the tickets will be fully refunded.</em></p>
+
+        <p><em>By buying a ticket you agree to follow our
+            <a href="/code/">Code of Conduct</a>.</em></p>
+
     </article>
 {% endblock %}
