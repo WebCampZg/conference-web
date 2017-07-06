@@ -160,7 +160,7 @@ def team(request):
             "twitter": "lblagonic",
         },
         {
-            "name": "Goran Juric",
+            "name": "Goran Jurić",
             "image": "images/team/goran.jpg",
             "twitter": "goran_juric",
         },
