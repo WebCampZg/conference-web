@@ -1,6 +1,7 @@
 {% load webcamp %}
 <p>
     <b>{{ workshop.starts_at|date:"l, Y-m-d @ H:i" }}</b><br />
+    <a href="/venue/">Plaza Event Centar</a><br />
     <em>Duration: </em> {{ workshop.duration_hours|floatformat }}h<br />
     <em>Skill level:</em> {{ workshop.skill_level|skill_level }}<br />
 </p>
