@@ -1,6 +1,6 @@
 from allauth.account.signals import password_changed
 from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.models import AbstractUser, BaseUserManager, AbstractBaseUser, PermissionsMixin
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 from django.core.mail import send_mail
 from django.conf import settings
 from django.db import models
@@ -8,7 +8,7 @@ from django.dispatch.dispatcher import receiver
 from django.utils.translation import ugettext as _
 from django.utils import timezone
 
-from config.utils import get_active_cfp
+from config.utils import get_active_event
 
 
 class UserManager(BaseUserManager):
@@ -106,9 +106,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_applications(self):
         applicant = self.get_applicant()
-        cfp = get_active_cfp()
+        event = get_active_event()
 
-        return applicant.applications.filter(cfp=cfp) if applicant else []
+        return applicant.applications.filter(cfp__event=event) if applicant else []
 
     objects = UserManager()
 
