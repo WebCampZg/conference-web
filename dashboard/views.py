@@ -68,9 +68,16 @@ class CallForPapersView(ViewAuthMixin, DetailView):
     def get_context_data(self, **kwargs):
         ctx = super(CallForPapersView, self).get_context_data(**kwargs)
 
-        ctx['applications'] = (self.get_object().applications
+        applications = (self.get_object().applications
             .prefetch_related('applicant', 'applicant__user', 'skill_level', 'talk')
             .order_by('pk'))
+
+        votes = self.request.user.committee_votes.filter(application__in=applications)
+
+        ctx.update({
+            "applications": applications,
+            "votes": {v.application_id: v.score for v in votes},
+        })
 
         return ctx
 

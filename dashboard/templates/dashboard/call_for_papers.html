@@ -1,5 +1,7 @@
 {% extends "dashboard/base.html" %}
 
+{% load webcamp %}
+
 {% block head %}
     <style type="text/css">
         #applications-table { font-size: smaller }
@@ -40,6 +42,9 @@
                 <th>Title</th>
                 <th>Duration</th>
                 <th>Level</th>
+                {% if votes %}
+                    <th>My Vote</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -53,6 +58,9 @@
                     </td>
                     <td>{{ application.duration }} min</td>
                     <td>{{ application.skill_level }}</td>
+                    <td class="text-center">
+                        {{ votes|get_item:application.pk|default:"-" }}
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

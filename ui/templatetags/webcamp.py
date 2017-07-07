@@ -83,3 +83,8 @@ def smaller_headings(html, level=5):
     replace = '<\\1h{}>'.format(level)
 
     return mark_safe(re.sub(search, replace, html))
+
+
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
