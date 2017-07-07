@@ -58,9 +58,11 @@
                     </td>
                     <td>{{ application.duration }} min</td>
                     <td>{{ application.skill_level }}</td>
-                    <td class="text-center">
-                        {{ votes|get_item:application.pk|default:"-" }}
-                    </td>
+                    {% if votes %}
+                        <td class="text-center">
+                            {{ votes|get_item:application.pk|default:"-" }}
+                        </td>
+                    {% endif %}
                 </tr>
             {% endfor %}
         </tbody>
