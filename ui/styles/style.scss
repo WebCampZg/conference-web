@@ -201,6 +201,16 @@ a:not(.button).yellow {
     animation: pounding .5s linear infinite alternate;
 }
 
+// Tables
+
+table {
+    tr.blue-bg {
+        td {
+            background-color: $blue;
+        }
+    }
+}
+
 table.align-top {
     td, th {
         vertical-align: top;

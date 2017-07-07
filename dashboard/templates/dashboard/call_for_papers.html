@@ -49,7 +49,7 @@
         </thead>
         <tbody>
             {% for application in applications %}
-                <tr {% if application.has_talk %}class="success"{% endif %} data-application-id="{{ application.id }}">
+                <tr {% if application.has_talk %}class="blue-bg"{% endif %} data-application-id="{{ application.id }}">
                     <td>{{ forloop.counter }}</td>
                     <td class="no-wrap">{{ application.created_at|date:"Y-m-d H:i" }}</td>
                     <td>{{ application.applicant }}</td>
