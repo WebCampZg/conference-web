@@ -1,3 +1,5 @@
+import re
+
 from django.db import models
 from django.db.models.deletion import CASCADE, PROTECT
 from django.utils import timezone as tz
@@ -66,6 +68,15 @@ class Ticket(models.Model):
     dietary_preferences = models.CharField(max_length=1024, blank=True)
     purchased_at = models.DateTimeField()
     used_at = models.DateTimeField(blank=True, null=True)
+
+    @property
+    def full_name(self):
+        return "{} {}".format(self.first_name, self.last_name)
+
+    @property
+    def short_category(self):
+        """Remove [...] text used in workshop category name"""
+        return re.sub(r"\[.+\]", "", self.category)
 
     class Meta:
         unique_together = ("event", "code")

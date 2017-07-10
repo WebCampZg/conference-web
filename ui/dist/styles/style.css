@@ -4195,4 +4195,9 @@ table.align-top td, table.align-top th {
   width: 100%;
   height: 100%; }
 
+.progress-meter.green {
+  background-color: #C0E413; }
+  .progress-meter.green .progress-meter-text {
+    color: #0A0A0A; }
+
 /*# sourceMappingURL=style.css.map */

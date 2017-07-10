@@ -244,3 +244,12 @@ table.align-top {
         height: 100%;
     }
 }
+
+// Progress meter
+
+.progress-meter.green {
+    background-color: $green;
+    .progress-meter-text {
+        color: $black
+    }
+}

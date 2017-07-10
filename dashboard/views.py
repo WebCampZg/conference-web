@@ -178,11 +178,11 @@ class EventTicketsView(ViewAuthMixin, ListView):
     def get_context_data(self, **kwargs):
         ctx = super(EventTicketsView, self).get_context_data(**kwargs)
 
-        tickets = self.object_list.prefetch_related('tshirt_size')
+        tickets = self.object_list.prefetch_related('tshirt_size').order_by('purchased_at')
 
         if tickets:
             ctx['countries'] = self.most_common(tickets, lambda t: t.country)
-            ctx['categories'] = self.most_common(tickets, lambda t: t.category)
+            ctx['categories'] = self.most_common(tickets, lambda t: t.short_category)
             ctx['tshirts'] = self.tshirt_sizes(tickets)
             ctx['tickets_by_date'] = self.tickets_by_date(tickets)
 

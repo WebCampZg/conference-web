@@ -2,8 +2,8 @@
 
 {% block head %}
 <style type="text/css">
-    .label { text-shadow: 1px 1px 2px black;  }
-    .progress-meter-text { color: white; text-shadow: 1px 1px 2px black;  }
+    .row.column { max-width: 80rem }
+    h2 { margin-top: 2rem }
 </style>
 {% endblock %}
 
@@ -25,11 +25,11 @@
             {% for item in countries %}
             <div class="row">
                 <div class="shrink columns">
-                    <div class="label" style="width: 2.3rem">{{ item.value }}</div>
+                    <div class="green label" style="width: 2.3rem">{{ item.value|default:"&nbsp;" }}</div>
                 </div>
                 <div class="columns">
                     <div style="height: 1.5rem" class="progress" role="progressbar" tabindex="0" aria-valuenow="{{ count }}" aria-valuemin="0" aria-valuemax="{{ countries_total }}">
-                      <div class="progress-meter" style="width: {{ item.width }}%">
+                      <div class="green progress-meter" style="width: {{ item.width }}%">
                           <p class="progress-meter-text">{{ item.count }}</p>
                       </div>
                     </div>
@@ -42,11 +42,11 @@
             {% for item in tshirts %}
             <div class="row">
                 <div class="shrink columns">
-                    <div class="label" style="width: 5rem">{{ item.value }}</div>
+                    <div class="green label" style="width: 5rem">{{ item.value }}</div>
                 </div>
                 <div class="columns">
                     <div style="height: 1.5rem" class="progress" role="progressbar" tabindex="0" aria-valuenow="{{ count }}" aria-valuemin="0" aria-valuemax="{{ countries_total }}">
-                      <div class="progress-meter" style="width: {{ item.width }}%">
+                      <div class="green progress-meter" style="width: {{ item.width }}%">
                           <p class="progress-meter-text">{{ item.count }}</p>
                       </div>
                     </div>
@@ -73,18 +73,41 @@
     <h2>Ticket sales by date</h2>
 
     <div id="tickets-chart"></div>
+
+    <h2>Ticket details</h2>
+
+    <table id="tickets-table">
+        <thead>
+            <tr>
+                <th>Purchased</th>
+                <th>Name</th>
+                <th>Company</th>
+                <th>Category</th>
+                <th>Code</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for ticket in tickets %}
+            <tr>
+                <td>{{ ticket.purchased_at|date:'Y-m-d H:i:s' }}</td>
+                <td>{{ ticket.full_name }}</td>
+                <td>{{ ticket.company }}</td>
+                <td>{{ ticket.short_category }}</td>
+                <td>{{ ticket.code }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
 {% else %}
     <p>No tickets exist for this event.</p>
 {% endif %}
-
-
 {% endblock %}
 
-{% block script %}
+{% block morescript %}
 <script type="text/javascript">
 $(function () {
     var columnData = [{% for date, count in tickets_by_date %}[Date.UTC({{ date.year }}, {{ date.month }}, {{ date.day }}), {{ count }}],{% endfor %}]
-
     var max = 0
     var acc = 0
     var lineData = columnData.map(function(item) {
@@ -93,7 +116,7 @@ $(function () {
         return [item[0], acc];
     })
 
-    $('#tickets-chart').highcharts({
+    Highcharts.chart('tickets-chart', {
         chart: {
             zoomType: "x",
         },
@@ -130,6 +153,10 @@ $(function () {
             data: lineData,
         }
         ]
+    });
+
+    $("#tickets-table").dataTable({
+        "paging": false,
     });
 });
 </script>
