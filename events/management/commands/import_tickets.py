@@ -3,7 +3,6 @@ import sys
 from datetime import datetime
 from json import loads
 from urllib.request import urlopen
-from urllib.error import URLError
 
 from django.core.management.base import BaseCommand
 from django.core.validators import URLValidator, ValidationError
@@ -45,12 +44,12 @@ class Command(BaseCommand):
             purchased_at = datetime.strptime(purchased_at, "%Y-%m-%d %H:%M:%S")
             purchased_at = tz.make_aware(purchased_at)
 
-        twitter = item.get('Twitter').replace("@", "").replace("https://twitter.com/", "")
+        twitter = item.get('Twitter handle').replace("@", "").replace("https://twitter.com/", "")
 
-        email = item.get('E-mail')
+        email = item.get('Email')
         user = User.objects.filter(email=email).first() if email else None
 
-        tshirt = item['T-Shirt Size'].replace('-', ' ')
+        tshirt = item['T-shirt size'].replace('-', ' ')
         tshirt = TShirtSize.objects.get(name=tshirt)
 
         parsed = {
@@ -62,7 +61,7 @@ class Command(BaseCommand):
             "last_name": item.get('Last name'),
             "country": item.get('Country'),
             "twitter": twitter,
-            "company": item.get('Company'),
+            "company": item.get('Company name'),
             "category": item.get('ticket_category'),
             "promo_code": item.get('promo_discount_group') or "",
             "purchased_at": purchased_at,
@@ -91,8 +90,5 @@ class Command(BaseCommand):
             sys.exit(1)
 
     def fetch_entrio_data(self, source_url):
-        try:
-            response = urlopen(source_url)
-            return loads(response.read())
-        except URLError as e:
-            print((self.style.ERROR("Failed loading entrio data: %r" % e)))
+        with urlopen(source_url) as f:
+            return loads(f.read().decode('utf-8'))
