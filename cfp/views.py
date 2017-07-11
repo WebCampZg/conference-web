@@ -30,7 +30,9 @@ class PaperApplicationBaseView(SuccessMessageMixin, LoginRequiredMixin):
     def form_valid(self, form):
         applicant = self._build_or_update_applicant(form)
         form.instance.applicant_id = applicant.pk
-        form.instance.cfp_id = self.cfp.pk
+
+        if not form.instance.cfp_id:
+            form.instance.cfp_id = self.cfp.pk
 
         return super(PaperApplicationBaseView, self).form_valid(form)
 
