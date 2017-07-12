@@ -32,6 +32,15 @@
 
         <p>{% include "talks/partials/attributes.html" %}</p>
 
+        {% if talk.sponsor %}
+        <p>
+            <em>Talk sponsored by</em><br />
+            <a href="{% url 'sponsors_view_sponsor' slug=talk.sponsor.slug %}">
+                <img style="max-width: 20rem" src="{{ MEDIA_URL }}{{ talk.sponsor.image }}" alt="{{ talk.sponsor }}" />
+            </a>
+        </p>
+        {% endif %}
+
         {% include "talks/partials/speaker.html" with applicant=talk.application.applicant %}
 
         {% if talk.co_presenter %}

@@ -2,7 +2,7 @@
 <p>
     {% if talk.sponsor %}
         <a href="{% url 'sponsors_view_sponsor' slug=talk.sponsor.slug %}">
-            <span class="blue label" title="This talk is sponsored by {{ talk.sponsor.name }}">
+            <span class="green arrow label" title="This talk is sponsored by {{ talk.sponsor.name }}">
                 Sponsored
             </span>
         </a>
