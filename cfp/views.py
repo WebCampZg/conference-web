@@ -16,10 +16,6 @@ class PaperApplicationBaseView(SuccessMessageMixin, LoginRequiredMixin):
     template_name = 'cfp/cfp_form.html'
     success_message = "You have successfully submitted your application."
 
-    def dispatch(self, request, *args, **kwargs):
-        self.cfp = get_active_cfp()
-        return super(PaperApplicationBaseView, self).dispatch(request, *args, **kwargs)
-
     def get_context_data(self, **kwargs):
         c = super(PaperApplicationBaseView, self).get_context_data(**kwargs)
         c.update({
@@ -30,9 +26,7 @@ class PaperApplicationBaseView(SuccessMessageMixin, LoginRequiredMixin):
     def form_valid(self, form):
         applicant = self._build_or_update_applicant(form)
         form.instance.applicant_id = applicant.pk
-
-        if not form.instance.cfp_id:
-            form.instance.cfp_id = self.cfp.pk
+        form.instance.cfp_id = self.cfp.pk
 
         return super(PaperApplicationBaseView, self).form_valid(form)
 
@@ -71,11 +65,14 @@ class PaperApplicationBaseView(SuccessMessageMixin, LoginRequiredMixin):
 
 
 class PaperApplicationCreateView(PaperApplicationBaseView, CreateView):
+
     def dispatch(self, request, *args, **kwargs):
-        if not get_active_cfp():
+        self.cfp = get_active_cfp()
+
+        if not self.cfp:
             return HttpResponseForbidden("Call for proposals is not active.")
 
-        return super(PaperApplicationCreateView, self).dispatch(request, *args, **kwargs)
+        return super().dispatch(request, *args, **kwargs)
 
 
 class PaperApplicationUpdateView(PaperApplicationBaseView, UpdateView):
@@ -83,7 +80,9 @@ class PaperApplicationUpdateView(PaperApplicationBaseView, UpdateView):
 
     def dispatch(self, request, *args, **kwargs):
         self._check_allowed(request.user)
-        return super(PaperApplicationUpdateView, self).dispatch(request, *args, **kwargs)
+        self.cfp = self.get_object().cfp
+
+        return super().dispatch(request, *args, **kwargs)
 
     def _check_allowed(self, user):
         allow = False
