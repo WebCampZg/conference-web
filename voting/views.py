@@ -9,6 +9,7 @@ from django.views.decorators.http import require_POST
 
 from cfp.choices import TALK_DURATIONS
 from cfp.models import PaperApplication
+from config.utils import get_active_event
 from talks.models import Talk
 
 from .decorators import require_ticket_holder
@@ -25,6 +26,7 @@ def authenticate_by_vote_token(request, vote_token):
 
 
 def voting(request, vote_token=None):
+    event = get_active_event()
 
     if vote_token:
         authenticate_by_vote_token(request, vote_token)
@@ -32,7 +34,7 @@ def voting(request, vote_token=None):
     already_picked = [t.application_id for t in Talk.objects.all()]
 
     applications = (PaperApplication.objects
-        .filter(cfp_id=settings.ACTIVE_CFP_ID, duration=TALK_DURATIONS.MIN_25)
+        .filter(cfp__event=event, duration=TALK_DURATIONS.MIN_25)
         .exclude(exclude=True)
         .exclude(id__in=already_picked)
         .prefetch_related('applicant', 'applicant__user', 'applicant__user__groups')
