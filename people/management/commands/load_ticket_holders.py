@@ -1,68 +1,51 @@
-import logging
-import sys
-
-from json import loads
-from urllib.request import urlopen
-from urllib.error import URLError
-
-from django.core.management.base import NoArgsCommand
-from django.contrib.auth import get_user_model
 from django.conf import settings
-from django.db import IntegrityError
-from django.db import transaction
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
-
-import requests
+from django.core.management.base import BaseCommand
+from django.db import transaction
 
 from voting.models import VoteToken
-
+from events.models import Ticket
+from config.utils import get_active_event
 UserModel = get_user_model()
 
 
-class Command(NoArgsCommand):
-    help = 'Loads Ticket Holders from Entrio API and creates django users.'
+class Command(BaseCommand):
+    help = 'Creates Users from Tickets loaded from Entrio.'
 
-    def handle_noargs(self, **options):
-        try:
-            with transaction.atomic():
-                group = Group.objects.create(name=settings.TICKET_HOLDER_GROUP_NAME)
-        except IntegrityError:
-            group = Group.objects.get(name=settings.TICKET_HOLDER_GROUP_NAME)
+    def handle(self, *args, **options):
+        event = get_active_event()
+        group = Group.objects.get(name=settings.TICKET_HOLDER_GROUP_NAME)
+        tickets = Ticket.objects.filter(event=event)
 
-        url = "https://www.entrio.hr/api/get_visitors?key=%s&format=json" % settings.ENTRIO_API_KEY
-        try:
-            response = urlopen(url)
-            ticket_holders = loads(response.read())
-            self.process_ticket_holders(group, ticket_holders)
-        except URLError as e:
-            logging.error(e)
-            sys.stderr.write("Failed loading entrio data: %r" % e)
+        for ticket in tickets:
+            self.process_ticket(group, ticket)
 
-    def process_ticket_holders(self, group, ticket_holders):
-        for user in ticket_holders:
-            email = user['E-mail'].strip()
-            ticket_code = user['ticket_code'].strip()
-            try:
-                with transaction.atomic():
-                    u = UserModel.objects.create_user(
-                        email=email,
-                        first_name=user['First name'],
-                        last_name=user['Last name'],
-                        password=ticket_code)
-                    group.user_set.add(u)
+    @transaction.atomic()
+    def process_ticket(self, group, ticket):
+        # Create the user if they don't exist
+        user, created = UserModel.objects.get_or_create(email=ticket.email, defaults={
+            "email": ticket.email,
+            "first_name": ticket.first_name,
+            "last_name": ticket.last_name,
+            "twitter": ticket.twitter,
+            "tshirt_size": ticket.tshirt_size,
+        })
 
-            except IntegrityError as e:
-                u = UserModel.objects.get(email=email)
-                if not u.is_ticket_holder:
-                    group.user_set.add(u)
+        if created:
+            user.set_password(ticket.code)
+            user.save()
+            print("Created user: {} <{}>".format(user.full_name, user.email))
 
-            token, created = VoteToken.objects.get_or_create(
-                user=u,
-                defaults={
-                    'ticket_code': ticket_code,
-                    'user': u,
-                }
-            )
+        # Add user to TicketHolders group
+        if not user.is_ticket_holder():
+            group.user_set.add(user)
 
-            if created:
-                print("Created voting token for %r" % token.user)
+        # Create a voting token
+        token, created = VoteToken.objects.get_or_create(user=user, defaults={
+            'ticket_code': ticket.code,
+            'user': user,
+        })
+
+        if created:
+            print("Created voting token for {}".format(user.full_name))
