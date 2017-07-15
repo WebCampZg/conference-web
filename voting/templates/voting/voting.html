@@ -1,6 +1,8 @@
 {% extends 'ui/page.html' %}
 
+{% load markdown_deux_tags %}
 {% load static %}
+{% load webcamp %}
 
 {% block title %}Voting for talks - {{ event.extended_title }}{% endblock %}
 
@@ -13,73 +15,85 @@
     <meta property="og:description" content="This year we want to give you, the attendee, a chance to influence the content of WebCamp Zagreb. We made a selection of 35 talks which did not get chosen in our initial selection process. These talks can be voted on by ticket holders." />
 {% endblock %}
 
+{% block script %}
+    <script src="{% static "scripts/community-voting.js" %}"></script>
+{% endblock %}
+
 {% block content %}
+<div class="row column">
+    {% if voting_enabled %}
+        <h1>Welcome to the community vote</h1>
 
-    {% include "partials/header.html" with hero_type="main" title="Voting" %}
+        <p>This is your opportunity to select the talks you want to hear.</p>
 
-    <section class="Spotlight Spotlight--beta">
-        <div class="Wrapper Wrapper--narrow Wrapper--withFlair">
-            {% if voting_enabled %}
-            <ul class="Listing-list">
-                <li class="Listing-item">
-                    <h1>Welcome to the community vote</h1>
+        <p>Below are the top talks which were not chosen during our call for
+           papers. Vote for as many or as few talks as you wish. The 3 most
+           voted talks will appear on this years lineup.</p>
 
-                    <p>Here are the 30 top talks which were not chosen during our call for papers. Feel free to vote for as many or as few talks as you wish. The top 3 highest rated talks will appear on this years lineup.</p>
-
-                    {% if not user.is_authenticated or not is_ticket_holder %}
-                    <p style="margin-top: 1rem;">You need to be <a href="{% url 'account_login' %}?next={% url 'voting_index' %}">logged in</a> and <a href="/tickets/">a ticket holder</a> to vote.</p>
-                    {% endif %}
-                </li>
-                {% for application in applications %}
-                <li class="Listing-item">
-                    <article class="VoteTalk">
-                        <h4 class="VoteTalk-title">{{ application.applicant.user.get_full_name }}</h4>
-                        <div class="VoteTalk-excerpt">{{ application.applicant.about }}</div>
-                        <h3 class="VoteTalk-title">{{ application.title }}</h3>
-                        <div class="VoteTalk-excerpt">
-                            {{ application.about }}
-                        </div>
-                        <div class="VoteTalk-body" data-talk-slug="{{ application.title|slugify }}">
-                            <div class="Passage">
-                                {{ application.abstract }}
-                            </div>
-                        </div>
-                        <div class="VoteTalk-readMoreWrap">
-                            <button type="button" class="VoteTalk-readMore" data-talk-slug="{{ application.title|slugify }}">Read more</button>
-                        </div>
-                        {% if user.is_authenticated and is_ticket_holder %}
-                        <div class="VoteTalk-actionWrap">
-                            <label class="Togglable">
-                                <input data-talk-id="{{ application.id }}" data-voted="{{ application.voted }}"
-                                       type="checkbox" class="VoteTalk-action" />
-                                <span class="Togglable-caption">Vote</span>
-                            </label>
-                        </div>
-                        {% elif not user.is_authenticated %}
-                            <div class="VoteTalk-actionWrap">
-                                <span class="Togglable-caption">
-                                    <a href="{% url 'account_login' %}?next={% url 'voting_index' %}">Login</a>
-                                </span>
-                            </div>
-                        {% elif user.is_authenticated and not is_ticket_holder %}
-                            <div class="VoteTalk-actionWrap">
-                                <span class="Togglable-caption">
-                                    <a href="/tickets/"
-                                       target="_blank">Buy ticket</a>
-                                </span>
-                            </div>
-                        {% endif %}
-                    </article>
-                </li>
-                {% endfor %}
-            </ul>
-            {% else %}
-                <h1>Voting is closed!</h1>
-            {% endif %}
+        {% if not user.is_authenticated or not is_ticket_holder %}
+        <div class="callout alert">
+            <p>
+                You need to be
+                <a href="{% url 'account_login' %}?next={% url 'voting_index' %}">logged in</a>
+                and <a href="/tickets/">a ticket holder</a> to vote.
+            </p>
+            <p>If you have a ticket and still cannot vote, please
+                <a href="mailto:info@webcampzg.org">contact us</a>.</p>
         </div>
-    </section>
+        {% endif %}
 
-    {% include "partials/groups/bottom_default.html" %}
+        {% for application in applications %}
+            <hr />
 
+            <article>
+                <h3>{{ application.title }}</h3>
+                {{ application.about|markdown|smaller_headings }}
+
+                <h4>{{ application.applicant.user.get_full_name }}</h4>
+                {{ application.applicant.about|markdown|smaller_headings }}
+
+                <!-- Full application description in a modal -->
+                <div class="large reveal" data-reveal id="reveal-{{ application.pk }}">
+                    <h2>{{ application.title }}</h2>
+                    <p><em>{{ application.about }}</em></p>
+                    {{ application.abstract|markdown|smaller_headings }}
+
+                    <h3>{{ application.applicant.user.get_full_name }}</h3>
+                    <p><em>{{ application.applicant.about }}</em></p>
+                    {{ application.applicant.biography|markdown|smaller_headings }}
+
+                    <button class="close-button" data-close aria-label="Close modal" type="button">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <button class="arrow button" data-open="reveal-{{ application.pk }}">
+                    Read more
+                </button>
+
+                {% if user.is_authenticated and is_ticket_holder %}
+                    <button class="button vote-button {% if application.voted %}voted yellow{% else %}not-voted hollow{% endif %}"
+                            data-vote-button
+                            data-talk-id="{{ application.id }}"
+                            data-voted="{{ application.voted|yesno:'yes,' }}">
+                        {% comment %} <input class="no-margin" type="checkbox" {% if application.voted %}checked{% endif %} /> {% endcomment %}
+                        Vote
+                    </button>
+                {% elif not user.is_authenticated %}
+                    <a class="yellow arrow button"
+                       href="{% url 'account_login' %}?next={% url 'voting_index' %}">
+                        Login
+                    </a>
+                {% elif user.is_authenticated and not is_ticket_holder %}
+                    <a class="yellow arrow button" href="/tickets/" target="_blank">
+                        Buy ticket
+                    </a>
+                {% endif %}
+            </article>
+        {% endfor %}
+    {% else %}
+        <h1>Voting is closed!</h1>
+    {% endif %}
+</div>
 {% endblock %}
 

@@ -253,3 +253,19 @@ table.align-top {
         color: $black
     }
 }
+
+.vote-button {
+    &.voted {
+        &:before {
+            font-family: FontAwesome;
+            content: "\f00c";
+        }
+    }
+
+    &.not-voted {
+        &:before {
+            font-family: FontAwesome;
+            content: "\f096";
+        }
+    }
+}

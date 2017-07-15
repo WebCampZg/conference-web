@@ -7,11 +7,12 @@ from cfp.models import PaperApplication
 
 
 class Vote(models.Model):
-    class Meta:
-        unique_together = (("user", 'application'),)
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     application = models.ForeignKey(PaperApplication, related_name='votes')
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = (("user", 'application'),)
 
 
 class VoteToken(models.Model):

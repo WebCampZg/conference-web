@@ -31,7 +31,7 @@ def voting(request, vote_token=None):
     if vote_token:
         authenticate_by_vote_token(request, vote_token)
 
-    already_picked = [t.application_id for t in Talk.objects.all()]
+    already_picked = Talk.objects.filter(event=event).values_list('pk', flat=True)
 
     applications = (PaperApplication.objects
         .filter(cfp__event=event, duration=TALK_DURATIONS.MIN_25)
@@ -66,15 +66,17 @@ def voting(request, vote_token=None):
 @csrf_exempt
 def add_vote(request, application_id):
     application = get_object_or_404(PaperApplication, id=application_id)
-    try:
-        Vote.objects.create(
-                application=application,
-                user=request.user)
-        return JsonResponse(
-                data={"error": None, "message": "Vote saved."})
-    except IntegrityError:
-        return JsonResponse(
-                data={"error": "You already voted for this talk.", "message": None})
+
+    Vote.objects.get_or_create(
+        application=application,
+        user=request.user,
+        defaults={
+            "application": application,
+            "user": request.user,
+        }
+    )
+
+    return JsonResponse({"voted": True})
 
 
 @login_required
@@ -82,8 +84,5 @@ def add_vote(request, application_id):
 @require_POST
 @csrf_exempt
 def remove_vote(request, application_id):
-    vote = get_object_or_404(Vote, application_id=application_id, user=request.user)
-    vote.delete()
-    return JsonResponse(
-            data={"message": "Vote deleted."})
-
+    Vote.objects.filter(application_id=application_id, user=request.user).delete()
+    return JsonResponse({"voted": False})
