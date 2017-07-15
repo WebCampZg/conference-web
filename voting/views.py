@@ -1,15 +1,15 @@
-from django.contrib.auth import login
-from django.shortcuts import render, get_object_or_404
 from django.conf import settings
-from django.views.decorators.csrf import csrf_exempt
-
-from cfp.models import PaperApplication
-from cfp.choices import TALK_DURATIONS
-from talks.models import Talk
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import JsonResponse, Http404
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+
+from cfp.choices import TALK_DURATIONS
+from cfp.models import PaperApplication
+from talks.models import Talk
 
 from .decorators import require_ticket_holder
 from .models import Vote, VoteToken
