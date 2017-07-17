@@ -4,8 +4,14 @@
     <div class="row">
         <div class="show-for-medium medium-3 columns">
             <a href="{% url 'talks_view_talk' slug=talk.slug %}">
-                <img src="{{ MEDIA_URL }}{{ talk.application.applicant.image }}"
-                     alt="Photo of {{ talk.application.applicant.user.get_full_name }}">
+              <!--  Show picture of co-presenter -->
+                {% if talk.co_presenter %}
+                    <img src="{{ MEDIA_URL }}{{ talk.co_presenter.user.image }}"
+                         alt="Photo of {{ talk.co_presenter.user.get_full_name }}">
+                {% else %}
+                    <img src="{{ MEDIA_URL }}{{ talk.application.applicant.image }}"
+                         alt="Photo of {{ talk.application.applicant.user.get_full_name }}">
+                 {% endif %}
             </a>
         </div>
 
