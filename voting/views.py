@@ -25,6 +25,7 @@ def _get_or_create_user_for_ticket(ticket):
     if ticket.user:
         return ticket.user
 
+    # Check if a user with the email already exists
     user, created = get_user_model().objects.get_or_create(email=ticket.email, defaults={
         "email": ticket.email,
         "first_name": ticket.first_name,
@@ -42,16 +43,18 @@ def _get_or_create_user_for_ticket(ticket):
     ticket.user = user
     ticket.save()
 
+    return user
+
 
 def authenticate_by_ticket_code(request, ticket_code):
     """
     Automagically log in a user if they provided a valid ticket code.
     """
     event = get_active_event()
-    ticket = get_object_or_404(Ticket, event=event, ticket_code=ticket_code)
+    ticket = get_object_or_404(Ticket, event=event, code=ticket_code)
     user = _get_or_create_user_for_ticket(ticket)
 
-    login(request, user)
+    login(request, user, backend=settings.AUTHENTICATION_BACKENDS[0])
 
 
 def voting(request, ticket_code=None):

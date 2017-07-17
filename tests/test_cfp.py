@@ -1,38 +1,8 @@
 import pytest
 
-from datetime import date, timedelta
-
 from django.urls import reverse
 
 from cfp.models import CallForPaper, PaperApplication, AudienceSkillLevel
-from config.utils import get_active_event
-from tests.factories import ApplicantFactory, CallForPaperFactory, UserFactory
-
-
-@pytest.fixture
-def user():
-    return UserFactory()
-
-
-@pytest.fixture
-def applicant(user):
-    return ApplicantFactory(user=user)
-
-
-@pytest.fixture
-def active_cfp():
-    event = get_active_event()
-    begin_date = date.today() - timedelta(1)
-    end_date = date.today() + timedelta(1)
-    return CallForPaperFactory(event=event, begin_date=begin_date, end_date=end_date)
-
-
-@pytest.fixture
-def past_cfp():
-    event = get_active_event()
-    begin_date = date.today() - timedelta(10)
-    end_date = date.today() - timedelta(5)
-    return CallForPaperFactory(event=event, begin_date=begin_date, end_date=end_date)
 
 
 @pytest.mark.django_db
@@ -126,7 +96,7 @@ def test_POST_create_application(user, applicant, client, active_cfp):
         "skill_level": "10",
         "duration": "25",
         "extra_info": "Hello dolly",
-        "about_applicant": applicant.about + "mod", # Changed to test the change
+        "about_applicant": applicant.about + "mod",  # Changed to test the change
         "biography": applicant.biography + "mod",
         "speaker_experience": applicant.speaker_experience + "mod",
         "image": "",
