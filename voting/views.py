@@ -1,8 +1,8 @@
 from django.conf import settings
-from django.contrib.auth import login
+from django.contrib.auth import get_user_model, login
 from django.contrib.auth.decorators import login_required
-from django.db import IntegrityError
-from django.http import JsonResponse, Http404
+from django.contrib.auth.hashers import make_password
+from django.http import JsonResponse
 from django.shortcuts import render, get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
@@ -11,25 +11,54 @@ from cfp.choices import TALK_DURATIONS
 from cfp.models import PaperApplication
 from config.utils import get_active_event, get_site_config
 from talks.models import Talk
+from events.models import Ticket
 
 from .decorators import require_ticket_holder
-from .models import Vote, VoteToken
+from .models import Vote
 
 
-def authenticate_by_vote_token(request, vote_token):
-    try:
-        user = VoteToken.objects.get(ticket_code=vote_token).user
-        user.backend = settings.AUTHENTICATION_BACKENDS[0]
-        login(request, user)
-    except VoteToken.DoesNotExist:
-        raise Http404()
+def _get_or_create_user_for_ticket(ticket):
+    """
+    For a given event ticket, returns the linked user, or creates one if it
+    doesn't exist. Sets the user's initial password to the ticket code.
+    """
+    if ticket.user:
+        return ticket.user
+
+    user, created = get_user_model().objects.get_or_create(email=ticket.email, defaults={
+        "email": ticket.email,
+        "first_name": ticket.first_name,
+        "last_name": ticket.last_name,
+        "twitter": ticket.twitter,
+        "tshirt_size": ticket.tshirt_size,
+        "password": make_password(ticket.code),
+    })
+
+    # Set the user's initial password to the ticket code
+    if created:
+        user.set_password(ticket.code)
+        user.save()
+
+    ticket.user = user
+    ticket.save()
 
 
-def voting(request, vote_token=None):
+def authenticate_by_ticket_code(request, ticket_code):
+    """
+    Automagically log in a user if they provided a valid ticket code.
+    """
+    event = get_active_event()
+    ticket = get_object_or_404(Ticket, event=event, ticket_code=ticket_code)
+    user = _get_or_create_user_for_ticket(ticket)
+
+    login(request, user)
+
+
+def voting(request, ticket_code=None):
     event = get_active_event()
 
-    if vote_token:
-        authenticate_by_vote_token(request, vote_token)
+    if ticket_code:
+        authenticate_by_ticket_code(request, ticket_code)
 
     already_picked = Talk.objects.filter(event=event).values_list('pk', flat=True)
 
