@@ -5,14 +5,14 @@ from django.core.management.base import BaseCommand
 from django.template import Context
 from django.template.loader import get_template
 
-from project import settings
 from voting.models import VoteToken
+from config.utils import get_site_config
 
 
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        voting_enabled = settings.VOTING_ENABLED
+        voting_enabled = get_site_config().community_vote_enabled
         if not voting_enabled:
             print('Voting is disabled')
             return

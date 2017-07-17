@@ -9,7 +9,7 @@ from django.views.decorators.http import require_POST
 
 from cfp.choices import TALK_DURATIONS
 from cfp.models import PaperApplication
-from config.utils import get_active_event
+from config.utils import get_active_event, get_site_config
 from talks.models import Talk
 
 from .decorators import require_ticket_holder
@@ -53,9 +53,11 @@ def voting(request, vote_token=None):
             if application.pk in votes:
                 application.voted = True
 
+    voting_enabled = get_site_config().community_vote_enabled
+
     return render(request, 'voting/voting.html', {
         'applications': applications,
-        'voting_enabled': settings.VOTING_ENABLED,
+        'voting_enabled': voting_enabled,
         'is_ticket_holder': is_ticket_holder,
     })
 
