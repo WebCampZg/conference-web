@@ -17,10 +17,10 @@ def navigation(request):
             ("Info", "/info/"),
             ("Venue", "/venue/"),
             ("Workshops", "/workshops/"),
-            # ("Talks", reverse('talks_list_talks')),
+            ("Talks", reverse('talks_list_talks')),
             # ("Schedule", reverse('schedule_list_schedule')),
             ("News", reverse('blog_list_posts')),
-            # ("Jobs", reverse('jobs_list_jobs')),
+            ("Jobs", reverse('jobs_list_jobs')),
             ("Code", "/code/"),
             ("Team", "/team/"),
         ]
