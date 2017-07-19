@@ -4200,12 +4200,4 @@ table.align-top td, table.align-top th {
   .progress-meter.green .progress-meter-text {
     color: #0A0A0A; }
 
-.vote-button.voted:before {
-  font-family: FontAwesome;
-  content: "\f00c"; }
-
-.vote-button.not-voted:before {
-  font-family: FontAwesome;
-  content: "\f096"; }
-
 /*# sourceMappingURL=style.css.map */
