@@ -7,6 +7,10 @@ def mark_as_excluded(modeladmin, request, queryset):
     queryset.update(exclude=True)
 
 
+def mark_as_included(modeladmin, request, queryset):
+    queryset.update(exclude=False)
+
+
 class ApplicantAdmin(admin.ModelAdmin):
     raw_id_fields = ('user', )
     list_display = ('user', 'full_name', 'about', 'biography', 'speaker_experience', 'github', 'twitter')
@@ -24,11 +28,11 @@ class CallForPaperAdmin(admin.ModelAdmin):
 
 class PaperApplicationAdmin(admin.ModelAdmin):
     list_display = ('title', 'link_to_applicant', 'about', 'abstract', 'skill_level',
-            'duration', 'exclude', 'accomodation_required', 'extra_info', 'votes_count')
+            'duration', 'exclude', 'accomodation_required', 'extra_info', 'exclude')
     list_filter = ('cfp', 'exclude', 'duration')
     fields = ('cfp', 'applicant', 'title', 'about', 'abstract', 'skill_level',
             'duration', 'extra_info', 'accomodation_required')
-    actions = [mark_as_excluded]
+    actions = [mark_as_excluded, mark_as_included]
 
     def get_readonly_fields(self, request, obj=None):
         if obj:
