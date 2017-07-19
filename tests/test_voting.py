@@ -3,8 +3,10 @@ import pytest
 from django.urls import reverse
 
 from config.models import SiteConfig
-from people.models import User
-from . import factories as f
+from config.utils import get_active_event
+from tests.factories import TicketFactory, PaperApplicationFactory, EventFactory, CallForPaperFactory
+from voting.models import CommunityVote
+
 
 def enable_voting():
     config = SiteConfig.load()
@@ -20,10 +22,9 @@ def disable_voting():
 
 @pytest.mark.django_db
 def test_voting_view_disabled(client):
-    url = reverse('voting_index')
-
     disable_voting()
 
+    url = reverse('voting_index')
     response = client.get(url)
     content = response.content.decode(response.charset)
 
@@ -33,42 +34,104 @@ def test_voting_view_disabled(client):
 
 @pytest.mark.django_db
 def test_voting_view_enabled(client):
-    url = reverse('voting_index')
-
     enable_voting()
 
+    url = reverse('voting_index')
     response = client.get(url)
     content = response.content.decode(response.charset)
 
     assert response.status_code == 200
     assert "Welcome to the community vote" in content
 
-    # Warning they need to log in to vote
-    assert 'callout alert' in content
+    # Warning they need to enter a ticket code to vote
+    assert 'warning callout' in content
 
 
 @pytest.mark.django_db
-def test_voting_auto_create_user(client, user, active_event):
+def test_voting_view_enabled_with_ticket(client):
     enable_voting()
+    event = get_active_event()
 
-    ticket = f.TicketFactory(event=active_event, user=None)
-
-    assert ticket.user is None
-    user_count_before = User.objects.count()
+    ticket = TicketFactory(event=event)
 
     url = reverse('voting_index', kwargs={"ticket_code": ticket.code})
     response = client.get(url)
     content = response.content.decode(response.charset)
 
-    user_count_after = User.objects.count()
-
-    ticket.refresh_from_db()
-
     assert response.status_code == 200
     assert "Welcome to the community vote" in content
 
-    assert user_count_after == user_count_before + 1
-    assert ticket.user is not None
+    # Warning they need to enter a ticket code to vote
+    assert 'warning callout' not in content
+    assert 'You are voting as' in content
+    assert ticket.full_name in content
 
-    # No warning that user needs to log in
-    assert 'callout alert' not in content
+
+@pytest.mark.django_db
+def test_vote_unvote(client):
+    enable_voting()
+    event = get_active_event()
+    cfp = CallForPaperFactory(event=event)
+    ticket = TicketFactory(event=event)
+    application = PaperApplicationFactory(cfp=cfp)
+
+    vote_url = reverse('voting_add_vote', kwargs={
+        "ticket_code": ticket.code,
+        "application_id": application.pk,
+    })
+
+    unvote_url = reverse('voting_remove_vote', kwargs={
+        "ticket_code": ticket.code,
+        "application_id": application.pk,
+    })
+
+    assert CommunityVote.objects.count() == 0
+
+    # Get forbidden
+    response = client.get(vote_url)
+    assert response.status_code == 405
+
+    # Vote
+    response = client.post(vote_url)
+    assert response.status_code == 200
+    assert response.json() == {"voted": True}
+    assert CommunityVote.objects.count() == 1
+
+    # Idempotent vote
+    response = client.post(vote_url)
+    assert response.status_code == 200
+    assert response.json() == {"voted": True}
+    assert CommunityVote.objects.count() == 1
+
+    # Unvote
+    response = client.post(unvote_url)
+    assert response.status_code == 200
+    assert response.json() == {"voted": False}
+    assert CommunityVote.objects.count() == 0
+
+    # Idempotent unvote
+    response = client.post(unvote_url)
+    assert response.status_code == 200
+    assert response.json() == {"voted": False}
+    assert CommunityVote.objects.count() == 0
+
+
+@pytest.mark.django_db
+def test_only_able_to_vote_for_talks_in_event_for_which_they_have_a_ticket(client):
+    enable_voting()
+    event = get_active_event()
+    ticket = TicketFactory(event=event)
+
+    # Create a paper application for another event
+    some_other_event = EventFactory()
+    some_other_cfp = CallForPaperFactory(event=some_other_event)
+    application = PaperApplicationFactory(cfp=some_other_cfp)
+
+    vote_url = reverse('voting_add_vote', kwargs={
+        "ticket_code": ticket.code,
+        "application_id": application.pk,
+    })
+
+    # Vote should not be possible
+    response = client.post(vote_url)
+    assert response.status_code == 400

@@ -7,16 +7,26 @@
 {% block title %}Voting for talks - {{ event.extended_title }}{% endblock %}
 
 {% block head %}
-    <meta name="description" content="This year we want to give you, the attendee, a chance to influence the content of WebCamp Zagreb. We made a selection of 35 talks which did not get chosen in our initial selection process. These talks can be voted on by ticket holders.">
+    <meta name="description" content="We want to give you, the attendee, a chance to influence the content of WebCamp Zagreb. We made a selection of talks which did not get chosen in our initial selection process. These talks can be voted on by ticket holders.">
 {% endblock %}
 
 {% block og %}
     <meta property="og:title" content="Voting for talks - {{ event.extended_title }}" />
-    <meta property="og:description" content="This year we want to give you, the attendee, a chance to influence the content of WebCamp Zagreb. We made a selection of 35 talks which did not get chosen in our initial selection process. These talks can be voted on by ticket holders." />
+    <meta property="og:description" content="We want to give you, the attendee, a chance to influence the content of WebCamp Zagreb. We made a selection of talks which did not get chosen in our initial selection process. These talks can be voted on by ticket holders." />
 {% endblock %}
 
 {% block script %}
     <script src="{% static "scripts/community-voting.js" %}"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $("#open-instructions").click(function (e) {
+            $('#instructions').foundation('open');
+        });
+        $("#submit-ticket-code").click(function (e) {
+            window.location = "{% url 'voting_index' %}" + $("#ticket-code").val() + "/";
+        });
+    });
+    </script>
 {% endblock %}
 
 {% block content %}
@@ -26,21 +36,55 @@
 
         <p>This is your opportunity to select the talks you want to hear.</p>
 
+        {% if ticket %}
+        <div class="callout">
+            You are voting as <em>{{ ticket.full_name }}</em>, ticket number <em>{{ ticket.code }}</em>.
+            <a href="{% url 'voting_index' %}">Not you?</a>
+        </div>
+        {% else %}
+        <div class="large reveal" id="instructions" data-reveal>
+            <h1>How do I find my ticket code?</h1>
+
+            <p>You should have received your tickets in PDF from Entrio. In that
+                PDF, the ticket code is located underneath the barcode on the left.</p>
+
+            <img src="{% static "images/ticket-code-sample.png" %}" />
+
+            <button class="close-button" data-close aria-label="Close modal" type="button">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+
+        <div class="warning callout">
+            <p>To vote you need to own a <a href="/tickets/">ticket</a> for
+                WebCamp Zagreb 2017.</p>
+            <p>
+            <p>If you already have one, you should have received a personalized
+                voting link by email. Alternatively, please enter your
+                ticket code here:</p>
+
+            <div class="input-group">
+                <input id="ticket-code" class="input-group-field" type="number" maxlength="12" />
+                <div class="input-group-button">
+                    <input id="submit-ticket-code" type="submit" class="button" value="Submit">
+                </div>
+            </div>
+
+            <p class="small">
+                <small>
+                    <a href="#" id="open-instructions">
+                        How do I find my ticket code?
+                    </a>
+                </small><br />
+                <small>Still having problems? Contact us at
+                    <a href="mailto:info@webcampzg.org">info@webcampzg.org</a>.</small>
+            </p>
+        </div>
+        {% endif %}
+
         <p>Below are the top talks which were not chosen during our call for
            papers. Vote for as many or as few talks as you wish. The 3 most
            voted talks will appear on this years lineup.</p>
-
-        {% if not user.is_authenticated or not is_ticket_holder %}
-        <div class="callout alert">
-            <p>
-                You need to be
-                <a href="{% url 'account_login' %}?next={% url 'voting_index' %}">logged in</a>
-                and <a href="/tickets/">a ticket holder</a> to vote.
-            </p>
-            <p>If you have a ticket and still cannot vote, please
-                <a href="mailto:info@webcampzg.org">contact us</a>.</p>
-        </div>
-        {% endif %}
 
         {% for application in applications %}
             <hr />
@@ -71,20 +115,15 @@
                     Read more
                 </button>
 
-                {% if user.is_authenticated and is_ticket_holder %}
+                {% if ticket %}
                     <button class="button vote-button {% if application.voted %}voted yellow{% else %}not-voted hollow{% endif %}"
                             data-vote-button
                             data-talk-id="{{ application.id }}"
+                            data-ticket-code="{{ ticket.code }}"
                             data-voted="{{ application.voted|yesno:'yes,' }}">
-                        {% comment %} <input class="no-margin" type="checkbox" {% if application.voted %}checked{% endif %} /> {% endcomment %}
                         Vote
                     </button>
-                {% elif not user.is_authenticated %}
-                    <a class="yellow arrow button"
-                       href="{% url 'account_login' %}?next={% url 'voting_index' %}">
-                        Login
-                    </a>
-                {% elif user.is_authenticated and not is_ticket_holder %}
+                {% else %}
                     <a class="yellow arrow button" href="/tickets/" target="_blank">
                         Buy ticket
                     </a>

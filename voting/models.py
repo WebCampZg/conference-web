@@ -2,8 +2,10 @@ from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.urlresolvers import reverse_lazy
 from django.db import models
+from django.db.models.deletion import CASCADE
 
 from cfp.models import PaperApplication
+from events.models import Ticket
 
 
 class Vote(models.Model):
@@ -26,3 +28,12 @@ class VoteToken(models.Model):
             get_current_site(request=None).domain,
             reverse_lazy('voting_index', kwargs={'vote_token': self.ticket_code})
         )
+
+
+class CommunityVote(models.Model):
+    ticket = models.ForeignKey(Ticket, CASCADE, related_name='community_votes')
+    application = models.ForeignKey(PaperApplication, CASCADE, related_name='community_votes')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = (("ticket", "application"),)

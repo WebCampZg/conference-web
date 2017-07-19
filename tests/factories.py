@@ -5,7 +5,7 @@ from factory import Faker, LazyAttribute, SubFactory
 from factory.django import DjangoModelFactory, ImageField
 
 from blog.models import Post
-from cfp.models import CallForPaper, Applicant
+from cfp.models import CallForPaper, Applicant, PaperApplication, AudienceSkillLevel
 from people.models import User, TShirtSize
 from events.models import Event, Ticket
 
@@ -49,6 +49,7 @@ class PostFactory(DjangoModelFactory):
 
 
 class CallForPaperFactory(DjangoModelFactory):
+    event = SubFactory(EventFactory)
     title = Faker('sentence')
     description = Faker('sentence')
     announcement = Faker('sentence')
@@ -89,3 +90,15 @@ class TicketFactory(DjangoModelFactory):
 
     class Meta:
         model = Ticket
+
+
+class PaperApplicationFactory(DjangoModelFactory):
+    cfp = SubFactory(CallForPaperFactory)
+    applicant = SubFactory(ApplicantFactory)
+    title = Faker('sentence')
+    about = Faker('sentence')
+    abstract = Faker('sentence')
+    skill_level = LazyAttribute(lambda a: AudienceSkillLevel.objects.order_by('?').first())
+
+    class Meta:
+        model = PaperApplication
