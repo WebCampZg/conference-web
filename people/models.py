@@ -88,9 +88,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         """
         send_mail(subject, message, from_email, [self.email], **kwargs)
 
-    def is_ticket_holder(self):
-        return self.groups.filter(name=settings.TICKET_HOLDER_GROUP_NAME).exists()
-
     def is_talk_committee_member(self):
         return self.groups.filter(name=settings.TALK_COMMITTEE_GROUP_NAME).exists()
 

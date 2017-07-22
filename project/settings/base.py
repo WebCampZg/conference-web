@@ -296,7 +296,6 @@ MARKDOWN_DEUX_STYLES = {
 # Set to false to disallow changing talk contents
 ALLOW_TALK_UPDATES = True
 
-TICKET_HOLDER_GROUP_NAME = 'TicketHolders'
 TALK_COMMITTEE_GROUP_NAME = 'TalkCommittee'
 
 
