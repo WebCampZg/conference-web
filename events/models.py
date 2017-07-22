@@ -68,6 +68,7 @@ class Ticket(models.Model):
     dietary_preferences = models.CharField(max_length=1024, blank=True)
     purchased_at = models.DateTimeField()
     used_at = models.DateTimeField(blank=True, null=True)
+    invite_sent_at = models.DateTimeField(blank=True, null=True)
 
     @property
     def full_name(self):

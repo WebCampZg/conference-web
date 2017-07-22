@@ -3,14 +3,18 @@
     </head>
     <body>
     <p>
-        Dear {{ token.user.first_name }},
+        Dear {{ name }},
     </p>
     <p>
-        it's time to exercise your right and influence WebCamp Zagreb once again.
+        It's time to exercise your right and influence WebCamp Zagreb once again.
         Vote for talks you want to hear this year and add them to the official WebCamp Zagreb conference schedule.
     </p>
     <p>
-        You can vote for talks on the following URL {{ token.absolute_vote_url }}
+        You can vote for talks here: {{ url|urlize }}.
+    </p>
+    <p>
+        Please do not share the above link with your friends, since it contains your ticket code.
+        Share this one instead: {{ anon_url| urlize }}.
     </p>
     <p>
         Sincerely,<br>
