@@ -1,6 +1,6 @@
 import re
 
-from django.http import HttpResponse
+from django.http import JsonResponse
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured, PermissionDenied
 from django.db.models import Count
@@ -12,7 +12,12 @@ from config.utils import get_active_event
 from events.models import Ticket
 
 
-class SlackAccessMixin():
+def escape(text):
+    """Escape slack control characters"""
+    return text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+
+
+class SlackView(View):
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         expected_token = settings.SLACK_TOKEN
@@ -20,19 +25,23 @@ class SlackAccessMixin():
             raise ImproperlyConfigured("SLACK_TOKEN setting not set.")
 
         token = request.GET.get("token")
-        print(token)
-        print(expected_token)
         if token != expected_token:
             raise PermissionDenied("Invalid token")
 
         return super().dispatch(request, *args, **kwargs)
 
-
-class TicketsView(SlackAccessMixin, View):
     def post(self, request, *args, **kwargs):
-        text = ["{}: {}".format(*t) for t in self.get_tickets()]
+        return JsonResponse({
+            "text": self.get_text(request),
+            "mrkdwn": True,
+        })
 
-        return HttpResponse(text, content_type="text/plain")
+
+class TicketsView(SlackView):
+    def get_text(self, request):
+        tickets = self.get_tickets()
+        lines = ["Tickets overview:"] + ["{} `{}`".format(*t) for t in tickets]
+        return "\n".join(lines)
 
     def get_tickets(self):
         tickets = (Ticket.objects
@@ -43,4 +52,4 @@ class TicketsView(SlackAccessMixin, View):
 
         for ticket in tickets:
             category = re.sub("\[.+\]", "", ticket['category']).strip()
-            yield (category, ticket['count'])
+            yield (escape(category), ticket['count'])
