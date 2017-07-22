@@ -26,17 +26,23 @@ class SlackView(View):
         logger.info("GET:" + json.dumps(request.GET))
         logger.info("POST:" + json.dumps(request.POST))
 
+    def authorize(self, request):
+        """Checks the request contains a vaild slack authentication token"""
+        if not hasattr(settings, 'SLACK_VERIFICATION_TOKEN'):
+            raise ImproperlyConfigured("SLACK_VERIFICATION_TOKEN setting not set.")
+
+        expected_token = settings.SLACK_VERIFICATION_TOKEN
+        if not expected_token:
+            raise ImproperlyConfigured("SLACK_VERIFICATION_TOKEN setting is empty.")
+
+        token = request.POST.get("token")
+        if token != expected_token:
+            raise PermissionDenied("Invalid token")
+
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
         self.log_request(request)
-
-        expected_token = settings.SLACK_TOKEN
-        if not expected_token:
-            raise ImproperlyConfigured("SLACK_TOKEN setting not set.")
-
-        token = request.GET.get("token")
-        if token != expected_token:
-            raise PermissionDenied("Invalid token")
+        self.authorize(request)
 
         return super().dispatch(request, *args, **kwargs)
 
