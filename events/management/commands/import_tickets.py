@@ -1,27 +1,32 @@
+import re
 import sys
 
 from datetime import datetime
 from json import loads
 from urllib.request import urlopen
 
+from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.core.validators import URLValidator, ValidationError
+from django.core.exceptions import ImproperlyConfigured
 from django.utils import timezone as tz
 
+from config.utils import get_active_event
 from events.models import Event, Ticket
 from people.models import User, TShirtSize
+from slack.utils import post_notification
 
 
 class Command(BaseCommand):
     help = "Loads tickets from Entrio"
 
-    def add_arguments(self, parser):
-        parser.add_argument('event_id')
-        parser.add_argument('source_url')
-
     def handle(self, *args, **options):
-        event_id = options.get('event_id')
-        source_url = options.get('source_url')
+        event_id = get_active_event().pk
+        source_url = settings.ENTRIO_VISITORS_URL
+
+        if not source_url:
+            raise ImproperlyConfigured("settings.ENTRIO_VISITORS_URL is not set")
+
         self.validate_options(event_id, source_url)
 
         print("Loading data from %s" % source_url)
@@ -29,12 +34,18 @@ class Command(BaseCommand):
 
         print("Loaded %d tickets" % len(data))
 
+        created_tickets = []
+
         for item in data:
             ticket = self.to_ticket(item, event_id)
             exists = Ticket.objects.filter(code=ticket.code, event_id=event_id).exists()
             if not exists:
                 ticket.save()
+                created_tickets.append(ticket)
                 print("Created ticket #%s" % str(ticket))
+
+        print("Notifying friends on slack...")
+        self.notify_slack(created_tickets)
 
         print("Done")
 
@@ -92,3 +103,14 @@ class Command(BaseCommand):
     def fetch_entrio_data(self, source_url):
         with urlopen(source_url) as f:
             return loads(f.read().decode('utf-8'))
+
+    def _format_ticket(self, ticket):
+        category = re.sub("\[.+\]", "", ticket.category).strip()
+        company = ", {}".format(ticket.company) if ticket.company else ""
+        return "{}{} [{}]".format(ticket.full_name, company, category)
+
+    def notify_slack(self, tickets):
+        count = len(tickets)
+        title = "{} ticket{} sold".format(count, "s" if count > 1 else "")
+        text = "\n".join([self._format_ticket(t) for t in tickets])
+        post_notification(title, text)
