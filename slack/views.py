@@ -33,23 +33,37 @@ class SlackView(View):
     def post(self, request, *args, **kwargs):
         return JsonResponse({
             "text": self.get_text(request),
+            "attachments": self.get_attachments(request),
             "mrkdwn": True,
         })
 
+    def get_text(self, request):
+        return None
+
+    def get_attachments(self, request):
+        raise None
+
 
 class TicketsView(SlackView):
-    def get_text(self, request):
-        tickets = self.get_tickets()
-        lines = ["Tickets overview:"] + ["{} `{}`".format(*t) for t in tickets]
-        return "\n".join(lines)
+    def get_attachments(self, request):
+        categories = self.get_categories()
+        lines = ["{} `{}`".format(*t) for t in categories]
+        text = "\n".join(lines)
 
-    def get_tickets(self):
-        tickets = (Ticket.objects
+        return [{
+            "fallback": "Ticket sale overview:\n{}".format(text) ,
+            "title": "Ticket sale overview",
+            "text": text,
+            "color": "#9013FD"
+        }]
+
+    def get_categories(self):
+        categories = (Ticket.objects
             .filter(event=get_active_event())
             .values('category')
             .annotate(count=Count('*'))
             .order_by('-count'))
 
-        for ticket in tickets:
-            category = re.sub("\[.+\]", "", ticket['category']).strip()
-            yield (escape(category), ticket['count'])
+        for category in categories:
+            name = re.sub("\[.+\]", "", category['category']).strip()
+            yield (escape(name), category['count'])
