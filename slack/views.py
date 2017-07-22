@@ -1,3 +1,5 @@
+import json
+import logging
 import re
 
 from django.http import JsonResponse
@@ -18,8 +20,16 @@ def escape(text):
 
 
 class SlackView(View):
+    def log_request(self, request):
+        logger = logging.getLogger('slack.requests')
+        logger.info("\n{} {}".format(request.method, request.path))
+        logger.info("GET:" + json.dumps(request.GET))
+        logger.info("POST:" + json.dumps(request.POST))
+
     @method_decorator(csrf_exempt)
     def dispatch(self, request, *args, **kwargs):
+        self.log_request(request)
+
         expected_token = settings.SLACK_TOKEN
         if not expected_token:
             raise ImproperlyConfigured("SLACK_TOKEN setting not set.")
@@ -51,7 +61,7 @@ class TicketsView(SlackView):
         text = "\n".join(lines)
 
         return [{
-            "fallback": "Ticket sale overview:\n{}".format(text) ,
+            "fallback": "Ticket sale overview:\n{}".format(text),
             "title": "Ticket sale overview",
             "text": text,
             "color": "#9013FD"
