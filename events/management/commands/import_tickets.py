@@ -44,8 +44,9 @@ class Command(BaseCommand):
                 created_tickets.append(ticket)
                 print("Created ticket #%s" % str(ticket))
 
-        print("Notifying friends on slack...")
-        self.notify_slack(created_tickets)
+        if created_tickets:
+            print("Notifying friends on slack...")
+            self.notify_slack(created_tickets)
 
         print("Done")
 
