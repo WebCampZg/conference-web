@@ -25,15 +25,16 @@ urlpatterns = [
     url(r'^accounts/profile/update/$', UserProfileUpdateView.as_view(), name='user_profile_update'),
 
     # Apps
-    url(r'^news/', include('blog.urls')),
     url(r'^cfp/', include('cfp.urls')),
     url(r'^dashboard/', include('dashboard.urls', namespace='dashboard')),
     url(r'^jobs/', include('jobs.urls')),
+    url(r'^news/', include('blog.urls')),
     url(r'^schedule/', include('schedule.urls')),
+    url(r'^slack/', include('slack.urls', namespace='slack')),
     url(r'^sponsors/', include('sponsors.urls')),
     url(r'^talks/', include('talks.urls')),
-    url(r'^workshops/', include('workshops.urls')),
     url(r'^voting/', include('voting.urls')),
+    url(r'^workshops/', include('workshops.urls')),
 
     url(r'^sitemap\.xml$', sitemap, {'sitemaps': sitemaps},
         name='django.contrib.sitemaps.views.sitemap'),

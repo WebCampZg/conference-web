@@ -83,6 +83,7 @@ INSTALLED_APPS = (
     'pages',
     'people',
     'schedule',
+    'slack',
     'sponsors',
     'talks',
     'usergroups',
@@ -297,3 +298,10 @@ ALLOW_TALK_UPDATES = True
 
 TICKET_HOLDER_GROUP_NAME = 'TicketHolders'
 TALK_COMMITTEE_GROUP_NAME = 'TalkCommittee'
+
+
+#
+# Slack app settings
+#
+
+SLACK_TOKEN = None
