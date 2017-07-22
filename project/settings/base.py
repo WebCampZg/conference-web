@@ -304,4 +304,4 @@ TALK_COMMITTEE_GROUP_NAME = 'TalkCommittee'
 # Slack app settings
 #
 
-SLACK_TOKEN = None
+SLACK_VERIFICATION_TOKEN = None
