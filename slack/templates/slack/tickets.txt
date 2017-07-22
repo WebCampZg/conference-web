@@ -1,2 +1,0 @@
-{% for category, count in tickets %}{{ category }}: {{ count }}
-{% endfor %}
