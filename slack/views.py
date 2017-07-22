@@ -80,6 +80,7 @@ class TicketsView(SlackView):
             "fallback": "Ticket sale overview:\n{}".format(text),
             "title": "Ticket sale overview",
             "text": text,
+            "mrkdwn_in": ["text"],
             "color": "#9013FD"
         }]
 
