@@ -19,7 +19,14 @@ def escape(text):
     return text.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
 
 
+class ResponseType():
+    IN_CHANNEL = 'in_channel'
+    EPHEMERAL = 'ephemeral'
+
+
 class SlackView(View):
+    response_type = ResponseType.EPHEMERAL
+
     def log_request(self, request):
         logger = logging.getLogger('slack.requests')
         logger.info("\n{} {}".format(request.method, request.path))
@@ -51,6 +58,7 @@ class SlackView(View):
             "text": self.get_text(request),
             "attachments": self.get_attachments(request),
             "mrkdwn": True,
+            "response_type": self.response_type
         })
 
     def get_text(self, request):
@@ -61,6 +69,8 @@ class SlackView(View):
 
 
 class TicketsView(SlackView):
+    response_type = ResponseType.IN_CHANNEL
+
     def get_attachments(self, request):
         categories = self.get_categories()
         lines = ["{} `{}`".format(*t) for t in categories]
