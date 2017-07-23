@@ -1,6 +1,7 @@
 import re
 
 from django.db import models
+from django.db.models import Count
 from django.db.models.deletion import CASCADE, PROTECT
 from django.utils import timezone as tz
 
@@ -34,6 +35,10 @@ class Event(Permalinkable):
 
     def non_keynotes(self):
         return Talk.objects.filter(event=self, keynote=False).order_by('title')
+
+    def get_ticket_counts_by_category(self):
+        qs = self.tickets.values('category').annotate(count=Count('category')).order_by('-count')
+        return [(x['category'], x['count']) for x in qs]
 
     def __str__(self):
         return self.title

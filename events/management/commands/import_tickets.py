@@ -12,22 +12,26 @@ from django.core.exceptions import ImproperlyConfigured
 from django.utils import timezone as tz
 
 from config.utils import get_active_event
-from events.models import Event, Ticket
+from events.models import Ticket
 from people.models import User, TShirtSize
 from slack.utils import post_notification
+
+
+def strip_brackets(string):
+    return re.sub("\[.+\]", "", string).strip()
 
 
 class Command(BaseCommand):
     help = "Loads tickets from Entrio"
 
     def handle(self, *args, **options):
-        event_id = get_active_event().pk
+        event = get_active_event()
         source_url = settings.ENTRIO_VISITORS_URL
 
         if not source_url:
             raise ImproperlyConfigured("settings.ENTRIO_VISITORS_URL is not set")
 
-        self.validate_options(event_id, source_url)
+        self.validate_url(source_url)
 
         print("Loading data from %s" % source_url)
         data = self.fetch_entrio_data(source_url)
@@ -37,8 +41,8 @@ class Command(BaseCommand):
         created_tickets = []
 
         for item in data:
-            ticket = self.to_ticket(item, event_id)
-            exists = Ticket.objects.filter(code=ticket.code, event_id=event_id).exists()
+            ticket = self.to_ticket(item, event)
+            exists = Ticket.objects.filter(code=ticket.code, event=event).exists()
             if not exists:
                 ticket.save()
                 created_tickets.append(ticket)
@@ -46,11 +50,11 @@ class Command(BaseCommand):
 
         if created_tickets:
             print("Notifying friends on slack...")
-            self.notify_slack(created_tickets)
+            self.notify_slack(event, created_tickets)
 
         print("Done")
 
-    def to_ticket(self, item, event_id):
+    def to_ticket(self, item, event):
         purchased_at = item.get('purchase_datetime')
         if purchased_at:
             purchased_at = datetime.strptime(purchased_at, "%Y-%m-%d %H:%M:%S")
@@ -65,7 +69,7 @@ class Command(BaseCommand):
         tshirt = TShirtSize.objects.get(name=tshirt)
 
         parsed = {
-            "event_id": event_id,
+            "event": event,
             "code": item.get('ticket_code'),
             "email": email,
             "user": user,
@@ -83,7 +87,7 @@ class Command(BaseCommand):
 
         return Ticket(**parsed)
 
-    def validate_options(self, event_id, source_url):
+    def validate_url(self, source_url):
         try:
             validator = URLValidator()
             validator(source_url)
@@ -91,27 +95,33 @@ class Command(BaseCommand):
             print(self.style.ERROR("Given source_url is not a valid URL."))
             sys.exit(1)
 
-        try:
-            event_id = int(event_id)
-        except ValueError:
-            print(self.style.ERROR("Given event_id must be an integer."))
-            sys.exit(1)
-
-        if not Event.objects.filter(pk=event_id).exists():
-            print(self.style.ERROR("Event with id %d does not exist." % event_id))
-            sys.exit(1)
-
     def fetch_entrio_data(self, source_url):
         with urlopen(source_url) as f:
             return loads(f.read().decode('utf-8'))
 
-    def _format_ticket(self, ticket):
-        category = re.sub("\[.+\]", "", ticket.category).strip()
-        company = ", {}".format(ticket.company) if ticket.company else ""
-        return "{}{} [{}]".format(ticket.full_name, company, category)
+    def notify_slack(self, event, tickets):
+        def format_ticket(ticket):
+            category = strip_brackets(ticket.category)
+            company = ", {}".format(ticket.company) if ticket.company else ""
+            return "{}{} [{}]".format(ticket.full_name, company, category)
 
-    def notify_slack(self, tickets):
-        count = len(tickets)
-        title = "{} ticket{} sold".format(count, "s" if count > 1 else "")
-        text = "\n".join([self._format_ticket(t) for t in tickets])
-        post_notification(title, text)
+        def title(tickets):
+            count = len(tickets)
+            return "{} ticket{} sold".format(count, "s" if count > 1 else "")
+
+        def text(tickets):
+            return "\n".join([format_ticket(t) for t in tickets])
+
+        def totals(event):
+            counts = event.get_ticket_counts_by_category()
+            lines = ["{}: `{}`".format(strip_brackets(category), count)
+                     for category, count in counts]
+            return "\n".join(lines)
+
+        post_notification(
+            title(tickets),
+            text(tickets),
+            "May they be touched by His Noodly Appendage",
+        )
+
+        post_notification("Totals", totals(event))
