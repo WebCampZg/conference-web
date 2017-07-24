@@ -5,6 +5,7 @@ import re
 from django.http import JsonResponse
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured, PermissionDenied
+from django.db import connection
 from django.db.models import Count
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
@@ -94,3 +95,35 @@ class TicketsView(SlackView):
         for category in categories:
             name = re.sub("\[.+\]", "", category['category']).strip()
             yield (escape(name), category['count'])
+
+
+class CommunityVoteView(SlackView):
+    response_type = ResponseType.IN_CHANNEL
+
+    def get_attachments(self, request):
+        rows = self.get_rows()
+        lines = ["{}: {} `{}`".format(*row) for row in rows]
+        text = "\n".join(lines)
+
+        return [{
+            "fallback": "Community vote:\n{}".format(text),
+            "title": "Community vote",
+            "text": text,
+            "mrkdwn_in": ["text"],
+            "color": "#9013FD",
+        }]
+
+    def get_rows(self):
+        sql = """
+            SELECT u.first_name || ' ' || u.last_name AS name, pa.title, count(*) AS count
+            FROM voting_communityvote cv
+            JOIN cfp_paperapplication pa ON pa.id = cv.application_id
+            JOIN cfp_applicant a ON pa.applicant_id = a.id
+            JOIN people_user u ON a.user_id = u.id
+            GROUP BY 1, 2
+            ORDER BY 3 DESC;
+        """
+
+        with connection.cursor() as cursor:
+            cursor.execute(sql)
+            return cursor.fetchall()

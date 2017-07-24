@@ -4,4 +4,5 @@ from slack import views
 
 urlpatterns = [
     url(r'^tickets/$', views.TicketsView.as_view(), name='tickets'),
+    url(r'^vote/$', views.CommunityVoteView.as_view(), name='vote'),
 ]
