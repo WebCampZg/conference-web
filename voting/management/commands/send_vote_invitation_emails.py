@@ -46,7 +46,6 @@ class Command(BaseCommand):
                 body=txt,
                 from_email='WebCamp Zagreb <info@webcampzg.org>',
                 to=[to],
-                bcc=["info@webcampzg.org"],
             )
 
             msg.attach_alternative(html, "text/html")
