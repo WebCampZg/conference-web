@@ -39,11 +39,14 @@ class Command(BaseCommand):
             txt = txt_template.render(context)
             html = html_template.render(context)
 
+            to = "{} <{}>".format(ticket.full_name, ticket.email)
+
             msg = EmailMultiAlternatives(
-                'Community vote open',
-                txt,
-                'WebCamp Zagreb <info@webcampzg.org>',
-                [ticket.email],
+                subject='Community vote open',
+                body=txt,
+                from_email='WebCamp Zagreb <info@webcampzg.org>',
+                to=[to],
+                bcc=["info@webcampzg.org"],
             )
 
             msg.attach_alternative(html, "text/html")
