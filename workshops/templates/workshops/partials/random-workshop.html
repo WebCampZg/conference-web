@@ -1,0 +1,33 @@
+{% load webcamp %}
+
+{% with applicant=workshop.applicant %}
+<div class="talk-grid-item">
+    <a href="{% url 'workshops_view_workshop' slug=workshop.slug %}">
+        <div class="talk-photo" style="background-image: url('{{ MEDIA_URL }}{{ applicant.image }}')">
+        </div>
+    </a>
+
+    <div class="talk-data" data-equalizer-watch>
+        <div class="speaker">
+            {{ applicant.full_name }}
+        </div>
+
+        <div class="talk-title">
+            <a href="{% url 'workshops_view_workshop' slug=workshop.slug %}">
+                {{ workshop.title }}
+            </a>
+        </div>
+    </div>
+
+    <div class="talk-meta">
+        <div class="row">
+            <div class="columns">
+                {{ workshop.starts_at|date:"Y-m-d @ H:i" }}
+            </div>
+            <div class="shrink columns text-right">
+                <span class="gray">{{ workshop.duration_hours|floatformat }} h</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endwith %}
