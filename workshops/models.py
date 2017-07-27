@@ -20,4 +20,4 @@ class Workshop(models.Model):
 
     @property
     def approximate_euro_price(self):
-        return int(self.price / 7.5)
+        return int(self.price / 7.5) if self.price else None
