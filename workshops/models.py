@@ -16,3 +16,8 @@ class Workshop(models.Model):
     starts_at = models.DateTimeField()
     duration_hours = models.DecimalField(max_digits=3, decimal_places=1)
     tickets_link = models.URLField(blank=True)
+    price = models.PositiveIntegerField(blank=True, null=True)
+
+    @property
+    def approximate_euro_price(self):
+        return int(self.price / 7.5)
