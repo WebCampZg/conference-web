@@ -2,17 +2,20 @@ import json
 import logging
 import re
 
+from datetime import datetime, time
+
 from django.http import JsonResponse
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured, PermissionDenied
 from django.db import connection
 from django.db.models import Count
+from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
 
 from config.utils import get_active_event
-from events.models import Ticket
+from events.models import Event, Ticket
 
 
 def escape(text):
@@ -127,3 +130,41 @@ class CommunityVoteView(SlackView):
         with connection.cursor() as cursor:
             cursor.execute(sql)
             return cursor.fetchall()
+
+
+class TtlView(SlackView):
+    """
+    Prints the time to the next WebCamp.
+    """
+    response_type = ResponseType.IN_CHANNEL
+
+    def get_attachments(self, request):
+        msg = self.get_message()
+
+        return [{
+            "fallback": msg,
+            "title": "WebCamp TTL",
+            "text": msg,
+            "mrkdwn_in": ["text"],
+            "color": "#9013FD",
+        }]
+
+    def format_delta(self, delta):
+        hours, rem = divmod(delta.seconds, 3600)
+        minutes, seconds = divmod(rem, 60)
+
+        return "{} days, {} hours, {} minutes, and {} seconds".format(
+            delta.days, hours, minutes, seconds)
+
+    def get_message(self):
+        today = timezone.now().date()
+        event = Event.objects.filter(begin_date__gte=today).order_by('begin_date').first()
+
+        if event:
+            event_start = datetime.combine(event.begin_date, time(9, 0))
+            delta = event_start - datetime.now()
+
+            return "{} starts in *{}*".format(
+                event.title, self.format_delta(delta))
+
+        return "There is no WebCamp scheduled :'("
