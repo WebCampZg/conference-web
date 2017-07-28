@@ -142,8 +142,6 @@ class TtlView(SlackView):
         msg = self.get_message()
 
         return [{
-            "fallback": msg,
-            "title": "WebCamp TTL",
             "text": msg,
             "mrkdwn_in": ["text"],
             "color": "#9013FD",
