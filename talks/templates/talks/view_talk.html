@@ -41,9 +41,12 @@
         </p>
         {% endif %}
 
+        <hr />
+
         {% include "talks/partials/speaker.html" with applicant=talk.application.applicant %}
 
         {% if talk.co_presenter %}
+            <hr />
             {% include "talks/partials/speaker.html" with applicant=talk.co_presenter %}
         {% endif %}
     </article>

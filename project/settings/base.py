@@ -64,9 +64,10 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.staticfiles',
 
+    'easy_select2',
+    'markdown_deux',
     'raven.contrib.django.raven_compat',
     'tinymce',
-    'markdown_deux',
 
     'ui',
 

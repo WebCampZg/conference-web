@@ -5,7 +5,7 @@ from django_extensions.db.fields import AutoSlugField
 
 class Workshop(models.Model):
     event = models.ForeignKey('events.Event', PROTECT, related_name='workshops')
-    applicant = models.ForeignKey('cfp.Applicant', related_name='workshops')
+    applicants = models.ManyToManyField('cfp.Applicant')
 
     title = models.CharField(max_length=80)
     slug = AutoSlugField(populate_from="title", unique=True)
@@ -21,3 +21,16 @@ class Workshop(models.Model):
     @property
     def approximate_euro_price(self):
         return int(self.price / 7.5) if self.price else None
+
+    def applicant_names(self):
+        return [a.full_name for a in self.applicants.all()]
+
+    def page_title(self):
+        return "{}: {}".format(", ".join(self.applicant_names()), self.title)
+
+    def random_applicant(self):
+        return self.applicants.order_by('?').first()
+
+    def image(self):
+        applicant = self.applicants.first()
+        return applicant.image if applicant else None
