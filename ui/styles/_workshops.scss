@@ -36,18 +36,26 @@
         }
 
         .workshop-meta {
-            font-style: italic;
-            padding: 0.9375rem 0.9375rem 0 0.9375rem;
-
             color: white;
+            font-style: italic;
+
+            padding-left: 10px;
+            padding-right: 10px;
+
+            @include breakpoint(medium) {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
             .column {
-                padding: 1rem
-            }
-            .column:first-child {
-                background-color: $blue;
-            }
-            .column:last-child {
-                background-color: $purple;
+                padding-top: 1rem;
+                padding-bottom: 1rem;
+                &:first-child {
+                    background-color: $blue;
+                }
+                &:last-child {
+                    background-color: $purple;
+                }
             }
         }
 
