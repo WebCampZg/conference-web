@@ -4040,6 +4040,48 @@ select {
       font-weight: bold;
       font-size: 1.2rem; }
 
+.workshop-short img {
+  width: 100%; }
+
+.workshop-detail .excerpt {
+  font-style: italic; }
+
+.workshops-grid {
+  background-color: #FA4748;
+  padding: 3rem 0; }
+  .workshops-grid .workshop-grid-item {
+    background-color: #FEFEFE;
+    border: 5px solid #0A0A0A;
+    margin-bottom: 2rem; }
+    .workshops-grid .workshop-grid-item .workshop-photo {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position-x: center;
+      background-position-y: center;
+      height: 300px;
+      border-bottom: 5px solid black;
+      position: relative;
+      filter: saturate(0%); }
+    .workshops-grid .workshop-grid-item .workshop-data {
+      padding: 1rem; }
+    .workshops-grid .workshop-grid-item .workshop-meta {
+      font-style: italic;
+      padding: 0.9375rem 0.9375rem 0 0.9375rem;
+      color: white; }
+      .workshops-grid .workshop-grid-item .workshop-meta .column, .workshops-grid .workshop-grid-item .workshop-meta .columns {
+        padding: 1rem; }
+      .workshops-grid .workshop-grid-item .workshop-meta .column:first-child, .workshops-grid .workshop-grid-item .workshop-meta .columns:first-child {
+        background-color: #47C5C2; }
+      .workshops-grid .workshop-grid-item .workshop-meta .column:last-child, .workshops-grid .workshop-grid-item .workshop-meta .columns:last-child {
+        background-color: #9013FD; }
+    .workshops-grid .workshop-grid-item .speaker {
+      font-size: 18px; }
+    .workshops-grid .workshop-grid-item .workshop-title {
+      font-size: 20px;
+      margin-top: 1rem; }
+      .workshops-grid .workshop-grid-item .workshop-title a {
+        font-weight: 500; }
+
 a {
   font-weight: bold; }
   a .normal {
