@@ -3777,19 +3777,25 @@ select {
   max-width: 7rem; }
 
 .keynotes-block .columns {
-  text-align: center; }
+  padding-top: 2rem; }
 
 .keynotes-block .columns:first-child {
   background-color: #C0E413; }
   @media print, screen and (min-width: 40em) {
     .keynotes-block .columns:first-child {
       text-align: right; } }
+  @media print, screen and (min-width: 64em) {
+    .keynotes-block .columns:first-child {
+      padding-right: 40px; } }
 
 .keynotes-block .columns:last-child {
   background-color: #47C5C2; }
   @media print, screen and (min-width: 40em) {
     .keynotes-block .columns:last-child {
       text-align: left; } }
+  @media print, screen and (min-width: 64em) {
+    .keynotes-block .columns:last-child {
+      padding-left: 40px; } }
 
 .keynotes-block .heart-center {
   position: relative; }

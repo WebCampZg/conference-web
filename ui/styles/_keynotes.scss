@@ -1,6 +1,6 @@
 .keynotes-block {
     .columns {
-        text-align: center;
+        padding-top: 2rem;
     }
 
     .columns:first-child {
@@ -9,6 +9,9 @@
         @include breakpoint(medium) {
             text-align: right;
         }
+        @include breakpoint(large) {
+            padding-right: 40px;
+        }
     }
 
     .columns:last-child {
@@ -16,6 +19,9 @@
 
         @include breakpoint(medium) {
             text-align: left;
+        }
+        @include breakpoint(large) {
+            padding-left: 40px;
         }
     }
 
