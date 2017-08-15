@@ -141,6 +141,12 @@ def team(request):
             "twitter": "tomislavcapan",
             "job": "Volunteers"
         },
+        {
+            "name": "Steve Tauber",
+            "image": "images/team/steve.png",
+            "twitter": "stevetauber",
+            "job": "Master of ceremonies"
+        },
     ]
 
     committee = [
