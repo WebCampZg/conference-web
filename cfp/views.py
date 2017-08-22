@@ -101,7 +101,7 @@ def cfp_announcement(request):
     return render(request, 'cfp/cfp_announcement.html')
 
 
-class ApplicantUpdateView(UpdateView):
+class ApplicantUpdateView(LoginRequiredMixin, UpdateView):
     form_class = ApplicantForm
     template_name = "cfp/applicant_form.html"
 
