@@ -124,4 +124,4 @@ class Command(BaseCommand):
             "May they be touched by His Noodly Appendage",
         )
 
-        post_notification("Totals", totals(event))
+        # post_notification("Totals", totals(event))
