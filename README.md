@@ -115,27 +115,12 @@ make sync-media
 
 CSS is built from source SCSS files in `ui/styles`
 
-Prerequisites:
-
-* NodeJS
-* [Yarn](https://yarnpkg.com/lang/en/docs/install/)
-
-On Debian/Ubutnu install both with:
-
-```
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt-get update
-sudo apt-get install nodejs nodejs-legacy yarn
-```
-
-Once yarn is installed, use it to install dependencies:
+Install node-sass by running:
 ```
 yarn install
 ```
 
 Now you can compile the CSS:
-
 ```
 make css
 ```
