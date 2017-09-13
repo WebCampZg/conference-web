@@ -23,10 +23,14 @@
                 <tr>
                     <th aria-hidden="true">&nbsp;</th>
                     <th class="text-center">
-                        <img src="{{ MEDIA_URL }}uploads/sponsors/amphinicy.svg" alt="Amphinicy Technologies" class="track-logo">
+                        <a href="{% url 'sponsors_view_sponsor' slug='amphinicy-technologies' %}">
+                            <img src="{{ MEDIA_URL }}uploads/sponsors/amphinicy.svg" alt="Amphinicy Technologies" class="track-logo">
+                        </a>
                     </th>
                     <th class="text-center">
-                        <img src="{{ MEDIA_URL }}uploads/sponsors/trikoder-logo.svg" alt="Trikoder" class="track-logo">
+                        <a href="{% url 'sponsors_view_sponsor' slug='trikoder' %}">
+                            <img src="{{ MEDIA_URL }}uploads/sponsors/trikoder-logo.svg" alt="Trikoder" class="track-logo">
+                        </a>
                     </th>
                 </tr>
             </thead>
@@ -38,14 +42,14 @@
                 {% include "schedule/partials/talk_pair.html" with time="11:45" left="writing-code-pfft-evolve-it-instead" right="design-adventures-in-open-source" %}
                 {% include "schedule/partials/talk_pair.html" with time="12:15" left="year-with-eventsourcing-and-cqrs" right="build-bridges-not-wallsdesign-for-users-across-cultures" %}
                 {% include "schedule/partials/talk_pair.html" with time="13:05" left="getting-test-data-for-your-system-as-hard-core-and-as-fun-as-it-gets" right="user-testing-on-two-year-olds" %}
-                {% include "schedule/partials/spacer.html" with time="13:35" text="Lunch" %}
+                {% include "schedule/partials/lunch.html" with time="13:35" %}
                 {% include "schedule/partials/talk_pair.html" with time="15:05" left="2nd-hardest-thing-in-computer-science" right="turn-zero-to-hero" %}
                 {% include "schedule/partials/talk_pair.html" with time="15:35" left="elements-of-scalable-architecture" right="the-mindful-geek" %}
                 {% include "schedule/partials/spacer.html" with time="16:25" text="Break" %}
                 {% include "schedule/partials/talk_pair.html" with time="16:55" left="developing-a-safer-web-with-rust" right="frontend-creativity-with-web-animations" %}
                 {% include "schedule/partials/talk_pair.html" with time="17:25" left="the-state-of-chatbots-in-2017" right="debugging-communication" %}
                 {% include "schedule/partials/spacer.html" with time="17:55" text="End of day" %}
-                {% include "schedule/partials/drinkup.html" with time="18:00" text="Drinkup" %}
+                {% include "schedule/partials/drinkup.html" with time="18:00" %}
             </tbody>
         </table>
 
@@ -57,10 +61,14 @@
                 <tr>
                     <th aria-hidden="true">&nbsp;</th>
                     <th class="text-center">
-                        <img src="{{ MEDIA_URL }}uploads/sponsors/amphinicy.svg" alt="Amphinicy Technologies" class="track-logo">
+                        <a href="{% url 'sponsors_view_sponsor' slug='amphinicy-technologies' %}">
+                            <img src="{{ MEDIA_URL }}uploads/sponsors/amphinicy.svg" alt="Amphinicy Technologies" class="track-logo">
+                        </a>
                     </th>
                     <th class="text-center">
-                        <img src="{{ MEDIA_URL }}uploads/sponsors/trikoder-logo.svg" alt="Trikoder" class="track-logo">
+                        <a href="{% url 'sponsors_view_sponsor' slug='trikoder' %}">
+                            <img src="{{ MEDIA_URL }}uploads/sponsors/trikoder-logo.svg" alt="Trikoder" class="track-logo">
+                        </a>
                     </th>
                 </tr>
             </thead>
@@ -72,7 +80,7 @@
                 {% include "schedule/partials/talk_pair.html" with time="11:45" left="a-geography-of-design" right="" %}
                 {% include "schedule/partials/talk_pair.html" with time="12:15" left="software-industry-is-making-us-stupid" right="the-holy-trinity-of-monitoring-logs-metrics-and-traces" %}
                 {% include "schedule/partials/talk_pair.html" with time="13:05" left="adventurous-experiences-of-a-remote-product-designer" right="ops-i-did-it-again" %}
-                {% include "schedule/partials/spacer.html" with time="13:35"    text="Lunch" %}
+                {% include "schedule/partials/lunch.html" with time="13:35" %}
                 {% include "schedule/partials/talk_pair.html" with time="15:05" left="technical-career-path-from-junior-to-senior-thru-chosen-chapters-of-software-literature" right="cooking-with-large-batches-of-object-storage" %}
                 {% include "schedule/partials/talk_pair.html" with time="15:35" left="neuroscience-and-how-to-design-brand-driven-ux" right="microservices-in-production-a-case-study" %}
                 {% include "schedule/partials/spacer.html" with time="16:25"    text="Break" %}
