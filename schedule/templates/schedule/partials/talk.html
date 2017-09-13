@@ -12,7 +12,7 @@
         </span>
         <br />
         <span class="normal">
-            {{ talk.application.applicant.user.full_name }}
+            {{ talk.application.applicant.user.full_name }}{% if talk.co_presenter %}, {{ talk.co_presenter.full_name }}{% endif %}
         </span>
     </a>
     {% endif %}
