@@ -3,7 +3,7 @@
 {% with left_talk=schedule_talks|find_talk:left right_talk=schedule_talks|find_talk:right %}
 <tr>
     <td class="Schedule-time Schedule-spacer">{{ time }}</td>
-    {% include "schedule/partials/talk.html" with talk=left_talk track="Intercom track" %}
-    {% include "schedule/partials/talk.html" with talk=right_talk track="ReversingLabs track" %}
+    {% include "schedule/partials/talk.html" with talk=left_talk %}
+    {% include "schedule/partials/talk.html" with talk=right_talk %}
 </tr>
 {% endwith %}
