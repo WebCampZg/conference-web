@@ -98,9 +98,9 @@ class TicketsView(SlackView):
         conf_total = 0
 
         for category in categories:
-            if len(name)<= len('Free ticket'):
-                conf_total+=1
             name = re.sub("\[.+\]", "", category['category']).strip()
+            if len(name)<= len('Free ticket'):
+                conf_total+=int(category['count'])
             yield (escape(name), category['count'])
         yield ('Conference' , conf_total)
 
