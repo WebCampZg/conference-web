@@ -74,3 +74,9 @@ npm-debug.log
 .DS_Store
 
 /.cache
+
+# virtualenv
+include/
+local/
+pip-selfcheck.json
+share/
