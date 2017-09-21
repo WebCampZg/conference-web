@@ -69,3 +69,18 @@
     {% endfor %}
 </div>
 {% endif %}
+
+{% if sponsors.video %}
+<div class="row align-center align-middle small-up-2 medium-up-6 sponsor-list video">
+    Video powered by:
+</div>
+<div class="row align-center align-middle small-up-2 medium-up-6 sponsor-list video">
+    {% for sponsor in sponsors.video %}
+        <div class="column">
+            <a href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
+                <img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="" />
+            </a>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}

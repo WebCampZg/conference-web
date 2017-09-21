@@ -38,6 +38,7 @@ def sponsors(request):
     supporter = active.filter(type=SPONSOR_TYPES.SUPPORTER).order_by('id')
     mainmedia = active.filter(type=SPONSOR_TYPES.MAIN_MEDIA).order_by('order')
     media = active.filter(type=SPONSOR_TYPES.MEDIA).order_by('order')
+    video = active.filter(type=SPONSOR_TYPES.VIDEO).order_by('order')
 
     return {
         "sponsors": {
@@ -48,7 +49,8 @@ def sponsors(request):
             'standard': standard,
             'supporter': supporter,
             'mainmedia': mainmedia,
-            'media': media
+            'media': media,
+            'video': video,
         }
     }
 

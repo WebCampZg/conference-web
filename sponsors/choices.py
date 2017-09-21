@@ -9,5 +9,6 @@ SPONSOR_TYPES = Choices(
     ('supporter', 'SUPPORTER', 'Supporter Sponsor'),
     ('mainmedia', 'MAIN_MEDIA', 'Main Media Sponsor'),
     ('media', 'MEDIA', 'Media sponsors'),
+    ('video', 'VIDEO', 'Video sponsors'),
 )
 
