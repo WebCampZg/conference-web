@@ -26,6 +26,7 @@ class Talk(Timestampable):
     slides_url = models.URLField(blank=True)
     rate_url = models.URLField(blank=True)
     youtube_id = models.CharField(blank=True, max_length=20)
+    joindin_url = models.URLField(blank=True, help_text="URL to the event on JoindIn API.")
 
     keynote = models.BooleanField(default=False)
     is_community_chosen = models.BooleanField(default=False)

@@ -1,83 +1,126 @@
+import pytz
 import requests
+
+from django.core.management.base import BaseCommand
+from django.conf import settings
 
 from requests.exceptions import HTTPError
 
-import os
-from django.core.management.base import BaseCommand
-from pprint import pprint
+from events.models import Event
 from talks.models import Talk
+from workshops.models import Workshop
 
-EVENT_URL = 'https://api.joind.in/v2.1/events/6049'
-TALKS_URL = 'https://api.joind.in/v2.1/events/6049/talks'
 
-# TODO: handle start times
-START_DATE = '2016-10-28T10:00:00+02:00'
+def isodate(dt):
+    """Formats a datetime to ISO format."""
+    tz = pytz.timezone('Europe/Zagreb')
+    return dt.astimezone(tz).isoformat()
+
 
 class Command(BaseCommand):
+    def add_arguments(self, parser):
+        parser.add_argument('event_id', help="Primary key of the Event to sync")
 
-    def __init__(self, *args, **kwargs):
-        super(Command, self).__init__(*args, **kwargs)
-
-        print("Loading talks from JoindIn")
-        self.existing_talks = self.fetch_talks()
-        print("Found %d talks" % len(self.existing_talks))
-
-        api_token = os.getenv('JOINDIN_ACCESS_TOKEN')
+    def get_headers(self):
+        api_token = settings.JOINDIN_ACCESS_TOKEN
         if not api_token:
             raise ValueError("Missing JOINDIN_ACCESS_TOKEN environment variable")
-
-        self.auth_headers = { "Authorization": "Bearer %s" % api_token }
+        return {"Authorization": "Bearer %s" % api_token}
 
     def handle(self, *args, **options):
-        talks = Talk.objects.all()
-        for talk in talks:
-            self.sync_talk(talk)
+        self.auth_headers = self.get_headers()
 
-    def fetch_talks(self):
-        response = requests.get(TALKS_URL)
-        response.raise_for_status()
-        talks = response.json()
+        self.event = Event.objects.get(pk=options['event_id'])
+        if not self.event.joindin_url:
+            raise ValueError("You need to populate event.joindin_url before sync.")
 
-        return talks['talks']
+        talks = self.event.talks.order_by('title')
+        workshops = self.event.workshops.order_by('title')
+
+        for item in talks:
+            self.sync(item)
+
+        for item in workshops:
+            self.sync(item)
 
     def get_talk_uri(self, title):
         for talk in self.existing_talks:
             if talk['talk_title'] == title:
                 return talk['uri']
 
-    def sync_talk(self, talk):
-        data = {
+    def talk_data(self, talk):
+        speakers = [talk.application.applicant.user.full_name]
+        if talk.co_presenter:
+            speakers.append(talk.co_presenter.full_name)
+
+        return {
             "talk_title": talk.title,
+            "url_friendly_talk_title": talk.slug,
             "talk_description": talk.about,
             "type": "Keynote" if talk.keynote else "Talk",
-            "speakers": [talk.application.applicant.user.full_name],
-            "duration": talk.duration,
-            "start_date": START_DATE
+            "speakers": speakers,
+            "duration": int(talk.duration),
+            "start_date": isodate(talk.starts_at),
         }
 
+    def workshop_data(self, workshop):
+        return {
+            "talk_title": workshop.title,
+            "url_friendly_talk_title": workshop.slug,
+            "talk_description": workshop.about,
+            "type": "Workshop",
+            "speakers": [a.user.full_name for a in workshop.applicants.all()],
+            "duration": int(workshop.duration_hours * 60),
+            "start_date": isodate(workshop.starts_at),
+        }
+
+    def post_data(self, item):
+        if isinstance(item, Talk):
+            return self.talk_data(item)
+        elif isinstance(item, Workshop):
+            return self.workshop_data(item)
+        raise ValueError("Unknown item {}".format(item))
+
+    def sync(self, item):
+        if not item.starts_at:
+            print("Cannot sync '{}' because it doesn't have a start time.".format(item.title))
+            return
+
         try:
-            uri = self.get_talk_uri(talk.title)
-            if uri:
-                self.update_talk(data, uri)
+            if item.joindin_url:
+                self.update(item)
             else:
-                self.add_talk(data)
+                self.add(item)
         except HTTPError as e:
             self.handle_error(e)
             exit(1)
 
-    def add_talk(self, talk):
-        print("CREATING: %s: %s" % (talk['speakers'][0], talk['talk_title']))
-        response = requests.post(TALKS_URL, json=talk, headers=self.auth_headers)
+    def add(self, item):
+        print("\nAdding: {}".format(item.title))
+
+        url = '{}/talks'.format(self.event.joindin_url)
+        post_data = self.post_data(item)
+
+        response = requests.post(url, json=post_data, headers=self.auth_headers)
         response.raise_for_status()
 
-    def update_talk(self, talk, uri):
-        # TODO: see why we can't update talks
-        print("EXISTS %s: %s" % (talk['speakers'][0], talk['talk_title']))
-        return
+        # Save the URI to the event
+        data = response.json()
+        item.joindin_url = data['talks'][0]['uri']
+        item.rate_url = data['talks'][0]['website_uri']
+        item.save()
 
-        print("UPDATING: %s: %s" % (talk['speakers'][0], talk['talk_title']))
-        response = requests.put(uri, json=talk, headers=self.auth_headers)
+        print("Done: {}".format(item.joindin_url))
+
+    def update(self, item):
+        print("\nUpdating: {}".format(item.title))
+
+        post_data = self.post_data(item)
+
+        response = requests.put(item.joindin_url, json=post_data, headers=self.auth_headers)
         response.raise_for_status()
+
+        print("Done.")
 
     def handle_error(self, http_error):
         print(http_error)

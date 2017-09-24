@@ -18,6 +18,9 @@ class Workshop(models.Model):
     tickets_link = models.URLField(blank=True)
     price = models.PositiveIntegerField(blank=True, null=True)
 
+    rate_url = models.URLField(blank=True)
+    joindin_url = models.URLField(blank=True, help_text="URL to the event on JoindIn API.")
+
     @property
     def approximate_euro_price(self):
         return int(self.price / 7.5) if self.price else None
