@@ -20,6 +20,7 @@ class Talk(Timestampable):
     about = models.TextField(blank=True)
     abstract = models.TextField(blank=True)
     skill_level = models.ForeignKey(AudienceSkillLevel, blank=True, null=True)
+    starts_at = models.DateTimeField(blank=True, null=True)
     duration = models.CharField(choices=TALK_DURATIONS, max_length=255, blank=True, null=True)
     slug = models.SlugField(blank=True, max_length=255, null=True)
     slides_url = models.URLField(blank=True)
