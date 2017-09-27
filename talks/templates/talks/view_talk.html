@@ -41,6 +41,14 @@
         </p>
         {% endif %}
 
+        {% if talk.rate_url %}
+        <p>
+            <a href="{{ talk.rate_url }}" class="arrow button">
+                Rate talk
+            </a>
+        </p>
+        {% endif %}
+
         <hr />
 
         {% include "talks/partials/speaker.html" with applicant=talk.application.applicant %}
