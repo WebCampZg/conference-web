@@ -2,8 +2,12 @@
 <p>
     <b>{{ workshop.starts_at|date:"l, Y-m-d @ H:i" }}</b><br />
     <a href="/venue/">Plaza Event Centar</a><br />
+
+    <span class="purple">&gt; </span>
     <em>Duration: </em> {{ workshop.duration_hours|floatformat }}h<br />
+
     {% if workshop.price %}
+        <span class="purple">&gt; </span>
         <em>Ticket price:</em> {{ workshop.price }}kn
         (~€{{workshop.approximate_euro_price}})<br />
     {% endif %}
