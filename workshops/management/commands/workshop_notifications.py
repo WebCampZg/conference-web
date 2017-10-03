@@ -16,6 +16,8 @@ so having a laptop is not required.
         """,
     4:  # Writing Superpowers for Geeks
         """
+Please bring your favourite writing instrument, whether that is a laptop,
+tablet, or paper and pencil.
         """,
     3:  # Logo Design Crash Course
         """
@@ -31,10 +33,9 @@ https://www.mozilla.org/en-US/firefox/channel/desktop/
     6:  # Learning WebGL by breaking stuff
         """
 For this workshop you will need a laptop with git, Node.js, and a few other
-tools installed. OS-specific requirements and instructions can be found here:
+tools installed, please have them installed before the workshop. OS-specific
+requirements and instructions can be found here:
 https://github.com/mapbox/mapbox-gl-js/blob/master/CONTRIBUTING.md#preparing-your-development-environment
-
-Please come prepared!
         """,
     7:  # Keechma - Going Beyond Redux
         """
@@ -48,7 +49,7 @@ choice, so we can talk about the differences.
     8:  # Flying Drones with NodeJS
         """
 This workshop requires a laptop with Node.js, Git and a code editor of your
-choice.
+choice, so please have them installed before the workshop.
         """,
 
 }
@@ -97,8 +98,9 @@ Subject: {workshop.title}
 
 {notes}
 
-The workshop starts at the specified time, so please come at least 10 minutes
-earlier to allow for registration.
+Please come 10 minutes earlier to allow for registration. If you also have
+tickets for the conference, take them with you so you can register in
+advance so you don't have to wait in line on Friday.
 
 Best regards,
 WebCamp Zagreb Team
