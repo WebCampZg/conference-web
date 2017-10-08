@@ -41,11 +41,19 @@
         </p>
         {% endif %}
 
-        {% if talk.rate_url %}
+        {% if talk.rate_url or talk.slides_url %}
         <p>
-            <a href="{{ talk.rate_url }}" class="arrow button">
-                Rate talk
-            </a>
+            {% if talk.slides_url %}
+                <a href="{{ talk.slides_url }}" class="arrow button">
+                    View slides
+                </a>
+            {% endif %}
+
+            {% if talk.rate_url %}
+                <a href="{{ talk.rate_url }}" class="yellow arrow button">
+                    Rate talk
+                </a>
+            {% endif %}
         </p>
         {% endif %}
 
