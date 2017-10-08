@@ -1,6 +1,6 @@
 {% extends 'ui/page.html' %}
 
-{% load markdown_deux_tags %}
+{% load webcamp markdown_deux_tags %}
 
 {% block title %}
     {{ talk.application.applicant.user.get_full_name }}:
@@ -55,6 +55,10 @@
                 </a>
             {% endif %}
         </p>
+        {% endif %}
+
+        {% if talk.youtube_id %}
+            {{ talk.youtube_id|embed_youtube }}
         {% endif %}
 
         <hr />

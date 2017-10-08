@@ -4227,14 +4227,6 @@ table tr.blue-bg td {
 table.align-top td, table.align-top th {
   vertical-align: top; }
 
-@media print, screen and (min-width: 40em) {
-  .video-embed {
-    max-width: 80%; } }
-
-@media print, screen and (min-width: 64em) {
-  .video-embed {
-    max-width: 60%; } }
-
 .video-embed .video-embed-inner {
   position: relative;
   padding-bottom: 56.25%;

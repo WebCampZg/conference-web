@@ -221,14 +221,6 @@ table.align-top {
 // Video embed container
 
 .video-embed {
-    @include breakpoint(medium) {
-        max-width: 80%;
-    }
-
-    @include breakpoint(large) {
-        max-width: 60%;
-    }
-
     .video-embed-inner {
         position: relative;
         padding-bottom: 56.25%;  // to get 16:9 ratio

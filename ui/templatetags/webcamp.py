@@ -27,6 +27,7 @@ def skill_level(skill_level):
     """.format(className, level))
 
 
+@register.filter
 def embed_youtube(code):
     return mark_safe("""
         <div class="video-embed">
