@@ -20,6 +20,7 @@
     </div>
 
     <div class="nav-right no-wrap">
+    {% comment %}
         {% if user.is_authenticated %}
             <a href="{% url 'user_profile' %}">
                 <i class="fa fa-user"></i>&nbsp;{{user.get_full_name}}
@@ -29,6 +30,7 @@
                 Login
             </a>
         {% endif %}
+    {% endcomment %}
     </div>
 </div>
 
@@ -59,6 +61,7 @@
     </div>
 
     <div class="mobile-nav-buttons">
+        {% comment %}
         <a href="/tickets/" class="green-arrow">
             Buy Tickets
         </a>
@@ -71,6 +74,7 @@
                 Login
             </a>
         {% endif %}
+        {% endcomment %}
     </div>
 </div>
 

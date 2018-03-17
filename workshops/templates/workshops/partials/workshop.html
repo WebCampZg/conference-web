@@ -29,12 +29,14 @@
                 {% include "workshops/partials/workshop_flags.html" %}
             </p>
 
+            {% comment %}
             <p>
                 <a class="small yellow arrow button"
                    href="/tickets">Buy Tickets</a>
                 <a class="small purple arrow button"
                    href="{% url 'workshops_view_workshop' slug=workshop.slug %}">Details</a>
             </p>
+            {% endcomment %}
         </div>
     </div>
 </article>
