@@ -10,16 +10,16 @@ from utils.behaviors import Timestampable
 
 
 class Talk(Timestampable):
-    event = models.ForeignKey('events.Event', PROTECT, related_name='talks')
-    application = models.OneToOneField(PaperApplication, PROTECT, related_name='talk')
-    co_presenter = models.ForeignKey(Applicant, PROTECT, blank=True, null=True, related_name='co_talks')
-    sponsor = models.ForeignKey(Sponsor, PROTECT, blank=True, null=True, related_name="sponsored_talks")
-    usergroup = models.ForeignKey(UserGroup, PROTECT, blank=True, null=True, related_name="chosen_talks")
+    event = models.ForeignKey('events.Event', on_delete=PROTECT, related_name='talks')
+    application = models.OneToOneField(PaperApplication, on_delete=PROTECT, related_name='talk')
+    co_presenter = models.ForeignKey(Applicant, on_delete=PROTECT, blank=True, null=True, related_name='co_talks')
+    sponsor = models.ForeignKey(Sponsor, on_delete=PROTECT, blank=True, null=True, related_name="sponsored_talks")
+    usergroup = models.ForeignKey(UserGroup, on_delete=PROTECT, blank=True, null=True, related_name="chosen_talks")
 
     title = models.CharField(max_length=255, blank=True)
     about = models.TextField(blank=True)
     abstract = models.TextField(blank=True)
-    skill_level = models.ForeignKey(AudienceSkillLevel, blank=True, null=True)
+    skill_level = models.ForeignKey(AudienceSkillLevel, on_delete=PROTECT, blank=True, null=True)
     starts_at = models.DateTimeField(blank=True, null=True)
     duration = models.CharField(choices=TALK_DURATIONS, max_length=255, blank=True, null=True)
     slug = models.SlugField(blank=True, max_length=255, null=True)

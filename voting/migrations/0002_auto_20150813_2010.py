@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='vote',
             name='application',
-            field=models.ForeignKey(related_name='votes', to='cfp.PaperApplication'),
+            field=models.ForeignKey(related_name='votes', to='cfp.PaperApplication', on_delete=models.CASCADE),
             preserve_default=True,
         ),
     ]

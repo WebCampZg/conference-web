@@ -9,8 +9,8 @@ from events.models import Ticket
 
 
 class Vote(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    application = models.ForeignKey(PaperApplication, related_name='votes')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=CASCADE)
+    application = models.ForeignKey(PaperApplication, on_delete=CASCADE, related_name='votes')
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -18,7 +18,7 @@ class Vote(models.Model):
 
 
 class VoteToken(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=CASCADE)
     ticket_code = models.CharField(max_length=255)
     token_sent = models.DateTimeField(null=True, blank=True)
 
@@ -31,8 +31,8 @@ class VoteToken(models.Model):
 
 
 class CommunityVote(models.Model):
-    ticket = models.ForeignKey(Ticket, CASCADE, related_name='community_votes')
-    application = models.ForeignKey(PaperApplication, CASCADE, related_name='community_votes')
+    ticket = models.ForeignKey(Ticket, on_delete=CASCADE, related_name='community_votes')
+    application = models.ForeignKey(PaperApplication, on_delete=CASCADE, related_name='community_votes')
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

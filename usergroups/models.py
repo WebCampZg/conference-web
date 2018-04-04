@@ -3,7 +3,7 @@ from django.db.models import PROTECT
 from django.db.models.signals import post_save, post_delete
 from django.dispatch import receiver
 
-from cfp.models import PaperApplication, CallForPaper
+from cfp.models import PaperApplication
 from people.models import User
 from utils.behaviors import Permalinkable
 
@@ -21,9 +21,9 @@ class UserGroup(Permalinkable):
 
 
 class Vote(models.Model):
-    user = models.ForeignKey(User, PROTECT, related_name='usergroup_votes')
-    usergroup = models.ForeignKey(UserGroup, PROTECT, related_name='votes')
-    application = models.ForeignKey(PaperApplication, PROTECT, related_name='usergroup_votes')
+    user = models.ForeignKey(User, on_delete=PROTECT, related_name='usergroup_votes')
+    usergroup = models.ForeignKey(UserGroup, on_delete=PROTECT, related_name='votes')
+    application = models.ForeignKey(PaperApplication, on_delete=PROTECT, related_name='usergroup_votes')
     score = models.PositiveSmallIntegerField()
 
     class Meta:
@@ -31,9 +31,9 @@ class Vote(models.Model):
 
 
 class VoteAudit(models.Model):
-    user = models.ForeignKey(User, PROTECT, related_name='+')
-    usergroup = models.ForeignKey(UserGroup, PROTECT, related_name='+')
-    application = models.ForeignKey(PaperApplication, PROTECT, related_name='+')
+    user = models.ForeignKey(User, on_delete=PROTECT, related_name='+')
+    usergroup = models.ForeignKey(UserGroup, on_delete=PROTECT, related_name='+')
+    application = models.ForeignKey(PaperApplication, on_delete=PROTECT, related_name='+')
     score = models.PositiveSmallIntegerField(blank=True, null=True)
     timestamp = models.DateTimeField(auto_now=True)
 

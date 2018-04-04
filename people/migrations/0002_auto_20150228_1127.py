@@ -31,7 +31,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='user',
             name='tshirt_size',
-            field=models.ForeignKey(blank=True, to='people.TShirtSize', null=True),
+            field=models.ForeignKey(blank=True, to='people.TShirtSize', on_delete=models.CASCADE, null=True),
             preserve_default=True,
         ),
         migrations.AddField(

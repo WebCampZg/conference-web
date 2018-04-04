@@ -59,9 +59,9 @@ class Ticket(models.Model):
     VIP = "VIP tickets"
 
     """Ticket data imported from Entrio"""
-    event = models.ForeignKey(Event, CASCADE, related_name='tickets')
-    user = models.ForeignKey(User, CASCADE, blank=True, null=True, related_name='tickets')
-    tshirt_size = models.ForeignKey(TShirtSize, PROTECT, blank=True, null=True)
+    event = models.ForeignKey(Event, on_delete=CASCADE, related_name='tickets')
+    user = models.ForeignKey(User, on_delete=CASCADE, blank=True, null=True, related_name='tickets')
+    tshirt_size = models.ForeignKey(TShirtSize, on_delete=PROTECT, blank=True, null=True)
     category = models.CharField(max_length=1024)
     code = models.CharField(max_length=1024)
     first_name = models.CharField(max_length=1024)

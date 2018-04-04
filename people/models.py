@@ -63,7 +63,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     github = models.CharField(max_length=255, blank=True, null=True)
     twitter = models.CharField(max_length=255, blank=True, null=True)
-    tshirt_size = models.ForeignKey(TShirtSize, blank=True, null=True)
+    tshirt_size = models.ForeignKey(TShirtSize, on_delete=models.CASCADE, blank=True, null=True)
 
     objects = UserManager()
 

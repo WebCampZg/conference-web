@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
                 ('title', models.CharField(max_length=255)),
                 ('text', tinymce.models.HTMLField()),
                 ('url', models.URLField(max_length=255)),
-                ('sponsor', models.ForeignKey(to='sponsors.Sponsor')),
+                ('sponsor', models.ForeignKey(to='sponsors.Sponsor', on_delete=models.CASCADE)),
             ],
             options={
                 'abstract': False,

@@ -13,7 +13,7 @@ class SiteConfig(SingletonModel):
     """
     Holds global site configuration.
     """
-    active_event = models.ForeignKey(Event, PROTECT, related_name='+')
+    active_event = models.ForeignKey(Event, on_delete=PROTECT, related_name='+')
     allow_talk_updates = models.BooleanField(
         help_text="If set to false, users will no longer be able to update talk descriptions.")
     community_vote_enabled = models.BooleanField(

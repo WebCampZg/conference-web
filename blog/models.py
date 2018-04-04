@@ -14,7 +14,7 @@ class Post(Timestampable, Permalinkable):
     url_name = 'blog_view_post'
 
     title = models.CharField(max_length=255)
-    author = models.ForeignKey(settings.AUTH_USER_MODEL)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     is_sponsored = models.BooleanField(default=False)
     body = HTMLField()
     lead = HTMLField()

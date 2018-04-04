@@ -17,8 +17,8 @@ class Migration(migrations.Migration):
             name='Vote',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('application', models.OneToOneField(related_name='votes', to='cfp.PaperApplication')),
-                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
+                ('application', models.OneToOneField(related_name='votes', to='cfp.PaperApplication', on_delete=models.CASCADE)),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={
             },

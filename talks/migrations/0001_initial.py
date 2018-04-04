@@ -21,8 +21,8 @@ class Migration(migrations.Migration):
                 ('about', models.TextField(blank=True)),
                 ('abstract', models.TextField(blank=True)),
                 ('duration', models.CharField(blank=True, max_length=255, null=True, choices=[(b'25', b'25 Minutes'), (b'45', b'45 Minutes')])),
-                ('application', models.OneToOneField(to='cfp.PaperApplication')),
-                ('skill_level', models.ForeignKey(blank=True, to='cfp.AudienceSkillLevel', null=True)),
+                ('application', models.OneToOneField(to='cfp.PaperApplication', on_delete=models.CASCADE)),
+                ('skill_level', models.ForeignKey(blank=True, to='cfp.AudienceSkillLevel', on_delete=models.PROTECT, null=True)),
             ],
             options={
                 'abstract': False,

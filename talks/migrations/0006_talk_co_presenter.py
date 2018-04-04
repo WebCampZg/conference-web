@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='talk',
             name='co_presenter',
-            field=models.ForeignKey(related_name='co_talks', blank=True, to='cfp.Applicant', null=True),
+            field=models.ForeignKey(related_name='co_talks', blank=True, to='cfp.Applicant', on_delete=models.CASCADE, null=True),
             preserve_default=True,
         ),
     ]

@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='talk',
             name='application',
-            field=models.OneToOneField(related_name='talk', to='cfp.PaperApplication'),
+            field=models.OneToOneField(related_name='talk', to='cfp.PaperApplication', on_delete=models.CASCADE),
             preserve_default=True,
         ),
     ]

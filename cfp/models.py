@@ -27,7 +27,7 @@ class CallForPaperManager(models.Manager):
 
 
 class CallForPaper(models.Model):
-    event = models.ForeignKey('events.Event')
+    event = models.ForeignKey('events.Event', on_delete=models.CASCADE)
     title = models.CharField(max_length=1024)
     description = HTMLField()
     announcement = HTMLField(blank=True, null=True)
@@ -57,7 +57,8 @@ class CallForPaper(models.Model):
 
 
 class Applicant(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, related_name='applicant')
+    user = models.OneToOneField(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='applicant')
 
     about = models.TextField(
         verbose_name=_('About you'),
@@ -116,8 +117,8 @@ class AudienceSkillLevel(models.Model):
 
 
 class PaperApplication(Timestampable):
-    cfp = models.ForeignKey(CallForPaper)
-    applicant = models.ForeignKey(Applicant, related_name='applications')
+    cfp = models.ForeignKey(CallForPaper, on_delete=models.CASCADE)
+    applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE, related_name='applications')
 
     title = models.CharField(
         max_length=255,
@@ -135,7 +136,7 @@ class PaperApplication(Timestampable):
                     'use Markdown but avoid headings. [Public]'))
 
     skill_level = models.ForeignKey(
-        AudienceSkillLevel, verbose_name=_('Audience level'),
+        AudienceSkillLevel, on_delete=models.CASCADE, verbose_name=_('Audience level'),
         help_text=_('Which skill level is this talk most appropriate for? [Public]'))
 
     duration = models.CharField(
