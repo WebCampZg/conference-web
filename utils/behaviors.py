@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 __all__ = ['Timestampable', 'Permalinkable']
@@ -22,13 +23,11 @@ class Permalinkable(models.Model):
         kwargs.update(getattr(self, 'url_kwargs', {}))
         return kwargs
 
-    @models.permalink
     def get_absolute_url(self):
         url_kwargs = self.get_url_kwargs(slug=self.slug)
-        return (self.url_name, (), url_kwargs)
+        return reverse(self.url_name, kwargs=url_kwargs)
 
     def pre_save(self, instance, add):
         from django.utils.text import slugify
         if not instance.slug:
             instance.slug = slugify(self.slug_source)
-
