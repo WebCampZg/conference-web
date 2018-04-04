@@ -2,6 +2,8 @@ from . import views
 
 from django.conf.urls import url, include
 
+app_name = 'dashboard'
+
 urlpatterns = [
     url(r'^$', views.DashboardView.as_view(), name='dashboard'),
     url(r'^cfp/(?P<pk>\d+)/$', views.CallForPapersView.as_view(), name='cfp_detail'),

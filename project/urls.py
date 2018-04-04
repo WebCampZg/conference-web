@@ -17,7 +17,7 @@ urlpatterns = [
     url(r'^signup/success/$', ui.views.signup_success),
 
     url(r'^tinymce/', include('tinymce.urls')),
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', admin.site.urls),
 
     # Account views
     url(r'^accounts/', include('allauth.urls')),
@@ -26,11 +26,11 @@ urlpatterns = [
 
     # Apps
     url(r'^cfp/', include('cfp.urls')),
-    url(r'^dashboard/', include('dashboard.urls', namespace='dashboard')),
+    url(r'^dashboard/', include('dashboard.urls')),
     url(r'^jobs/', include('jobs.urls')),
     url(r'^news/', include('blog.urls')),
     url(r'^schedule/', include('schedule.urls')),
-    url(r'^slack/', include('slack.urls', namespace='slack')),
+    url(r'^slack/', include('slack.urls')),
     url(r'^sponsors/', include('sponsors.urls')),
     url(r'^talks/', include('talks.urls')),
     url(r'^voting/', include('voting.urls')),
