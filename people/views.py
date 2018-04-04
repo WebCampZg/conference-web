@@ -1,8 +1,8 @@
 from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse
 from django.views.generic import TemplateView, UpdateView
 
-from braces.views._access import LoginRequiredMixin
 from people.forms import UserProfileForm
 
 UserModel = get_user_model()

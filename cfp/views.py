@@ -1,10 +1,10 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.urls import reverse
 from django.http.response import Http404, HttpResponseForbidden
 from django.shortcuts import render
+from django.urls import reverse
 from django.views.generic.edit import CreateView, UpdateView
 
-from braces.views._access import LoginRequiredMixin
 from cfp.forms import PaperApplicationForm, ApplicantForm
 from cfp.models import Applicant, PaperApplication
 from config.utils import get_active_cfp
