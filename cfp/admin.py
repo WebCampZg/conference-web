@@ -1,6 +1,7 @@
 from django.contrib import admin
+from django.urls import reverse
+
 from cfp.models import CallForPaper, PaperApplication, Applicant
-from django.core import urlresolvers
 
 
 def mark_as_excluded(modeladmin, request, queryset):
@@ -40,9 +41,10 @@ class PaperApplicationAdmin(admin.ModelAdmin):
         return self.readonly_fields
 
     def link_to_applicant(self, obj):
-        link = urlresolvers.reverse("admin:cfp_applicant_change", args=[obj.applicant.id])
+        link = reverse("admin:cfp_applicant_change", args=[obj.applicant.id])
         return '<a href="%s">%s</a>' % (link, obj.applicant)
     link_to_applicant.allow_tags = True
+
 
 admin.site.register(CallForPaper, CallForPaperAdmin)
 admin.site.register(Applicant, ApplicantAdmin)

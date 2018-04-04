@@ -1,8 +1,8 @@
 from django.contrib.sites.shortcuts import get_current_site
 from django.core.mail.message import EmailMultiAlternatives
 from django.core.management.base import BaseCommand
-from django.core.urlresolvers import reverse_lazy
 from django.template.loader import get_template
+from django.urls import reverse_lazy
 from django.utils import timezone
 
 from events.models import Ticket

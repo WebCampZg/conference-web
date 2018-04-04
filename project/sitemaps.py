@@ -1,6 +1,6 @@
 from django.contrib import sitemaps
 from django.contrib.sitemaps import GenericSitemap
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 
 from blog.models import Post
 from talks.models import Talk

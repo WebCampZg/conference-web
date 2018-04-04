@@ -1,5 +1,5 @@
 from django.contrib.auth import get_user_model
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.views.generic import TemplateView, UpdateView
 
 from braces.views._access import LoginRequiredMixin

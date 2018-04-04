@@ -1,8 +1,8 @@
 from django.conf import settings
 from django.contrib.sites.shortcuts import get_current_site
-from django.core.urlresolvers import reverse_lazy
 from django.db import models
 from django.db.models.deletion import CASCADE
+from django.urls import reverse_lazy
 
 from cfp.models import PaperApplication
 from events.models import Ticket

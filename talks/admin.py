@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.core import urlresolvers
+from django.urls import reverse
 
 from .models import Talk
 
@@ -39,14 +39,12 @@ class TalkAdmin(admin.ModelAdmin):
     )
 
     def application_(self, obj):
-        link = urlresolvers.reverse(
-            "admin:cfp_paperapplication_change", args=[obj.application.id])
+        link = reverse("admin:cfp_paperapplication_change", args=[obj.application.id])
         return '<a href="%s">%s</a>' % (link, "link")
     application_.allow_tags = True
 
     def applicant(self, obj):
-        link = urlresolvers.reverse(
-            "admin:cfp_applicant_change", args=[obj.application.applicant.id])
+        link = reverse("admin:cfp_applicant_change", args=[obj.application.applicant.id])
         return '<a href="%s">%s</a>' % (link, obj.application.applicant)
     applicant.allow_tags = True
 
@@ -64,5 +62,6 @@ class TalkAdmin(admin.ModelAdmin):
             field.queryset = field.queryset.prefetch_related('user')
 
         return field
+
 
 admin.site.register(Talk, TalkAdmin)

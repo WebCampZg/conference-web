@@ -7,7 +7,7 @@ from itertools import groupby
 from django.contrib.auth.mixins import UserPassesTestMixin, AccessMixin
 from django.contrib.auth.views import redirect_to_login
 from django.core.exceptions import ValidationError, PermissionDenied
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db.models import Count
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
