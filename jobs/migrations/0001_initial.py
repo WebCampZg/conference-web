@@ -8,7 +8,7 @@ import tinymce.models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('sponsors', '0001_initial'),
+        ('sponsors', '0001_squashed_0012_auto_20170921_1332'),
     ]
 
     operations = [

@@ -8,13 +8,11 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    replaces = [('talks', '0001_initial'), ('talks', '0002_auto_20150601_0926'), ('talks', '0003_talk_slug'), ('talks', '0004_talk_keynote'), ('talks', '0005_auto_20150905_1220'), ('talks', '0006_talk_co_presenter'), ('talks', '0007_talk_slides_url'), ('talks', '0008_auto_20151127_0808'), ('talks', '0009_talk_rate_url'), ('talks', '0010_auto_20160910_1700'), ('talks', '0011_auto_20170519_0944'), ('talks', '0012_talk_event'), ('talks', '0013_talk_starts_at'), ('talks', '0014_talk_joindin_url')]
-
     initial = True
 
     dependencies = [
         ('cfp', '0004_auto_20150531_2008'),
-        ('sponsors', '0008_sponsor_order'),
+        ('sponsors', '0001_squashed_0012_auto_20170921_1332'),
         ('events', '0004_auto_20170516_1156'),
         ('cfp', '0005_paperapplication_exclude'),
         ('usergroups', '0005_voteaudit'),

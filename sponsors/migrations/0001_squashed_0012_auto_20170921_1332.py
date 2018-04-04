@@ -8,8 +8,6 @@ import tinymce.models
 
 class Migration(migrations.Migration):
 
-    replaces = [('sponsors', '0001_initial'), ('sponsors', '0002_auto_20150510_1350'), ('sponsors', '0003_sponsor_is_active'), ('sponsors', '0004_auto_20150512_1534'), ('sponsors', '0005_auto_20150521_0859'), ('sponsors', '0006_auto_20150914_1300'), ('sponsors', '0007_remove_sponsor_location'), ('sponsors', '0008_sponsor_order'), ('sponsors', '0009_auto_20170519_0944'), ('sponsors', '0010_auto_20170627_2001'), ('sponsors', '0011_auto_20170629_1208'), ('sponsors', '0012_auto_20170921_1332')]
-
     initial = True
 
     dependencies = [
