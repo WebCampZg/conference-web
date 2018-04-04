@@ -31,5 +31,5 @@ def signup_success(request):
     return render(request, 'account/signup-success.html')
 
 
-def custom_404(request):
+def custom_404(request, exception):
     return render(request, 'ui/404.html', status=404)
