@@ -10,7 +10,7 @@ register = template.Library()
 
 @register.filter
 def labelize(value):
-    return mark_safe(re.sub("\[(\w+)\]", '<span class="purple label">\g<1></span>', str(value)))
+    return mark_safe(re.sub(r"\[(\w+)\]", r'<span class="purple label">\g<1></span>', str(value)))
 
 
 @register.filter
@@ -63,14 +63,14 @@ def embed_video(url):
         return embed_youtube(query['v'][0])
 
     if netloc in ['youtube.com', 'www.youtube.com'] and path.startswith('/embed/'):
-        matches = re.match('^/embed/([^/]+)$', path)
+        matches = re.match(r'^/embed/([^/]+)$', path)
         if matches:
             return embed_youtube(matches.group(1))
 
     if netloc == 'youtu.be' and path.startswith('/') and '/' not in path[1:]:
         return embed_youtube(path[1:])
 
-    if netloc == 'vimeo.com' and path.startswith('/') and re.match('^\d+$', path[1:]):
+    if netloc == 'vimeo.com' and path.startswith('/') and re.match(r'^\d+$', path[1:]):
         return embed_vimeo(path[1:])
 
     return ""

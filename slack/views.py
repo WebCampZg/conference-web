@@ -94,15 +94,17 @@ class TicketsView(SlackView):
             .values('category')
             .annotate(count=Count('*'))
             .order_by('-count'))
+
         # delete this next year and don't be lazy
         conf_total = 0
 
         for category in categories:
-            name = re.sub("\[.+\]", "", category['category']).strip()
-            if len(name)<= len('Free ticket'):
-                conf_total+=int(category['count'])
+            name = re.sub(r"\[.+\]", "", category['category']).strip()
+            if len(name) <= len('Free ticket'):
+                conf_total += int(category['count'])
             yield (escape(name), category['count'])
-        yield ('Conference' , conf_total)
+        yield ('Conference', conf_total)
+
 
 class CommunityVoteView(SlackView):
     response_type = ResponseType.IN_CHANNEL
