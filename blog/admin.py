@@ -4,10 +4,18 @@ from .models import Post
 
 
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'created_at', 'updated_at', 'author', 'slug', 'is_sponsored')
-    search_fields = ('title', 'body',)
-    list_filter = ('author', 'created_at',)
-    fields = ('title', 'lead', 'body', 'slug', 'is_sponsored')
+    list_display = (
+        'title',
+        'slug',
+        'event',
+        'created_at',
+        'updated_at',
+        'author',
+        'is_sponsored',
+    )
+    search_fields = ('title', 'lead', 'body')
+    list_filter = ('event', 'created_at')
+    fields = ('title', 'slug', 'lead', 'body', 'is_sponsored')
     ordering = ('-created_at',)
     prepopulated_fields = {'slug': ('title',)}
 
@@ -19,4 +27,3 @@ class PostAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Post, PostAdmin)
-

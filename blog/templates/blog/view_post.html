@@ -1,5 +1,6 @@
 {% extends 'ui/page.html' %}
 
+{% load markdown_deux_tags %}
 {% load static %}
 
 {% block title %}{{ post.title }} - {{ event.extended_title }}{% endblock %}
@@ -32,11 +33,11 @@
             {% endif %}
         </h3>
 
-        <em>
-            {{ post.lead|safe }}
-        </em>
+        <div class="lead">
+            {{ post.lead|markdown:"trusted" }}
+        </div>
 
-        {{ post.body|safe }}
+        {{ post.body|markdown:"trusted" }}
 
         {% include "partials/share.html" with title="Share this article" %}
     </article>
