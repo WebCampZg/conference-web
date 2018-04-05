@@ -125,18 +125,18 @@ def team(request):
             "twitter": "ihabunek",
             "job": "Speakers & tech"
         },
-        {
-            "name": "Tomislav Capan",
-            "image": "images/team/tomislav.jpg",
-            "twitter": "tomislavcapan",
-            "job": "Volunteers"
-        },
-        {
-            "name": "Steve Tauber",
-            "image": "images/team/steve.png",
-            "twitter": "stevetauber",
-            "job": "Master of ceremonies"
-        },
+        # {
+        #     "name": "Tomislav Capan",
+        #     "image": "images/team/tomislav.jpg",
+        #     "twitter": "tomislavcapan",
+        #     "job": "Volunteers"
+        # },
+        # {
+        #     "name": "Steve Tauber",
+        #     "image": "images/team/steve.png",
+        #     "twitter": "stevetauber",
+        #     "job": "Master of ceremonies"
+        # },
         {
             "name": "Senko Rašić",
             "image": "images/team/senko.jpg",
@@ -146,11 +146,11 @@ def team(request):
     ]
 
     committee = [
-        {
-            "name": "Emanuel Blagonić",
-            "image": "images/team/emanuel.png",
-            "twitter": "eblagonic",
-        },
+        # {
+        #     "name": "Emanuel Blagonić",
+        #     "image": "images/team/emanuel.png",
+        #     "twitter": "eblagonic",
+        # },
         {
             "name": "Goran Jurić",
             "image": "images/team/goran.jpg",
