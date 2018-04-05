@@ -5,18 +5,21 @@
 {% block title %}Schedule - {{ event.extended_title }}{% endblock %}
 
 {% block head %}
-    <meta name="description" content="WebCamp Zagreb 2016. conference talks schedule. 2 days, 2 tracks, 2 keynote speakers and 28 talks at WebCamp Zagreb 2016. conference for web devs & designers.">
+    <meta name="description" content="{{ event.extended_title }} talks schedule. 2 days, 2 tracks, 2 keynote speakers and 28 talks at {{ event.title }} for web devs & designers.">
 {% endblock %}
 
 {% block og %}
     <meta property="og:title" content="Schedule - {{ event.extended_title }}" />
-    <meta property="og:description" content="WebCamp Zagreb 2016. conference talks schedule. 2 days, 2 tracks, 2 keynote speakers and 28 talks at WebCamp Zagreb 2016. conference for web devs & designers." />
+    <meta property="og:description" content="{{ event.extended_title }} talks schedule. 2 days, 2 tracks, 2 keynote speakers and 28 talks at {{ event.title }} for web devs & designers." />
 {% endblock %}
 
 {% block content %}
     <section class="schedule">
         <h1 class="red-arrow">Schedule_</h1>
 
+        <p><em>The schedule has not yet been published.</em></p>
+
+        {% comment %}
         <h3>Friday, October 6th</h3>
         <table id="schedule-day-1" class="schedule-table hover unstriped">
             <thead>
@@ -89,5 +92,7 @@
                 {% include "schedule/partials/spacer.html" with time="18:00"    text="Closing word" %}
             </tbody>
         </table>
+        {% endcomment %}
+
     </section>
 {% endblock %}
