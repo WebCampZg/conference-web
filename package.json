@@ -7,7 +7,6 @@
   "license": "MIT",
   "dependencies": {
     "foundation-sites": "^6.3.1",
-    "jquery": "^3.2.1",
-    "node-sass": "^4.5.2"
+    "jquery": "^3.2.1"
   }
 }

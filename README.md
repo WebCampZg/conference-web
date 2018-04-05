@@ -28,7 +28,7 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 Install packages:
 
 ```
-sudo apt install build-essential git python3 python3-dev fabric virtualenv virtualenvwrapper postgresql libjpeg-dev libtiff5-dev yarn nodejs-legacy
+sudo apt install build-essential git python3 python3-dev fabric virtualenv virtualenvwrapper postgresql libjpeg-dev libtiff5-dev yarn nodejs-legacy sassc
 ```
 
 Note: `nodejs-legacy` just provides a `/usr/bin/node` symlink to
@@ -113,29 +113,21 @@ make sync-media
 
 ## Build CSS
 
-CSS is built from source SCSS files in `ui/styles`
+CSS is built from source SCSS files in `ui/styles` using [sassc](https://github.com/sass/sassc), and stored in `ui/dist/styles`. The generated CSS should be committed to the repo.
 
-Install node-sass by running:
+Install prerequisites ([Zurb Foundation](https://foundation.zurb.com/sites/docs/)):
 ```
 yarn install
 ```
 
-Now you can compile the CSS:
+Now you can compile the styles:
 ```
 make css
 ```
 
-The generated CSS should be committed to the repo.
-
-#### Known problems
-
-There seems to be an issue with node-sass installation in some cases it will
-complain about a missing directory `node_modules/node-sass/vendor`. In this case
-fix it by running:
-
+To watch for changes and automatically rebuild css:
 ```
-node node_modules/node-sass/scripts/install.js
-node node_modules/node-sass/scripts/build.js
+make css-watch
 ```
 
 ## Deploy

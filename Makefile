@@ -64,7 +64,10 @@ sync-media:
 	rsync -av webcamp:web/conference-web/project/media/ project/media/
 
 css:
-	node_modules/.bin/node-sass ui/styles/style.scss ui/dist/styles/style.css --include-path=node_modules/foundation-sites/scss --source-map=true
+	sassc --style compressed --sourcemap --load-path=node_modules/foundation-sites/scss ui/styles/style.scss ui/dist/styles/style.css
 
 css-watch:
-	node_modules/.bin/node-sass ui/styles/style.scss ui/dist/styles/style.css --include-path=node_modules/foundation-sites/scss --source-map=true --watch
+	make css
+	@while true; do \
+		inotifywait -qre close_write ui/styles; make css; \
+	done
