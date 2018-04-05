@@ -6,8 +6,12 @@ from tests.factories import PostFactory
 
 
 @pytest.mark.django_db
-def test_list_view(client):
-    posts = [PostFactory(), PostFactory(), PostFactory()]
+def test_list_view(client, active_event):
+    posts = [
+        PostFactory(event=active_event),
+        PostFactory(event=active_event),
+        PostFactory(event=active_event),
+    ]
     url = reverse('blog_list_posts')
 
     response = client.get(url)

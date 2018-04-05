@@ -37,6 +37,7 @@ class EventFactory(DjangoModelFactory):
 
 
 class PostFactory(DjangoModelFactory):
+    event = SubFactory(EventFactory)
     title = Faker('sentence')
     slug = LazyAttribute(lambda x: slugify(x.title)[0:50])
     author = SubFactory(UserFactory)
