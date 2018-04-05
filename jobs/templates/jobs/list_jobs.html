@@ -16,7 +16,8 @@
         <div class="Jobs">
             {% include "partials/jobs.html" with jobs=jobs show_sponsor_name="true" %}
         </div>
+        {% else %}
+            <p><em>No jobs have been published so far. Check back soon.</em></p>
         {% endif %}
-
     </section>
 {% endblock %}
