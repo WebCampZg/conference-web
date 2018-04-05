@@ -91,7 +91,7 @@ def webcamp(request):
         },
         "webcamp": {
             "og_image": {
-                "url": abs_uri(static("images/og-image.png")),
+                "url": abs_uri(static("images/2018/og_image.png")),
                 "width": 1200,
                 "height": 630
             }
