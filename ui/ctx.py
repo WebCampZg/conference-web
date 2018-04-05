@@ -105,25 +105,13 @@ def team(request):
             "name": "Luka Mužinić",
             "image": "images/team/luka.jpg",
             "twitter": "lmuzinic",
-            "job": "Glorious leader"
-        },
-        {
-            "name": "Maja Trepšić",
-            "image": "images/team/maja.jpg",
-            "twitter": "",
-            "job": "Speakers",
+            "job": "Pencil pusher"
         },
         {
             "name": "Martina Dumančić",
             "image": "images/team/martina.jpg",
             "twitter": "",
             "job": "Procurement",
-        },
-        {
-            "name": "Nikola Plejić",
-            "image": "images/team/nikola.jpg",
-            "twitter": "nikolaplejic",
-            "job": "Sponsors",
         },
         {
             "name": "Filip Gjurin",
@@ -135,7 +123,7 @@ def team(request):
             "name": "Ivan Habunek",
             "image": "images/team/ivan.jpg",
             "twitter": "ihabunek",
-            "job": "Tech support"
+            "job": "Speakers & tech"
         },
         {
             "name": "Tomislav Capan",
@@ -149,23 +137,19 @@ def team(request):
             "twitter": "stevetauber",
             "job": "Master of ceremonies"
         },
+        {
+            "name": "Senko Rašić",
+            "image": "images/team/senko.jpg",
+            "twitter": "senkorasic",
+            "job": "Beloved leader"
+        },
     ]
 
     committee = [
         {
-            "name": "Maja Trepšić",
-            "image": "images/team/maja.jpg",
-            "twitter": "",
-        },
-        {
             "name": "Emanuel Blagonić",
             "image": "images/team/emanuel.png",
             "twitter": "eblagonic",
-        },
-        {
-            "name": "Lucijan Blagonić",
-            "image": "images/team/lucijan.jpg",
-            "twitter": "lblagonic",
         },
         {
             "name": "Goran Jurić",
