@@ -1,6 +1,7 @@
 import re
 import sys
 
+from collections import defaultdict
 from datetime import datetime
 from json import loads
 from urllib.request import urlopen
@@ -11,22 +12,32 @@ from django.core.validators import URLValidator, ValidationError
 from django.core.exceptions import ImproperlyConfigured
 from django.utils import timezone as tz
 
-from config.utils import get_active_event
-from events.models import Ticket
+from config.utils import get_site_config
+from events.models import Event, Ticket
 from people.models import User, TShirtSize
 from slack.utils import post_notification
 
 
 def strip_brackets(string):
-    return re.sub("\[.+\]", "", string).strip()
+    return re.sub(r"\[.+\]", "", string).strip()
+
+
+def parse_datetime(string):
+    if string:
+        dttm = datetime.strptime(string, "%Y-%m-%d %H:%M:%S")
+        return tz.make_aware(dttm)
 
 
 class Command(BaseCommand):
     help = "Loads tickets from Entrio"
 
+    def add_arguments(self, parser):
+        config = get_site_config()
+        parser.add_argument('event_id', nargs='?', type=int, default=config.active_event_id)
+
     def handle(self, *args, **options):
-        event = get_active_event()
         source_url = settings.ENTRIO_VISITORS_URL
+        event = Event.objects.get(pk=options['event_id'])
 
         if not source_url:
             raise ImproperlyConfigured("settings.ENTRIO_VISITORS_URL is not set")
@@ -39,14 +50,14 @@ class Command(BaseCommand):
         print("Loaded %d tickets" % len(data))
 
         created_tickets = []
-
         for item in data:
-            ticket = self.to_ticket(item, event)
-            exists = Ticket.objects.filter(code=ticket.code, event=event).exists()
-            if not exists:
-                ticket.save()
-                created_tickets.append(ticket)
+            code, ticket_data = self.parse_ticket_data(item)
+            ticket, created = Ticket.objects.update_or_create(
+                code=code, event=event, defaults=ticket_data)
+
+            if created:
                 print("Created ticket #%s" % str(ticket))
+                created_tickets.append(ticket)
 
         if created_tickets:
             print("Notifying friends on slack...")
@@ -54,38 +65,46 @@ class Command(BaseCommand):
 
         print("Done")
 
-    def to_ticket(self, item, event):
-        purchased_at = item.get('purchase_datetime')
-        if purchased_at:
-            purchased_at = datetime.strptime(purchased_at, "%Y-%m-%d %H:%M:%S")
-            purchased_at = tz.make_aware(purchased_at)
+    def parse_ticket_data(self, item):
+        custom_fields = self.parse_custom_fields(item)
 
-        twitter = item.get('Twitter handle').replace("@", "").replace("https://twitter.com/", "")
+        purchased_at = parse_datetime(item.get('purchase_datetime'))
+        used_at = parse_datetime(item.get('scanned_datetime'))
 
-        email = item.get('Email')
+        twitter = (custom_fields.get('Twitter handle')
+            .replace("@", "")
+            .replace("https://twitter.com/", ""))
+
+        email = custom_fields.get('Email')
         user = User.objects.filter(email=email).first() if email else None
 
-        tshirt = item['T-shirt size'].replace('-', ' ')
+        tshirt = custom_fields.get('T-shirt size').replace('-', ' ')
         tshirt = TShirtSize.objects.get(name=tshirt)
 
-        parsed = {
-            "event": event,
-            "code": item.get('ticket_code'),
+        ticket_code = item.get('ticket_code')
+
+        return ticket_code, {
             "email": email,
             "user": user,
-            "first_name": item.get('First name'),
-            "last_name": item.get('Last name'),
-            "country": item.get('Country'),
+            "first_name": custom_fields.get('First name'),
+            "last_name": custom_fields.get('Last name'),
+            "country": custom_fields.get('Country'),
             "twitter": twitter,
-            "company": item.get('Company name'),
+            "company": custom_fields.get('Company name'),
             "category": item.get('ticket_category'),
             "promo_code": item.get('promo_discount_group') or "",
             "purchased_at": purchased_at,
-            "dietary_preferences": item.get('Dietary preferences'),
+            "used_at": used_at,
+            "dietary_preferences": custom_fields.get('Dietary preferences'),
             "tshirt_size": tshirt,
         }
 
-        return Ticket(**parsed)
+    def parse_custom_fields(self, item):
+        custom_fields = defaultdict(lambda: '')
+        for f in item.get('custom_fields').values():
+            custom_fields[f['name']] = f['value']
+
+        return custom_fields
 
     def validate_url(self, source_url):
         try:
@@ -123,5 +142,3 @@ class Command(BaseCommand):
             text(tickets),
             "May they be touched by His Noodly Appendage",
         )
-
-        # post_notification("Totals", totals(event))
