@@ -4,28 +4,31 @@
 
 {% block content %}
     <h1 class="red-arrow">News_archive_</h1>
+    {% if posts %}
+        {% for post in posts %}
+            <article>
+                <time class="gray" datetime="{{ post.created_at|date:"c" }}">
+                    {{ post.created_at|date:"d.m.Y." }}
+                </time>
 
-    {% for post in posts %}
-        <article>
-            <time class="gray" datetime="{{ post.created_at|date:"c" }}">
-                {{ post.created_at|date:"d.m.Y." }}
-            </time>
+                <h3>
+                    <a href="{% url 'blog_view_post' slug=post.slug %}">{{ post.title }}</a>
+                    {% if post.is_sponsored %}
+                        <span class="purple label">Sponsored</span>
+                    {% endif %}
+                </h3>
 
-            <h3>
-                <a href="{% url 'blog_view_post' slug=post.slug %}">{{ post.title }}</a>
-                {% if post.is_sponsored %}
-                    <span class="purple label">Sponsored</span>
-                {% endif %}
-            </h3>
+                <div>
+                    {{ post.lead|safe }}
+                </div>
+            </article>
 
-            <div>
-                {{ post.lead|safe }}
-            </div>
-        </article>
-
-        {% if not forloop.last %}
-            <hr />
-        {% endif %}
-    {% endfor %}
+            {% if not forloop.last %}
+                <hr />
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <p><em>No news have been published so far. Check back soon.</em></p>
+    {% endif %}
 {% endblock %}
 

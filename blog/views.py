@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 
+from config.utils import get_active_event
 from .models import Post
 
 
 def list_posts(request):
-    posts = Post.objects.all()
+    posts = get_active_event().posts.all()
 
     ctx = {}
     ctx['posts'] = posts

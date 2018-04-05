@@ -5,7 +5,7 @@ from utils.behaviors import Timestampable, Permalinkable
 
 
 class Post(Timestampable, Permalinkable):
-    event = models.ForeignKey('events.Event', on_delete=models.CASCADE)
+    event = models.ForeignKey('events.Event', on_delete=models.CASCADE, related_name='posts')
     title = models.CharField(max_length=255)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     is_sponsored = models.BooleanField(default=False)
