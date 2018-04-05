@@ -16,11 +16,11 @@ def navigation(request):
         "navigation": [
             ("Info", "/info/"),
             ("Venue", "/venue/"),
-            ("Workshops", "/workshops/"),
-            ("Talks", reverse('talks_list_talks')),
-            ("Schedule", reverse('schedule_list_schedule')),
+            # ("Workshops", "/workshops/"),
+            # ("Talks", reverse('talks_list_talks')),
+            # ("Schedule", reverse('schedule_list_schedule')),
             ("News", reverse('blog_list_posts')),
-            ("Jobs", reverse('jobs_list_jobs')),
+            # ("Jobs", reverse('jobs_list_jobs')),
             ("Code", "/code/"),
             ("Team", "/team/"),
         ]
