@@ -1,3 +1,21 @@
+.call-for-sponsors {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 25rem;
+
+    h1 {
+        font-size: 50px;
+        font-weight: bold;
+        color: $dark-gray;
+    }
+
+    a {
+        padding: 1.5rem 2.5rem;
+    }
+}
+
 .sponsors-wrapper {
     padding: 2rem 0;
 

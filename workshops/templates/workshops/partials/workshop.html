@@ -17,7 +17,7 @@
                 </a>
             </p>
 
-            <h3 class="green-arrow">
+            <h3 class="green-dash">
                 <a href="{% url 'workshops_view_workshop' slug=workshop.slug %}">
                     {{ workshop.title }}
                 </a>
@@ -31,9 +31,9 @@
 
             {% comment %}
             <p>
-                <a class="small yellow arrow button"
+                <a class="small button"
                    href="/tickets">Buy Tickets</a>
-                <a class="small purple arrow button"
+                <a class="small green button"
                    href="{% url 'workshops_view_workshop' slug=workshop.slug %}">Details</a>
             </p>
             {% endcomment %}

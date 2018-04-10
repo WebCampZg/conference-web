@@ -13,7 +13,7 @@
 
 {% block content %}
 
-    <h1 class="red-arrow">Account_</h1>
+    <h1 class="red-dash">Account_</h1>
 
     <table>
         <tbody>
@@ -52,12 +52,12 @@
         </tbody>
     </table>
 
-    <a href="{% url 'user_profile_update' %}" class="yellow arrow button">Edit account</a>
-    <a href="{% url 'account_logout' %}" class="purple arrow button">Log out</a>
+    <a href="{% url 'user_profile_update' %}" class="button">Edit account</a>
+    <a href="{% url 'account_logout' %}" class="green button">Log out</a>
 
     <hr />
 
-    <h2 class="yellow-arrow">Submitted_talks_</h2>
+    <h2 class="yellow-dash">Submitted_talks_</h2>
 
     {% for application in user.get_applications %}
         <div class="">
@@ -75,7 +75,7 @@
 
     {% if cfp.is_active %}
     <p style="margin-top: 2rem;">
-        <a class="yellow arrow button" href="{% url "application_create" %}">
+        <a class="button" href="{% url "application_create" %}">
             Submit a talk
         </a>
     </p>
@@ -83,12 +83,13 @@
 
     <hr />
 
-    <h2 class="green-arrow">Speaker_profile_</h2>
+    <h2 class="green-dash">Speaker_profile_</h2>
 
     {% with applicant=user.get_applicant  %}
     {% if applicant %}
-
         <p><em>This is a preview of your speaker profile, as will appear online if a talk of yours is accepted. Make it awesome.</em></p>
+
+        <div class="callout">
 
         <div class="row">
             <div class="small-12 medium-4 columns">
@@ -97,21 +98,21 @@
             <div class="small-12 medium-8 columns">
                 <p>{{ applicant.about }}</p>
 
+                {{ applicant.biography|markdown }}
+
                 {% include "talks/partials/speaker-links.html" %}
             </div>
         </div>
-
-        <h3>Biography</h3>
-        {{ applicant.biography|markdown }}
+        </div>
 
         <h3>Experience <small>(visible only to organizers)</small></h3>
         {{ applicant.speaker_experience|markdown }}
 
-        <a href="{% url 'applicant_update' %}" class="yellow arrow button">Edit profile</a>
+        <a href="{% url 'applicant_update' %}" class="yellow button">Edit profile</a>
     {% else %}
         <p>You don't have a speaker profile yet. One will be created when you submit your first talk.</p>
 
-        <a href="{% url 'applicant_update' %}" class="yellow arrow button">Create profile</a>
+        <a href="{% url 'applicant_update' %}" class="yellow button">Create profile</a>
     {% endif %}
     {% endwith %}
 {% endblock %}

@@ -12,6 +12,7 @@ def index(request):
     workshops = Workshop.objects.filter(event=event).order_by('?')[:3]
 
     return render(request, 'ui/index.html', {
+        "is_frontpage": True,
         "posts": posts,
         "talks": talks,
         "workshops": workshops,

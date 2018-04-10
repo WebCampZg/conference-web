@@ -1,14 +1,15 @@
 {% load static %}
+{% load webcamp %}
 <div class="footer">
     <div class="row column">
         <div class="text-center">
             {% comment %}
-            <a href="/tickets/" class="purple arrow xlarge button">
+            <a href="/tickets/" class="yellow xlarge button">
                 BUY TICKETS
             </a>
             &nbsp;
             {% endcomment %}
-            <a href="{{ links.sponsors_pdf }}" class="yellow xlarge button">
+            <a href="{{ links.sponsors_pdf }}" class="green xlarge button">
                 SPONSOR WEBCAMP
             </a>
         </div>
@@ -16,34 +17,35 @@
         <hr />
 
         <div class="row footer-row">
-            <div class="columns">
-                <div class="row">
-                    <div class="small-12 medium-4 columns">
-                        <div class="logo">
-                            <img src="{% static "images/wczg2017_logo_gray.svg" %}" />
-                        </div>
-                    </div>
-                    <div class="small-12 medium-8 columns">
-                        <div class="row footer-nav">
-                            {% for name, link in navigation %}
-                            <div class="small-12 medium-6">
-                                <a href="{{ link }}">{{ name|upper }}</a>
-                            </div>
-                            {% endfor %}
-                        </div>
-                    </div>
+            <div class="small-12 medium-3 columns">
+                <div class="logo">
+                    <img src="{% static "images/2018/logo_gray.svg" %}" />
                 </div>
             </div>
 
-            <div class="columns">
-                <p>FOLLOW WEBCAMP ZAGREB</p>
+            <div class="small-12 medium-3 columns">
+                <div class="row footer-nav">
+                    {% for batch in navigation|split:2 %}
+                        <div class="small-12 large-6 columns">
+                        {% for name, link in batch %}
+                            <p>
+                                <a href="{{ link }}">{{ name|upper }}</a>
+                            </p>
+                        {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="small-12 medium-3 columns">
+                <p>SOCIAL MEDIA</p>
                 <div class="row">
-                    <div class="columns">
+                    <div class="small-12 large-6 columns">
                         <p><a href="{{ links.facebook }}">facebook</a></p>
                         <p><a href="{{ links.twitter }}">twitter</a></p>
                         <p><a href="{{ links.youtube }}">youtube</a></p>
                     </div>
-                    <div class="columns">
+                    <div class="small-12 large-6 columns">
                         <p><a href="{{ links.linkedin }} ">linkedin</a></p>
                         <p><a href="{{ links.github }} ">github</a></p>
                         <p><a href="{{ links.google_plus }} ">google+</a></p>
@@ -51,11 +53,11 @@
                 </div>
             </div>
 
-            <div class="columns text-center">
+            <div class="small-12 medium-3 columns scroll-to-top">
                 <a data-scroll-to-top href="#">
                     <img src="{% static "images/scroll-up.svg" %}" />
-                    <br/>
-                    {&nbsp;back_to_top&nbsp;}
+                    <br />
+                    <span>back_to_top</span>
                 </a>
             </div>
         </div>
@@ -63,12 +65,12 @@
         <hr />
 
         <p class="text-center">
-            <span class="red">&lt;3</span>
+            <span class="green">&lt;3</span>
             &copy;
             WebCamp Zagreb 2012
             <span class="blue">:</span>
             {% now "Y" %}
-            <span class="red">&lt;3</span>
+            <span class="green">&lt;3</span>
         </p>
     </div>
 </div>

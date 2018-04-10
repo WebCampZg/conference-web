@@ -4,7 +4,7 @@
 
 {% block content %}
 <section class="Account">
-    <h1 class="red-arrow">Login_</h1>
+    <h1 class="red-dash">Login_</h1>
 
     <form action="." method="post">{% csrf_token %}
         <fieldset>
@@ -28,7 +28,7 @@
                 Remember me
             </label>
 
-            <button type="submit" class="purple arrow button">Login</button>
+            <button type="submit" class="button">Login</button>
 
             <p><a href="{% url 'account_reset_password' %}">Forgot password?</a></p>
             <p><a href="{% url 'account_signup' %}">Don't have an account yet? Sign up here!</a></p>

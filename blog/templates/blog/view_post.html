@@ -21,7 +21,7 @@
         </time>
 
         {% if user.is_superuser %}
-            <a class="button yellow-arrow float-right" href="{% url 'admin:blog_post_change' post.pk %}">Edit</a>
+            <a class="button yellow-dash float-right" href="{% url 'admin:blog_post_change' post.pk %}">Edit</a>
         {% endif %}
 
         <h3>
@@ -29,7 +29,7 @@
                 {{ post.title }}
             </a>
             {% if post.is_sponsored %}
-                <span class="purple label">Sponsored</span>
+                <span class="yellow label">Sponsored</span>
             {% endif %}
         </h3>
 

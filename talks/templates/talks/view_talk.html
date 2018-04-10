@@ -24,7 +24,7 @@
 
 {% block content %}
     <article class="talk-detail">
-        <h1 class="red-arrow">{{ talk.title }}</h1>
+        <h1 class="red-dash">{{ talk.title }}</h1>
 
         <p class="excerpt">{{ talk.about }}</p>
 
@@ -50,7 +50,7 @@
             {% endif %}
 
             {% if talk.rate_url %}
-                <a href="{{ talk.rate_url }}" class="yellow arrow button">
+                <a href="{{ talk.rate_url }}" class="button">
                     Rate talk
                 </a>
             {% endif %}

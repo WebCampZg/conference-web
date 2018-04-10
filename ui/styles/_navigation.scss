@@ -18,9 +18,13 @@
         left: 1rem;
         height: 140px;
         width: 140px;
-        background-image: url("../images/2018/header_logo.svg");
+        background-image: url("../images/2018/logo_white.svg");
         background-size: cover;
         z-index: 10;
+
+        &.frontpage {
+            background-image: url("../images/2018/logo_frontpage.svg");
+        }
     }
 
     .nav-left {

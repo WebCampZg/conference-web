@@ -4,7 +4,7 @@
 
 {% block content %}
     {% if cfp %}
-        <h2 class="red-arrow">{{ cfp.title }}</h2>
+        <h2 class="red-dash">{{ cfp.title }}</h2>
 
         {{ cfp.announcement|safe }}
 
@@ -12,10 +12,10 @@
 
         {% if cfp.is_active %}
             <div class="text-center">
-                <a href="{% url 'application_create' %}" class="large purple arrow button">Submit a talk</a>
+                <a href="{% url 'application_create' %}" class="large green button">Submit a talk</a>
             </div>
         {% else %}
-            <h2 class="red-arrow">The CFP is now closed.</h2>
+            <h2 class="red-dash">The CFP is now closed.</h2>
         {% endif %}
     {% else %}
         <h1>Call for papers closed</h1>

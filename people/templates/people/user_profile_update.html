@@ -4,7 +4,7 @@
 
 {% block content %}
     <section>
-        <h1 class="red-arrow">Edit_profile_</h1>
+        <h1 class="red-dash">Edit_profile_</h1>
 
         <form method="post" class="Form Form--beta">{% csrf_token %}
             <fieldset>
@@ -24,8 +24,8 @@
                 {% include "partials/form-field.html" with field=form.github field_type="text" vanity_field="github" %}
                 {% include "partials/form-field.html" with field=form.twitter field_type="text" vanity_field="twitter" %}
 
-                <button type="submit" class="purple arrow button">Save</button>
-                <a href="{% url 'user_profile' %}" class="yellow arrow button">Cancel</a>
+                <button type="submit" class="green button">Save</button>
+                <a href="{% url 'user_profile' %}" class="button">Cancel</a>
             </fieldset>
         </form>
     </section>

@@ -164,6 +164,37 @@ a:not(.button).yellow {
     @include arrow($blue);
 }
 
+// Dashes
+
+@mixin dash($color) {
+    &::before {
+        content: "_";
+        padding-right: .5rem;
+        color: $color;
+        font-weight: normal;
+    }
+}
+
+.dash {
+    @include dash("inherit");
+}
+
+.red-dash {
+    @include dash($red);
+}
+
+.yellow-dash {
+    @include dash($yellow);
+}
+
+.green-dash {
+    @include dash($green);
+}
+
+.blue-dash {
+    @include dash($blue);
+}
+
 // Utils
 
 .no-margin {

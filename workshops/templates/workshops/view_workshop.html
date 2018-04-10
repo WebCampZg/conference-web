@@ -20,7 +20,7 @@
     <meta property="og:image" content="{{ base_url }}{{ workshop.image.url }}" />
     <meta property="og:image:width" content="{{ workshop.image.width }}" />
     <meta property="og:image:height" content="{{ workshop.image.height }}" />
-{% endblock %}
+% endblock %
 
 {% block content %}
     <article class="workshop-detail">
@@ -30,10 +30,10 @@
         </ul>
 
         {% if user.is_superuser %}
-            <a class="button yellow-arrow float-right" href="{% url 'admin:workshops_workshop_change' workshop.pk %}">Edit</a>
+            <a class="button yellow-dash float-right" href="{% url 'admin:workshops_workshop_change' workshop.pk %}">Edit</a>
         {% endif %}
 
-        <h1 class="red-arrow">{{ workshop.title }}</h1>
+        <h1 class="red-dash">{{ workshop.title }}</h1>
 
         <p><em>{{ workshop.about }}</em></p>
 
@@ -49,7 +49,7 @@
 
         {% comment %}
         {% if workshop.tickets_link %}
-            <a href="{{ workshop.tickets_link }}" class="large yellow arrow button">Buy tickets</a>
+            <a href="{{ workshop.tickets_link }}" class="large button">Buy tickets</a>
         {% else %}
             <p><b>Tickets will be available soon.</b><br /> Subscribe to our newsletter
             below to be notified when tickets become available.</p>

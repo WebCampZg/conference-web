@@ -2,7 +2,7 @@
 
 {# Navbar for large screens #}
 <div class="nav-bar show-for-large">
-    <a class="logo" href="{% url 'ui_index' %}"></a>
+    <a class="logo{% if is_frontpage %} frontpage{% endif %}" href="{% url 'ui_index' %}"></a>
 
     <div class="nav-left">
     </div>
@@ -60,16 +60,16 @@
 
     <div class="mobile-nav-buttons">
         {% comment %}
-        <a href="/tickets/" class="green-arrow">
+        <a href="/tickets/" class="green-dash">
             Buy Tickets
         </a>
         {% endcomment %}
         {% if user.is_authenticated %}
-            <a href="{% url 'user_profile' %}" class="green-arrow">
+            <a href="{% url 'user_profile' %}" class="green-dash">
                 Profile
             </a>
         {% else %}
-            <a href="{% url 'account_login' %}?next={{ request.path }}" class="green-arrow">
+            <a href="{% url 'account_login' %}?next={{ request.path }}" class="green-dash">
                 Login
             </a>
         {% endif %}

@@ -12,12 +12,12 @@
         margin: 2rem 0;
     }
 
-
-
     .footer-row {
+        font-weight: bold;
+
         > .columns {
             padding: 0 2rem;
-	    margin-bottom: 1rem;
+            margin-bottom: 1rem;
         }
         > .columns:not(:last-child) {
             border-right: 1px solid $dark-gray;
@@ -29,9 +29,25 @@
     }
 
     .footer-nav {
-        div {
-            padding-left: 1rem;
-            margin-bottom: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        a {
+            display: block;
+        }
+    }
+
+    .scroll-to-top {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        a {
+            display: block;
+            text-align: center;
+            img {
+                margin-bottom: 1rem;
+            }
         }
     }
 }

@@ -3,7 +3,7 @@
 {% block title %}News - {{ event.extended_title }}{% endblock %}
 
 {% block content %}
-    <h1 class="red-arrow">News_archive_</h1>
+    <h1 class="red-dash">News_archive_</h1>
     {% if posts %}
         {% for post in posts %}
             <article>
@@ -14,7 +14,7 @@
                 <h3>
                     <a href="{% url 'blog_view_post' slug=post.slug %}">{{ post.title }}</a>
                     {% if post.is_sponsored %}
-                        <span class="purple label">Sponsored</span>
+                        <span class="yellow label">Sponsored</span>
                     {% endif %}
                 </h3>
 
@@ -31,4 +31,3 @@
         <p><em>No news have been published so far. Check back soon.</em></p>
     {% endif %}
 {% endblock %}
-

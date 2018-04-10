@@ -1,3 +1,4 @@
+import math
 import re
 
 from urllib.parse import urlparse, parse_qs
@@ -89,3 +90,19 @@ def smaller_headings(html, level=5):
 @register.filter
 def get_item(dictionary, key):
     return dictionary.get(key)
+
+
+@register.filter
+def batch(iterable, n):
+    """Splits an iterable into batches containing upto n items."""
+    length = len(iterable)
+    for i in range(0, length, n):
+        yield iterable[i:i + n]
+
+
+@register.filter
+def split(iterable, n):
+    """Splits an iterable into n chunks of equal size."""
+    length = len(iterable)
+    size = math.ceil(length / n)
+    return batch(iterable, size)
