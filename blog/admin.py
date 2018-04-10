@@ -15,7 +15,7 @@ class PostAdmin(admin.ModelAdmin):
     )
     search_fields = ('title', 'lead', 'body')
     list_filter = ('event', 'created_at')
-    fields = ('title', 'slug', 'lead', 'body', 'is_sponsored')
+    fields = ('event', 'title', 'slug', 'lead', 'body', 'is_sponsored')
     ordering = ('-created_at',)
     prepopulated_fields = {'slug': ('title',)}
 
