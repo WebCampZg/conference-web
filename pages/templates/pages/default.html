@@ -18,9 +18,7 @@
         <a class="button float-right" href="{% url 'admin:pages_page_change' page.pk %}">Edit page</a>
     {% endif %}
 
-    <h1 class="red-dash">
-        {{ page.title.split|join:"_" }}_
-    </h1>
+    <h1 class="red-dash">{{ page.title.split|join:"_" }}_</h1>
 
     {{ page.content|markdown:"trusted" }}
 
