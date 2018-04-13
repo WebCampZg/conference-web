@@ -1,15 +1,13 @@
 from django.shortcuts import render
 
 from config.utils import get_active_event
-from talks.models import Talk
-from workshops.models import Workshop
 
 
 def index(request):
     event = get_active_event()
     posts = event.posts.all()[:3]
-    talks = Talk.objects.filter(event=event, keynote=False).order_by('?')[:3]
-    workshops = Workshop.objects.filter(event=event).order_by('?')[:3]
+    talks = event.talks.filter(keynote=False).order_by('?')[:3]
+    workshops = event.workshops.order_by('?')[:3]
 
     return render(request, 'ui/index.html', {
         "is_frontpage": True,
