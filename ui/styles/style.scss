@@ -2,6 +2,9 @@
 @import "settings";
 @import "foundation";
 
+$font-prefix: '/static/fonts/';
+@import 'node_modules/@ibm/plex/scss/mono/index';
+
 @include foundation-everything(true);
 
 @import "buttons";

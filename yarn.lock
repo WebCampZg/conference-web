@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@ibm/plex@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@ibm/plex/-/plex-1.0.1.tgz#5bd7186bdf1c2daa491aa37a6e9a3e4e4a945d94"
+
 foundation-sites@^6.3.1:
   version "6.3.1"
   resolved "https://registry.yarnpkg.com/foundation-sites/-/foundation-sites-6.3.1.tgz#23853372deb9480c13b426499eaf0c8f90cdbe1d"
