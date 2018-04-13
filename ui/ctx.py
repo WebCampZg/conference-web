@@ -15,7 +15,7 @@ def navigation(request):
     return {
         "navigation": [
             ("Info", "/info/"),
-            ("Venue", "/venue/"),
+            ("Venue", reverse("venue")),
             # ("Workshops", "/workshops/"),
             # ("Talks", reverse('talks_list_talks')),
             # ("Schedule", reverse('schedule_list_schedule')),

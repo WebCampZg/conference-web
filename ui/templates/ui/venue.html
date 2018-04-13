@@ -1,0 +1,55 @@
+{% extends 'ui/page.html' %}
+
+{% load markdown_deux_tags %}
+
+{% block title %}Venue - {{ event.extended_title }}{% endblock %}
+
+{% block og %}
+    <meta property="og:title" content="Venue" />
+    <meta property="og:description" content="WebCamp Zagreb conference is held at Hypo Expo XXI conference center, Slavonska avenija 6, Zagreb" />
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.css" integrity="sha256-iYUgmrapfDGvBrePJPrMWQZDcObdAcStKBpjP3Az+3s=" crossorigin="anonymous" />
+    <style type="text/css">
+        #venue-map { height: 500px; margin-bottom: 2rem; }
+    </style>
+{% endblock %}
+
+{% block script %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.js" integrity="sha256-CNm+7c26DTTCGRQkM9vp7aP85kHFMqs9MhPEuytF+fQ=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var map = L.map('venue-map').setView([45.79344, 15.97006], 17);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        L.marker([45.79331, 15.97025]).addTo(map)
+            .bindPopup('Plaza Event Centar')
+            .openPopup();
+    </script>
+{% endblock %}
+
+{% block content %}
+<div class="row column">
+<h1 class="yellow-dash">Venue</h1>
+{% markdown %}
+WebCamp Zagreb conference is held at the [Plaza Event
+Center](https://cityplaza.hr/city-plaza-zagreb-event-centar/) (previously
+*Hypo Expo XXI conference center*),  Slavonska avenija 6, Zagreb
+{% endmarkdown %}
+
+<div id="venue-map"></div>
+
+{% markdown %}
+### Parking
+
+The conference center has an underground garage which can be accessed from
+the south and costs 6kn/h. There are many paid parking spaces located  in
+the area around the conference center (Zagreb parking 3rd zone) for 1,5kn/h
+or 20 kn/day. These spaces are charged on Friday from 7:00 to 20:00 and
+Saturday from 7:00 to 15:00.
+{% endmarkdown %}
+</div>
+{% endblock %}
