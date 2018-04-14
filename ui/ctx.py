@@ -29,29 +29,10 @@ def navigation(request):
 
 def sponsors(request):
     active = Sponsor.objects.active()
-
-    diamond = active.filter(type=SPONSOR_TYPES.DIAMOND).order_by('id')
-    lanyard = active.filter(type=SPONSOR_TYPES.LANYARD).order_by('id')
-    track = active.filter(type=SPONSOR_TYPES.TRACK).order_by('id')
-    foodanddrinks = active.filter(type=SPONSOR_TYPES.FOOD_AND_DRINKS).order_by('id')
-    standard = active.filter(type=SPONSOR_TYPES.STANDARD).order_by('id')
-    supporter = active.filter(type=SPONSOR_TYPES.SUPPORTER).order_by('id')
-    mainmedia = active.filter(type=SPONSOR_TYPES.MAIN_MEDIA).order_by('order')
-    media = active.filter(type=SPONSOR_TYPES.MEDIA).order_by('order')
-    video = active.filter(type=SPONSOR_TYPES.VIDEO).order_by('order')
+    sponsors = {t: active.filter(type=t).order_by('order') for t, _ in SPONSOR_TYPES}
 
     return {
-        "sponsors": {
-            'diamond': diamond,
-            'lanyard': lanyard,
-            'track': track,
-            'foodanddrinks': foodanddrinks,
-            'standard': standard,
-            'supporter': supporter,
-            'mainmedia': mainmedia,
-            'media': media,
-            'video': video,
-        }
+        "sponsors": sponsors
     }
 
 

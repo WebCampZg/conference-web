@@ -1,86 +1,42 @@
 {% if sponsors.diamond %}
 <div class="row align-center align-middle small-up-1 sponsor-list diamond">
-    {% for sponsor in sponsors.diamond %}
-        <div class="column">
-            <a href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
-                <img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="" />
-            </a>
-        </div>
-    {% endfor %}
+    {% include "partials/sponsor-list-group.html" with sponsors=sponsors.diamond %}
 </div>
 {% endif %}
 
 {% if sponsors.lanyard %}
 <div class="row align-center align-middle small-up-1 sponsor-list lanyard">
-    {% for sponsor in sponsors.lanyard %}
-        <div class="column">
-            <a href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
-                <img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="" />
-            </a>
-        </div>
-    {% endfor %}
+    {% include "partials/sponsor-list-group.html" with sponsors=sponsors.lanyard %}
 </div>
 {% endif %}
 
 {% if sponsors.track %}
 <div class="row align-center align-middle small-up-1 medium-up-2 sponsor-list track">
-    {% for sponsor in sponsors.track %}
-        <div class="column">
-            <a href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
-                <img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="" />
-            </a>
-        </div>
-    {% endfor %}
+    {% include "partials/sponsor-list-group.html" with sponsors=sponsors.track %}
 </div>
 {% endif %}
 
 {% if sponsors.foodanddrinks %}
 <div class="row align-center align-middle small-up-1 medium-up-2 sponsor-list foodanddrinks">
-    {% for sponsor in sponsors.foodanddrinks %}
-        <div class="column">
-            <a href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
-                <img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="" />
-            </a>
-        </div>
-    {% endfor %}
+    {% include "partials/sponsor-list-group.html" with sponsors=sponsors.foodanddrinks %}
 </div>
 {% endif %}
 
 {% if sponsors.standard %}
 <div class="row align-center align-middle small-up-1 medium-up-4 sponsor-list standard">
-    {% for sponsor in sponsors.standard %}
-        <div class="column">
-            <a href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
-                <img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="" />
-            </a>
-        </div>
-    {% endfor %}
+    {% include "partials/sponsor-list-group.html" with sponsors=sponsors.standard %}
 </div>
 {% endif %}
 
 {% if sponsors.supporter %}
 <div class="row align-center align-middle small-up-2 medium-up-6 sponsor-list supporter">
-    {% for sponsor in sponsors.supporter %}
-        <div class="column">
-            <a href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
-                <img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="" />
-            </a>
-        </div>
-    {% endfor %}
+    {% include "partials/sponsor-list-group.html" with sponsors=sponsors.supporter %}
 </div>
 {% endif %}
 
 {% if sponsors.video %}
-<div class="row align-center align-middle small-up-2 medium-up-6 sponsor-list video">
-    Video powered by:
-</div>
-<div class="row align-center align-middle small-up-1 medium-up-2 sponsor-list video">
-    {% for sponsor in sponsors.video %}
-        <div class="column">
-            <a href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
-                <img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }}" class="" />
-            </a>
-        </div>
-    {% endfor %}
+<div class="text-center">Video powered by:</div>
+<div class="row align-center align-middle small-up-1 sponsor-list video">
+    {% include "partials/sponsor-list-group.html" with sponsors=sponsors.video %}
 </div>
 {% endif %}
