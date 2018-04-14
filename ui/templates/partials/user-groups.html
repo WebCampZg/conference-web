@@ -2,9 +2,9 @@
     <div class="row column">
         <h1 class="green-dash">Organized_by_</h1>
 
-        <div class="row align-center align-justify small-up-2 medium-up-4 text-center">
+        <div class="usergroups-list">
         {% for group in usergroups %}
-            <div class="usergroup-list-item column">
+            <div class="usergroup {{ group.slug }}">
                 <a href="{{ group.webpage_url }}" title="{{ group.name }}">
                     <img src="{{ MEDIA_URL }}{{ group.image }}" alt="{{ group.name }} logo" />
                 </a>
