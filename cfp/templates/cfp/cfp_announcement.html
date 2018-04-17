@@ -1,24 +1,29 @@
 {% extends 'ui/page.html' %}
 
+{% load markdown_deux_tags %}
+
 {% block title %}Call for Proposals - {{ event.extended_title }}{% endblock %}
 
 {% block content %}
     {% if cfp %}
         <h2 class="red-dash">{{ cfp.title }}</h2>
 
-        {{ cfp.announcement|safe }}
+        {{ cfp.announcement|markdown:"trusted" }}
 
         <hr />
 
         {% if cfp.is_active %}
+            <p>This call for papers ends on <b>{{ cfp.end_date|date:"Y-m-d" }}</b>.</p>
             <div class="text-center">
                 <a href="{% url 'application_create' %}" class="large green button">Submit a talk</a>
             </div>
+        {% elif cfp.is_pending %}
+            <h3 class="yellow-dash">The call for papers opens on {{ cfp.begin_date|date:"Y-m-d" }}</h2>
         {% else %}
-            <h2 class="red-dash">The CFP is now closed.</h2>
+            <h3 class="yellow-dash">The CFP is now closed.</h3>
         {% endif %}
     {% else %}
-        <h1>Call for papers closed</h1>
+        <h1>Call for papers</h1>
 
         <p>There are no active calls for paper.</p>
     {% endif %}

@@ -1,11 +1,13 @@
 {% extends 'ui/page.html' %}
 
+{% load markdown_deux_tags %}
+
 {% block title %}Call For Proposals - {{ event.extended_title }}{% endblock %}
 
 {% block content %}
 <h2>Submit your talk for {{ event.title }}</h2>
 
-{{ cfp.description|safe }}
+{{ cfp.description|markdown:"trusted" }}
 
 <p>This call for papers ends on <b>{{ cfp.end_date|date:"Y-m-d" }}</b>.</p>
 

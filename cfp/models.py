@@ -10,7 +10,6 @@ from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
 
 from cfp.choices import TALK_DURATIONS
-from tinymce.models import HTMLField
 from utils.behaviors import Timestampable
 
 
@@ -29,8 +28,8 @@ class CallForPaperManager(models.Manager):
 class CallForPaper(models.Model):
     event = models.ForeignKey('events.Event', on_delete=models.CASCADE)
     title = models.CharField(max_length=1024)
-    description = HTMLField()
-    announcement = HTMLField(blank=True, null=True)
+    description = models.TextField()
+    announcement = models.TextField()
     begin_date = models.DateField()
     end_date = models.DateField(blank=True, null=True)
 
@@ -40,6 +39,10 @@ class CallForPaper(models.Model):
     def is_active(self):
         today = timezone.now().date()
         return today >= self.begin_date and (not self.end_date or today <= self.end_date)
+
+    def is_pending(self):
+        today = timezone.now().date()
+        return today < self.begin_date
 
     @property
     def applications(self):
