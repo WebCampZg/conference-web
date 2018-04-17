@@ -11,7 +11,7 @@ register = template.Library()
 
 @register.filter
 def labelize(value):
-    return mark_safe(re.sub(r"\[(\w+)\]", r'<span class="purple label">\g<1></span>', str(value)))
+    return mark_safe(re.sub(r"\[(\w+)\]", r'<span class="yellow label">\g<1></span>', str(value)))
 
 
 @register.filter
