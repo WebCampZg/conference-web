@@ -2,6 +2,7 @@
 
 {% block head %}
 <style type="text/css">
+    #tickets-table { font-size: smaller; }
     .row.column { max-width: 80rem }
     h2 { margin-top: 2rem }
 </style>
@@ -80,9 +81,11 @@
         <thead>
             <tr>
                 <th>Purchased</th>
+                <th>Used</th>
                 <th>Name</th>
                 <th>Company</th>
                 <th>Category</th>
+                <th>Promo code</th>
                 <th>Code</th>
             </tr>
         </thead>
@@ -90,9 +93,11 @@
             {% for ticket in tickets %}
             <tr>
                 <td>{{ ticket.purchased_at|date:'Y-m-d H:i:s' }}</td>
+                <td>{{ ticket.used_at|date:'Y-m-d H:i:s' }}</td>
                 <td>{{ ticket.full_name }}</td>
                 <td>{{ ticket.company }}</td>
                 <td>{{ ticket.short_category }}</td>
+                <td>{{ ticket.promo_code }}</td>
                 <td>{{ ticket.code }}</td>
             </tr>
             {% endfor %}

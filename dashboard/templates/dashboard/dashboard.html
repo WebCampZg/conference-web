@@ -6,8 +6,7 @@
     <table>
         <thead>
             <tr>
-                <th>Title</th>
-                <th>Dates</th>
+                <th>Event</th>
                 <th>Tickets</th>
                 <th>Applications</th>
             </tr>
@@ -18,13 +17,11 @@
                 <td>
                     <a href="{% url 'dashboard:event-detail' pk=event.id %}">
                         {{ event.title }}
-                    </a>
-                </td>
-                <td>
+                    </a><br />
                     {% if event.begin_date == event.end_date %}
-                        {{ event.begin_date }}
+                        {{ event.begin_date|date:"Y-m-d" }}
                     {% else %}
-                        {{ event.begin_date }} - {{ event.end_date }}
+                        {{ event.begin_date|date:"Y-m-d" }} - {{ event.end_date|date:"Y-m-d" }}
                     {% endif %}
                 </td>
                 <td>

@@ -205,8 +205,8 @@ class EventTicketsView(ViewAuthMixin, ListView):
 
         # Create a list of all dates from the first ticket bought until today
         start_date = min(tickets_by_date.keys())
-        today = datetime.date.today()
-        dates = self.date_range(start_date, today)
+        end_date = min(self.event.end_date, datetime.date.today())
+        dates = self.date_range(start_date, end_date)
 
         return [(date, tickets_by_date.get(date, 0)) for date in dates]
 
