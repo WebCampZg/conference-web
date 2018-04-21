@@ -1,3 +1,4 @@
+from django.contrib.postgres.fields.jsonb import JSONField
 from django.db import models
 from django.db.models.deletion import PROTECT
 from django.template.defaultfilters import slugify
@@ -49,3 +50,11 @@ class Talk(Timestampable):
         self.skill_level = self.application.skill_level
         self.duration = self.application.duration
         super(Talk, self).save(*args, **kwargs)
+
+
+class SurveyScore(models.Model):
+    """How users voted on this talk on the exit poll."""
+    talk = models.OneToOneField(Talk, on_delete=models.CASCADE)
+    count = models.IntegerField()
+    average = models.FloatField()
+    distribution = JSONField()
