@@ -2,7 +2,6 @@ import re
 
 from django.db import models
 from django.db.models import Count
-from django.db.models.deletion import CASCADE, PROTECT
 from django.utils import timezone as tz
 
 from cfp.models import PaperApplication
@@ -64,9 +63,9 @@ class Ticket(models.Model):
     VIP = "VIP tickets"
 
     """Ticket data imported from Entrio"""
-    event = models.ForeignKey(Event, on_delete=CASCADE, related_name='tickets')
-    user = models.ForeignKey(User, on_delete=CASCADE, blank=True, null=True, related_name='tickets')
-    tshirt_size = models.ForeignKey(TShirtSize, on_delete=PROTECT, blank=True, null=True)
+    event = models.ForeignKey(Event, on_delete=models.CASCADE, related_name='tickets')
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True, related_name='tickets')
+    tshirt_size = models.ForeignKey(TShirtSize, on_delete=models.PROTECT, blank=True, null=True)
     category = models.CharField(max_length=1024)
     code = models.CharField(max_length=1024)
     first_name = models.CharField(max_length=1024)
