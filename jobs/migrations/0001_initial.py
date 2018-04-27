@@ -2,7 +2,6 @@
 
 
 from django.db import models, migrations
-import tinymce.models
 
 
 class Migration(migrations.Migration):
@@ -20,7 +19,7 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('slug', models.SlugField()),
                 ('title', models.CharField(max_length=255)),
-                ('text', tinymce.models.HTMLField()),
+                ('text', models.TextField()),
                 ('url', models.URLField(max_length=255)),
                 ('sponsor', models.ForeignKey(to='sponsors.Sponsor', on_delete=models.CASCADE)),
             ],

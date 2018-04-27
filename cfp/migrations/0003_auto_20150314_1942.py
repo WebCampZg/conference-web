@@ -2,7 +2,6 @@
 
 
 from django.db import models, migrations
-import tinymce.models
 
 
 class Migration(migrations.Migration):
@@ -15,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='callforpaper',
             name='description',
-            field=tinymce.models.HTMLField(),
+            field=models.TextField(),
             preserve_default=True,
         ),
     ]

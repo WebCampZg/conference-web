@@ -2,7 +2,6 @@
 
 
 from django.db import models, migrations
-import tinymce.models
 from django.conf import settings
 
 
@@ -21,8 +20,8 @@ class Migration(migrations.Migration):
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('slug', models.SlugField()),
                 ('title', models.CharField(max_length=255)),
-                ('body', tinymce.models.HTMLField()),
-                ('lead', tinymce.models.HTMLField()),
+                ('body', models.TextField()),
+                ('lead', models.TextField()),
                 ('author', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={

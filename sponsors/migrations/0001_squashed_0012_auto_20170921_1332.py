@@ -3,7 +3,6 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-import tinymce.models
 
 
 class Migration(migrations.Migration):
@@ -21,7 +20,7 @@ class Migration(migrations.Migration):
                 ('slug', models.SlugField(unique=True)),
                 ('name', models.CharField(max_length=255, unique=True)),
                 ('type', models.CharField(choices=[('diamond', 'Diamond Sponsor'), ('lanyard', 'Lanyard Sponsor'), ('track', 'Track Sponsor'), ('foodanddrinks', 'Food & Drinks Sponsor'), ('standard', 'Standard Sponsor'), ('supporter', 'Supporter Sponsor'), ('mainmedia', 'Main Media Sponsor'), ('media', 'Media sponsors'), ('video', 'Video sponsors')], default='standard', max_length=255)),
-                ('about', tinymce.models.HTMLField()),
+                ('about', models.TextField()),
                 ('url', models.URLField(max_length=255)),
                 ('image', models.FileField(blank=True, max_length=255, null=True, upload_to='uploads/sponsors/')),
                 ('is_active', models.BooleanField(default=False)),

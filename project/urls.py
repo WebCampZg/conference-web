@@ -16,7 +16,6 @@ urlpatterns = [
     url(r'^venue/$', ui.views.venue, name="venue"),
     url(r'^signup/success/$', ui.views.signup_success),
 
-    url(r'^tinymce/', include('tinymce.urls')),
     url(r'^admin/', admin.site.urls),
 
     # Account views
