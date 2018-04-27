@@ -173,10 +173,6 @@ class PaperApplication(Timestampable):
                 self.cfp_id)
 
     @property
-    def votes_count(self):
-        return self.votes.all().count()
-
-    @property
     def next(self):
         return PaperApplication.objects.filter(cfp=self.cfp, id__gt=self.id).order_by('id').first()
 

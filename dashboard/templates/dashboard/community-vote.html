@@ -13,6 +13,8 @@
 {% block content %}
 <ul class="breadcrumbs">
     <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
+    <li>Events</li>
+    <li><a href="{% url 'dashboard:event-detail' event.pk %}">{{ event.title }}</a></li>
     <li>Community vote</li>
 </ul>
 
@@ -26,7 +28,6 @@
 <table id="votes-table" class="table hover">
     <thead>
         <tr>
-            <th>#</th>
             <th>Title</th>
             <th>Speaker</th>
             <th>Level</th>
@@ -34,9 +35,8 @@
         </tr>
     </thead>
     <tbody>
-        {% for application in applications %}
+        {% for application, votes in applications %}
             <tr>
-                <td>{{ application.id }}</td>
                 <td>
                     <a href="{% url 'dashboard:application_detail' pk=application.id %}">{{ application.title }}</a>
                 </td>
@@ -44,7 +44,7 @@
                 <td>{{ application.skill_level }}</td>
                 <td>
                     <a data-open="application-{{ application.id }}">
-                        {{ application.votes_count }}
+                        {{ votes|length }}
                     </a>
                 </td>
             </tr>
@@ -52,11 +52,11 @@
     </tbody>
 </table>
 
-{% for application in applications %}
+{% for application, votes in applications %}
 <div class="reveal" id="application-{{ application.id }}" data-reveal>
     <ul>
-        {% for vote in application.votes.all %}
-            <li>{{ vote.user.full_name }}</li>
+        {% for vote in votes %}
+            <li>{{ vote.ticket.full_name }}</li>
         {% endfor %}
     </ul>
 </div>

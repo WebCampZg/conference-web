@@ -9,13 +9,17 @@
 
     <h3>{{ event.title }}</h3>
 
-    <a class="button" href="{% url 'dashboard:event-tickets' pk=event.pk %}" >
+    <a class="button" href="{% url 'dashboard:event-tickets' event.pk %}" >
         Tickets ({{ event.tickets.count}})
     </a>
 
     {% for cfp in event.callforpaper_set.all %}
-        <a class="yellow button" href="{% url 'dashboard:cfp_detail' pk=cfp.pk %}" >
-            {{cfp}} ({{ cfp.paperapplication_set.count }})
+        <a class="yellow button" href="{% url 'dashboard:cfp_detail' cfp.pk %}" >
+            {{ cfp }} ({{ cfp.paperapplication_set.count }})
         </a>
     {% endfor %}
+
+    <a class="button" href="{% url 'dashboard:community-vote' event.pk %}" >
+        Community Vote
+    </a>
 {% endblock %}

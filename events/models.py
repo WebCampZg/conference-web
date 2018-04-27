@@ -5,6 +5,7 @@ from django.db.models import Count
 from django.db.models.deletion import CASCADE, PROTECT
 from django.utils import timezone as tz
 
+from cfp.models import PaperApplication
 from people.models import User, TShirtSize
 from talks.models import Talk
 from utils.behaviors import Permalinkable
@@ -18,6 +19,10 @@ class Event(Permalinkable):
     end_date = models.DateField()
     dates_text = models.CharField(max_length=1024)
     joindin_url = models.URLField(blank=True, help_text="URL to the event on JoindIn API.")
+
+    @property
+    def applications(self):
+        return PaperApplication.objects.filter(cfp__event=self)
 
     def get_active_cfp(self):
         """Returns the currently active CFP or None"""

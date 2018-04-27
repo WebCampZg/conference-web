@@ -10,9 +10,12 @@ urlpatterns = [
     url(r'^cfp/(?P<pk>\d+)/scoring/$', views.ScoringView.as_view(), name='cfp_scoring'),
     url(r'^applications/(?P<pk>\d+)/$', views.ApplicationDetailView.as_view(), name='application_detail'),
     url(r'^applicants/(?P<pk>\d+)/$', views.ApplicantDetailView.as_view(), name='applicant_detail'),
-    url(r'^community-vote/$', views.CommunityVoteView.as_view(), name='community-vote'),
-    url(r'^event/(?P<pk>\d+)/$', views.EventDetailView.as_view(), name='event-detail'),
-    url(r'^event/(?P<pk>\d+)/tickets/$', views.EventTicketsView.as_view(), name='event-tickets'),
+
+    url(r'^event/(?P<event_id>\d+)/', include([
+        url(r'^$', views.EventDetailView.as_view(), name='event-detail'),
+        url(r'^tickets/$', views.EventTicketsView.as_view(), name='event-tickets'),
+        url(r'^community-vote/$', views.CommunityVoteView.as_view(), name='community-vote'),
+    ])),
 
     # Ajax views
     url(r'^applications/rate/$', views.ApplicationRateView.as_view(), name='application_rate'),

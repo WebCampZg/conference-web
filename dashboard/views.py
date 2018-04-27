@@ -1,7 +1,7 @@
 import datetime
 import statistics
 
-from collections import Counter
+from collections import Counter, defaultdict
 from itertools import groupby
 
 from django.contrib.auth.mixins import UserPassesTestMixin, AccessMixin
@@ -19,7 +19,7 @@ from dashboard.forms import CommentForm
 from dashboard.models import Comment, Vote as CommitteeVote
 from events.models import Event, Ticket
 from people.models import TShirtSize, User
-from voting.models import Vote as CommunityVote, VoteToken
+from voting.models import CommunityVote
 
 
 class ViewAuthMixin(AccessMixin):
@@ -59,6 +59,7 @@ class DashboardView(ViewAuthMixin, TemplateView):
 class EventDetailView(ViewAuthMixin, DetailView):
     model = Event
     template_name = 'dashboard/event.html'
+    pk_url_kwarg = 'event_id'
 
 
 class CallForPapersView(ViewAuthMixin, DetailView):
@@ -148,18 +149,35 @@ class ApplicationUnrateView(VoteAuthMixin, View):
 class CommunityVoteView(ViewAuthMixin, TemplateView):
     template_name = 'dashboard/community-vote.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        self.event = get_object_or_404(Event, pk=self.kwargs.get('event_id'))
+        return super().dispatch(request, *args, **kwargs)
+
     def get_context_data(self, **kwargs):
         ctx = super(CommunityVoteView, self).get_context_data(**kwargs)
 
-        ctx['vote_count'] = CommunityVote.objects.count()
-        ctx['participants_voted'] = CommunityVote.objects.values('user').distinct().count()
-        ctx['participants_total'] = VoteToken.objects.count()
+        print(self.event)
+        votes = (CommunityVote.objects
+            .filter(application__cfp__event=self.event)
+            .prefetch_related('ticket'))
 
-        applications = (PaperApplication.objects
-            .filter(exclude=False)
-            .prefetch_related('votes', 'applicant', 'applicant__user', 'skill_level'))
+        votes_by_application = defaultdict(list)
+        for vote in votes:
+            votes_by_application[vote.application_id].append(vote)
 
-        ctx['applications'] = sorted(applications, key=lambda x: x.votes_count, reverse=True)
+        applications = (self.event.applications
+            .filter(pk__in=votes_by_application.keys())
+            .prefetch_related('applicant__user', 'skill_level'))
+
+        # Sort by vote count + add votes
+        applications = sorted(applications, key=lambda a: len(votes_by_application.get(a.pk)), reverse=True)
+        applications = [(a, votes_by_application.get(a.pk)) for a in applications]
+
+        ctx['event'] = self.event
+        ctx['applications'] = applications
+        ctx['vote_count'] = votes.count()
+        ctx['participants_voted'] = votes.values('ticket').distinct().count()
+        ctx['participants_total'] = self.event.tickets.count()
 
         return ctx
 
@@ -169,11 +187,12 @@ class EventTicketsView(ViewAuthMixin, ListView):
     template_name = 'dashboard/event-tickets.html'
     context_object_name = 'tickets'
 
+    def dispatch(self, request, *args, **kwargs):
+        self.event = get_object_or_404(Event, pk=self.kwargs.get('event_id'))
+        return super().dispatch(request, *args, **kwargs)
+
     def get_queryset(self):
-        qs = super(EventTicketsView, self).get_queryset()
-        event_id = self.kwargs.get('pk')
-        self.event = get_object_or_404(Event, pk=event_id)
-        return qs.filter(event=self.event)
+        return super().get_queryset().filter(event=self.event)
 
     def get_context_data(self, **kwargs):
         ctx = super(EventTicketsView, self).get_context_data(**kwargs)

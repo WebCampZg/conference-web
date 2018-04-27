@@ -12,7 +12,7 @@
 <ul class="breadcrumbs">
     <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
     <li>Events</li>
-    <li><a href="{% url 'dashboard:event-detail' pk=event.pk %}">{{ event.title }}</a></li>
+    <li><a href="{% url 'dashboard:event-detail' event.pk %}">{{ event.title }}</a></li>
     <li>Tickets</li>
 </ul>
 
