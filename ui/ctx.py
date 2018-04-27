@@ -148,6 +148,11 @@ def team(request):
             "image": "images/team/neven.jpg",
             "twitter": "nmundar",
         },
+        {
+            "name": "Andrea Knez Karačić",
+            "image": "images/team/andrea.jpg",
+            "twitter": "CodeWithCream",
+        },
     ]
 
     shuffle(team)
