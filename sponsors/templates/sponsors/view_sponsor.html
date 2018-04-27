@@ -1,5 +1,6 @@
 {% extends 'ui/page.html' %}
 
+{% load markdown_deux_tags %}
 {% load static %}
 
 {% block title %}{{ sponsor.name }} - Sponsors - {{ event.extended_title }}{% endblock %}
@@ -52,7 +53,7 @@
             <strong class="Sponsor-name">{{ sponsor.name }}</strong>
             <div class="Sponsor-body">
                 <div class="Passage">
-                    {{ sponsor.about|safe }}
+                    {{ sponsor.about|markdown:"trusted" }}
                 </div>
             </div>
             <div class="Sponsor-meta">
