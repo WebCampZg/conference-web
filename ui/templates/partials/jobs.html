@@ -1,3 +1,5 @@
+{% load markdown_deux_tags %}
+
 {% for job in jobs %}
 <div class="job callout">
     <div class="job-toggler" data-toggle="job-{{ job.id }}">
@@ -18,7 +20,7 @@
     <div id="job-{{ job.id }}" class="hide" data-toggler=".hide">
         <p>Location: {{ job.location }}</p>
 
-        {{ job.text|safe }}
+        {{ job.text|markdown:"trusted" }}
 
         <div class="text-center">
             <a href="{{ job.url }}" class="green button">
