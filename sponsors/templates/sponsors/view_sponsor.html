@@ -14,6 +14,12 @@
 
 {% block content %}
 <div class="sponsor">
+    {% if user.is_superuser %}
+        <a class="green button float-right" href="{% url 'admin:sponsors_sponsor_change' sponsor.pk %}">
+            Edit sponsor
+        </a>
+    {% endif %}
+
     <p>
         <span class="yellow label">
             {% if sponsor.type == 'diamond' %}
@@ -33,6 +39,8 @@
             {% endif %}
         </span>
     </p>
+
+    <div style="clear:both"></div>
 
     <div class="row">
         <div class="small-12 medium-4 columns">
