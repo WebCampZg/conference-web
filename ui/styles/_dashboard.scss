@@ -1,6 +1,14 @@
 .dashboard {
     // Increase default page width
-    &.row.column {
+    &.row.column,
+    hr {
         max-width: 80rem;
+    }
+
+    .histogram {
+        width: 8rem;
+        height: 4rem;
+        padding: .5rem .3rem 0rem .3rem;
+        border: 1px solid $black;
     }
 }

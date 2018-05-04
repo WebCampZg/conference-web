@@ -93,11 +93,16 @@ class ApplicationDetailView(ViewAuthMixin, DetailView):
         vote = CommitteeVote.objects.filter(user=user, application=self.get_object()).first()
         comments = self.object.comments.order_by("created_at").prefetch_related('author')
 
+        other_applications = (self.object.applicant.applications
+            .exclude(pk=self.object.pk)
+            .order_by('cfp__event'))
+
         ctx = super(ApplicationDetailView, self).get_context_data(**kwargs)
         ctx.update({
             "comments": comments,
             "allow_voting": user.is_talk_committee_member,
             "score": vote.score if vote else None,
+            "other_applications": other_applications,
         })
         return ctx
 

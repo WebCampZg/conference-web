@@ -244,7 +244,6 @@ TEMPLATES = [
                 'ui.ctx.usergroups',
                 'ui.ctx.webcamp',
             ],
-            'string_if_invalid': '<< MISSING VARIABLE "%s" >>' if DEBUG else '',
         },
     },
 ]

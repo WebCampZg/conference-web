@@ -1,5 +1,6 @@
 {% extends 'dashboard/base.html' %}
 
+{% load dashboard %}
 {% load markdown_deux_tags %}
 {% load static %}
 {% load webcamp %}
@@ -114,12 +115,6 @@ $(document).keydown(function(e) {
 
             <h4>Experience</h4>
             <p>{{ applicant.speaker_experience|markdown|smaller_headings }}</p>
-
-            <p>
-                <a class="small button" href="{% url 'dashboard:applicant_detail' pk=applicant.pk %}">
-                    All applications ({{ applicant.applications.count }})
-                </a>
-             </p>
         </div>
         {% endwith %}
     </div>
@@ -128,6 +123,55 @@ $(document).keydown(function(e) {
 
     {% include 'dashboard/partials/comments.html' %}
 
+    {% if other_applications %}
+    <hr />
+
+    <h3>Other applications</h3>
+
+    <table class="hover">
+        <thead>
+            <tr>
+                <td>Event</td>
+                <td>Title</td>
+                <td>Chosen?</td>
+                <td>Attendee Ratings</td>
+            </tr>
+        </thead>
+        {% for application in other_applications %}
+        <tr>
+            <td>{{ application.cfp.event }}</td>
+            <td>
+                <a href="{% url 'dashboard:application_detail' application.pk %}">
+                    {{ application.title }}
+                </a>
+            </td>
+            <td>
+                {% if application.has_talk %}
+                    <i class="fa fa-check purple"></i>
+                {% else %}
+                    <i class="fa fa-times"></i>
+                {% endif %}
+            </td>
+            <td>
+                {% if application.has_talk %}
+                    {% if application.talk.surveyscore %}
+                        <div class="histogram">
+                            {{ application.talk.surveyscore.distribution|histogram_svg }}
+                        </div>
+                        <small>
+                            {{ application.talk.surveyscore.average|floatformat:1 }} avg,
+                            {{ application.talk.surveyscore.count }} votes
+                        </small>
+                    {% else %}
+                        Ratings not found
+                    {% endif %}
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
     <hr />
 
     <div class="row">
@@ -135,7 +179,7 @@ $(document).keydown(function(e) {
             {% if application.prev %}
                 <a href="{% url 'dashboard:application_detail' pk=application.prev.pk %}" id="prev_application">
                     &laquo;&nbsp;{{ application.prev.title }}</a>
-                {% endif %}
+            {% endif %}
         </div>
         <div class="columns text-center">
             {{ application.ordinal }} / {{ application.cfp.application_count }}
