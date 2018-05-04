@@ -44,7 +44,7 @@ class VoteAuthMixin(UserPassesTestMixin):
 
     def test_func(self):
         user = self.request.user
-        return user.is_authenticated() and user.is_talk_committee_member()
+        return user.is_authenticated and user.is_talk_committee_member()
 
 
 class DashboardView(ViewAuthMixin, TemplateView):
