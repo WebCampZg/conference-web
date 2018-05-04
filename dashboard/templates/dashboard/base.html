@@ -1,4 +1,4 @@
-{% extends "ui/page.html" %}
+{% extends "ui/base.html" %}
 
 {% block head %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.12/css/dataTables.foundation.min.css" integrity="sha256-jCcDwgt67K1BZG9pM18moqx+ftg/AV70PtqQudYSA7k="crossorigin="anonymous">
@@ -30,10 +30,14 @@
     {% block morescript %}{% endblock %}
 {% endblock %}
 
-{% block header %}
-    {% include "dashboard/partials/header.html" %}
+{% block basecontent %}
+    <div class="dashboard row column">
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
 {% endblock %}
 
-{% block below_content %}
-
+{% block header %}
+    {% include "dashboard/partials/header.html" %}
 {% endblock %}

@@ -1,0 +1,6 @@
+.dashboard {
+    // Increase default page width
+    &.row.column {
+        max-width: 80rem;
+    }
+}

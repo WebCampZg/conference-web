@@ -8,6 +8,7 @@ $font-prefix: '/static/fonts/';
 @include foundation-everything(true);
 
 @import "buttons";
+@import "dashboard";
 @import "footer";
 @import "forms";
 @import "hero";
