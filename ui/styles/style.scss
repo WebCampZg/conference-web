@@ -54,6 +54,11 @@ h4 {
     margin-bottom: 1rem;
 }
 
+select {
+    -moz-appearance: none !important;
+    -webkit-appearance: none !important;
+}
+
 .lead {
     font-style: italic;
 }
