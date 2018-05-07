@@ -143,22 +143,21 @@ class PaperApplication(Timestampable):
         help_text=_('Which skill level is this talk most appropriate for? [Public]'))
 
     duration = models.CharField(
-            choices=TALK_DURATIONS,
-            max_length=255,
-            default=TALK_DURATIONS.MIN_25,
-            verbose_name=_('Talk Duration Slot'),
-            help_text=_('What talk duration slot would you like?'))
+        _('Talk Duration Slot'),
+        choices=TALK_DURATIONS, max_length=255, default=TALK_DURATIONS.MIN_25,
+        help_text=_('What talk duration slot would you like?'))
 
     accomodation_required = models.BooleanField(
-            'I require accommodation',
-            help_text='For people outside of the Zagreb area, we provide 3 nights in a hotel.',
-            default=False)
+        _('I require accommodation'), default=False,
+        help_text=_('For people outside of the Zagreb area, we provide 3 nights in an apartment.'))
+
+    travel_expenses_required = models.BooleanField(
+        _('I require travel expenses'), default=False,
+        help_text=_('For people outside of the Zagreb area, we provide up to €200 in travel expenses.'))
 
     extra_info = models.TextField(
-            'Extra info',
-            help_text='Anything else that you would like to let us know?',
-            null=True,
-            blank=True)
+        _('Extra info'), blank=True,
+        help_text=_('Anything else that you would like to let us know?'))
 
     exclude = models.BooleanField(default=False)
 
@@ -167,10 +166,7 @@ class PaperApplication(Timestampable):
 
     def __str__(self):
         return '{} - {} - {} min (CFP #{})'.format(
-                self.title,
-                self.applicant,
-                self.duration,
-                self.cfp_id)
+            self.title, self.applicant, self.duration, self.cfp_id)
 
     @property
     def next(self):

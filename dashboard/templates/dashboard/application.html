@@ -53,7 +53,10 @@ $(document).keydown(function(e) {
                 <span class="label purple">{{ application.duration }} min</span>
                 <span class="label yellow">{{ application.skill_level }}</span>
                 {% if application.accomodation_required %}
-                    <span class="label green">Requires accommodation</span>
+                    <span class="label green">Accommodation</span>
+                {% endif %}
+                {% if application.travel_expenses_required %}
+                    <span class="label green">Travel expenses</span>
                 {% endif %}
             </p>
             <p>{{ application.about|markdown }}</p>

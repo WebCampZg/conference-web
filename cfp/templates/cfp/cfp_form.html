@@ -24,8 +24,9 @@
         {% include "partials/form-field.html" with field=form.abstract  %}
         {% include "partials/form-field.html" with field=form.skill_level %}
         {% include "partials/form-field.html" with field=form.duration %}
-        {% include "partials/form-field.html" with field=form.accomodation_required %}
         {% include "partials/form-field.html" with field=form.extra_info %}
+        {% include "partials/form-field-boolean.html" with field=form.accomodation_required vanity_field="hotel"%}
+        {% include "partials/form-field-boolean.html" with field=form.travel_expenses_required vanity_field="plane" %}
     </fieldset>
 
     <h1 class="red-dash">Speaker</h1>

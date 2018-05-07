@@ -1,0 +1,35 @@
+{% load webcamp %}
+
+{% if field.is_hidden %}
+    {{ field }}
+{% else %}
+<div>
+    <div class="form-field">
+        <div class="{% if field.errors %} is-invalid {% endif %}">
+            <label for="{{ field.id_for_label }}">
+                {{ field }}
+
+                {% if vanity_field %}
+                    <i class="fa fa-{{ vanity_field }}"></i>
+                {% endif %}
+
+                {{ field.label }}
+
+                {% if field.field.required %}
+                    <abbr title="Required field">*</abbr>
+                {% endif %}
+            </label>
+        </div>
+
+        {% for error in field.errors %}
+            <p class="form-field-error">{{ error }}</p>
+        {% endfor %}
+    </div>
+
+    {% if field.help_text %}
+    <p class="help-text">
+        {{ field.help_text|labelize }}
+    </p>
+    {% endif %}
+</div>
+{% endif %}
