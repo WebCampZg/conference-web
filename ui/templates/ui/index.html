@@ -15,7 +15,16 @@
 
 {% block basecontent %}
     {% include "partials/hero.html" %}
-    {% include "partials/call-for-sponsors.html" %}
+
+    {# Show CFP if active, otherwise CFS #}
+    {% with cfp=event.get_active_cfp %}
+        {% if cfp %}
+            {% include "partials/call-for-papers.html" with cfp=cfp only %}
+        {% else %}
+            {% include "partials/call-for-sponsors.html" %}
+        {% endif %}
+    {% endwith %}
+
     {% include "partials/news.html" %}
     {% include "partials/newsletter.html" %}
     {# {% include "partials/keynotes.html" %} #}
