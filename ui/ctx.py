@@ -158,6 +158,16 @@ def team(request):
             "image": "images/team/ivan_curic.jpg",
             "twitter": "_baxuz",
         },
+        {
+            "name": "Davor Tomić",
+            "image": "images/team/davor_tomic.jpg",
+            "twitter": "davortomic",
+        },
+        {
+            "name": "Slaven Tomac",
+            "image": "images/team/slaven_tomac.jpg",
+            "twitter": "slaventomac",
+        },
     ]
 
     shuffle(team)
