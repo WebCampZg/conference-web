@@ -107,12 +107,12 @@ def team(request):
             "twitter": "ihabunek",
             "job": "Speakers & tech"
         },
-        # {
-        #     "name": "Tomislav Capan",
-        #     "image": "images/team/tomislav.jpg",
-        #     "twitter": "tomislavcapan",
-        #     "job": "Volunteers"
-        # },
+        {
+            "name": "Tomislav Capan",
+            "image": "images/team/tomislav.jpg",
+            "twitter": "tomislavcapan",
+            "job": "Volunteers"
+        },
         {
             "name": "Steve Tauber",
             "image": "images/team/steve.png",
@@ -152,6 +152,11 @@ def team(request):
             "name": "Andrea Knez Karačić",
             "image": "images/team/andrea.jpg",
             "twitter": "CodeWithCream",
+        },
+        {
+            "name": "Ivan Čurić",
+            "image": "images/team/ivan_curic.jpg",
+            "twitter": "_baxuz",
         },
     ]
 
