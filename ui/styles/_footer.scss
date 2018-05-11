@@ -1,14 +1,14 @@
 .footer {
     padding: 3rem 0;
     background-color: #222222;
-    color: $dark-gray;
+    color: #8a8a8a;
 
     a {
-        color: $dark-gray;
+        color: #8a8a8a;
     }
 
     hr {
-        border-color: $dark-gray;
+        border-color: #8a8a8a;
         margin: 2rem 0;
     }
 
@@ -20,7 +20,7 @@
             margin-bottom: 1rem;
         }
         > .columns:not(:last-child) {
-            border-right: 1px solid $dark-gray;
+            border-right: 1px solid #8a8a8a;
         }
     }
 
