@@ -121,13 +121,13 @@
             font-weight: 500;
 
             &:first-child {
-                background-color: $purple;
-                color: $light-gray;
+                background-color: $green;
+                color: $black;
             }
 
             &:last-child {
                 background-color: $lighter-gray;
-                color: #9b9b9b;
+                color: $black;
             }
         }
     }
