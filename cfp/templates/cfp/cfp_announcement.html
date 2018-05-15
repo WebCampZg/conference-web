@@ -4,6 +4,11 @@
 
 {% block title %}Call for Proposals - {{ event.extended_title }}{% endblock %}
 
+{% block og %}
+    <meta property="og:title" content="Call for Proposals - {{ event.extended_title }}" />
+    <meta property="og:description" content="{{ event.title }} is looking for talks on web development and design. Check out our speaker package and submit!" />
+{% endblock %}
+
 {% block content %}
     {% if cfp %}
         <h2 class="red-dash">{{ cfp.title }}</h2>
@@ -25,6 +30,6 @@
     {% else %}
         <h1>Call for papers</h1>
 
-        <p>There are no active calls for paper.</p>
+        <p>There are no active calls for papers.</p>
     {% endif %}
 {% endblock %}
