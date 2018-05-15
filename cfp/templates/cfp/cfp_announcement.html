@@ -11,7 +11,11 @@
 
 {% block content %}
     {% if cfp %}
-        <h2 class="red-dash">{{ cfp.title }}</h2>
+        {% if user.is_superuser %}
+            <a class="button float-right" href="{% url 'admin:cfp_callforpaper_change' cfp.pk %}">Edit</a>
+        {% endif %}
+
+        <h1 class="red-dash">{{ cfp.title }}</h1>
 
         {{ cfp.announcement|markdown:"trusted" }}
 
