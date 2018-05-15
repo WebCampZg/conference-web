@@ -75,7 +75,7 @@ class Command(BaseCommand):
             .replace("@", "")
             .replace("https://twitter.com/", ""))
 
-        email = custom_fields.get('Email')
+        email = custom_fields.get('E-mail')
         user = User.objects.filter(email=email).first() if email else None
 
         tshirt = custom_fields.get('T-shirt size').replace('-', ' ')
@@ -83,12 +83,18 @@ class Command(BaseCommand):
 
         ticket_code = item.get('ticket_code')
 
+        country = custom_fields.get('Country')
+
+        # Hack to fix an issue caused by choosing the wrong field type on Entrio
+        if country == 'Croatia':
+            country = 'HR'
+
         return ticket_code, {
             "email": email,
             "user": user,
             "first_name": custom_fields.get('First name'),
             "last_name": custom_fields.get('Last name'),
-            "country": custom_fields.get('Country'),
+            "country": country,
             "twitter": twitter,
             "company": custom_fields.get('Company name'),
             "category": item.get('ticket_category'),
