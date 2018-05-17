@@ -21,7 +21,7 @@
         </time>
 
         {% if user.is_superuser %}
-            <a class="button yellow-dash float-right" href="{% url 'admin:blog_post_change' post.pk %}">Edit</a>
+            <a class="button float-right" href="{% url 'admin:blog_post_change' post.pk %}">Edit</a>
         {% endif %}
 
         <h3>

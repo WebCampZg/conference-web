@@ -30,7 +30,7 @@
         </ul>
 
         {% if user.is_superuser %}
-            <a class="button yellow-dash float-right" href="{% url 'admin:workshops_workshop_change' workshop.pk %}">Edit</a>
+            <a class="button float-right" href="{% url 'admin:workshops_workshop_change' workshop.pk %}">Edit</a>
         {% endif %}
 
         <h1 class="red-dash">{{ workshop.title }}</h1>
