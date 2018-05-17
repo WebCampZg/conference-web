@@ -145,7 +145,8 @@ class PaperApplication(Timestampable):
     duration = models.CharField(
         _('Talk Duration Slot'),
         choices=TALK_DURATIONS, max_length=255, default=TALK_DURATIONS.MIN_25,
-        help_text=_('What talk duration slot would you like?'))
+        help_text=_('What talk duration slot would you like?  Take into account that there are '
+                    'only 8 slots for 45 minute talks, and 20 slots for 25 minute talks.'))
 
     accomodation_required = models.BooleanField(
         _('I require accommodation'), default=False,
@@ -158,6 +159,11 @@ class PaperApplication(Timestampable):
     extra_info = models.TextField(
         _('Extra info'), blank=True,
         help_text=_('Anything else that you would like to let us know?'))
+
+    grant_email_contact = models.BooleanField(default=False)
+    grant_process_data = models.BooleanField(default=False)
+    grant_publish_data = models.BooleanField(default=False)
+    grant_publish_video = models.BooleanField(default=False)
 
     exclude = models.BooleanField(default=False)
 

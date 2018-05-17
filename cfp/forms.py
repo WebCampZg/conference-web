@@ -14,11 +14,39 @@ class PaperApplicationForm(forms.ModelForm):
             'accomodation_required',
             'travel_expenses_required',
             'extra_info',
+            'grant_email_contact',
+            'grant_process_data',
+            'grant_publish_data',
+            'grant_publish_video',
         )
 
         widgets = {
             "about": forms.Textarea(attrs={'rows': 4})
         }
+
+    grant_email_contact = forms.BooleanField(
+        required=True,
+        label='Yes, I wish to be contacted by email regarding my talk submission',
+        help_text='We will let you know whether your talk was selected, and if selected, '
+                  'coordinate your appearance at the conference.')
+
+    grant_process_data = forms.BooleanField(
+        required=True,
+        label='I agree that all data in this form may be used for the purposes of talk selection',
+        help_text='The talks selection committee will have access to this data and use it to '
+                  'rate your submission.')
+
+    grant_publish_data = forms.BooleanField(
+        required=True,
+        label='I agree that, if my talk is selected, data marked [Public] may be published publicly',
+        help_text='This includes publishing on our web site and social media platforms including '
+                  'Facebook and Twitter.')
+
+    grant_publish_video = forms.BooleanField(
+        required=False,
+        label='I agree that, if my talk is selected, the recording of my talk may be published publicly',
+        help_text='This includes uploading the video to youtube.com, archive.org and embedding '
+                  'on our web site.')
 
     about_applicant = forms.CharField(
         label=Applicant._meta.get_field('about').verbose_name,

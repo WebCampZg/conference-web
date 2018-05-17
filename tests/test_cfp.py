@@ -102,6 +102,18 @@ def test_POST_create_application(user, applicant, client, active_cfp):
         "image": "",
     }
 
+    # Permissions not granted
+    response = client.post(url, data)
+    assert response.status_code == 200
+
+    data.update({
+        'grant_email_contact': True,
+        'grant_process_data': True,
+        'grant_publish_data': True,
+        'grant_publish_video': True,
+    })
+
+    # Permissions granted
     response = client.post(url, data)
     assert response.status_code == 302
     assert response.url == reverse('user_profile')

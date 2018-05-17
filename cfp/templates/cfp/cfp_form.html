@@ -11,12 +11,15 @@
 
 <p>This call for papers ends on <b>{{ cfp.end_date|date:"Y-m-d" }}</b>.</p>
 
+<p>Fields marked with <span class="yellow label">Public</span> are meant to be shared publicly once your talk is announced.</p>
+
 <hr />
+
 
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
 
-    <h1 class="red-dash">Talk</h1>
+    <h1 id="talk" class="red-dash">Talk</h1>
 
     <fieldset>
         {% include "partials/form-field.html" with field=form.title  %}
@@ -29,7 +32,9 @@
         {% include "partials/form-field-boolean.html" with field=form.travel_expenses_required vanity_field="plane" %}
     </fieldset>
 
-    <h1 class="red-dash">Speaker</h1>
+    <hr />
+
+    <h1 id="speaker-profile" class="green-dash">Speaker profile</h1>
 
     <fieldset>
         {% include "partials/form-field.html" with field=form.about_applicant %}
@@ -39,7 +44,21 @@
         {% include "partials/form-field.html" with field=form.image %}
     </fieldset>
 
-    <button type="submit" class="green button">Submit</button>
+    <hr />
 
+    <h1 id="permissions" class="yellow-dash">Permissions</h1>
+
+    <p>We need you to grant us the following permissions in order to be able to submit a talk, and if selected, give it on stage. Check out our <a href="/privacy-policy/">Privacy policy</a> for more details of how we handle your data.</p>
+
+    {% include "partials/form-field-boolean.html" with field=form.grant_email_contact vanity_field="envelope-o" %}
+    {% include "partials/form-field-boolean.html" with field=form.grant_process_data vanity_field="cog" %}
+    {% include "partials/form-field-boolean.html" with field=form.grant_publish_data vanity_field="external-link" %}
+    {% include "partials/form-field-boolean.html" with field=form.grant_publish_video vanity_field="video-camera" %}
+
+    <p>You may revoke these permissions at any time by contacting us at <a href="mailto:talks@webcampzg.org">talks@webcampzg.org</a>.</p>
+
+    <hr />
+
+    <button type="submit" class="large green button">Submit talk</button>
 </form>
 {% endblock %}
