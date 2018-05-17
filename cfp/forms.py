@@ -5,7 +5,16 @@ from cfp.models import PaperApplication, Applicant
 class PaperApplicationForm(forms.ModelForm):
     class Meta:
         model = PaperApplication
-        exclude = ['cfp', 'applicant', ]
+        fields = (
+            'title',
+            'about',
+            'abstract',
+            'skill_level',
+            'duration',
+            'accomodation_required',
+            'travel_expenses_required',
+            'extra_info',
+        )
 
         widgets = {
             "about": forms.Textarea(attrs={'rows': 4})
