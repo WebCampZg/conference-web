@@ -43,8 +43,8 @@ class PaperApplicationForm(forms.ModelForm):
                   'Facebook and Twitter.')
 
     grant_publish_video = forms.BooleanField(
-        required=False,
-        label='I agree that, if my talk is selected, the recording of my talk may be published publicly',
+        required=True,
+        label='I agree that my talk may be recorded and published publicly',
         help_text='This includes uploading the video to youtube.com, archive.org and embedding '
                   'on our web site.')
 
