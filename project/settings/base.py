@@ -255,6 +255,7 @@ MARKDOWN_DEUX_STYLES = {
         "extras": {
             "tables": None,
             "code-friendly": None,
+            "header-ids": True,
         },
         "safe_mode": "escape",
     },
@@ -263,6 +264,7 @@ MARKDOWN_DEUX_STYLES = {
         "extras": {
             "tables": None,
             "code-friendly": None,
+            "header-ids": True,
         },
         "safe_mode": False,
     }
