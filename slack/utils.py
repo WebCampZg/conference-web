@@ -1,4 +1,3 @@
-import re
 import requests
 
 from django.conf import settings
@@ -42,15 +41,3 @@ def post_notification(title, text, footer=None, fallback=None):
     })
 
     response.raise_for_status()
-
-
-def _format_ticket(ticket):
-    category = re.sub("\[.+\]", "", ticket.category).strip()
-    company = ", {}".format(ticket.company) if ticket.company else ""
-    return "{}{} [{}]".format(ticket.full_name, company, category)
-
-
-def notify_slack(self, tickets):
-    title = "{} ticket{} sold".format(len(tickets), "s" if len(tickets) > 1 else "")
-    text = "\n".join([_format_ticket(t) for t in tickets])
-    post_notification(title, text)
