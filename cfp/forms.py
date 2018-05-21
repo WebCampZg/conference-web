@@ -24,6 +24,8 @@ class PaperApplicationForm(forms.ModelForm):
             "about": forms.Textarea(attrs={'rows': 4})
         }
 
+    title = forms.CharField(max_length=50, required=True)
+
     grant_email_contact = forms.BooleanField(
         required=True,
         label='Yes, I wish to be contacted by email regarding my talk submission',
