@@ -38,12 +38,12 @@ class Command(BaseCommand):
 
         with transaction.atomic():
             for u in users:
-                print(f"Deleting {u.email}")
+                print("Deleting {}".format(u.email))
                 count, values = u.delete()
 
                 # Check only expected models were cascaded
                 deleted = set({k: v for k, v in values.items() if v > 0}.keys())
                 diff = deleted.difference(ok_to_delete)
                 if diff:
-                    print("Deleted: {deleted}")
-                    raise ValueError(f"Unexpected deletions: {diff}")
+                    print("Deleted: {}".format(deleted))
+                    raise ValueError("Unexpected deletions: {}".format(diff))
