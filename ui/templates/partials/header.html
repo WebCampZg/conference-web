@@ -15,9 +15,15 @@
     </div>
 
     <div class="nav-right no-wrap">
-        <a href="/tickets/" class="tickets">
-            Buy tickets
-        </a>
+        {% if user.is_talk_committee_member %}
+            <a href="/dashboard/" class="tickets">
+                Dashboard
+            </a>
+        {% else %}
+            <a href="/tickets/" class="tickets">
+                Buy tickets
+            </a>
+        {% endif %}
         {% if user.is_authenticated %}
             <a href="{% url 'user_profile' %}">
                 <i class="fa fa-user"></i>&nbsp;{{user.get_full_name}}
