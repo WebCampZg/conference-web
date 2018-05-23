@@ -12,7 +12,7 @@ class Comment(Timestampable):
     is_private = models.BooleanField("Private", default=False)
 
 
-class Vote(models.Model):
+class Vote(Timestampable):
     """A vote on an paper application from a talk committee member"""
     user = models.ForeignKey("people.User", on_delete=PROTECT, related_name='committee_votes')
     application = models.ForeignKey("cfp.PaperApplication", on_delete=PROTECT, related_name='committee_votes')
