@@ -33,7 +33,7 @@
     }
 
     &.yellow {
-        color: $black;
+        color: black;
         background-color: $yellow;
 
         &:hover {
@@ -60,5 +60,13 @@
                 color: $red;
             }
         }
+    }
+
+    &.alert {
+        color: $white;
+        &:hover {
+            color: scale-color($white, $lightness: -15%);
+        }
+
     }
 }

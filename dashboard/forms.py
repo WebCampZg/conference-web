@@ -15,6 +15,7 @@ class CommentForm(forms.ModelForm):
 
         help_texts = {
             "text": "Use Markdown for formatting comments, but avoid headers.",
+            "link": "Links to youtube videos will automatically be expanded.",
             "is_private": "Private comments are visible only to you.",
         }
 
