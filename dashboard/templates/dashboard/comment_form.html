@@ -22,12 +22,12 @@
     <form method="post">
         {% csrf_token %}
 
-        {% for field in form %}
-            {% include "partials/form-field.html" with field=field %}
-        {% endfor %}
+        {% include "partials/form-field.html" with field=form.text %}
+        {% include "partials/form-field.html" with field=form.link %}
+        {% include "partials/form-field-boolean.html" with field=form.is_private %}
 
-        <button class="arrow button" type="submit">Comment</button>
-        <a href="{% url 'dashboard:application_detail' pk=application.pk %}" class="button">Cancel</a>
+        <button class="button" type="submit">Comment</button>
+        <a href="{% url 'dashboard:application_detail' pk=application.pk %}" class="green button">Cancel</a>
     </form>
 
 {% endblock %}

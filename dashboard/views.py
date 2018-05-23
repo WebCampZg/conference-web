@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin, AccessMixin
 from django.contrib.auth.views import redirect_to_login
 from django.core.exceptions import ValidationError, PermissionDenied
 from django.urls import reverse
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import View, DetailView, TemplateView, ListView, CreateView, UpdateView, DeleteView
@@ -89,12 +89,17 @@ class ApplicationDetailView(ViewAuthMixin, DetailView):
     context_object_name = 'application'
 
     def get_context_data(self, **kwargs):
+        application = self.get_object()
         user = self.request.user
-        vote = CommitteeVote.objects.filter(user=user, application=self.get_object()).first()
-        comments = self.object.comments.order_by("created_at").prefetch_related('author')
+        vote = CommitteeVote.objects.filter(user=user, application=application).first()
 
-        other_applications = (self.object.applicant.applications
-            .exclude(pk=self.object.pk)
+        comments = (application.comments
+            .exclude(Q(is_private=True) & ~Q(author=user))  # Hide other users private comments
+            .order_by("created_at")
+            .prefetch_related('author'))
+
+        other_applications = (application.applicant.applications
+            .exclude(pk=application.pk)
             .order_by('cfp__event'))
 
         ctx = super(ApplicationDetailView, self).get_context_data(**kwargs)

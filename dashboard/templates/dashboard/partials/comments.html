@@ -18,7 +18,8 @@
 
     <div class="text-right gray" >
         <small>
-            <b>{{ comment.author.full_name }}</b> ||
+            <b>{{ comment.author.full_name }}</b>
+            {% if comment.is_private %}[private]{% endif %} ||
             {{ comment.created_at|date:"Y-m-d H:i" }}
             {% if comment.updated_at > comment.created_at %}
                  || <abbr title="Comment edited at {{ comment.updated_at|date:"Y-m-d H:i" }}">Edited</abbr>

@@ -10,10 +10,12 @@ class CommentForm(forms.ModelForm):
         fields = [
             'text',
             'link',
+            'is_private',
         ]
 
         help_texts = {
-            "text": "Use Markdown for formatting comments, but avoid headers."
+            "text": "Use Markdown for formatting comments, but avoid headers.",
+            "is_private": "Private comments are visible only to you.",
         }
 
     def clean(self):

@@ -9,6 +9,7 @@ class Comment(Timestampable):
     application = models.ForeignKey("cfp.PaperApplication", on_delete=CASCADE, related_name="comments")
     text = models.TextField(blank=True)
     link = models.URLField(blank=True)
+    is_private = models.BooleanField("Private", default=False)
 
 
 class Vote(models.Model):
