@@ -165,7 +165,7 @@ def team(request):
         },
         {
             "name": "Slaven Tomac",
-            "image": "images/team/slaven_tomac.jpg",
+            "image": "images/team/slaven.png",
             "twitter": "slaventomac",
         },
     ]
