@@ -69,6 +69,10 @@ $(document).ready(function () {
 });
 
 $(document).keypress(function(e) {
+    if (e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) {
+        return
+    }
+
     switch(e.which) {
         case 48: // 0
             e.preventDefault();

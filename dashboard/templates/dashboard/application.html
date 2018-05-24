@@ -16,6 +16,10 @@ function follow_link($link) {
 }
 
 $(document).keydown(function(e) {
+    if (e.ctrlKey || e.shiftKey || e.altKey || e.metaKey) {
+        return
+    }
+
     switch(e.which) {
         case 37: // left
         case 75: // k
