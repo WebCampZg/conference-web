@@ -105,7 +105,7 @@ def team(request):
             "name": "Ivan Habunek",
             "image": "images/team/ivan.jpg",
             "twitter": "ihabunek",
-            "job": "Speakers & tech"
+            "job": "Speakers & tech, Data protection officer"
         },
         {
             "name": "Tomislav Capan",
