@@ -2,7 +2,7 @@
 
 {% block head %}
     <style type="text/css">
-        body > .row.column { max-width: 100rem }
+        .dashboard.row.column { max-width: 100rem }
         #scoring-table { font-size: smaller }
         button.rate-application,
         button.unrate-application { margin-bottom: 0; }
@@ -10,7 +10,6 @@
         td.voting { white-space: nowrap; }
     </style>
 {% endblock head %}
-
 
 {% block morescript %}
     <script type="text/javascript">
@@ -22,7 +21,6 @@
         });
     </script>
 {% endblock %}
-
 
 {% block content %}
     <ul class="breadcrumbs">
@@ -38,10 +36,12 @@
             <tr>
                 <th>#</th>
                 <th>Talk</th>
-                <th>Duration</th>
-                <th>Room</th>
+                <th><i class="fa fa-clock-o"></i></th>
+                <th>Perks</th>
                 {% for voter in voters %}
-                    <th>{{ voter.first_name }}</th>
+                    <th title="{{ voter.full_name}}">
+                        {{ voter.initials }}
+                    </th>
                 {% endfor %}
                 <th>Mean</th>
                 <th>StDev</th>
@@ -59,7 +59,14 @@
                         <a href="{% url 'dashboard:application_detail' pk=application.id %}">{{ application.title }}</a>
                     </td>
                     <td>{{ application.duration }}</td>
-                    <td>{{ application.accomodation_required|yesno }}</td>
+                    <td>
+                        {% if application.accomodation_required %}
+                            <i class="fa fa-hotel"></i>
+                        {% endif %}
+                        {% if application.travel_expenses_required %}
+                            <i class="fa fa-plane"></i>
+                        {% endif %}
+                    </td>
                     {% for vote in application.processed_votes %}
                         <td>{{ vote|default:"" }}</td>
                     {% endfor %}

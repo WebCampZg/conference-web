@@ -95,6 +95,13 @@ class User(AbstractBaseUser, PermissionsMixin):
     def full_name(self):
         return "%s %s" % (self.first_name, self.last_name)
 
+    @property
+    def initials(self):
+        return "{}{}".format(
+            self.first_name[0],
+            self.last_name[0],
+        )
+
     def get_applicant(self):
         try:
             return self.applicant
