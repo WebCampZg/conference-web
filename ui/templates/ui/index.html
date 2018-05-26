@@ -34,3 +34,24 @@
     {% include "partials/sponsors.html" %}
     {% include "partials/user-groups.html" %}
 {% endblock %}
+
+{% block script %}
+<script>
+$(document).ready(function() {
+    $(".hero-wrapper").mousemove(function(e) {
+        var $hero = $(".hero-wrapper");
+        var top = $hero.offset().top;
+        var width = $hero.width();
+        var height = $hero.height();
+
+        var deltaX = 2 * ((e.pageX / width) - 0.5);
+        var positionX = Math.round(50 + 8 * deltaX) + "%";
+
+        var deltaY = 2 * (((e.pageY - top) / height) - 0.5);
+        var positionY = -1 * Math.round(15 * deltaY) + "px";
+
+        $hero.css("background-position", [positionX, positionY].join(" "));
+    });
+});
+</script>
+{% endblock %}
