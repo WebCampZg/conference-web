@@ -88,7 +88,7 @@ class PaperApplicationUpdateView(PaperApplicationBaseView, UpdateView):
         allow = False
         application = self.get_object()
         try:
-            if application.applicant_id == user.applicant.pk:
+            if user.is_authenticated and application.applicant_id == user.applicant.pk:
                 allow = True
         except Applicant.DoesNotExist:
             pass

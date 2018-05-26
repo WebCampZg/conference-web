@@ -3,6 +3,7 @@ import pytest
 from django.urls import reverse
 
 from cfp.models import CallForPaper, PaperApplication, AudienceSkillLevel
+from tests.factories import PaperApplicationFactory
 
 
 @pytest.mark.django_db
@@ -134,3 +135,16 @@ def test_POST_create_application(user, applicant, client, active_cfp):
     assert applicant.about == data['about_applicant']
     assert applicant.biography == data['biography']
     assert applicant.speaker_experience == data['speaker_experience']
+
+
+@pytest.mark.django_db
+def test_update_application_anon(user, applicant, client, active_cfp):
+    """
+    Regression test for a bug where accessing application update page when
+    not logged in would cause an error.
+    """
+    pa = PaperApplicationFactory()
+    url = reverse('application_update', args=[pa.pk])
+
+    response = client.get(url)
+    assert response.status_code == 404
