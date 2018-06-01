@@ -66,6 +66,40 @@ class CallForPapersView(ViewAuthMixin, DetailView):
     model = CallForPaper
     template_name = 'dashboard/call_for_papers.html'
 
+    def get_durations(self, applications):
+        durations = (applications
+            .order_by()
+            .values('duration')
+            .annotate(count=Count('*')))
+
+        return [["{} min".format(d['duration']), d['count']] for d in durations]
+
+    def get_sexes(self, applications):
+        sexes = (applications
+            .order_by()
+            .values('applicant__user__tshirt_size__name')
+            .annotate(count=Count('*')))
+
+        sexes_counts = defaultdict(lambda: 0)
+        for s in sexes:
+            key = s['applicant__user__tshirt_size__name'].split()[0]
+            sexes_counts[key] += s['count']
+
+        return [[k, v] for k, v in sexes_counts.items()]
+
+    def get_levels(self, applications):
+        levels = (applications
+            .order_by()
+            .values('skill_level__name')
+            .annotate(count=Count('*')))
+
+        return [[l['skill_level__name'], l['count']] for l in levels]
+
+    def get_votes(self, applications):
+        votes = self.request.user.committee_votes.filter(application__in=applications)
+
+        return {v.application_id: v.score for v in votes}
+
     def get_context_data(self, **kwargs):
         ctx = super(CallForPapersView, self).get_context_data(**kwargs)
 
@@ -73,11 +107,12 @@ class CallForPapersView(ViewAuthMixin, DetailView):
             .prefetch_related('applicant', 'applicant__user', 'skill_level', 'talk')
             .order_by('pk'))
 
-        votes = self.request.user.committee_votes.filter(application__in=applications)
-
         ctx.update({
             "applications": applications,
-            "votes": {v.application_id: v.score for v in votes},
+            "votes": self.get_votes(applications),
+            "durations": self.get_durations(applications),
+            "sexes": self.get_sexes(applications),
+            "levels": self.get_levels(applications),
         })
 
         return ctx

@@ -1,3 +1,4 @@
+import json
 import math
 import re
 
@@ -106,3 +107,8 @@ def split(iterable, n):
     length = len(iterable)
     size = math.ceil(length / n)
     return batch(iterable, size)
+
+
+@register.filter
+def jsonify(data):
+    return mark_safe(json.dumps(data))

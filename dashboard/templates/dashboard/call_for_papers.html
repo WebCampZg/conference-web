@@ -9,19 +9,47 @@
         button.unrate-application { margin-bottom: 0; }
         tr.selected { background-color: green; }
         td.voting { white-space: nowrap; }
+        div.cfp-chart { height: 15rem; }
     </style>
 {% endblock head %}
 
 
 {% block morescript %}
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $("#applications-table").dataTable({
-                "paging": false,
-                "searching": false,
-            });
+<script type="text/javascript">
+    var durations = {{ durations|jsonify }};
+    var sexes = {{ sexes|jsonify }};
+    var levels = {{ levels|jsonify }};
+</script>
+
+<script type="text/javascript">
+    function chart(id, title, data) {
+        Highcharts.chart(id, {
+            chart: { type: 'column' },
+            title: { text: title },
+            series: [{
+                name: 'Talks',
+                data: data,
+                dataLabels: { enabled: true },
+            }],
+            xAxis: { type: 'category' },
+            yAxis: { title: null },
+            legend: { enabled: false },
+            credits: { enabled: false },
+            plotOptions: { column: { color: "#FFDC00"} }
         });
-    </script>
+    }
+
+    $(document).ready(function () {
+        $("#applications-table").dataTable({
+            "paging": false,
+            "searching": false,
+        });
+
+        chart('durations-chart', 'Durations', durations);
+        chart('sexes-chart', 'Applicants', sexes);
+        chart('levels-chart', 'Levels', levels);
+    });
+</script>
 {% endblock %}
 
 
@@ -34,6 +62,20 @@
     </ul>
 
     <h1>{{ object.title }}</h1>
+
+    <div class="callout">
+        <div class="row">
+            <div class="small-4 columns">
+                <div class="cfp-chart" id="durations-chart"></div>
+            </div>
+            <div class="small-4 columns">
+                <div class="cfp-chart" id="sexes-chart"></div>
+            </div>
+            <div class="small-4 columns">
+                <div class="cfp-chart" id="levels-chart"></div>
+            </div>
+        </div>
+    </div>
 
     <table id="applications-table" class="table hover">
         <thead>
@@ -70,3 +112,5 @@
         </tbody>
     </table>
 {% endblock %}
+
+
