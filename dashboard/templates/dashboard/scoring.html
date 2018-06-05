@@ -20,6 +20,10 @@
                 "paging": false,
                 "searching": false,
             });
+            $("#voter-table").dataTable({
+                "paging": false,
+                "searching": false,
+            });
         });
     </script>
 {% endblock %}
@@ -33,23 +37,31 @@
 
     <h1>Scoring <small>{{ object.title }}</small></h1>
 
-    <table>
+    <table id="voter-table" class="hover">
         <thead>
             <tr>
                 <th>Voter</th>
-                <th>Votes</th>
-                <th>Average</th>
-                <th>Distribution</th>
+                <td class="text-right">Votes</th>
+                <td class="text-right">Percentage</th>
+                <td class="text-right">Average</th>
+                <td class="text-right">Distribution</th>
             </tr>
         </thead>
         <tbody>
             {% for voter in voters %}
                 <tr>
                     <td>{{ voter.full_name }}</td>
-                    <td>{{ voter.count }}</td>
-                    <td>{{ voter.average|floatformat:2 }}</td>
-                    <td>
-                        <div class="histogram">
+                    <td class="text-right">
+                        {{ voter.count }} / {{ voter.total }}
+                    </td>
+                    <td class="text-right">
+                        {{ voter.percentage|floatformat }}%
+                    </td>
+                    <td class="text-right">
+                        {{ voter.average|floatformat:2 }}
+                    </td>
+                    <td class="text-right">
+                        <div class="histogram float-right">
                             {{ voter.distribution|histogram_svg }}
                         </div>
                     </td>

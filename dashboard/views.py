@@ -343,10 +343,12 @@ class ScoringView(ViewAuthMixin, DetailView):
     model = CallForPaper
     template_name = 'dashboard/scoring.html'
 
-    def get_voter_stats(self, voter):
+    def get_voter_stats(self, voter, application_count):
         votes = voter.committee_votes.filter(application__cfp=self.object)
+        vote_count = votes.count()
         average = votes.aggregate(avg=Avg('score'))['avg']
         counts = votes.order_by().values('score').annotate(count=Count('*'))
+        percentage = 100 * vote_count / application_count
 
         distribution = defaultdict(lambda: 0)
         for c in counts:
@@ -355,13 +357,15 @@ class ScoringView(ViewAuthMixin, DetailView):
         return {
             'full_name': voter.full_name,
             'initials': voter.initials,
-            'count': votes.count(),
+            'count': vote_count,
+            'total': application_count,
+            'percentage': percentage,
             'average': average,
             'distribution': distribution,
         }
 
-    def get_voters_with_stats(self, voters):
-        return [self.get_voter_stats(v) for v in voters]
+    def get_voters_with_stats(self, voters, application_count):
+        return [self.get_voter_stats(v, application_count) for v in voters]
 
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
@@ -394,9 +398,11 @@ class ScoringView(ViewAuthMixin, DetailView):
             application.mean = statistics.mean(scores) if scores else None
             application.stdev = statistics.stdev(scores) if len(scores) > 1 else None
 
+        application_count = applications.count()
+
         ctx.update({
             "applications": applications,
-            "voters": self.get_voters_with_stats(voters),
+            "voters": self.get_voters_with_stats(voters, application_count),
         })
 
         return ctx
