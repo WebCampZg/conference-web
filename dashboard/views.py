@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin, AccessMixin
 from django.contrib.auth.views import redirect_to_login
 from django.core.exceptions import ValidationError, PermissionDenied
 from django.urls import reverse
-from django.db.models import Count, Q
+from django.db.models import Count, Q, Avg
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import View, DetailView, TemplateView, ListView, CreateView, UpdateView, DeleteView
@@ -343,6 +343,26 @@ class ScoringView(ViewAuthMixin, DetailView):
     model = CallForPaper
     template_name = 'dashboard/scoring.html'
 
+    def get_voter_stats(self, voter):
+        votes = voter.committee_votes.filter(application__cfp=self.object)
+        average = votes.aggregate(avg=Avg('score'))['avg']
+        counts = votes.order_by().values('score').annotate(count=Count('*'))
+
+        distribution = defaultdict(lambda: 0)
+        for c in counts:
+            distribution[str(c['score'])] = c['count']
+
+        return {
+            'full_name': voter.full_name,
+            'initials': voter.initials,
+            'count': votes.count(),
+            'average': average,
+            'distribution': distribution,
+        }
+
+    def get_voters_with_stats(self, voters):
+        return [self.get_voter_stats(v) for v in voters]
+
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
 
@@ -376,7 +396,7 @@ class ScoringView(ViewAuthMixin, DetailView):
 
         ctx.update({
             "applications": applications,
-            "voters": voters,
+            "voters": self.get_voters_with_stats(voters),
         })
 
         return ctx

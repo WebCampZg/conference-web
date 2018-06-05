@@ -1,5 +1,7 @@
 {% extends "dashboard/base.html" %}
 
+{% load dashboard %}
+
 {% block head %}
     <style type="text/css">
         .dashboard.row.column { max-width: 100rem }
@@ -29,7 +31,32 @@
         <li>Scoring</li>
     </ul>
 
-    <h1>Scores <small>{{ object.title }}</small></h1>
+    <h1>Scoring <small>{{ object.title }}</small></h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Voter</th>
+                <th>Votes</th>
+                <th>Average</th>
+                <th>Distribution</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for voter in voters %}
+                <tr>
+                    <td>{{ voter.full_name }}</td>
+                    <td>{{ voter.count }}</td>
+                    <td>{{ voter.average|floatformat:2 }}</td>
+                    <td>
+                        <div class="histogram">
+                            {{ voter.distribution|histogram_svg }}
+                        </div>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
     <table id="scoring-table" class="table hover">
         <thead>
