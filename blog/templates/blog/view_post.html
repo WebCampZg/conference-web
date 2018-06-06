@@ -24,14 +24,14 @@
             <a class="button float-right" href="{% url 'admin:blog_post_change' post.pk %}">Edit</a>
         {% endif %}
 
-        <h3>
+        <h1>
             <a href="{% url 'blog_view_post' slug=post.slug %}">
                 {{ post.title }}
             </a>
             {% if post.is_sponsored %}
                 <span class="yellow label">Sponsored</span>
             {% endif %}
-        </h3>
+        </h1>
 
         <div class="lead">
             {{ post.lead|markdown:"trusted" }}
