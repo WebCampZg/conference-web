@@ -1,5 +1,6 @@
 {% extends "dashboard/base.html" %}
 
+{% load dashboard %}
 {% load webcamp %}
 
 {% block head %}
@@ -76,6 +77,22 @@
             </div>
         </div>
     </div>
+
+    {% if votes %}
+    <div class="callout">
+        <div class="row">
+            <div class="columns shrink">
+                <div class="histogram">
+                    {{ distribution|histogram_svg }}
+                </div>
+            </div>
+            <div class="columns extend">
+                You have rated {{ vote_count }} out of {{ application_count }} applications or <b>{{ rated_percentage|floatformat:1 }}%</b>.<br/>
+                Average score given is <b>{{ average_score|floatformat:2 }}</b>
+            </div>
+        </div>
+    </div>
+    {% endif %}
 
     <table id="applications-table" class="table hover">
         <thead>

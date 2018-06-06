@@ -17,6 +17,7 @@ from django.views.generic.edit import ModelFormMixin, ProcessFormView
 from cfp.models import CallForPaper, PaperApplication, Applicant
 from dashboard.forms import CommentForm
 from dashboard.models import Comment, Vote as CommitteeVote
+from dashboard.utils import get_votes_distribution
 from events.models import Event, Ticket
 from people.models import TShirtSize, User
 from voting.models import CommunityVote
@@ -95,21 +96,31 @@ class CallForPapersView(ViewAuthMixin, DetailView):
 
         return [[l['skill_level__name'], l['count']] for l in levels]
 
-    def get_votes(self, applications):
-        votes = self.request.user.committee_votes.filter(application__in=applications)
-
-        return {v.application_id: v.score for v in votes}
-
     def get_context_data(self, **kwargs):
         ctx = super(CallForPapersView, self).get_context_data(**kwargs)
 
         applications = (self.get_object().applications
             .prefetch_related('applicant', 'applicant__user', 'skill_level', 'talk')
             .order_by('pk'))
+        application_count = applications.count()
+
+        votes = self.request.user.committee_votes.filter(application__cfp=self.object)
+        vote_count = votes.count()
+
+        rated_percentage = 100 * vote_count / application_count \
+            if application_count else None
+
+        average_score = sum(v.score for v in votes) / vote_count \
+            if vote_count else None
 
         ctx.update({
             "applications": applications,
-            "votes": self.get_votes(applications),
+            "votes": {v.application_id: v.score for v in votes},
+            "vote_count": vote_count,
+            "application_count": application_count,
+            "rated_percentage": rated_percentage,
+            "average_score": average_score,
+            "distribution": get_votes_distribution(votes),
             "durations": self.get_durations(applications),
             "sexes": self.get_sexes(applications),
             "levels": self.get_levels(applications),
@@ -347,12 +358,7 @@ class ScoringView(ViewAuthMixin, DetailView):
         votes = voter.committee_votes.filter(application__cfp=self.object)
         vote_count = votes.count()
         average = votes.aggregate(avg=Avg('score'))['avg']
-        counts = votes.order_by().values('score').annotate(count=Count('*'))
         percentage = 100 * vote_count / application_count
-
-        distribution = defaultdict(lambda: 0)
-        for c in counts:
-            distribution[str(c['score'])] = c['count']
 
         return {
             'full_name': voter.full_name,
@@ -361,7 +367,7 @@ class ScoringView(ViewAuthMixin, DetailView):
             'total': application_count,
             'percentage': percentage,
             'average': average,
-            'distribution': distribution,
+            'distribution': get_votes_distribution(votes),
         }
 
     def get_voters_with_stats(self, voters, application_count):
