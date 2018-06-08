@@ -1,0 +1,34 @@
+Subject: Talk accepted for {{ event.title }}
+From: WebCamp Zagreb <talks@webcampzg.org>
+To: {{ user.full_name }} <{{ user.email }}>
+
+Content-Type: text/plain; charset="UTF-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+
+Dear {{ user.first_name }},
+
+Congratulations, your talk "{{ talk.title }}" ({{ talk.duration }} min) has been chosen for {{ event.title }}!
+
+Please confirm that you're able to appear on stage this October as soon as possible so we can announce your talk.
+
+I will be your contact leading up to the conference, so feel free to ask me any questions you may have. An email with general instructions for speakers will be sent at a later date.
+{% if accomodation %}
+You indicated that you require accommodation, so we will book a room for you at the Plaza Event Centar. We'll send you a questionnaire at a later date to collect exact arrival and departure dates and organize taxi pickup if required.
+{% endif %}{% if travel_expenses %}
+Since you requested travel assistance, we will cover upto €200 of your travel expenses. Note that due to Croatian regulations you need to provide invoices for all purchased tickets, otherwise we will not be able to reimburse you.
+{% endif %}
+Some dates to keep in mind:
+* 2018-09-22 - Speaker training, day 1
+* 2018-09-29 - Speaker training, day 2
+* 2018-10-04 - Tour of Zagreb and Speakers dinner
+
+I strongly suggest that you catch both days of speaker training if you are in Zagreb at the time, even if you're an experienced speaker. We are organizing it for the third year running and we've had excellent feedback from attendees.
+
+Please take this time to double-check your biography and abstract and make any adjustments needed since this will be displayed to the public soon:
+https://2018.webcampzg.org/accounts/profile/
+
+Best regards,
+--
+Ivan Habunek
+WebCamp Zagreb Team
