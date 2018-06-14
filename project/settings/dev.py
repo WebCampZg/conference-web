@@ -34,7 +34,6 @@ try:
     DEBUG_TOOLBAR_CONFIG = {
         'INTERCEPT_REDIRECTS': False,
         'SHOW_TOOLBAR_CALLBACK': lambda *args, **kwargs: True,
-        'JQUERY_URL': '',  # Use local jQuery
     }
 except ImportError:
     pass
