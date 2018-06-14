@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http.response import Http404, HttpResponseForbidden
@@ -6,8 +7,9 @@ from django.urls import reverse
 from django.views.generic.edit import CreateView, UpdateView
 
 from cfp.forms import PaperApplicationForm, ApplicantForm
-from cfp.models import Applicant, PaperApplication
-from config.utils import get_active_cfp
+from cfp.models import Applicant, PaperApplication, Invite
+from config.utils import get_active_cfp, get_active_event
+from utils import is_uuid
 
 
 class PaperApplicationBaseView(SuccessMessageMixin, LoginRequiredMixin):
@@ -65,9 +67,22 @@ class PaperApplicationBaseView(SuccessMessageMixin, LoginRequiredMixin):
 
 
 class PaperApplicationCreateView(PaperApplicationBaseView, CreateView):
+    def get_invite(self, request):
+        """
+        If invite_token is specified in the URL, return the corresponding Invite.
+        """
+        invite_token = request.GET.get('invite_token')
+
+        if not invite_token or not is_uuid(invite_token):
+            return None
+
+        event = get_active_event()
+        return Invite.objects.filter(
+            user=request.user, token=invite_token, cfp__event=event).first()
 
     def dispatch(self, request, *args, **kwargs):
-        self.cfp = get_active_cfp()
+        invite = self.get_invite(request)
+        self.cfp = invite.cfp if invite else get_active_cfp()
 
         if not self.cfp:
             return HttpResponseForbidden("Call for proposals is not active.")

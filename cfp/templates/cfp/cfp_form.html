@@ -2,10 +2,10 @@
 
 {% load markdown_deux_tags %}
 
-{% block title %}Call For Proposals - {{ event.extended_title }}{% endblock %}
+{% block title %}Call for papers - {{ cfp.event.extended_title }}{% endblock %}
 
 {% block content %}
-<h2>Submit your talk for {{ event.title }}</h2>
+<h2>Submit your talk for {{ cfp.event.title }}</h2>
 
 {{ cfp.description|markdown:"trusted" }}
 

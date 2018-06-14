@@ -1,3 +1,4 @@
+import uuid
 import unicodedata
 
 from django.conf import settings
@@ -201,3 +202,18 @@ def update_talk_instance(sender, instance, created, **kwargs):
         instance.talk.save()
     except ObjectDoesNotExist:
         pass
+
+
+class Invite(models.Model):
+    """
+    Allows a user to submit a talk even if CFP it is not currently active.
+
+    The token is tied to a specific user and CFP. It will not work if the
+    logged in user doesn't match the invited user, or if the CFP defined in
+    the invite is not tied to the currently active event.
+    """
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='invites')
+    cfp = models.ForeignKey(CallForPaper, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True, db_index=True)

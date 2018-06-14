@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.urls import reverse
+from django.utils.safestring import mark_safe
 
-from cfp.models import CallForPaper, PaperApplication, Applicant
+from cfp.models import CallForPaper, PaperApplication, Applicant, Invite
 
 
 def mark_as_excluded(modeladmin, request, queryset):
@@ -46,6 +47,16 @@ class PaperApplicationAdmin(admin.ModelAdmin):
     link_to_applicant.allow_tags = True
 
 
+class InviteAdmin(admin.ModelAdmin):
+    list_display = ('user', 'cfp', 'created_at', 'link')
+
+    def link(self, obj, foo=None):
+        path = reverse('application_create')
+        url = "{}?token={}".format(path, obj.token)
+        return mark_safe('<a href="{}">{}</a>'.format(url, url))
+
+
 admin.site.register(CallForPaper, CallForPaperAdmin)
 admin.site.register(Applicant, ApplicantAdmin)
 admin.site.register(PaperApplication, PaperApplicationAdmin)
+admin.site.register(Invite, InviteAdmin)
