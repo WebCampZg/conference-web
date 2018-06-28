@@ -396,9 +396,10 @@ class ScoringView(ViewAuthMixin, DetailView):
             app_votes = application.committee_votes.all()
             for voter in voters:
                 user_votes = [v for v in app_votes if v.user_id == voter.pk]
-                application.processed_votes.append(
-                    user_votes[0].score if user_votes else None
-                )
+                application.processed_votes.append((
+                    voter,
+                    user_votes[0].score if user_votes else None,
+                ))
 
             scores = [v.score for v in app_votes]
             application.mean = statistics.mean(scores) if scores else None

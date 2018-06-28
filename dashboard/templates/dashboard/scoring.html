@@ -106,8 +106,8 @@
                             <i class="fa fa-plane"></i>
                         {% endif %}
                     </td>
-                    {% for vote in application.processed_votes %}
-                        <td>{{ vote|default:"" }}</td>
+                    {% for voter, vote in application.processed_votes %}
+                        <td title="{{ voter.full_name }}">{{ vote|default:"" }}</td>
                     {% endfor %}
                     <td><b>{{ application.mean|floatformat:1 }}</b></td>
                     <td><em>{{ application.stdev|floatformat:1 }}</em></td>
