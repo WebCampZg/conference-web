@@ -8,7 +8,7 @@ from django.contrib.auth.mixins import UserPassesTestMixin, AccessMixin
 from django.contrib.auth.views import redirect_to_login
 from django.core.exceptions import ValidationError, PermissionDenied
 from django.urls import reverse
-from django.db.models import Count, Q, Avg
+from django.db.models import Count, Q, Avg, StdDev
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import View, DetailView, TemplateView, ListView, CreateView, UpdateView, DeleteView
@@ -148,12 +148,23 @@ class ApplicationDetailView(ViewAuthMixin, DetailView):
             .exclude(pk=application.pk)
             .order_by('cfp__event'))
 
+        committee_votes = application.committee_votes.order_by('user__first_name')
+        aggregates = committee_votes.aggregate(
+            avg=Avg('score'),
+            stdev=StdDev('score'),
+            count=Count('*'),
+        )
+
         ctx = super(ApplicationDetailView, self).get_context_data(**kwargs)
         ctx.update({
             "comments": comments,
             "allow_voting": user.is_talk_committee_member,
             "score": vote.score if vote else None,
             "other_applications": other_applications,
+            "committee_votes": committee_votes,
+            "committee_votes_avg": aggregates['avg'],
+            "committee_votes_stdev": aggregates['stdev'],
+            "committee_votes_count": aggregates['count'],
         })
         return ctx
 

@@ -81,6 +81,28 @@ $(document).keydown(function(e) {
                 <hr />
                 {% include 'dashboard/partials/voting.html' %}
             {% endif %}
+
+            {% if user.is_superuser %}
+                <hr />
+                <h3>Committee Votes</h3>
+                <table>
+                    {% for vote in committee_votes %}
+                    <tr>
+                        <td>{{ vote.user.full_name }}</td>
+                        <td>{{ vote.score }}</td>
+                    </tr>
+                    {% endfor %}
+                    <tfoot>
+                        <tr>
+                            <td colspan="2">
+                                Count: {{ committee_votes_count }} |
+                                Average: {{ committee_votes_avg|floatformat:1 }} |
+                                StDev: {{ committee_votes_stdev|floatformat:1 }}
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            {% endif %}
         </div>
 
         {% with applicant=application.applicant %}
