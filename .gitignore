@@ -80,3 +80,5 @@ include/
 local/
 pip-selfcheck.json
 share/
+
+/tmp
