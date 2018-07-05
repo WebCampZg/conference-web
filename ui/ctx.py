@@ -125,6 +125,12 @@ def team(request):
             "twitter": "senkorasic",
             "job": "Beloved leader"
         },
+        {
+            "name": "Elizabeth Salazar",
+            "image": "images/team/elizabeth.jpg",
+            "twitter": "",
+            "job": "Master of ceremonies"
+        },
     ]
 
     committee = [
