@@ -120,15 +120,18 @@ class CommunityVoteView(SlackView):
         }]
 
     def get_rows(self):
+        event = get_active_event()
         sql = """
             SELECT u.first_name || ' ' || u.last_name AS name, pa.title, count(*) AS count
             FROM voting_communityvote cv
             JOIN cfp_paperapplication pa ON pa.id = cv.application_id
+            JOIN cfp_callforpaper cfp ON cfp.id = pa.cfp_id
             JOIN cfp_applicant a ON pa.applicant_id = a.id
             JOIN people_user u ON a.user_id = u.id
+            WHERE cfp.event_id = {}
             GROUP BY 1, 2
             ORDER BY 3 DESC;
-        """
+        """.format(event.pk)
 
         with connection.cursor() as cursor:
             cursor.execute(sql)
