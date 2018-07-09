@@ -37,7 +37,7 @@
         <p>This is your opportunity to select the talks you want to hear.</p>
 
         {% if ticket %}
-        <div class="callout">
+        <div class="success callout">
             You are voting as <em>{{ ticket.full_name }}</em>, ticket number <em>{{ ticket.code }}</em>.
             <a href="{% url 'voting_index' %}">Not you?</a>
         </div>
@@ -57,7 +57,7 @@
 
         <div class="warning callout">
             <p>To vote you need to own a <a href="/tickets/">ticket</a> for
-                WebCamp Zagreb 2017.</p>
+                {{ event }}.</p>
             <p>
             <p>If you already have one, you should have received a personalized
                 voting link by email. Alternatively, please enter your
@@ -111,7 +111,7 @@
                     </button>
                 </div>
 
-                <button class="arrow button" data-open="reveal-{{ application.pk }}">
+                <button class="green button" data-open="reveal-{{ application.pk }}">
                     Read more
                 </button>
 
