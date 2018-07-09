@@ -111,6 +111,9 @@ class CommunityVoteView(SlackView):
         lines = ["{}: {} `{}`".format(*row) for row in rows]
         text = "\n".join(lines)
 
+        if not text:
+            text = "No votes have been cast yet."
+
         return [{
             "fallback": "Community vote:\n{}".format(text),
             "title": "Community vote",
