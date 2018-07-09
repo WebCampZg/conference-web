@@ -223,7 +223,6 @@ class CommunityVoteView(ViewAuthMixin, TemplateView):
     def get_context_data(self, **kwargs):
         ctx = super(CommunityVoteView, self).get_context_data(**kwargs)
 
-        print(self.event)
         votes = (CommunityVote.objects
             .filter(application__cfp__event=self.event)
             .prefetch_related('ticket'))
