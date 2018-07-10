@@ -1,0 +1,19 @@
+Subject: Your talk was not selected
+From: WebCamp Zagreb <talks@webcampzg.org>
+To: {{ user.full_name|safe }} <{{ user.email }}>
+Content-Type: text/plain; charset="UTF-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+
+Dear {{ user.first_name }},
+
+Unfortunately, none of your submissions were selected for WebCamp Zagreb 2018. The competition was stiff so don't feel bad, we had to discard many fine talks.
+
+Please consider holding a talk at your local meetup group. There are many and they are always looking for speakers. It's great practice, and the community will appreciate it.
+
+We still hope we'll see you at the conference, on the other side of the stage.
+
+Best regards,
+--
+Ivan Habunek
+WebCamp Zagreb Team

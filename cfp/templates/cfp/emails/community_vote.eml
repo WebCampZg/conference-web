@@ -1,0 +1,26 @@
+Subject: Your talk entered the community vote
+From: WebCamp Zagreb <talks@webcampzg.org>
+To: {{ user.full_name|safe }} <{{ user.email }}>
+Content-Type: text/plain; charset="UTF-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+
+Dear {{ user.first_name }},
+
+Bad news: none of your submitted talks were selected for {{ event }} by our committee.
+
+Good news: your talk "{{ application.title|safe }}" was quite highly rated, so you have a second chance to be selected in our community vote, where we let people who bought early bird tickets vote on runner-up talks.
+
+The vote will be open to everyone with an Early Bird ticket for a week from 2018-07-16 until 2018-07-22. We will announce results on 2018-08-01, or as soon as we get confirmations from all speakers.
+
+We will announce the community vote via web, newsletter and social media later this week. Please let us know in case you decide not to participate.
+
+Finally, check your submission in case you'd like to make any tweaks before it goes public:
+https://2018.webcampzg.org/accounts/profile/
+
+Don't feel pressured to buy Early bird tickets yourself, if your talk is not selected we will provide you with a coupon code to purchase a Regular ticket at the price of an Early bird ticket.
+
+Best luck,
+--
+Ivan Habunek
+WebCamp Zagreb Team
