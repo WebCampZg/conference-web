@@ -23,7 +23,8 @@ class Command(BaseCommand):
 
         tickets = Ticket.objects.filter(
             event=config.active_event,
-            invite_sent_at__isnull=True
+            invite_sent_at__isnull=True,
+            category='Early Bird',
         )
 
         txt_template = get_template('voting/email/vote_invite.txt')
