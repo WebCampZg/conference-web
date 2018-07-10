@@ -30,6 +30,8 @@
 
         {{ talk.abstract|markdown }}
 
+        {% include "talks/partials/flags.html" %}
+
         <p>{% include "talks/partials/attributes.html" %}</p>
 
         {% if talk.sponsor %}
