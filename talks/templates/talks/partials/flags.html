@@ -1,11 +1,9 @@
 {% if talk.sponsor or talk.is_community_chosen or talk.keynote %}
 <p>
     {% if talk.sponsor %}
-        <a href="{% url 'sponsors_view_sponsor' slug=talk.sponsor.slug %}">
-            <span class="green arrow label" title="This talk is sponsored by {{ talk.sponsor.name }}">
-                Sponsored
-            </span>
-        </a>
+        <span class="green label" title="This talk is sponsored by {{ talk.sponsor.name }}">
+            Sponsored
+        </span>
     {% endif %}
 
     {% if talk.is_community_chosen %}
