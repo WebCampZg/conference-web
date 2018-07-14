@@ -225,6 +225,7 @@ class CommunityVoteView(ViewAuthMixin, TemplateView):
 
         votes = (CommunityVote.objects
             .filter(application__cfp__event=self.event)
+            .order_by('ticket__first_name')
             .prefetch_related('ticket'))
 
         votes_by_application = defaultdict(list)

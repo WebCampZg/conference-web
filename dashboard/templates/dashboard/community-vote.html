@@ -55,9 +55,22 @@
 {% for application, votes in applications %}
 <div class="reveal" id="application-{{ application.id }}" data-reveal>
     <ul>
-        {% for vote in votes %}
-            <li>{{ vote.ticket.full_name }}</li>
-        {% endfor %}
+        <table>
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Company</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vote in votes %}
+                <tr>
+                    <td>{{ vote.ticket.full_name }}</td>
+                    <td>{{ vote.ticket.company }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </ul>
 </div>
 {% endfor %}
