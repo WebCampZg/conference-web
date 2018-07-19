@@ -35,16 +35,16 @@ def backup_db():
 
 
 def refresh_db():
+    # Make dump on host and fetch it
+    run("rm -f {}".format(DUMP_FILE))
+    run("pg_dump -d webcamp --no-owner > {}".format(DUMP_FILE))
+    run("gzip {}".format(DUMP_FILE))
+    local("scp webcamp:{0}.gz {0}.gz".format(DUMP_FILE))
+    local("gunzip {0}.gz".format(DUMP_FILE))
+
     # Recreate the database locally
     local("dropdb --if-exists webcamp")
     local("createdb webcamp")
-
-    # Make dump on host
-    run("rm -f {}".format(DUMP_FILE))
-    run("pg_dump -d webcamp --no-owner > {}".format(DUMP_FILE))
-
-    # Fetch dump and restore
-    local("scp webcamp:{0} {0}".format(DUMP_FILE))
     local("psql -d webcamp < {}".format(DUMP_FILE))
 
     # Cleanup
