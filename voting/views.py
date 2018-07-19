@@ -51,6 +51,13 @@ def voting(request, ticket_code=None):
         messages.add_message(request, messages.ERROR, msg)
         return HttpResponseRedirect(reverse('voting_index'))
 
+    # Don't allow voting for tickets other than Early bird
+    # TODO: Hardcoded logic for 2018, consider a better solution
+    if ticket and ticket.category not in ["Early Bird", "Sponsor"]:
+        msg = "Only Early Bird tickets are eligible to vote.".format(ticket_code)
+        messages.add_message(request, messages.ERROR, msg)
+        return HttpResponseRedirect(reverse('voting_index'))
+
     # Find application the user already voted for
     voted_application_ids = (CommunityVote.objects
             .filter(ticket=ticket, application__in=applications)
