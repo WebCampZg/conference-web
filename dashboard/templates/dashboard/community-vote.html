@@ -53,11 +53,12 @@
 </table>
 
 {% for application, votes in applications %}
-<div class="reveal" id="application-{{ application.id }}" data-reveal>
+<div class="large reveal" id="application-{{ application.id }}" data-reveal>
     <ul>
         <table>
             <thead>
                 <tr>
+                    <td>Time</td>
                     <td>Name</td>
                     <td>Company</td>
                 </tr>
@@ -65,6 +66,7 @@
             <tbody>
                 {% for vote in votes %}
                 <tr>
+                    <td class="no-wrap">{{ vote.ticket.purchased_at|date:"Y-m-d H:i:s" }}</td>
                     <td>{{ vote.ticket.full_name }}</td>
                     <td>{{ vote.ticket.company }}</td>
                 </tr>
