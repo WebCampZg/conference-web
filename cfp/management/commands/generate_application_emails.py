@@ -5,15 +5,16 @@ from cfp.models import PaperApplication
 
 
 class Command(BaseCommand):
-    help = "Generate emails for speakers who will participate in the community vote"
+    help = "Generate emails for given applications and template"
 
     def add_arguments(self, parser):
+        parser.add_argument('template', type=str)
         parser.add_argument('application_ids', type=int, nargs='+')
 
-    def process_application(self, application):
+    def process_application(self, application, template):
         user = application.applicant.user
 
-        email = loader.render_to_string('cfp/emails/community_vote.eml', {
+        email = loader.render_to_string(template, {
             "user": user,
             "event": application.cfp.event,
             "application": application,
@@ -28,4 +29,4 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         applications = PaperApplication.objects.filter(pk__in=options.get('application_ids'))
         for application in applications:
-            self.process_application(application)
+            self.process_application(application, options.get('template'))

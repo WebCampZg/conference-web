@@ -1,0 +1,22 @@
+Subject: Your talk was not selected
+From: WebCamp Zagreb <talks@webcampzg.org>
+To: {{ user.full_name|safe }} <{{ user.email }}>
+Content-Type: text/plain; charset="UTF-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+
+Dear {{ user.first_name }},
+
+Unfortunately, your talk was not selected in the Community vote, so you will not get a chance to talk at {{ event.title }}. Don't feel bad, the competition was fierce.
+
+If you haven't already, please consider holding a talk at your local meetup group. There are many and they are always looking for speakers. It's great practice, and the community will appreciate it.
+
+We still hope we'll see you at the conference. Since you missed Early bird tickets while waiting for the community vote to end, please use the promo code 'better-luck-next-year' to get a Regular ticket at Early bird prices. You can redeem it here:
+https://www.entrio.hr/event/webcamp-zagreb-2018-5107
+
+The code is for yourself, so please don't spread it around.
+
+Best regards,
+--
+Ivan Habunek
+WebCamp Zagreb Team
