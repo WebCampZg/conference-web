@@ -52,7 +52,7 @@ def test_voting_view_enabled_with_ticket(client):
     enable_voting()
     event = get_active_event()
 
-    ticket = TicketFactory(event=event)
+    ticket = TicketFactory(event=event, category="Early Bird")
 
     url = reverse('voting_index', kwargs={"ticket_code": ticket.code})
     response = client.get(url)
