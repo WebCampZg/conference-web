@@ -301,9 +301,11 @@ class EventTicketsView(ViewAuthMixin, ListView):
         most_common = Counter(sizes).most_common()
         most_common_dict = dict(most_common)
         top_count = most_common[0][1]
+        total = tickets.count()
 
         return [{
             "value": size.name,
+            "perc": round(100 * most_common_dict.get(size.id, 0) / total, 1) if total else None,
             "count": most_common_dict.get(size.id, 0),
             "width": most_common_dict.get(size.id, 0) * 100 / top_count,
         } for size in TShirtSize.objects.all()]

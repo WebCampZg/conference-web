@@ -46,9 +46,13 @@
                     <div class="green label" style="width: 5rem">{{ item.value }}</div>
                 </div>
                 <div class="columns">
-                    <div style="height: 1.5rem" class="progress" role="progressbar" tabindex="0" aria-valuenow="{{ count }}" aria-valuemin="0" aria-valuemax="{{ countries_total }}">
+                    <div style="height: 1.5rem" class="progress" role="progressbar" tabindex="0" aria-valuenow="{{ count }}">
                       <div class="green progress-meter" style="width: {{ item.width }}%">
-                          <p class="progress-meter-text">{{ item.count }}</p>
+                        {% if item.count > 0 %}
+                          <p class="progress-meter-text">
+                            {{ item.count }} ({{ item.perc }} %)
+                          </p>
+                        {% endif %}
                       </div>
                     </div>
                 </div>
