@@ -105,7 +105,7 @@ def team(request):
             "name": "Ivan Habunek",
             "image": "images/team/ivan.jpg",
             "twitter": "ihabunek",
-            "job": "Speakers & tech, Data protection officer"
+            "job": "Speakers & tech"
         },
         {
             "name": "Tomislav Capan",
@@ -130,6 +130,24 @@ def team(request):
             "image": "images/team/elizabeth.jpg",
             "twitter": "",
             "job": "Master of ceremonies"
+        },
+        {
+            "name": "Miro Svrtan",
+            "image": "images/team/miro.png",
+            "twitter": "msvrtan",
+            "job": "Workshops"
+        },
+        {
+            "name": "Goran Jurić",
+            "image": "images/team/goran.jpg",
+            "twitter": "goran_juric",
+            "job": "Workshops"
+        },
+        {
+            "name": "Zoran Antolović",
+            "image": "images/team/zoka.jpg",
+            "twitter": "zoran_antolovic",
+            "job": "Venue"
         },
     ]
 
