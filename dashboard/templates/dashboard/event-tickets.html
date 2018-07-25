@@ -116,7 +116,7 @@
 {% block morescript %}
 <script type="text/javascript">
 $(function () {
-    var columnData = [{% for date, count in tickets_by_date %}[Date.UTC({{ date.year }}, {{ date.month }}, {{ date.day }}), {{ count }}],{% endfor %}]
+    var columnData = [{% for date, count in tickets_by_date %}[Date.UTC({{ date.year }}, {{ date.month|add:-1 }}, {{ date.day }}), {{ count }}],{% endfor %}]
     var max = 0
     var acc = 0
     var lineData = columnData.map(function(item) {
