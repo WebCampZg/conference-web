@@ -14,7 +14,7 @@ class WorkshopListView(ListView):
         return (super().get_queryset()
                        .filter(event=event)
                        .prefetch_related('applicants__user', 'skill_level')
-                       .order_by('title'))
+                       .order_by('starts_at', 'title'))
 
 
 class WorkshopDetailView(DetailView):
