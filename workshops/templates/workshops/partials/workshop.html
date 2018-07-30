@@ -17,11 +17,7 @@
                 </a>
             </p>
 
-            <h3 class="green-dash">
-                <a href="{% url 'workshops_view_workshop' slug=workshop.slug %}">
-                    {{ workshop.title }}
-                </a>
-            </h3>
+            <h3 class="green-dash"><a href="{% url 'workshops_view_workshop' slug=workshop.slug %}">{{ workshop.title }}</a></h3>
 
             <p>{{ workshop.about }}</p>
 
