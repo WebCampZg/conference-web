@@ -47,14 +47,12 @@
             {{ workshop.extra_info|markdown:"trusted" }}
         {% endif %}
 
-        {% comment %}
         {% if workshop.tickets_link %}
             <a href="{{ workshop.tickets_link }}" class="large button">Buy tickets</a>
         {% else %}
             <p><b>Tickets will be available soon.</b><br /> Subscribe to our newsletter
             below to be notified when tickets become available.</p>
         {% endif %}
-        {% endcomment %}
 
         <hr />
 
