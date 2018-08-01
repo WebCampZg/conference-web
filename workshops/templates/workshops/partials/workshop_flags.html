@@ -6,6 +6,11 @@
     <span class="purple">&gt; </span>
     <em>Duration: </em> {{ workshop.duration_hours|floatformat }}h<br />
 
+    {% if workshop.skill_level %}
+        <span class="purple">&gt; </span>
+        <em>Skill level: </em> {{ workshop.skill_level }}<br />
+    {% endif %}
+
     {% if workshop.price %}
         <span class="purple">&gt; </span>
         <em>Ticket price:</em> {{ workshop.price }}kn
