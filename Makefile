@@ -25,7 +25,7 @@ sync-media:
 	rsync -av webcamp:web/conference-web/project/media/ project/media/
 
 css:
-	sassc --style compressed --sourcemap --load-path=node_modules/foundation-sites/scss ui/styles/style.scss ui/dist/styles/style.css
+	sassc --style compressed --sourcemap --load-path=. --load-path=node_modules/foundation-sites/scss ui/styles/style.scss ui/dist/styles/style.css
 
 css-watch:
 	make css
