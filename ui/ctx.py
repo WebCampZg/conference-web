@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from os.path import getmtime, abspath, join, dirname
 from random import shuffle
 
 from django.contrib.staticfiles.templatetags.staticfiles import static
@@ -200,4 +201,11 @@ def team(request):
     return {
         "team": team,
         "committee": committee,
+    }
+
+
+def css_last_modified(request):
+    css_last_modified = getmtime(abspath(join(dirname(__file__), 'dist/styles/style.css')))
+    return {
+        'css_last_modified': css_last_modified
     }

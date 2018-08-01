@@ -237,6 +237,7 @@ TEMPLATES = [
                 'django.template.context_processors.tz',
 
                 # Custom
+                'ui.ctx.css_last_modified',
                 'ui.ctx.event',
                 'ui.ctx.navigation',
                 'ui.ctx.sponsors',
