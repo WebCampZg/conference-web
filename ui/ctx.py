@@ -17,7 +17,7 @@ def navigation(request):
             ("Info", "/info/"),
             ("Venue", reverse("venue")),
             ("Timeline", "/timeline/"),
-            # ("Workshops", "/workshops/"),
+            ("Workshops", reverse('workshops_list_workshops')),
             ("Talks", reverse('talks_list_talks')),
             # ("Schedule", reverse('schedule_list_schedule')),
             ("News", reverse('blog_list_posts')),
