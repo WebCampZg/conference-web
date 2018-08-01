@@ -12,12 +12,12 @@
 }
 
 .talk-grid {
-    background-image: url("../images/talk-grid-background.png");
-    background-position-x: center;
-    background-position-y: center;
-    background-repeat: no-repeat;
     min-height: 600px;
     padding: 3rem 0;
+
+    .archive {
+        font-size: 1.2rem;
+    }
 
     .talk-grid-item {
         border: 5px solid $black;
@@ -40,14 +40,14 @@
                 height: 100%;
                 z-index: 10;
 
-                &.red {
+                &.advanced {
                     background-color: rgba($red, 0.5);
                 }
-                &.green {
+                &.elementary {
                     background-color: rgba($green, 0.5);
                 }
-                &.purple {
-                    background-color: rgba($purple, 0.5);
+                &.intermediate {
+                    background-color: rgba($yellow, 0.5);
                 }
             }
         }

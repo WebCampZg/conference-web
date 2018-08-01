@@ -1,6 +1,6 @@
 <div class="talk-grid">
     <div class="row column">
-        <h1 class="blue-arrow">Talks_</h1>
+        <h1 class="blue-dash">Talks_</h1>
 
         <div class="row" data-equalizer data-equalize-on="medium">
             {% for talk in talks %}
@@ -10,9 +10,9 @@
             {% endfor %}
         </div>
 
-        <div class="text-center">
-            <a class="purple" href="{% url 'talks_list_talks' %}">
-                {&nbsp;all_talks&nbsp;}
+        <div class="archive text-center">
+            <a href="{% url 'talks_list_talks' %}">
+                all_talks
             </a>
         </div>
     </div>

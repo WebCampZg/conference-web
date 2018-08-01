@@ -4,7 +4,7 @@
 <div class="talk-grid-item">
     <a href="{% url 'talks_view_talk' slug=talk.slug %}">
         <div class="talk-photo" style="background-image: url('{{ MEDIA_URL }}{{ applicant.image }}')">
-            <div class="talk-photo-overlay {% if talk.skill_level.name == "Elementary" %}green{% elif talk.skill_level.name == "Intermediate" %}purple{% elif talk.skill_level.name == "Advanced" %}red{% endif %}"></div>
+            <div class="talk-photo-overlay {{ talk.skill_level.name|lower }}"></div>
         </div>
     </a>
 
