@@ -12,7 +12,7 @@
 }
 
 .workshops-grid {
-    background-color: $red;
+    background-color: $lighter-gray;
     padding: 3rem 0;
 
     .workshop-grid-item {
@@ -36,7 +36,6 @@
         }
 
         .workshop-meta {
-            color: white;
             font-style: italic;
 
             padding-left: 10px;
@@ -54,7 +53,7 @@
                     background-color: $blue;
                 }
                 &:last-child {
-                    background-color: $purple;
+                    background-color: $yellow;
                 }
             }
         }
@@ -71,5 +70,9 @@
                 font-weight: 500;
             }
         }
+    }
+
+    .archive {
+        font-size: 1.2em;
     }
 }
