@@ -200,7 +200,7 @@ class EntrioTicketCountView(SlackView):
 
     def get_categories(self, data):
         for category in data:
-            name = re.sub(r"\(.+\)", "", category['category_name']).strip()
+            name = re.sub(r"\(.+?\)", "", category['category_name']).strip()
             count = category['count']
             yield name, count
 
