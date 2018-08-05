@@ -77,31 +77,31 @@ class TicketsView(SlackView):
     response_type = ResponseType.IN_CHANNEL
 
     def get_attachments(self, request):
-        categories = self.get_categories()
-        lines = ["{} `{}`".format(*t) for t in categories]
+        categories, total = self.get_data()
+        lines = ["{} `{}`".format(t['category'], t['count']) for t in categories]
         text = "\n".join(lines)
+        footer = "Total sold: {}".format(total)
+
+        for c in categories:
+            print(c)
 
         return [{
-            "fallback": "Ticket sale overview:\n{}".format(text),
-            "title": "Ticket sale overview",
+            "fallback": "Ticket sale overview:\n{}\n{}".format(text, footer),
+            "pretext": "*Ticket sale overview*",
             "text": text,
-            "mrkdwn_in": ["text"],
+            "footer": footer,
+            "mrkdwn_in": ["text", "pretext"],
             "color": "#9013FD"
         }]
 
-    def get_categories(self):
-        categories = (Ticket.objects
-            .filter(event=get_active_event())
+    def get_data(self):
+        tickets = Ticket.objects.filter(event=get_active_event())
+        categories = (tickets
             .values('category')
             .annotate(count=Count('*'))
             .order_by('-count'))
 
-        total = 0
-        for category in categories:
-            total += int(category['count'])
-            yield (escape(category['category']), category['count'])
-
-        yield ('Total', total)
+        return categories, tickets.count()
 
 
 class CommunityVoteView(SlackView):
