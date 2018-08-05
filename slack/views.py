@@ -4,15 +4,16 @@ import re
 
 from datetime import datetime, time
 
-from django.http import JsonResponse
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured, PermissionDenied
 from django.db import connection
 from django.db.models import Count
+from django.http import JsonResponse
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
+from urllib.request import urlopen
 
 from config.utils import get_active_event
 from events.models import Event, Ticket
@@ -175,3 +176,40 @@ class TtlView(SlackView):
                 event.title, self.format_delta(delta))
 
         return "There is no WebCamp scheduled :'("
+
+
+class EntrioTicketCountView(SlackView):
+    response_type = ResponseType.IN_CHANNEL
+
+    def get_attachments(self, request):
+        key = self.kwargs.get('key')
+
+        try:
+            data = self.fetch_data(key)
+        except Exception:
+            return [{
+                "title": "Failed loading Entrio data :'(",
+            }]
+
+        return [{
+            "pretext": "*Workshop ticket sale overview*",
+            "text": self.get_tickets_text(data),
+            "mrkdwn_in": ["text", "pretext"],
+            "color": "#9013FD"
+        }]
+
+    def get_categories(self, data):
+        for category in data:
+            name = re.sub(r"\(.+\)", "", category['category_name']).strip()
+            count = category['count']
+            yield name, count
+
+    def get_tickets_text(self, data):
+        categories = sorted(self.get_categories(data))
+        lines = ["{} `{}`".format(*t) for t in categories]
+        return "\n".join(lines)
+
+    def fetch_data(self, key):
+        url = "https://www.entrio.hr/api/get_ticket_count?key={}&format=json".format(key)
+        with urlopen(url) as f:
+            return json.loads(f.read().decode('utf-8'))
