@@ -82,14 +82,12 @@ class TicketsView(SlackView):
         text = "\n".join(lines)
         footer = "Total sold: {}".format(total)
 
-        for c in categories:
-            print(c)
-
         return [{
             "fallback": "Ticket sale overview:\n{}\n{}".format(text, footer),
             "pretext": "*Ticket sale overview*",
             "text": text,
             "footer": footer,
+            "footer_icon": "https://2018.webcampzg.org/static/images/heart-16px.png",
             "mrkdwn_in": ["text", "pretext"],
             "color": "#9013FD"
         }]

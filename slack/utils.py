@@ -33,7 +33,7 @@ def post_notification(title, text, footer=None, fallback=None):
     if footer:
         attachment.update({
             "footer": footer,
-            "footer_icon": "https://2017.webcampzg.org/static/images/heart-16px.png",
+            "footer_icon": "https://2018.webcampzg.org/static/images/heart-16px.png",
         })
 
     response = requests.post(url, json={
