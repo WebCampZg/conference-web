@@ -17,22 +17,19 @@
     <section class="schedule">
         <h1 class="red-dash">Schedule_</h1>
 
-        <p><em>The schedule has not yet been published.</em></p>
-
-        {% comment %}
-        <h3>Friday, October 6th</h3>
+        <h3>Friday, October 5th</h3>
         <table id="schedule-day-1" class="schedule-table hover unstriped">
             <thead>
                 <tr>
                     <th aria-hidden="true">&nbsp;</th>
                     <th class="text-center">
-                        <a href="{% url 'sponsors_view_sponsor' slug='amphinicy-technologies' %}">
-                            <img style="width: 10rem" src="{{ MEDIA_URL }}uploads/sponsors/amphinicy.svg" alt="Amphinicy Technologies" class="track-logo">
+                        <a href="{% url 'sponsors_view_sponsor' slug='trikoder' %}">
+                            <img style="width: 12rem" src="{{ MEDIA_URL }}uploads/sponsors/trikoder-logo.svg" alt="Trikoder" class="track-logo">
                         </a>
                     </th>
                     <th class="text-center">
-                        <a href="{% url 'sponsors_view_sponsor' slug='trikoder' %}">
-                            <img style="width: 12rem" src="{{ MEDIA_URL }}uploads/sponsors/trikoder-logo.svg" alt="Trikoder" class="track-logo">
+                        <a href="{% url 'sponsors_view_sponsor' slug='nsoft' %}">
+                            <img style="width: 10rem" src="{{ MEDIA_URL }}uploads/sponsors/Nsoft_logo_2017.png" alt="Amphinicy Technologies" class="track-logo">
                         </a>
                     </th>
                 </tr>
@@ -40,37 +37,37 @@
             <tbody>
                 {% include "schedule/partials/spacer.html" with time="08:30" text="Doors open" %}
                 {% include "schedule/partials/spacer.html" with time="10:00" text="Opening word" %}
-                {% include "schedule/partials/keynote.html" with time="10:15" slug="programming-across-paradigms" %}
+                {% include "schedule/partials/keynote.html" with time="10:15" slug="taking-ci-and-automated-testing-seriously" %}
                 {% include "schedule/partials/spacer.html" with time="11:15" text="Division break" %}
-                {% include "schedule/partials/talk_pair.html" with time="11:45" left="writing-code-pfft-evolve-it-instead" right="design-adventures-in-open-source" %}
-                {% include "schedule/partials/talk_pair.html" with time="12:15" left="year-with-eventsourcing-and-cqrs" right="build-bridges-not-wallsdesign-for-users-across-cultures" %}
-                {% include "schedule/partials/talk_pair.html" with time="13:05" left="getting-test-data-for-your-system-as-hard-core-and-as-fun-as-it-gets" right="user-testing-on-two-year-olds" %}
+                {% include "schedule/partials/talk_pair.html" with time="11:45" left="property-based-testing-is-a-mindset" right="algorithms-arent-neutral-making-ux-inclusive" %}
+                {% include "schedule/partials/talk_pair.html" with time="12:15" left="modern-sql-evolution-of-a-dinosaur" right="designing-with-accessibility-in-mind" %}
+                {% include "schedule/partials/talk_pair.html" with time="13:05" left="the-other-side-of-webapp-security" right="optimizing-page-load-speed-on-front-end-side" %}
                 {% include "schedule/partials/lunch.html" with time="13:35" %}
-                {% include "schedule/partials/talk_pair.html" with time="15:05" left="2nd-hardest-thing-in-computer-science" right="turn-zero-to-hero" %}
-                {% include "schedule/partials/talk_pair.html" with time="15:35" left="elements-of-scalable-architecture" right="software-industry-is-making-us-stupid" %}
+                {% include "schedule/partials/talk_pair.html" with time="15:05" left="static-websites-the-final-frontier" right="accessible-charts-done-right" %}
+                {% include "schedule/partials/talk_pair.html" with time="15:35" left="eme-cdm-drm-cenc-idk" right="a-token-walks-into-a-spa" %}
                 {% include "schedule/partials/spacer.html" with time="16:25" text="Break" %}
-                {% include "schedule/partials/talk_pair.html" with time="16:55" left="developing-a-safer-web-with-rust" right="frontend-creativity-with-web-animations" %}
-                {% include "schedule/partials/talk_pair.html" with time="17:25" left="the-state-of-chatbots-in-2017" right="debugging-communication" %}
-                {% include "schedule/partials/spacer.html" with time="17:55" text="End of day" %}
-                {% include "schedule/partials/drinkup.html" with time="18:00" %}
+                {% include "schedule/partials/talk_pair.html" with time="16:55" left="containers-vs-serverless-from-a-devops-standpoint" right="where-are-the-women" %}
+                {% include "schedule/partials/talk_pair.html" with time="17:25" left="pragmatic-execution-tracing" right="" %}
+                {% include "schedule/partials/talk_pair.html" with time="17:55" left="headless-architecture-and-the-future-of-websites" right="a-sleek-view-transitions-recipe-for-web-apps" %}
+                {% include "schedule/partials/spacer.html" with time="18:25" text="End of day" %}
             </tbody>
         </table>
 
         <hr />
 
-        <h3 class="arrow">Saturday, October 7th</h3>
+        <h3 class="arrow">Saturday, October 6th</h3>
         <table id="schedule-day-2" class="schedule-table hover unstriped">
             <thead>
                 <tr>
                     <th aria-hidden="true">&nbsp;</th>
                     <th class="text-center">
-                        <a href="{% url 'sponsors_view_sponsor' slug='amphinicy-technologies' %}">
-                            <img style="width: 10rem" src="{{ MEDIA_URL }}uploads/sponsors/amphinicy.svg" alt="Amphinicy Technologies" class="track-logo">
+                        <a href="{% url 'sponsors_view_sponsor' slug='trikoder' %}">
+                            <img style="width: 12rem" src="{{ MEDIA_URL }}uploads/sponsors/trikoder-logo.svg" alt="Trikoder" class="track-logo">
                         </a>
                     </th>
                     <th class="text-center">
-                        <a href="{% url 'sponsors_view_sponsor' slug='trikoder' %}">
-                            <img style="width: 12rem" src="{{ MEDIA_URL }}uploads/sponsors/trikoder-logo.svg" alt="Trikoder" class="track-logo">
+                        <a href="{% url 'sponsors_view_sponsor' slug='nsoft' %}">
+                            <img style="width: 10rem" src="{{ MEDIA_URL }}uploads/sponsors/Nsoft_logo_2017.png" alt="Amphinicy Technologies" class="track-logo">
                         </a>
                     </th>
                 </tr>
@@ -78,21 +75,20 @@
             <tbody>
                 {% include "schedule/partials/spacer.html" with time="08:30"    text="Doors open" %}
                 {% include "schedule/partials/spacer.html" with time="10:00"    text="Opening word" %}
-                {% include "schedule/partials/keynote.html" with time="10:15"   slug="css-grid-changes-everything-about-web-layouts" %}
+                {% include "schedule/partials/keynote.html" with time="10:15"   slug="nitpicking-terminology-are-we-using-the-right-terms" %}
                 {% include "schedule/partials/spacer.html" with time="11:15"    text="Division break" %}
-                {% include "schedule/partials/talk_pair.html" with time="11:45" left="a-geography-of-design" right="taming-legacy-on-a-live-project" %}
-                {% include "schedule/partials/talk_pair.html" with time="12:15" left="the-async-nightmare" right="the-holy-trinity-of-monitoring-logs-metrics-and-traces" %}
-                {% include "schedule/partials/talk_pair.html" with time="13:05" left="adventurous-experiences-of-a-remote-product-designer" right="ops-i-did-it-again" %}
+                {% include "schedule/partials/talk_pair.html" with time="11:45" left="fearless-concurrency-with-javascript-and-beyond" right="writing-superpowers-for-geeks" %}
+                {% include "schedule/partials/talk_pair.html" with time="12:15" left="crunching-data-in-real-time-for-fortune500-clients" right="the-developers-model-for-talking-to-managers" %}
+                {% include "schedule/partials/talk_pair.html" with time="13:05" left="shoving-your-application-code-into-the-web-server" right="pricing-shouldnt-be-hard" %}
                 {% include "schedule/partials/lunch.html" with time="13:35" %}
-                {% include "schedule/partials/talk_pair.html" with time="15:05" left="technical-career-path-from-junior-to-senior-thru-chosen-chapters-of-software-literature" right="cooking-with-large-batches-of-object-storage" %}
-                {% include "schedule/partials/talk_pair.html" with time="15:35" left="neuroscience-and-how-to-design-brand-driven-ux" right="microservices-in-production-a-case-study" %}
+                {% include "schedule/partials/talk_pair.html" with time="15:05" left="do-you-really-need-websockets" right="the-power-of-persuasive-design" %}
+                {% include "schedule/partials/talk_pair.html" with time="15:35" left="make-coding-fun-developing-a-game-in-the-browser" right="designing-for-impact" %}
                 {% include "schedule/partials/spacer.html" with time="16:25"    text="Break" %}
-                {% include "schedule/partials/talk_pair.html" with time="16:55" left="unlocking-the-full-potential-of-svg" right="automating-drone-with-real-time-video-processing-and-nodejs" %}
-                {% include "schedule/partials/talk_pair.html" with time="17:25" left="building-a-poor-mans-react" right="running-webservices-on-resource-limited-embedded-platforms" %}
+                {% include "schedule/partials/talk_pair.html" with time="16:55" left="who-takes-out-your-trash" right="delivering-fast-and-beautiful-images-and-video" %}
+                {% include "schedule/partials/talk_pair.html" with time="17:25" left="" right="fluid-typography" %}
                 {% include "schedule/partials/spacer.html" with time="18:00"    text="Closing word" %}
+                {% include "schedule/partials/drinkup.html" with time="18:00" %}
             </tbody>
         </table>
-        {% endcomment %}
-
     </section>
 {% endblock %}
