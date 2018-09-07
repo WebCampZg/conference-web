@@ -1,12 +1,10 @@
-<tr>
+<tr class="spacer">
     <td>{{ time }}</td>
     <td colspan="2" class="text-center">
-        <p>
-            <strong>Drinkup</strong>
-            {% comment %}
-            sponsored by
-            <img style="width: 7rem" src="{{ MEDIA_URL }}uploads/sponsors/toptal.svg" />
-            {% endcomment %}
-        </p>
+        <strong>Drinkup</strong>
+        sponsored by
+        <a href="{% url 'sponsors_view_sponsor' slug='vumedi' %}">
+            <img style="width: 6rem" src="{{ MEDIA_URL }}uploads/sponsors/vumedi.svg" />
+        </a>
     </td>
 </tr>
