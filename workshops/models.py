@@ -38,3 +38,6 @@ class Workshop(models.Model):
     def image(self):
         applicant = self.applicants.first()
         return applicant.image if applicant else None
+
+    def __repr__(self):
+        return '<Workshop #{}: {}>'.format(self.pk, self.title)

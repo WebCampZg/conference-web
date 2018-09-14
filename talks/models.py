@@ -37,9 +37,13 @@ class Talk(Timestampable):
         return reverse('talks_view_talk', args=[self.slug])
 
     def __str__(self):
-        return '{0} - {1}'.format(
-                self.application.applicant.user.get_full_name(),
-                self.title)
+        return '{} - {}'.format(
+            self.application.applicant.user.get_full_name(),
+            self.title
+        )
+
+    def __repr__(self):
+        return '<Talk #{}: {}>'.format(self.pk, self.title)
 
     def save(self, *args, **kwargs):
         self.event = self.application.cfp.event
