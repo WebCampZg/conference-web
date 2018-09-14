@@ -7,7 +7,8 @@ from .models import Workshop
 
 class WorkshopAdmin(admin.ModelAdmin):
     form = select2_modelform(Workshop)
-    list_display = ('title',)
+    list_display = ('title', 'people', 'event')
+    list_filter = ('event',)
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         field = super().formfield_for_manytomany(db_field, request, **kwargs)
@@ -16,5 +17,9 @@ class WorkshopAdmin(admin.ModelAdmin):
             field.queryset = field.queryset.prefetch_related('user').order_by('user__first_name', 'user__last_name')
 
         return field
+
+    def people(self, obj):
+        return ", ".join(obj.applicant_names())
+
 
 admin.site.register(Workshop, WorkshopAdmin)
