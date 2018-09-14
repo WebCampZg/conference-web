@@ -12,8 +12,8 @@ class WorkshopListView(ListView):
         event = get_active_event()
 
         return (super().get_queryset()
-                       .filter(event=event)
-                       .prefetch_related('applicants__user', 'skill_level')
+                       .filter(event=event, published=True)
+                       .prefetch_related('applicants', 'applicants__user', 'skill_level')
                        .order_by('starts_at', 'title'))
 
 
@@ -22,4 +22,8 @@ class WorkshopDetailView(DetailView):
     model = Workshop
 
     def get_queryset(self):
-        return super().get_queryset().prefetch_related('applicants__user', 'skill_level')
+        event = get_active_event()
+
+        return (super().get_queryset()
+                       .filter(event=event, published=True)
+                       .prefetch_related('applicants__user', 'skill_level'))
