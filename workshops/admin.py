@@ -7,8 +7,8 @@ from .models import Workshop
 
 class WorkshopAdmin(admin.ModelAdmin):
     form = select2_modelform(Workshop)
-    list_display = ('title', 'people', 'event')
-    list_filter = ('event',)
+    list_display = ('title', 'people', 'published', 'event')
+    list_filter = ('event', 'published')
 
     def formfield_for_manytomany(self, db_field, request, **kwargs):
         field = super().formfield_for_manytomany(db_field, request, **kwargs)
