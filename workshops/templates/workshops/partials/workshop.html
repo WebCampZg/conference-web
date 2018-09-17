@@ -25,10 +25,14 @@
                 {% include "workshops/partials/workshop_flags.html" %}
             </p>
 
+            {% if workshop.sold_out %}
+                <div class="callout alert">
+                    Tickets for this workshop are SOLD OUT
+                </div>
+            {% endif %}
+
             {% comment %}
             <p>
-                <a class="small button"
-                   href="/tickets">Buy Tickets</a>
                 <a class="small green button"
                    href="{% url 'workshops_view_workshop' slug=workshop.slug %}">Details</a>
             </p>

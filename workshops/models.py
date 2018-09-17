@@ -18,6 +18,7 @@ class Workshop(models.Model):
     tickets_link = models.URLField(blank=True)
     price = models.PositiveIntegerField(blank=True, null=True)
     published = models.BooleanField(default=True)
+    sold_out = models.BooleanField(default=False)
 
     rate_url = models.URLField(blank=True)
     joindin_url = models.URLField(blank=True, help_text="URL to the event on JoindIn API.")
