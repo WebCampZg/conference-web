@@ -29,6 +29,23 @@ def navigation(request):
     }
 
 
+def footer_links(request):
+    return {
+        "footer_links": [
+            ("Info", "/info/"),
+            ("Venue", reverse("venue")),
+            ("Timeline", "/timeline/"),
+            ("Workshops", reverse('workshops_list_workshops')),
+            ("Talks", reverse('talks_list_talks')),
+            ("Schedule", reverse('schedule_list_schedule')),
+            ("News", reverse('blog_list_posts')),
+            ("Jobs", reverse('jobs_list_jobs')),
+            ("Code", "/code/"),
+            ("Team", "/team/"),
+        ]
+    }
+
+
 def sponsors(request):
     active = Sponsor.objects.active()
     sponsors = {t: active.filter(type=t).order_by('order') for t, _ in SPONSOR_TYPES}

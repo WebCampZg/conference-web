@@ -239,6 +239,7 @@ TEMPLATES = [
                 # Custom
                 'ui.ctx.css_last_modified',
                 'ui.ctx.event',
+                'ui.ctx.footer_links',
                 'ui.ctx.navigation',
                 'ui.ctx.sponsors',
                 'ui.ctx.team',
