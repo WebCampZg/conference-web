@@ -7,7 +7,7 @@ def index(request):
     event = get_active_event()
     posts = event.posts.all()[:3]
     talks = event.talks.filter(keynote=False).order_by('?')[:3]
-    workshops = event.workshops.order_by('?')[:3]
+    workshops = event.workshops.filter(published=True).order_by('?')[:3]
 
     return render(request, 'ui/index.html', {
         "is_frontpage": True,
