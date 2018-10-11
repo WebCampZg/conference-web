@@ -1,5 +1,6 @@
 from django import template
 from django.utils.safestring import mark_safe
+from talks.models import SurveyScore
 
 register = template.Library()
 
@@ -45,5 +46,8 @@ def histogram_svg(scores):
 @register.filter
 def score_diff(talk):
     "Used in EventTalksView to show difference between committee and user scores"
-    if talk.committee_average and talk.surveyscore.average:
-        return talk.committee_average - talk.surveyscore.average
+    try:
+        if talk.committee_average and talk.surveyscore.average:
+            return talk.committee_average - talk.surveyscore.average
+    except SurveyScore.DoesNotExist:
+        pass
