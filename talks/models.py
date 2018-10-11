@@ -62,3 +62,6 @@ class SurveyScore(models.Model):
     count = models.IntegerField()
     average = models.FloatField()
     distribution = JSONField()
+
+    def __repr__(self):
+        return "<SurveyScore avg={:2f} n={}>".format(self.average, self.count)
