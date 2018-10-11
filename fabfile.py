@@ -39,7 +39,7 @@ def refresh_db():
     run("rm -f {}".format(DUMP_FILE))
     run("pg_dump -d webcamp --no-owner > {}".format(DUMP_FILE))
     run("gzip {}".format(DUMP_FILE))
-    local("scp webcamp:{0}.gz {0}.gz".format(DUMP_FILE))
+    local("scp -C webcamp:{0}.gz {0}.gz".format(DUMP_FILE))
     local("gunzip {0}.gz".format(DUMP_FILE))
 
     # Recreate the database locally
