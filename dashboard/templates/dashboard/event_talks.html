@@ -1,0 +1,76 @@
+{% extends 'dashboard/base.html' %}
+
+{% load dashboard %}
+
+{% block title %}Talks - {{ event }}{% endblock %}
+
+{% block head %}
+<style type="text/css">
+    #tickets-table { font-size: smaller; }
+    .row.column { max-width: 80rem }
+    h2 { margin-top: 2rem }
+</style>
+{% endblock %}
+
+{% block content %}
+<ul class="breadcrumbs">
+    <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
+    <li>Events</li>
+    <li><a href="{% url 'dashboard:event-detail' event.pk %}">{{ event.title }}</a></li>
+    <li>Talks</li>
+</ul>
+
+<h1>Talks <small>for {{ event.title }}</small></h1>
+
+{% if talks %}
+    <table id="talks-table" class="hover">
+        <thead>
+            <tr>
+                <th rowspan="2">Talk</th>
+                <th rowspan="2">Starts at</th>
+                <th colspan="2" class="text-center">Survey</th>
+                <th colspan="2" class="text-center">Committee</th>
+                <th rowspan="2" class="text-right">Diff</th>
+            </tr>
+            <tr>
+                <th class="text-right">avg</th>
+                <th class="text-right">count</th>
+                <th class="text-right">avg</th>
+                <th class="text-right">count</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for talk in talks %}
+                <tr>
+                    <td>
+                        <a href="{% url 'dashboard:application_detail' pk=talk.application.id %}">
+                            {{ talk.title }}
+                        </a><br />
+                        {{ talk.speaker.get_full_name }}
+                    </td>
+                    <td>{{ talk.starts_at|date:"Y-m-d H:i" }}</td>
+                    <td class="text-right">{{ talk.surveyscore.average|floatformat:2 }}</td>
+                    <td class="text-right">{{ talk.surveyscore.count }}</td>
+                    <td class="text-right">{{ talk.committee_average|floatformat:2 }}</td>
+                    <td class="text-right">{{ talk.committee_count }}</td>
+                    <td class="text-right">{{ talk|score_diff|floatformat:2 }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No talks exist for this event.</p>
+{% endif %}
+{% endblock %}
+
+
+{% block morescript %}
+<script type="text/javascript">
+$(function () {
+    $("#talks-table").dataTable({
+        "paging": false,
+        "searching": false,
+    });
+});
+</script>
+{% endblock %}

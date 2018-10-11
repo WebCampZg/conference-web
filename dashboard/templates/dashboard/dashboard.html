@@ -7,8 +7,9 @@
         <thead>
             <tr>
                 <th>Event</th>
-                <th>Tickets</th>
                 <th>Applications</th>
+                <th>Tickets</th>
+                <th>Talks</th>
             </tr>
         </thead>
         <tbody>
@@ -25,17 +26,22 @@
                     {% endif %}
                 </td>
                 <td>
-                    <a href="{% url 'dashboard:event-tickets' event.pk %}">
-                        <i class="fa fa-ticket"></i> Tickets
-                    </a>
-                </td>
-                <td>
                     {% for cfp in event.callforpaper_set.all %}
                     <div>
                         <i class="fa fa-paper-plane-o"></i>
                         <a href="{% url 'dashboard:cfp_detail' cfp.pk %}">{{ cfp }}</a>
                     </div>
                     {% endfor %}
+                </td>
+                <td>
+                    <a href="{% url 'dashboard:event-tickets' event.pk %}">
+                        <i class="fa fa-ticket"></i> Tickets
+                    </a>
+                </td>
+                <td>
+                    <a href="{% url 'dashboard:event-talks' event.pk %}">
+                        <i class="fa fa-commenting-o"></i> Talks
+                    </a>
                 </td>
             </tr>
             {% endfor %}

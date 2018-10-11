@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^event/(?P<event_id>\d+)/', include([
         url(r'^$', views.EventDetailView.as_view(), name='event-detail'),
         url(r'^tickets/$', views.EventTicketsView.as_view(), name='event-tickets'),
+        url(r'^talks/$', views.EventTalksView.as_view(), name='event-talks'),
         url(r'^community-vote/$', views.CommunityVoteView.as_view(), name='community-vote'),
     ])),
 

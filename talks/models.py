@@ -36,9 +36,13 @@ class Talk(Timestampable):
         from django.urls import reverse
         return reverse('talks_view_talk', args=[self.slug])
 
+    @property
+    def speaker(self):
+        return self.application.applicant.user
+
     def __str__(self):
         return '{} - {}'.format(
-            self.application.applicant.user.get_full_name(),
+            self.speaker.get_full_name(),
             self.title
         )
 

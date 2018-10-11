@@ -20,6 +20,7 @@ from dashboard.models import Comment, Vote as CommitteeVote
 from dashboard.utils import get_votes_distribution
 from events.models import Event, Ticket
 from people.models import TShirtSize, User
+from talks.models import Talk
 from voting.models import CommunityVote
 
 
@@ -319,6 +320,30 @@ class EventTicketsView(ViewAuthMixin, ListView):
             "count": x[1],
             "width": (float(100 * x[1]) / most_common[0][1]), # for drawing progress bars
         } for x in most_common]
+
+
+class EventTalksView(ViewAuthMixin, ListView):
+    model = Talk
+    template_name = 'dashboard/event_talks.html'
+    context_object_name = 'talks'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.event = get_object_or_404(Event, pk=self.kwargs.get('event_id'))
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return (super().get_queryset()
+            .filter(event=self.event)
+            .prefetch_related('application__applicant__user',
+                              'application__committee_votes',
+                              'surveyscore')
+            .annotate(committee_count=Count("application__committee_votes"),
+                      committee_average=Avg("application__committee_votes__score")))
+
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        ctx.update({'event': self.event})
+        return ctx
 
 
 class BaseCommentEditView(ViewAuthMixin, ModelFormMixin, ProcessFormView):

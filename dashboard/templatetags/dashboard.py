@@ -40,3 +40,10 @@ def histogram_svg(scores):
             </rect>
         </svg>
     """.format(**data))
+
+
+@register.filter
+def score_diff(talk):
+    "Used in EventTalksView to show difference between committee and user scores"
+    if talk.committee_average and talk.surveyscore.average:
+        return talk.committee_average - talk.surveyscore.average
