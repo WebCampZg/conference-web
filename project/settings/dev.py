@@ -32,7 +32,6 @@ try:
         'debug_toolbar',
     )
     DEBUG_TOOLBAR_CONFIG = {
-        'INTERCEPT_REDIRECTS': False,
         'SHOW_TOOLBAR_CALLBACK': lambda *args, **kwargs: True,
     }
 except ImportError:
