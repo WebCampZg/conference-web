@@ -1,0 +1,16 @@
+Dear {{ user.first_name }},
+
+Thank you very much for being a part of WebCamp Zagreb, you helped make a great conference. We've received a lot of positive feedback.
+
+At the end of the conference we sent out a survey to all attendees which asked them, among other things, to rate each talk they attended with a score of 1 through 5. We have so far received 230 responses.
+
+Attached is a chart compiled from these scores. Keep in mind that the survey is anonymous and people can be a little harsh. A numeric-only score is by definition not constructive, but it can be indicative of the talk's overall success.
+
+If you have your slides available online, please send me the link (if you haven't already) so I can add them to your talk page.
+
+It was a blast having you, I hope to see you again next year, as attendee if not speaker.
+
+Best regards,
+--
+Ivan Habunek
+WebCamp Zagreb Team
