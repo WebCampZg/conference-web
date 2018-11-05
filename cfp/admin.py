@@ -43,8 +43,7 @@ class PaperApplicationAdmin(admin.ModelAdmin):
 
     def link_to_applicant(self, obj):
         link = reverse("admin:cfp_applicant_change", args=[obj.applicant.id])
-        return '<a href="%s">%s</a>' % (link, obj.applicant)
-    link_to_applicant.allow_tags = True
+        return mark_safe('<a href="%s">%s</a>' % (link, obj.applicant))
 
 
 class InviteAdmin(admin.ModelAdmin):

@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import reverse
+from django.utils.safestring import mark_safe
 
 from .models import Event, Ticket
 
@@ -16,11 +17,9 @@ class TicketAdmin(admin.ModelAdmin):
         label = ticket.first_name + " " + ticket.last_name
         if ticket.user:
             link = reverse("admin:people_user_change", args=(ticket.user.id,))
-            return '<a href="%s">%s</a>' % (link, label)
+            return mark_safe('<a href="%s">%s</a>' % (link, label))
         else:
             return label
-
-    _user.allow_tags = True
 
 
 admin.site.register(Event, EventAdmin)

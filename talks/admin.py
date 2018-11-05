@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.urls import reverse
+from django.utils.safestring import mark_safe
 
 from .models import Talk
 
@@ -40,13 +41,11 @@ class TalkAdmin(admin.ModelAdmin):
 
     def application_(self, obj):
         link = reverse("admin:cfp_paperapplication_change", args=[obj.application.id])
-        return '<a href="%s">%s</a>' % (link, "link")
-    application_.allow_tags = True
+        return mark_safe('<a href="%s">%s</a>' % (link, "link"))
 
     def applicant(self, obj):
         link = reverse("admin:cfp_applicant_change", args=[obj.application.applicant.id])
-        return '<a href="%s">%s</a>' % (link, obj.application.applicant)
-    applicant.allow_tags = True
+        return mark_safe('<a href="%s">%s</a>' % (link, obj.application.applicant))
 
     actions = [mark_as_community_chosen]
 
