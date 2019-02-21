@@ -25,7 +25,7 @@ urlpatterns = [
 
     # Apps
     url(r'^cfp/', include('cfp.urls')),
-    url(r'^dashboard/', include('dashboard.urls')),
+    # url(r'^dashboard/', include('dashboard.urls')),
     url(r'^jobs/', include('jobs.urls')),
     url(r'^news/', include('blog.urls')),
     url(r'^schedule/', include('schedule.urls')),
