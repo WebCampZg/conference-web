@@ -15,15 +15,16 @@
     </div>
 
     <div class="nav-right no-wrap">
-    {% comment %}
         {% if user.is_talk_committee_member %}
             <a href="/dashboard/" class="tickets">
                 Dashboard
             </a>
         {% else %}
+            {% comment %}
             <a href="/tickets/" class="tickets">
                 Buy tickets
             </a>
+            {% endcomment %}
         {% endif %}
         {% if user.is_authenticated %}
             <a href="{% url 'user_profile' %}">
@@ -34,7 +35,6 @@
                 Login
             </a>
         {% endif %}
-    {% endcomment %}
     </div>
 </div>
 
@@ -68,7 +68,6 @@
         <a href="/tickets/">
             Buy Tickets
         </a>
-        {% comment %}
         {% if user.is_authenticated %}
             <a href="{% url 'user_profile' %}">
                 Profile
@@ -78,7 +77,6 @@
                 Login
             </a>
         {% endif %}
-        {% endcomment %}
     </div>
 </div>
 
