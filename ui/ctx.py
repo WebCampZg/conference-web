@@ -18,12 +18,12 @@ def navigation(request):
             ("Info", "/info/"),
             ("Venue", reverse("venue")),
             # ("Timeline", "/timeline/"),
-            ("Workshops", reverse('workshops_list_workshops')),
-            ("Talks", reverse('talks_list_talks')),
-            ("Schedule", reverse('schedule_list_schedule')),
+            # ("Workshops", reverse('workshops_list_workshops')),
+            # ("Talks", reverse('talks_list_talks')),
+            # ("Schedule", reverse('schedule_list_schedule')),
             ("News", reverse('blog_list_posts')),
-            ("Jobs", reverse('jobs_list_jobs')),
-            # ("Code", "/code/"),
+            # ("Jobs", reverse('jobs_list_jobs')),
+            ("Code", "/code/"),
             ("Team", "/team/"),
         ]
     }
@@ -34,12 +34,12 @@ def footer_links(request):
         "footer_links": [
             ("Info", "/info/"),
             ("Venue", reverse("venue")),
-            ("Timeline", "/timeline/"),
-            ("Workshops", reverse('workshops_list_workshops')),
-            ("Talks", reverse('talks_list_talks')),
-            ("Schedule", reverse('schedule_list_schedule')),
+            # ("Timeline", "/timeline/"),
+            # ("Workshops", reverse('workshops_list_workshops')),
+            # ("Talks", reverse('talks_list_talks')),
+            # ("Schedule", reverse('schedule_list_schedule')),
             ("News", reverse('blog_list_posts')),
-            ("Jobs", reverse('jobs_list_jobs')),
+            # ("Jobs", reverse('jobs_list_jobs')),
             ("Code", "/code/"),
             ("Team", "/team/"),
         ]
@@ -113,103 +113,109 @@ def team(request):
             "twitter": "",
             "job": "Procurement",
         },
-        {
-            "name": "Filip Gjurin",
-            "image": "images/team/filip.jpg",
-            "twitter": "FilipGjurin",
-            "job": "Graphic design",
-        },
+        # {
+        #     "name": "Filip Gjurin",
+        #     "image": "images/team/filip.jpg",
+        #     "twitter": "FilipGjurin",
+        #     "job": "Graphic design",
+        # },
         {
             "name": "Ivan Habunek",
             "image": "images/team/ivan.jpg",
             "twitter": "ihabunek",
-            "job": "Speakers & tech"
+            "job": "Tech"
         },
-        {
-            "name": "Tomislav Capan",
-            "image": "images/team/tomislav.jpg",
-            "twitter": "tomislavcapan",
-            "job": "Volunteers"
-        },
-        {
-            "name": "Steve Tauber",
-            "image": "images/team/steve.png",
-            "twitter": "stevetauber",
-            "job": "Master of ceremonies"
-        },
+        # {
+        #     "name": "Tomislav Capan",
+        #     "image": "images/team/tomislav.jpg",
+        #     "twitter": "tomislavcapan",
+        #     "job": "Volunteers"
+        # },
+        # {
+        #     "name": "Steve Tauber",
+        #     "image": "images/team/steve.png",
+        #     "twitter": "stevetauber",
+        #     "job": "Master of ceremonies"
+        # },
         {
             "name": "Senko Rašić",
             "image": "images/team/senko.jpg",
             "twitter": "senkorasic",
             "job": "Beloved leader"
         },
-        {
-            "name": "Elizabeth Salazar",
-            "image": "images/team/elizabeth.jpg",
-            "twitter": "",
-            "job": "Master of ceremonies"
-        },
+        # {
+        #     "name": "Elizabeth Salazar",
+        #     "image": "images/team/elizabeth.jpg",
+        #     "twitter": "",
+        #     "job": "Master of ceremonies"
+        # },
         {
             "name": "Miro Svrtan",
             "image": "images/team/miro.png",
             "twitter": "msvrtan",
             "job": "Workshops"
         },
-        {
-            "name": "Goran Jurić",
-            "image": "images/team/goran.jpg",
-            "twitter": "goran_juric",
-            "job": "Workshops"
-        },
+        # {
+        #     "name": "Goran Jurić",
+        #     "image": "images/team/goran.jpg",
+        #     "twitter": "goran_juric",
+        #     "job": "Workshops"
+        # },
         {
             "name": "Zoran Antolović",
             "image": "images/team/zoka.jpg",
             "twitter": "zoran_antolovic",
             "job": "Venue"
         },
+        {
+            "name": "Maja Trepšić",
+            "image": "images/team/maja.jpg",
+            "twitter": "",
+            "job": "Keynotes & Committee"
+        },
     ]
 
     committee = [
-        {
-            "name": "Emanuel Blagonić",
-            "image": "images/team/emanuel.png",
-            "twitter": "eblagonic",
-        },
-        {
-            "name": "Goran Jurić",
-            "image": "images/team/goran.jpg",
-            "twitter": "goran_juric",
-        },
-        {
-            "name": "Saša Jurić",
-            "image": "images/team/sasa.png",
-            "twitter": "sasajuric",
-        },
-        {
-            "name": "Neven Munđar",
-            "image": "images/team/neven.jpg",
-            "twitter": "nmundar",
-        },
-        {
-            "name": "Andrea Knez Karačić",
-            "image": "images/team/andrea.jpg",
-            "twitter": "CodeWithCream",
-        },
-        {
-            "name": "Ivan Čurić",
-            "image": "images/team/ivan_curic.jpg",
-            "twitter": "_baxuz",
-        },
-        {
-            "name": "Davor Tomić",
-            "image": "images/team/davor_tomic.jpg",
-            "twitter": "davortomic",
-        },
-        {
-            "name": "Slaven Tomac",
-            "image": "images/team/slaven.png",
-            "twitter": "slaventomac",
-        },
+        # {
+        #     "name": "Emanuel Blagonić",
+        #     "image": "images/team/emanuel.png",
+        #     "twitter": "eblagonic",
+        # },
+        # {
+        #     "name": "Goran Jurić",
+        #     "image": "images/team/goran.jpg",
+        #     "twitter": "goran_juric",
+        # },
+        # {
+        #     "name": "Saša Jurić",
+        #     "image": "images/team/sasa.png",
+        #     "twitter": "sasajuric",
+        # },
+        # {
+        #     "name": "Neven Munđar",
+        #     "image": "images/team/neven.jpg",
+        #     "twitter": "nmundar",
+        # },
+        # {
+        #     "name": "Andrea Knez Karačić",
+        #     "image": "images/team/andrea.jpg",
+        #     "twitter": "CodeWithCream",
+        # },
+        # {
+        #     "name": "Ivan Čurić",
+        #     "image": "images/team/ivan_curic.jpg",
+        #     "twitter": "_baxuz",
+        # },
+        # {
+        #     "name": "Davor Tomić",
+        #     "image": "images/team/davor_tomic.jpg",
+        #     "twitter": "davortomic",
+        # },
+        # {
+        #     "name": "Slaven Tomac",
+        #     "image": "images/team/slaven.png",
+        #     "twitter": "slaventomac",
+        # },
     ]
 
     shuffle(team)
