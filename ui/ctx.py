@@ -79,7 +79,7 @@ def webcamp(request):
     return {
         "base_url": abs_uri('/').rstrip('/'),
         "links": {
-            "sponsors_pdf": abs_uri('/media/wczg_2018_sponsors_brochure.pdf'),
+            "sponsors_pdf": abs_uri('/media/wczg_2019_sponsors_brochure.pdf'),
             "volunteer_application": "http://goo.gl/forms/1LYfr3TEGs",
             "entrio": "https://www.entrio.hr/en/event/webcamp-zagreb-2017-4261",
             "facebook": "https://www.facebook.com/WebCampZagreb/",
