@@ -47,8 +47,11 @@ def footer_links(request):
 
 
 def sponsors(request):
-    active = Sponsor.objects.active()
-    sponsors = {t: active.filter(type=t).order_by('order') for t, _ in SPONSOR_TYPES}
+    active = Sponsor.objects.active().order_by('order')
+    sponsors = {
+        type: [s for s in active if s.type == type]
+        for type, _ in SPONSOR_TYPES
+    }
 
     return {
         "sponsors": sponsors
