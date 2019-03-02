@@ -4,7 +4,6 @@ from django.db.models.deletion import PROTECT
 from django.template.defaultfilters import slugify
 
 from cfp.choices import TALK_DURATIONS
-from cfp.models import PaperApplication, AudienceSkillLevel, Applicant
 from sponsors.models import Sponsor
 from usergroups.models import UserGroup
 from utils.behaviors import Timestampable
@@ -12,15 +11,15 @@ from utils.behaviors import Timestampable
 
 class Talk(Timestampable):
     event = models.ForeignKey('events.Event', on_delete=PROTECT, related_name='talks')
-    application = models.OneToOneField(PaperApplication, on_delete=PROTECT, related_name='talk')
-    co_presenter = models.ForeignKey(Applicant, on_delete=PROTECT, blank=True, null=True, related_name='co_talks')
+    applicants = models.ManyToManyField('cfp.Applicant')
+    application = models.OneToOneField('cfp.PaperApplication', on_delete=PROTECT, related_name='talk')
     sponsor = models.ForeignKey(Sponsor, on_delete=PROTECT, blank=True, null=True, related_name="sponsored_talks")
     usergroup = models.ForeignKey(UserGroup, on_delete=PROTECT, blank=True, null=True, related_name="chosen_talks")
 
     title = models.CharField(max_length=255, blank=True)
     about = models.TextField(blank=True)
     abstract = models.TextField(blank=True)
-    skill_level = models.ForeignKey(AudienceSkillLevel, on_delete=PROTECT, blank=True, null=True)
+    skill_level = models.ForeignKey('cfp.AudienceSkillLevel', on_delete=PROTECT, blank=True, null=True)
     starts_at = models.DateTimeField(blank=True, null=True)
     duration = models.CharField(choices=TALK_DURATIONS, max_length=255, blank=True, null=True)
     slug = models.SlugField(blank=True, max_length=255, null=True)
@@ -37,12 +36,12 @@ class Talk(Timestampable):
         return reverse('talks_view_talk', args=[self.slug])
 
     @property
-    def speaker(self):
-        return self.application.applicant.user
+    def speaker_names(self):
+        return ", ".join(a.full_name for a in self.applicants.all())
 
     def __str__(self):
         return '{} - {}'.format(
-            self.speaker.get_full_name(),
+            self.speaker_names,
             self.title
         )
 

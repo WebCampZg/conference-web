@@ -49,16 +49,12 @@ class Command(BaseCommand):
                 return talk['uri']
 
     def talk_data(self, talk):
-        speakers = [talk.application.applicant.user.full_name]
-        if talk.co_presenter:
-            speakers.append(talk.co_presenter.full_name)
-
         return {
             "talk_title": talk.title,
             "url_friendly_talk_title": talk.slug,
             "talk_description": talk.about,
             "type": "Keynote" if talk.keynote else "Talk",
-            "speakers": speakers,
+            "speakers": [a.full_name for a in talk.applicants.all()],
             "duration": int(talk.duration),
             "start_date": isodate(talk.starts_at),
         }

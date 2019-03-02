@@ -1,16 +1,16 @@
 {% load webcamp %}
 
-{% with applicant=talk.application.applicant %}
+{% with random_applicant=talk.applicants.all|random %}
 <div class="talk-grid-item">
     <a href="{% url 'talks_view_talk' slug=talk.slug %}">
-        <div class="talk-photo" style="background-image: url('{{ MEDIA_URL }}{{ applicant.image }}')">
+        <div class="talk-photo" style="background-image: url('{{ MEDIA_URL }}{{ random_applicant.image }}')">
             <div class="talk-photo-overlay {{ talk.skill_level.name|lower }}"></div>
         </div>
     </a>
 
     <div class="talk-data" data-equalizer-watch>
         <div class="speaker">
-            {{ applicant.full_name }}
+            {{ talk.speaker_names }}
         </div>
 
         <div class="talk-title">

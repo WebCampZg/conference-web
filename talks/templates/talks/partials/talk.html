@@ -4,30 +4,18 @@
     <div class="row">
         <div class="show-for-medium medium-3 columns">
             <a href="{% url 'talks_view_talk' slug=talk.slug %}">
-                <!--  Show picture of co-presenter -->
-                {% if talk.co_presenter %}
-                <img src="{{ MEDIA_URL }}{{ talk.co_presenter.image }}"
-                     alt="Photo of {{ talk.co_presenter.user.get_full_name }}">
-                {% else %}
-                <img src="{{ MEDIA_URL }}{{ talk.application.applicant.image }}"
-                     alt="Photo of {{ talk.application.applicant.user.get_full_name }}">
-                {% endif %}
+                {% with applicant=talk.applicants.all|random %}
+                <img src="{{ MEDIA_URL }}{{ applicant.image }}"
+                     alt="Photo of {{ applicant.full_name }}">
+                {% endwith %}
             </a>
         </div>
 
         <div class="small-12 medium-9 columns">
-            {% if talk.co_presenter %}
-                <p>
-                    <span>Speakers:</span>
-                    <a href="{% url 'talks_view_talk' slug=talk.slug %}#speaker">{{ talk.application.applicant.user.get_full_name }}</a>,
-                    <a href="{% url 'talks_view_talk' slug=talk.slug %}#speaker2">{{ talk.co_presenter.user.get_full_name }}</a>
-                </p>
-            {% else %}
-                <p>
-                    <span>Speaker:</span>
-                    <a href="{% url 'talks_view_talk' slug=talk.slug %}#speaker">{{ talk.application.applicant.user.get_full_name }}</a>
-                </p>
-            {% endif %}
+            <p>
+                <span>Speaker{% if talk.applicants.count > 1 %}s{% endif %}:</span>
+                <strong>{{ talk.speaker_names }}</strong>
+            </p>
 
             <h3>
                 <a href="{% url 'talks_view_talk' slug=talk.slug %}">

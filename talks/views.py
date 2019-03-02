@@ -8,10 +8,10 @@ from .models import Talk
 def list_talks(request):
     event = get_active_event()
     talks = event.talks.prefetch_related(
+        'applicants',
+        'applicants__user',
         'skill_level',
         'sponsor',
-        'application__applicant',
-        'application__applicant__user',
     ).order_by('-keynote', 'title')
 
     return render(request, 'talks/list_talks.html', {

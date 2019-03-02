@@ -8,7 +8,9 @@
             {{ talk.title }}
             <span class="yellow label">Keynote</span>
             <br />
-            <span style="font-weight: normal">{{ talk.application.applicant.user.full_name }}</span>
+            <span style="font-weight: normal">
+                {{ talk.speaker_names }}
+            </span>
         </a>
     </td>
 </tr>

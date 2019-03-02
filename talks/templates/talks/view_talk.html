@@ -3,7 +3,7 @@
 {% load webcamp markdown_deux_tags %}
 
 {% block title %}
-    {{ talk.application.applicant.user.get_full_name }}:
+    {{ talk.speaker_names }}:
     {{ talk.title }} - {{ event.extended_title }}
 {% endblock %}
 
@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block og %}
-    <meta property="og:title" content="{{ talk.application.applicant.user.get_full_name }}: {{ talk.title }}" />
+    <meta property="og:title" content="{{ talk.speaker_names }}: {{ talk.title }}" />
     <meta property="og:description" content="{{ talk.about }}" />
 {% endblock %}
 
@@ -64,12 +64,8 @@
         {% endif %}
 
         <hr />
-
-        {% include "talks/partials/speaker.html" with applicant=talk.application.applicant %}
-
-        {% if talk.co_presenter %}
-            <hr />
-            {% include "talks/partials/speaker.html" with applicant=talk.co_presenter %}
-        {% endif %}
+        {% for applicant in talk.applicants.all %}
+            {% include "talks/partials/speaker.html" with applicant=applicant %}
+        {% endfor %}
     </article>
 {% endblock %}

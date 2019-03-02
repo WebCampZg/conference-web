@@ -1,8 +1,9 @@
 {% load webcamp %}
 
+{% with random_applicant=talk.applicants.all|random %}
 <div class="workshop-grid-item">
     <a href="{% url 'workshops_view_workshop' slug=workshop.slug %}">
-        <div class="workshop-photo" style="background-image: url('{{ MEDIA_URL }}{{ workshop.random_applicant.image }}')">
+        <div class="workshop-photo" style="background-image: url('{{ MEDIA_URL }}{{ random_applicant.image }}')">
         </div>
     </a>
 
@@ -29,3 +30,4 @@
         </div>
     </div>
 </div>
+{% endwith %}
