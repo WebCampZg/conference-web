@@ -79,6 +79,7 @@ INSTALLED_APPS = (
     'config',
     'dashboard',
     'events',
+    'gopher',
     'jobs',
     'pages',
     'people',
