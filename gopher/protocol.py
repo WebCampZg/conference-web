@@ -58,7 +58,9 @@ class Gopher(protocol.Protocol):
 
     def page(self, page_id):
         page = Page.objects.get(pk=page_id)
-        self.transport.write(page.content.encode())
+        markdown = render_to_string('pages/page.md', {"page": page})
+        for line in markdown.splitlines():
+            self.write_line(line)
 
     def talk(self, talk_id):
         talk = Talk.objects.get(pk=talk_id)
