@@ -13,11 +13,11 @@ class PageForm(FlatpageForm):
 
 class PageAdmin(FlatPageAdmin):
     form = PageForm
-    list_display = ('url', 'title', 'meta_description',)
+    list_display = ('url', 'title', 'meta_description', 'published')
     list_filter = ()
     fieldsets = (
         (None, {
-            'fields': ('url', 'title', 'content', 'meta_description')
+            'fields': ('url', 'title', 'content', 'meta_description', 'published')
         }),
         ('Advanced options', {
             'fields': ('registration_required', 'template_name')
