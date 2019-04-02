@@ -6,11 +6,11 @@ class PaperApplicationForm(forms.ModelForm):
     class Meta:
         model = PaperApplication
         fields = (
+            'type',
             'title',
             'about',
             'abstract',
             'skill_level',
-            'duration',
             'accomodation_required',
             'travel_expenses_required',
             'extra_info',
@@ -20,11 +20,20 @@ class PaperApplicationForm(forms.ModelForm):
             'grant_publish_video',
         )
 
+        help_texts = {
+            'type':
+                'What are you applying for? Note that there are fewer slots for long talks and '
+                'workshops and applying for a shorter one gives you better chances of being '
+                'accepted.',
+        }
+
         widgets = {
             "about": forms.Textarea(attrs={'rows': 4})
         }
 
-    title = forms.CharField(max_length=50, required=True)
+    title = forms.CharField(
+        max_length=50, required=True,
+        help_text=PaperApplication._meta.get_field('title').help_text)
 
     grant_email_contact = forms.BooleanField(
         required=True,

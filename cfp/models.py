@@ -2,10 +2,7 @@ import uuid
 import unicodedata
 
 from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
@@ -121,8 +118,30 @@ class AudienceSkillLevel(models.Model):
 
 
 class PaperApplication(Timestampable):
+    TYPE_KEYNOTE = 'keynote'
+    TYPE_TALK_LONG = 'talk_long'
+    TYPE_TALK_SHORT = 'talk_short'
+    TYPE_WORKSHOP_HALF = 'workshop_half'
+    TYPE_WORKSHOP_FULL = 'workshop_full'
+
+    TYPES = (
+        (TYPE_TALK_SHORT, 'Short talk (25 minutes)'),
+        (TYPE_TALK_LONG, 'Long talk (45 minutes)'),
+        (TYPE_KEYNOTE, 'Keynote (60 minutes)'),
+        (TYPE_WORKSHOP_HALF, 'Workshop (half day)'),
+        (TYPE_WORKSHOP_FULL, 'Workshop (full day)'),
+    )
+
+    TALK_TYPES = (TYPE_KEYNOTE, TYPE_TALK_LONG, TYPE_TALK_SHORT)
+    WORKSHOP_TYPES = (TYPE_WORKSHOP_HALF, TYPE_WORKSHOP_FULL)
+
     cfp = models.ForeignKey(CallForPaper, on_delete=models.CASCADE)
     applicant = models.ForeignKey(Applicant, on_delete=models.CASCADE, related_name='applications')
+    type = models.CharField(
+        max_length=50,
+        verbose_name=_('Application Type'),
+        choices=TYPES,
+        default=TYPE_TALK_SHORT)
 
     title = models.CharField(
         max_length=255,
@@ -145,7 +164,7 @@ class PaperApplication(Timestampable):
 
     duration = models.CharField(
         _('Talk Duration Slot'),
-        choices=TALK_DURATIONS, max_length=255, default=TALK_DURATIONS.MIN_25,
+        choices=TALK_DURATIONS, max_length=255, blank=True, null=True,
         help_text=_('What talk duration slot would you like?  Take into account that there are '
                     'only 8 slots for 45 minute talks, and 20 slots for 25 minute talks.'))
 
@@ -192,16 +211,21 @@ class PaperApplication(Timestampable):
     def has_talk(self):
         return hasattr(self, "talk")
 
+    @property
+    def has_workshop(self):
+        return hasattr(self, "workshop")
 
-@receiver(post_save, sender=PaperApplication)
-def update_talk_instance(sender, instance, created, **kwargs):
-    if not settings.ALLOW_TALK_UPDATES:
-        return
+    @property
+    def has_instance(self):
+        return self.has_talk or self.has_workshop
 
-    try:
-        instance.talk.save()
-    except ObjectDoesNotExist:
-        pass
+    @property
+    def is_for_talk(self):
+        return self.type in self.TALK_TYPES
+
+    @property
+    def is_for_workshop(self):
+        return self.type in self.WORKSHOP_TYPES
 
 
 class Invite(models.Model):

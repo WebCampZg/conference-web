@@ -1,7 +1,6 @@
 from django.contrib.postgres.fields.jsonb import JSONField
 from django.db import models
 from django.db.models.deletion import PROTECT
-from django.template.defaultfilters import slugify
 
 from cfp.choices import TALK_DURATIONS
 from sponsors.models import Sponsor
@@ -47,16 +46,6 @@ class Talk(Timestampable):
 
     def __repr__(self):
         return '<Talk #{}: {}>'.format(self.pk, self.title)
-
-    def save(self, *args, **kwargs):
-        self.event = self.application.cfp.event
-        self.title = self.application.title
-        self.slug = slugify(self.application.title)
-        self.about = self.application.about
-        self.abstract = self.application.abstract
-        self.skill_level = self.application.skill_level
-        self.duration = self.application.duration
-        super(Talk, self).save(*args, **kwargs)
 
 
 class SurveyScore(models.Model):

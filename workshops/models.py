@@ -6,6 +6,8 @@ from django_extensions.db.fields import AutoSlugField
 class Workshop(models.Model):
     event = models.ForeignKey('events.Event', on_delete=PROTECT, related_name='workshops')
     applicants = models.ManyToManyField('cfp.Applicant')
+    application = models.OneToOneField(
+        'cfp.PaperApplication', null=True, on_delete=PROTECT, related_name='workshop')
 
     title = models.CharField(max_length=80)
     slug = AutoSlugField(populate_from="title", unique=True)
@@ -13,7 +15,7 @@ class Workshop(models.Model):
     abstract = models.TextField()
     extra_info = models.TextField(blank=True)
     skill_level = models.ForeignKey('cfp.AudienceSkillLevel', on_delete=PROTECT)
-    starts_at = models.DateTimeField()
+    starts_at = models.DateTimeField(null=True, blank=True)
     duration_hours = models.DecimalField(max_digits=3, decimal_places=1)
     tickets_link = models.URLField(blank=True)
     price = models.PositiveIntegerField(blank=True, null=True)

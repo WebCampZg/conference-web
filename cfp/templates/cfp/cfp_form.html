@@ -5,7 +5,13 @@
 {% block title %}Call for papers - {{ cfp.event.extended_title }}{% endblock %}
 
 {% block content %}
-<h2>Submit your talk for {{ cfp.event.title }}</h2>
+<h1>
+    {% if object %}
+        Edit application
+    {% else %}
+        Submit a talk or workshop
+    {% endif %}
+</h1>
 
 {{ cfp.description|markdown:"trusted" }}
 
@@ -15,13 +21,13 @@
 
 <hr />
 
-
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
 
-    <h1 id="talk" class="red-dash">Talk</h1>
+    <h1 class="red-dash">Application</h1>
 
     <fieldset>
+        {% include "partials/form-field.html" with field=form.type  %}
         {% include "partials/form-field.html" with field=form.title  %}
         {% include "partials/form-field.html" with field=form.about  %}
         {% include "partials/form-field.html" with field=form.abstract  %}
@@ -59,6 +65,12 @@
 
     <hr />
 
-    <button type="submit" class="large green button">Submit talk</button>
+    <button type="submit" class="large green button">
+        {% if object %}
+            Save changes
+        {% else %}
+            Submit
+        {% endif %}
+    </button>
 </form>
 {% endblock %}

@@ -1,7 +1,7 @@
 import logging
 
 from django.db.models.signals import post_save
-from django.dispatch.dispatcher import receiver
+from django.dispatch import receiver
 
 from cfp.models import PaperApplication
 from slack.utils import post_notification
@@ -11,10 +11,10 @@ from slack.utils import post_notification
 def slack_notify_application(sender, instance, created, **kwargs):
     title = 'New application' if created else 'Updated application'
 
-    text = '{}: {} - {} min'.format(
+    text = '{}: {} [{}]'.format(
         instance.applicant,
         instance.title,
-        instance.duration,
+        instance.type,
     )
 
     try:
