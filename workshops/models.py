@@ -1,3 +1,4 @@
+from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.db import models
 from django.db.models.deletion import PROTECT
 from django_extensions.db.fields import AutoSlugField
@@ -39,8 +40,12 @@ class Workshop(models.Model):
         return self.applicants.order_by('?').first()
 
     def image(self):
-        applicant = self.applicants.first()
+        applicant = self.random_applicant()
         return applicant.image if applicant else None
+
+    def image_url(self):
+        image = self.image()
+        return image.url if image else static("images/placeholder.png")
 
     def __repr__(self):
         return '<Workshop #{}: {}>'.format(self.pk, self.title)

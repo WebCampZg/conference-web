@@ -1,17 +1,18 @@
 {% load webcamp %}
 
-{% with random_applicant=talk.applicants.all|random %}
 <div class="workshop-grid-item">
+
     <a href="{% url 'workshops_view_workshop' slug=workshop.slug %}">
-        <div class="workshop-photo" style="background-image: url('{{ MEDIA_URL }}{{ random_applicant.image }}')">
-        </div>
+        <div class="workshop-photo" style="background-image: url('{{ workshop.image_url }}')"></div>
     </a>
 
     <div class="workshop-data" data-equalizer-watch>
+
+        {% if workshop.applicants.exist %}
         <div class="speaker">
             {{ workshop.applicant_names|join:"<br />" }}
         </div>
-
+        {% endif %}
         <div class="workshop-title">
             <a href="{% url 'workshops_view_workshop' slug=workshop.slug %}">
                 {{ workshop.title }}
@@ -30,4 +31,3 @@
         </div>
     </div>
 </div>
-{% endwith %}

@@ -5,17 +5,19 @@
     <div class="row">
         <div class="show-for-medium medium-3 columns">
             <a href="{% url 'workshops_view_workshop' slug=workshop.slug %}">
-                <img src="{{ MEDIA_URL }}{{ workshop.image }}" />
+                <img src="{{ workshop.image_url }}" />
             </a>
         </div>
 
         <div class="small-12 medium-9 columns">
+            {% if workshop.applicants.exists %}
             <p>
                 Speaker{% if workshop.applicants.count > 1 %}s{% endif %}:
                 <a href="{% url 'workshops_view_workshop' slug=workshop.slug %}#speaker">
                     {{ workshop.applicant_names|join:", " }}
                 </a>
             </p>
+            {% endif %}
 
             <h3 class="green-dash"><a href="{% url 'workshops_view_workshop' slug=workshop.slug %}">{{ workshop.title }}</a></h3>
 

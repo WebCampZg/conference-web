@@ -1,4 +1,5 @@
 from django.contrib.postgres.fields.jsonb import JSONField
+from django.contrib.staticfiles.templatetags.staticfiles import static
 from django.db import models
 from django.db.models.deletion import PROTECT
 
@@ -33,6 +34,17 @@ class Talk(Timestampable):
     def get_absolute_url(self):
         from django.urls import reverse
         return reverse('talks_view_talk', args=[self.slug])
+
+    def random_applicant(self):
+        return self.applicants.order_by('?').first()
+
+    def image(self):
+        applicant = self.random_applicant()
+        return applicant.image if applicant else None
+
+    def image_url(self):
+        image = self.image()
+        return image.url if image else static("images/placeholder.png")
 
     @property
     def speaker_names(self):

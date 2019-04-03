@@ -4,18 +4,18 @@
     <div class="row">
         <div class="show-for-medium medium-3 columns">
             <a href="{% url 'talks_view_talk' slug=talk.slug %}">
-                {% with applicant=talk.applicants.all|random %}
-                <img src="{{ MEDIA_URL }}{{ applicant.image }}"
-                     alt="Photo of {{ applicant.full_name }}">
-                {% endwith %}
+            <img src="{{ talk.image_url }}"
+                 alt="Photo for talk {{ talk }}" />
             </a>
         </div>
 
         <div class="small-12 medium-9 columns">
+            {% if talk.applicants.exists %}
             <p>
                 <span>Speaker{% if talk.applicants.count > 1 %}s{% endif %}:</span>
                 <strong>{{ talk.speaker_names }}</strong>
             </p>
+            {% endif %}
 
             <h3>
                 <a href="{% url 'talks_view_talk' slug=talk.slug %}">

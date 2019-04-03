@@ -1,9 +1,8 @@
 {% load webcamp %}
 
-{% with random_applicant=talk.applicants.all|random %}
 <div class="talk-grid-item">
     <a href="{% url 'talks_view_talk' slug=talk.slug %}">
-        <div class="talk-photo" style="background-image: url('{{ MEDIA_URL }}{{ random_applicant.image }}')">
+        <div class="talk-photo" style="background-image: url('{{ talk.image_url }}')">
             <div class="talk-photo-overlay {{ talk.skill_level.name|lower }}"></div>
         </div>
     </a>
@@ -31,4 +30,3 @@
         </div>
     </div>
 </div>
-{% endwith %}
