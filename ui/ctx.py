@@ -116,54 +116,24 @@ def team(request):
             "twitter": "",
             "job": "Procurement",
         },
-        # {
-        #     "name": "Filip Gjurin",
-        #     "image": "images/team/filip.jpg",
-        #     "twitter": "FilipGjurin",
-        #     "job": "Graphic design",
-        # },
         {
             "name": "Ivan Habunek",
             "image": "images/team/ivan.jpg",
             "twitter": "ihabunek",
             "job": "Tech"
         },
-        # {
-        #     "name": "Tomislav Capan",
-        #     "image": "images/team/tomislav.jpg",
-        #     "twitter": "tomislavcapan",
-        #     "job": "Volunteers"
-        # },
-        # {
-        #     "name": "Steve Tauber",
-        #     "image": "images/team/steve.png",
-        #     "twitter": "stevetauber",
-        #     "job": "Master of ceremonies"
-        # },
         {
             "name": "Senko Rašić",
             "image": "images/team/senko.jpg",
             "twitter": "senkorasic",
             "job": "Beloved leader"
         },
-        # {
-        #     "name": "Elizabeth Salazar",
-        #     "image": "images/team/elizabeth.jpg",
-        #     "twitter": "",
-        #     "job": "Master of ceremonies"
-        # },
         {
             "name": "Miro Svrtan",
             "image": "images/team/miro.png",
             "twitter": "msvrtan",
             "job": "Workshops"
         },
-        # {
-        #     "name": "Goran Jurić",
-        #     "image": "images/team/goran.jpg",
-        #     "twitter": "goran_juric",
-        #     "job": "Workshops"
-        # },
         {
             "name": "Zoran Antolović",
             "image": "images/team/zoka.jpg",
@@ -176,49 +146,50 @@ def team(request):
             "twitter": "",
             "job": "Keynotes & Committee"
         },
+        {
+            "name": "Stanko Krtalić",
+            "image": "images/team/stanko.jpg",
+            "twitter": "monorkin",
+            "job": "Speakers"
+        },
     ]
 
     committee = [
-        # {
-        #     "name": "Emanuel Blagonić",
-        #     "image": "images/team/emanuel.png",
-        #     "twitter": "eblagonic",
-        # },
-        # {
-        #     "name": "Goran Jurić",
-        #     "image": "images/team/goran.jpg",
-        #     "twitter": "goran_juric",
-        # },
-        # {
-        #     "name": "Saša Jurić",
-        #     "image": "images/team/sasa.png",
-        #     "twitter": "sasajuric",
-        # },
-        # {
-        #     "name": "Neven Munđar",
-        #     "image": "images/team/neven.jpg",
-        #     "twitter": "nmundar",
-        # },
-        # {
-        #     "name": "Andrea Knez Karačić",
-        #     "image": "images/team/andrea.jpg",
-        #     "twitter": "CodeWithCream",
-        # },
-        # {
-        #     "name": "Ivan Čurić",
-        #     "image": "images/team/ivan_curic.jpg",
-        #     "twitter": "_baxuz",
-        # },
-        # {
-        #     "name": "Davor Tomić",
-        #     "image": "images/team/davor_tomic.jpg",
-        #     "twitter": "davortomic",
-        # },
-        # {
-        #     "name": "Slaven Tomac",
-        #     "image": "images/team/slaven.png",
-        #     "twitter": "slaventomac",
-        # },
+        {
+            "name": "Maja Trepšić",
+            "image": "images/team/maja.jpg",
+            "twitter": "",
+        },
+        {
+            "name": "Stanko Krtalić",
+            "image": "images/team/stanko.jpg",
+            "twitter": "monorkin",
+        },
+        {
+            "name": "Emanuel Blagonić",
+            "image": "images/team/emanuel.png",
+            "twitter": "eblagonic",
+        },
+        {
+            "name": "Nela Dunato",
+            "image": "images/team/nela.jpg",
+            "twitter": "nelchee",
+        },
+        {
+            "name": "Neven Munđar",
+            "image": "images/team/neven.jpg",
+            "twitter": "nmundar",
+        },
+        {
+            "name": "Matija Marohnić",
+            "image": "images/team/matija.jpg",
+            "twitter": "silvenon",
+        },
+        {
+            "name": "Krešimir Antolić",
+            "image": "images/team/kreso.jpg",
+            "twitter": "kantolic",
+        },
     ]
 
     shuffle(team)
