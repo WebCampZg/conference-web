@@ -15,17 +15,6 @@
 
 {% block basecontent %}
     {% include "partials/hero.html" %}
-
-    {% comment %}
-    {% with cfp=event.get_active_cfp %}
-        {% if cfp %}
-            {% include "partials/call-for-papers.html" with cfp=cfp only %}
-        {% else %}
-            {% include "partials/tickets.html" %}
-        {% endif %}
-    {% endwith %}
-    {% endcomment %}
-
     {% include "partials/tickets.html" %}
     {% include "partials/news.html" %}
     {# {% include "partials/keynotes.html" %} #}
