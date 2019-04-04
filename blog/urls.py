@@ -1,9 +1,8 @@
-from django.conf.urls import url
-from . import feeds
-from .views import list_posts, view_post
+from django.urls import path
+from . import feeds, views
 
 urlpatterns = [
-    url(r'^$', list_posts, name='blog_list_posts'),
-    url(r'^(?P<slug>[-a-zA-Z0-9]+)/$', view_post, name='blog_view_post'),
-    url(r'^rss/', feeds.PostFeed(), name='blog_feed'),
+    path('', views.list_posts, name='blog_list_posts'),
+    path('rss/', feeds.PostFeed(), name='blog_feed'),
+    path('<slug:slug>/', views.view_post, name='blog_view_post'),
 ]

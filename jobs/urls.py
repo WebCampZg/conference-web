@@ -1,10 +1,7 @@
-from django.conf.urls import url
-from . import feeds
-from .views import list_jobs
+from django.urls import path
+from . import feeds, views
 
 urlpatterns = [
-    url(r'^$', list_jobs,
-        name='jobs_list_jobs'),
-    url(r'^rss/', feeds.JobFeed(),
-        name='jobs_feed'),
+    path('', views.list_jobs, name='jobs_list_jobs'),
+    path('rss/', feeds.JobFeed(), name='jobs_feed'),
 ]

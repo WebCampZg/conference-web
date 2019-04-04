@@ -1,7 +1,7 @@
-from django.conf.urls import url
+from django.urls import path
 
 from .views import list_schedule
 
 urlpatterns = [
-    url(r'^$', list_schedule, name='schedule_list_schedule'),
+    path('', list_schedule, name='schedule_list_schedule'),
 ]

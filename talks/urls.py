@@ -1,7 +1,7 @@
-from django.conf.urls import url
-from talks.views import list_talks, view_talk
+from django.urls import path
+from talks import views
 
 urlpatterns = [
-    url(r'^$', list_talks, name='talks_list_talks'),
-    url(r'^(?P<slug>[-a-zA-Z0-9]+)/$', view_talk, name='talks_view_talk'),
+    path('', views.list_talks, name='talks_list_talks'),
+    path('<slug:slug>/', views.view_talk, name='talks_view_talk'),
 ]

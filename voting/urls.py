@@ -1,11 +1,10 @@
-from django.conf.urls import url
+from django.urls import path
 
-from .views import voting, add_vote, remove_vote
-
+from . import views
 
 urlpatterns = [
-    url(r'^$', voting, name='voting_index'),
-    url(r'^(?P<ticket_code>\d+)/$', voting, name='voting_index'),
-    url(r'^(?P<ticket_code>\d+)/vote/add/(?P<application_id>\d+)/$', add_vote, name='voting_add_vote'),
-    url(r'^(?P<ticket_code>\d+)/vote/rm/(?P<application_id>\d+)/$', remove_vote, name='voting_remove_vote'),
+    path('', views.voting, name='voting_index'),
+    path('<int:ticket_code>/', views.voting, name='voting_index'),
+    path('<int:ticket_code>/vote/add/<int:application_id>/', views.add_vote, name='voting_add_vote'),
+    path('<int:ticket_code>/vote/rm/<int:application_id>/', views.remove_vote, name='voting_remove_vote'),
 ]

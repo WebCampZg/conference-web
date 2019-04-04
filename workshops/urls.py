@@ -1,8 +1,8 @@
-from django.conf.urls import url
-from workshops import views
+from django.urls import path
 
+from . import views
 
 urlpatterns = [
-    url(r'^$', views.WorkshopListView.as_view(), name='workshops_list_workshops'),
-    url(r'^(?P<slug>[-a-zA-Z0-9]+)/$', views.WorkshopDetailView.as_view(), name='workshops_view_workshop'),
+    path('', views.WorkshopListView.as_view(), name='workshops_list_workshops'),
+    path('<slug:slug>/', views.WorkshopDetailView.as_view(), name='workshops_view_workshop'),
 ]
