@@ -3,7 +3,7 @@
 from os.path import getmtime, abspath, join, dirname
 from random import shuffle
 
-from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.templatetags.static import static
 from django.urls import reverse
 
 from config.utils import get_active_event
