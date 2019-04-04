@@ -48,7 +48,7 @@
                         </a><br />
                         {{ talk.speaker.get_full_name }}
                     </td>
-                    <td>{{ talk.starts_at|date:"Y-m-d H:i" }}</td>
+                    <td>{{ talk.starts_at }}</td>
                     <td class="text-right">{{ talk.surveyscore.average|floatformat:2 }}</td>
                     <td class="text-right">{{ talk.surveyscore.count }}</td>
                     <td class="text-right">{{ talk.committee_average|floatformat:2 }}</td>

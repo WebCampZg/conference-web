@@ -59,7 +59,7 @@
         <tbody>
             {% for application in applications %}
             <tr>
-                <td class="no-wrap">{{ application.created_at|date:"Y-m-d H:i:s" }}</td>
+                <td class="no-wrap">{{ application.created_at }}</td>
                 <td class="no-wrap">{{ application.cfp.event.title }}</td>
                 <td>
                     <a href="{% url 'dashboard:application_detail' pk=application.pk %}">

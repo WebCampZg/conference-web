@@ -17,7 +17,7 @@
 {% block content %}
     <article>
         <time class="gray" datetime="{{ post.created_at|date:"c" }}">
-            {{ post.created_at|date:"d.m.Y." }}
+            {{ post.created_at|date }}
         </time>
 
         {% if user.is_superuser %}

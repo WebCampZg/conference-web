@@ -29,12 +29,12 @@
         <hr />
 
         {% if cfp.is_active %}
-            <p>This call for papers ends on <b>{{ cfp.end_date|date:"Y-m-d" }}</b>.</p>
+            <p>This call for papers ends on <b>{{ cfp.end_date|date }}</b>.</p>
             <div class="text-center">
                 <a href="{% url 'application_create' %}" class="large green button">Submit a talk</a>
             </div>
         {% elif cfp.is_pending %}
-            <h3 class="yellow-dash">The call for papers opens on {{ cfp.begin_date|date:"Y-m-d" }}</h2>
+            <h3 class="yellow-dash">The call for papers opens on {{ cfp.begin_date|date }}</h2>
         {% else %}
             <h3 class="yellow-dash">The CFP is now closed.</h3>
         {% endif %}

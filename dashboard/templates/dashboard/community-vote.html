@@ -66,7 +66,7 @@
             <tbody>
                 {% for vote in votes %}
                 <tr>
-                    <td class="no-wrap">{{ vote.created_at|date:"Y-m-d H:i:s" }}</td>
+                    <td class="no-wrap">{{ vote.created_at }}</td>
                     <td>{{ vote.ticket.full_name }}</td>
                     <td>{{ vote.ticket.company }}</td>
                 </tr>

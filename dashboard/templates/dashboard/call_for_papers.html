@@ -112,7 +112,7 @@
             {% for application in applications %}
                 <tr {% if application.has_talk %}class="blue-bg"{% endif %} data-application-id="{{ application.id }}">
                     <td>{{ forloop.counter }}</td>
-                    <td class="no-wrap">{{ application.created_at|date:"Y-m-d H:i" }}</td>
+                    <td class="no-wrap">{{ application.created_at }}</td>
                     <td>{{ application.applicant }}</td>
                     <td>
                         <a href="{% url 'dashboard:application_detail' pk=application.id %}">{{ application.title }}</a>

@@ -20,9 +20,9 @@
                         {{ event.title }}
                     </a><br />
                     {% if event.begin_date == event.end_date %}
-                        {{ event.begin_date|date:"Y-m-d" }}
+                        {{ event.begin_date|date }}
                     {% else %}
-                        {{ event.begin_date|date:"Y-m-d" }} - {{ event.end_date|date:"Y-m-d" }}
+                        {{ event.begin_date|date }} - {{ event.end_date|date }}
                     {% endif %}
                 </td>
                 <td>

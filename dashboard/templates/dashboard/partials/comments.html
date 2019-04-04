@@ -20,9 +20,9 @@
         <small>
             <b>{{ comment.author.full_name }}</b>
             {% if comment.is_private %}[private]{% endif %} ||
-            {{ comment.created_at|date:"Y-m-d H:i" }}
+            {{ comment.created_at }}
             {% if comment.updated_at > comment.created_at %}
-                 || <abbr title="Comment edited at {{ comment.updated_at|date:"Y-m-d H:i" }}">Edited</abbr>
+                 || <abbr title="Comment edited at {{ comment.updated_at }}">Edited</abbr>
             {% endif %}
             {% if comment.author == request.user %}
             ||<a class="gray" href="{% url 'dashboard:comment-update' application_pk=application.pk pk=comment.pk %}">

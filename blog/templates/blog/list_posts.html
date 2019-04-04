@@ -8,7 +8,7 @@
         {% for post in posts %}
             <article>
                 <time class="gray" datetime="{{ post.created_at|date:"c" }}">
-                    {{ post.created_at|date:"d.m.Y." }}
+                    {{ post.created_at|date }}
                 </time>
 
                 <h3>
