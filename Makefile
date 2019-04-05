@@ -3,7 +3,7 @@ MANAGE=python manage.py
 SETTINGS=--settings=$(PROJECT_NAME).settings.test
 
 PLEX_VERSION=1.3.1
-FOUNDATION_VERSION=6.3.1
+FOUNDATION_VERSION=6.5.3
 
 
 .PHONY: test clean lint sync-media css css-watch
@@ -31,7 +31,7 @@ sync-media:
 sources:
 	curl https://github.com/IBM/plex/releases/download/v$(PLEX_VERSION)/Web.zip \
 		-o sources/tmp/plex.zip --location --create-dirs
-	curl https://github.com/zurb/foundation/archive/$(FOUNDATION_VERSION).zip \
+	curl https://github.com/zurb/foundation/archive/v$(FOUNDATION_VERSION).zip \
 		-o sources/tmp/foundation.zip --location --create-dirs
 	unzip sources/tmp/plex.zip -d sources/tmp/plex/
 	unzip sources/tmp/foundation.zip -d sources/tmp/foundation/
