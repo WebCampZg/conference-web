@@ -14,25 +14,14 @@ This repo holds the source code for [webcampzg.org](http://webcampzg.org/).
 * virtualenvwrapper
 * postgresql 9.6+
 * libjpeg, libtiff (for Pillow)
-* [yarn](https://yarnpkg.com/lang/en/docs/install/)
 
 On Debian or Ubuntu:
-
-Add the yarn repo:
-
-```
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-```
 
 Install packages:
 
 ```
-sudo apt install build-essential git python3 python3-dev fabric virtualenv virtualenvwrapper postgresql libjpeg-dev libtiff5-dev yarn nodejs-legacy sassc
+sudo apt install build-essential git python3 python3-dev fabric virtualenv virtualenvwrapper postgresql libjpeg-dev libtiff5-dev sassc
 ```
-
-Note: `nodejs-legacy` just provides a `/usr/bin/node` symlink to
-`/usr/bin/nodejs` which yarn requires.
 
 ## Clone the project
 
@@ -115,17 +104,22 @@ make sync-media
 
 CSS is built from source SCSS files in `ui/styles` using [sassc](https://github.com/sass/sassc), and stored in `ui/dist/styles`. The generated CSS should be committed to the repo.
 
-Install prerequisites ([Zurb Foundation](https://foundation.zurb.com/sites/docs/)):
+Download [Zurb Foundation](https://github.com/zurb/foundation-sites/)
+and [IBM Plex](https://github.com/IBM/plex) which are used for building css.
+This only needs to be done once, they will be stored in the `sources` dir.
+
 ```
-yarn install
+make sources
 ```
 
 Now you can compile the styles:
+
 ```
 make css
 ```
 
 To watch for changes and automatically rebuild css:
+
 ```
 make css-watch
 ```

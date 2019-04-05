@@ -82,3 +82,6 @@ pip-selfcheck.json
 share/
 
 /tmp
+
+# sources for css
+/sources

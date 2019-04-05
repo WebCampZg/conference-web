@@ -2,8 +2,8 @@
 @import "settings";
 @import "foundation";
 
-$font-prefix: '/static/fonts/';
-@import 'node_modules/@ibm/plex/scss/mono/index';
+$font-prefix: '/static/fonts';
+@import 'mono/index';
 
 @include foundation-everything(true);
 
