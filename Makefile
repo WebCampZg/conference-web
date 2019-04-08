@@ -40,10 +40,10 @@ sources:
 	rm -r sources/tmp
 
 dist:
-	rm -rf ui/dist/fonts/IBM-Plex-Mono/fonts/split
-	mkdir -p ui/dist/fonts/IBM-Plex-Mono/fonts
-	cp -r sources/plex/IBM-Plex-Mono/fonts/split \
-		ui/dist/fonts/IBM-Plex-Mono/fonts/split
+	rm -rf ui/dist/fonts/IBM-Plex-Mono/fonts
+	mkdir -p ui/dist/fonts/IBM-Plex-Mono
+	cp -r sources/plex/IBM-Plex-Mono/fonts \
+		ui/dist/fonts/IBM-Plex-Mono/fonts
 
 css:
 	sassc \
