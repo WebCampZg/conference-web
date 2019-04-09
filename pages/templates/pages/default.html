@@ -21,6 +21,4 @@
     <h1 class="red-dash">{{ page.title.split|join:"_" }}_</h1>
 
     {{ page.content|markdown:"trusted" }}
-
-    {% include "partials/share.html" with title="Share this page" %}
 {% endblock %}
