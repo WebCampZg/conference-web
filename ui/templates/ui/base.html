@@ -53,14 +53,11 @@
 
     {% include "partials/footer.html" %}
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.3.1/js/foundation.min.js" integrity="sha256-Nd2xznOkrE9HkrAMi4xWy/hXkQraXioBg9iYsBrcFrs=" crossorigin="anonymous"></script>
-
+    <script src="{% static "scripts/jquery.min.js" %}"></script>
+    <script src="{% static "scripts/foundation.min.js" %}"></script>
     <script type="text/javascript">
         $(document).foundation();
-
         $(document).ready(function () {
-
             $("[data-scroll-to-top]").click(function (e) {
                 e.preventDefault();
                 $("html, body").animate({ scrollTop: 0 }, "slow");
