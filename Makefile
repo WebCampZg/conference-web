@@ -43,7 +43,7 @@ sources:
 	rm -r sources/tmp
 
 dist:
-	rm -rf ui/dist
+	rm -rf ui/dist/fonts ui/dist/scripts ui/dist/styles
 	mkdir -p ui/dist/fonts
 	mkdir -p ui/dist/scripts
 	mkdir -p ui/dist/styles

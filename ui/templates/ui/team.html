@@ -1,6 +1,6 @@
 {% extends 'ui/page.html' %}
 
-{% load static %}
+{% load static webcamp %}
 
 {% block title %}The Team - {{ event.extended_title }}{% endblock %}
 
@@ -37,7 +37,7 @@
             <p>
                 <b>{{ member.name }}</b><br />
                 {% if member.twitter %}
-                    <i class="fa fa-twitter"></i>
+                    {% icon "brands/twitter" %}
                     <a href="https://twitter.com/{{ member.twitter }}">@{{ member.twitter }}</a><br />
                 {% endif %}
                 {{ member.job }}
@@ -58,7 +58,7 @@
             <p>
                 <b>{{ member.name }}</b><br />
                 {% if member.twitter %}
-                    <i class="fa fa-twitter"></i>
+                    {% icon "brands/twitter" %}
                     <a href="https://twitter.com/{{ member.twitter }}">@{{ member.twitter }}</a><br />
                 {% endif %}
             </p>

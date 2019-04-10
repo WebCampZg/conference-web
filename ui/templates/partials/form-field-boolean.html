@@ -10,7 +10,7 @@
                 {{ field }}
 
                 {% if vanity_field %}
-                    <i class="fa fa-fw fa-{{ vanity_field }}"></i>
+                    {% icon vanity_field %}
                 {% endif %}
 
                 {{ field.label|labelize }}

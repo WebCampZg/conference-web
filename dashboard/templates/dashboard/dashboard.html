@@ -1,5 +1,7 @@
 {% extends "dashboard/base.html" %}
 
+{% load webcamp %}
+
 {% block content %}
     <h3>Events</h3>
 
@@ -28,19 +30,19 @@
                 <td>
                     {% for cfp in event.callforpaper_set.all %}
                     <div>
-                        <i class="fa fa-paper-plane-o"></i>
+                        {% icon "solid/paper-plane" %}
                         <a href="{% url 'dashboard:cfp_detail' cfp.pk %}">{{ cfp }}</a>
                     </div>
                     {% endfor %}
                 </td>
                 <td>
                     <a href="{% url 'dashboard:event-tickets' event.pk %}">
-                        <i class="fa fa-ticket"></i> Tickets
+                        {% icon "solid/ticket-alt" %} Tickets
                     </a>
                 </td>
                 <td>
                     <a href="{% url 'dashboard:event-talks' event.pk %}">
-                        <i class="fa fa-commenting-o"></i> Talks
+                        {% icon "regular/comment-dots" %} Talks
                     </a>
                 </td>
             </tr>

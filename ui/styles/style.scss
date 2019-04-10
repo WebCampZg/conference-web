@@ -66,6 +66,7 @@ $font-prefix: '/static/fonts';
 @import "footer";
 @import "forms";
 @import "hero";
+@import "icons";
 @import "jobs";
 @import "keynotes";
 @import "navigation";
@@ -192,12 +193,15 @@ a:not(.button).yellow {
 .skill-level {
     filter: drop-shadow(1px 1px 0 gray);
     &.elementary {
+        fill: $green;
         color: $green;
     }
     &.intermediate {
+        fill: $yellow;
         color: $yellow;
     }
     &.advanced {
+        fill: $red;
         color: $red;
     }
 }
@@ -349,11 +353,13 @@ table.align-top {
     }
 }
 
+// Voting
+
 .vote-button {
     &.voted {
         &:before {
-            font-family: FontAwesome;
-            content: "\f00c";
+            font-family: 'IBM Plex Mono';
+            content: "☑";
         }
     }
 
@@ -362,8 +368,8 @@ table.align-top {
         color: $dark-gray;
 
         &:before {
-            font-family: FontAwesome;
-            content: "\f096";
+            font-family: 'IBM Plex Mono';
+            content: "☐";
         }
     }
 }

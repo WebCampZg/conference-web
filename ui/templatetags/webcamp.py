@@ -6,6 +6,7 @@ from urllib.parse import urlparse, parse_qs
 
 from django import template
 from django.utils.safestring import mark_safe
+from ui.utils import get_icon_svg
 
 register = template.Library()
 
@@ -18,15 +19,11 @@ def labelize(value):
 @register.filter
 def skill_level(skill_level):
     """Given an AudienceSkillLevel object, renders a skill level label"""
-
+    icon_html = icon("solid/square")
     level = skill_level.name.lower()
-    className = "skill-level {}".format(level)
+    class_name = "skill-level {}".format(level)
 
-    return mark_safe("""
-        <span class="{}">
-            <i class="fa fa-square"></i> {}
-        </span>
-    """.format(className, level))
+    return mark_safe(f'<span class="{class_name}">{icon_html} {level}</span>')
 
 
 @register.filter
@@ -112,3 +109,12 @@ def split(iterable, n):
 @register.filter
 def jsonify(data):
     return mark_safe(json.dumps(data))
+
+
+@register.simple_tag
+def icon(name, cls="", title="", scale=1):
+    svg = get_icon_svg(name)
+    title = f' title="{title}"' if title else ""
+    style = f' style="font-size: {scale:.2f}rem"' if scale != 1 else ""
+    html = f'<span class="icon {cls}"{style}{title}>{svg}</span>'
+    return mark_safe(html)

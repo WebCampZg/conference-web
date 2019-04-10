@@ -1,6 +1,6 @@
 {% extends 'ui/page.html' %}
 
-{% load markdown_deux_tags %}
+{% load webcamp markdown_deux_tags %}
 
 {% block title %}Profile{% endblock %}
 
@@ -30,7 +30,7 @@
                 <td>{{ user.tshirt_size }}</td>
             </tr>
             <tr>
-                <th><i class="fa fa-github"></i> Github</th>
+                <th>{% icon "brands/github" %} Github</th>
                 <td>
                     {% if user.github %}
                         <span class="gray">https://github.com/</span>{{ user.github }}
@@ -40,7 +40,7 @@
                 </td>
             </tr>
             <tr>
-                <th><i class="fa fa-twitter"></i> Twitter</th>
+                <th>{% icon "brands/twitter" %} Twitter</th>
                 <td>
                     {% if user.twitter %}
                         <span class="gray">https://twitter.com/</span>{{ user.twitter }}

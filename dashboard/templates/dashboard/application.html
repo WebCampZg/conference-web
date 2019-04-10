@@ -117,22 +117,22 @@ $(document).keydown(function(e) {
                     <p>{{ applicant.about }}</p>
                     <p>
                         <span class="no-wrap">
-                            <i class="fa fa-envelope"></i>
+                            {% icon "regular/envelope" %}
                             <a href="mailto:{{ applicant.email }}">{{ applicant.email }}</a>
                         </span>
                         {% if applicant.twitter %}
                             <br />
-                            <i class="fa fa-twitter"></i>
+                            {% icon "brands/twitter" %}
                             <a target="_blank" href="https://twitter.com/{{ applicant.twitter }}">@{{ applicant.twitter }}</a>
                         {% endif %}
                         {% if applicant.github %}
                             <br />
-                            <i class="fa fa-github"></i>
+                            {% icon "brands/github" %}
                             <a target="_blank" href="https://github.com/{{ applicant.github }}">{{ applicant.github }}</a>
                         {% endif %}
                         {% if applicant.company_name %}
                             <br />
-                            <i class="fa fa-briefcase"></i>
+                            {% icon "solid/briefcase" %}
                             <b>{{ applicant.company_name }}</b>
                         {% endif %}
                     </p>
@@ -162,7 +162,7 @@ $(document).keydown(function(e) {
             <tr>
                 <td>Event</td>
                 <td>Title</td>
-                <td>Chosen?</td>
+                <td class="text-center">Chosen?</td>
                 <td>Attendee Ratings</td>
             </tr>
         </thead>
@@ -174,11 +174,11 @@ $(document).keydown(function(e) {
                     {{ application.title }}
                 </a>
             </td>
-            <td>
+            <td class="text-center">
                 {% if application.has_talk %}
-                    <i class="fa fa-check purple"></i>
+                    {% icon "solid/check" cls="purple" %}
                 {% else %}
-                    <i class="fa fa-times"></i>
+                    {% icon "solid/times" %}
                 {% endif %}
             </td>
             <td>

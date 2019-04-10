@@ -1,4 +1,4 @@
-{% load markdown_deux_tags %}
+{% load markdown_deux_tags webcamp %}
 
 {% for job in jobs %}
 <div class="job callout">
@@ -12,7 +12,7 @@
                 <img src="{{ MEDIA_URL }}{{ job.sponsor.image }}" />
             </div>
             <div class="medium-1 show-for-medium columns">
-                <i class="fa fa-plus"></i>
+                {% icon "regular/plus" %}
             </div>
         </div>
     </div>

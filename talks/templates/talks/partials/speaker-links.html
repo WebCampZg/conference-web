@@ -1,17 +1,13 @@
-{% if applicant.user.twitter %}
-<a href="https://twitter.com/{{ applicant.user.twitter }}">
-    <span class="fa-stack fa-2x">
-        <i class="fa fa-square-o fa-stack-2x"></i>
-        <i class="fa fa-twitter fa-stack-1x"></i>
-    </span>
-</a>
-{% endif %}
+{% load webcamp %}
 
 {% if applicant.user.github %}
 <a href="https://github.com/{{ applicant.user.github }}">
-    <span class="fa-stack fa-2x">
-        <i class="fa fa-square-o fa-stack-2x"></i>
-        <i class="fa fa-github fa-stack-1x"></i>
-    </span>
+    {% icon "brands/github-square" scale=4 %}
+</a>
+{% endif %}
+
+{% if applicant.user.twitter %}
+<a href="https://twitter.com/{{ applicant.user.twitter }}">
+    {% icon "brands/twitter-square" scale=4 %}
 </a>
 {% endif %}

@@ -11,11 +11,15 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-import os
+from os import path, getenv
 import dj_database_url
 
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = path.dirname(path.dirname(path.dirname(__file__)))
+
+
+def ABS_PATH(*args):
+    return path.abspath(path.join(BASE_DIR, *args))
+
 
 # A list of all the people who get code error notifications.
 ADMINS = (
@@ -26,15 +30,11 @@ ADMINS = (
 MANAGERS = ADMINS
 
 
-def ABS_PATH(*args):
-    return os.path.abspath(os.path.join(BASE_DIR, *args))
-
-
 def ensure_secret_key_file():
     """Checks that secret.py exists in settings dir. If not, creates one
     with a random generated SECRET_KEY setting."""
-    secret_path = os.path.join(ABS_PATH('settings'), 'secret.py')
-    if not os.path.exists(secret_path):
+    secret_path = ABS_PATH('project/settings/secret.py')
+    if not path.exists(secret_path):
         from django.utils.crypto import get_random_string
         secret_key = get_random_string(50, 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)')
         with open(secret_path, 'w') as f:
@@ -152,17 +152,17 @@ STATIC_URL = '/static/'
 
 # Additional locations the staticfiles app will traverse.
 STATICFILES_DIRS = [
-    ABS_PATH('../ui/dist'),
+    ABS_PATH('ui/dist'),
 ]
 
 # The absolute path to the directory where collectstatic will collect static files for deployment.
-STATIC_ROOT = ABS_PATH('static')
+STATIC_ROOT = ABS_PATH('project/static')
 
 
 # Media (user uploaded) files
 # https://docs.djangoproject.com/en/1.11/topics/files/
 
-MEDIA_ROOT = os.getenv('MEDIA_ROOT', ABS_PATH('media'))
+MEDIA_ROOT = getenv('MEDIA_ROOT', ABS_PATH('project/media'))
 
 MEDIA_URL = '/media/'
 
@@ -173,10 +173,10 @@ SITE_ID = 1
 # Sending emails
 # https://docs.djangoproject.com/en/1.11/topics/email/
 EMAIL_USE_TLS = True
-EMAIL_HOST = os.getenv('EMAIL_HOST')
-EMAIL_USER = os.getenv('EMAIL_USER')
-EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
-EMAIL_PORT = os.getenv('EMAIL_PORT')
+EMAIL_HOST = getenv('EMAIL_HOST')
+EMAIL_USER = getenv('EMAIL_USER')
+EMAIL_PASSWORD = getenv('EMAIL_PASSWORD')
+EMAIL_PORT = getenv('EMAIL_PORT')
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -1,6 +1,7 @@
 {% extends "dashboard/base.html" %}
 
 {% load dashboard %}
+{% load webcamp %}
 
 {% block head %}
     <style type="text/css">
@@ -75,7 +76,9 @@
             <tr>
                 <th>#</th>
                 <th>Talk</th>
-                <th><i class="fa fa-clock-o"></i></th>
+                <th title="Duration">
+                    {% icon "regular/clock" %}
+                </th>
                 <th>Perks</th>
                 {% for voter in voters %}
                     <th title="{{ voter.full_name}}">
@@ -100,10 +103,10 @@
                     <td>{{ application.duration }}</td>
                     <td>
                         {% if application.accomodation_required %}
-                            <i class="fa fa-hotel"></i>
+                            {% icon "regular/building" title="Accommodation" %}
                         {% endif %}
                         {% if application.travel_expenses_required %}
-                            <i class="fa fa-plane"></i>
+                            {% icon "solid/plane" title="Travel expenses" %}
                         {% endif %}
                     </td>
                     {% for voter, vote in application.processed_votes %}

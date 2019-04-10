@@ -39,5 +39,5 @@
 {% endfor %}
 
 <a href="{% url 'dashboard:comment-create' application_pk=application.pk %}" class="button">
-    <i class="fa fa-comment-o"></i> Comment
+    {% icon "regular/comment-dots" %} Comment
 </a>
