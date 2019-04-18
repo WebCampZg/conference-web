@@ -43,8 +43,8 @@ class Gopher(protocol.Protocol):
         for page in Page.objects.filter(published=True):
             pages.append((page.title, f"page:{page.pk}"))
 
-        cfp = event.get_active_cfp()
-        if cfp:
+        cfp = event.get_cfp()
+        if cfp and (cfp.is_active() or cfp.is_pending()):
             pages.append((cfp.title, "cfp"))
 
         return sorted(pages)
