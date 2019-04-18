@@ -106,6 +106,8 @@ class Gopher(protocol.Protocol):
     def cfp(self):
         cfp = self.get_cfp()
         if cfp:
+            self.write_line(f"# {cfp.title}")
+            self.write_line("")
             self.write_text(cfp.announcement)
         else:
             self.write_line("No active calls for paper.")
