@@ -1,6 +1,7 @@
 {% extends 'ui/page.html' %}
 
 {% load markdown_deux_tags %}
+{% load pages_tags %}
 
 {% block title %}{{ page.title }} - {{ event.extended_title }}{% endblock %}
 
@@ -20,5 +21,5 @@
 
     <h1 class="red-dash">{{ page.title.split|join:"_" }}_</h1>
 
-    {{ page.content|markdown:"trusted" }}
+    {{ page.content|pages_substitute|markdown:"trusted" }}
 {% endblock %}
