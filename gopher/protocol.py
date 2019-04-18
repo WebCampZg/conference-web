@@ -36,7 +36,6 @@ class Gopher(protocol.Protocol):
         for line in text.splitlines():
             for segment in wrap(line, 80):
                 self.write_line(segment)
-            self.write_line("")
 
     def get_cfp(self):
         cfp = event.get_cfp()
