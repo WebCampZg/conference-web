@@ -38,13 +38,18 @@ class Gopher(protocol.Protocol):
                 self.write_line(segment)
             self.write_line("")
 
+    def get_cfp(self):
+        cfp = event.get_cfp()
+        if cfp and (cfp.is_active() or cfp.is_pending()):
+            return cfp
+
     def list_pages(self):
         pages = []
         for page in Page.objects.filter(published=True):
             pages.append((page.title, f"page:{page.pk}"))
 
-        cfp = event.get_cfp()
-        if cfp and (cfp.is_active() or cfp.is_pending()):
+        cfp = self.get_cfp()
+        if cfp:
             pages.append((cfp.title, "cfp"))
 
         return sorted(pages)
@@ -99,7 +104,7 @@ class Gopher(protocol.Protocol):
             self.write_line(line)
 
     def cfp(self):
-        cfp = event.get_active_cfp()
+        cfp = self.get_cfp()
         if cfp:
             self.write_text(cfp.announcement)
         else:
