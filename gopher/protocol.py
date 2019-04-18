@@ -6,6 +6,7 @@ from django.contrib.sites.models import Site
 from django.template.loader import render_to_string
 from pages.models import Page
 from talks.models import Talk
+from textwrap import wrap
 from twisted.internet import protocol
 from workshops.models import Workshop
 
@@ -31,9 +32,26 @@ class Gopher(protocol.Protocol):
         self.transport.write(line.encode())
         self.transport.write(b"\r\n")
 
-    def pages_menu(self):
+    def write_text(self, text):
+        for line in text.splitlines():
+            for segment in wrap(line, 80):
+                self.write_line(segment)
+            self.write_line("")
+
+    def list_pages(self):
+        pages = []
         for page in Page.objects.filter(published=True):
-            self.file_item(page.title, f"page:{page.pk}")
+            pages.append((page.title, f"page:{page.pk}"))
+
+        cfp = event.get_active_cfp()
+        if cfp:
+            pages.append((cfp.title, "cfp"))
+
+        return sorted(pages)
+
+    def pages_menu(self):
+        for title, id in self.list_pages():
+            self.file_item(title, id)
 
     def talks_menu(self):
         for talk in event.talks.prefetch_related('applicants__user'):
@@ -80,6 +98,13 @@ class Gopher(protocol.Protocol):
         for line in markdown.splitlines():
             self.write_line(line)
 
+    def cfp(self):
+        cfp = event.get_active_cfp()
+        if cfp:
+            self.write_text(cfp.announcement)
+        else:
+            self.write_line("No active calls for paper.")
+
     def main_menu(self):
         has_workshops = event.workshops.filter(published=True).exists()
         has_talks = event.talks.exists()
@@ -123,6 +148,8 @@ class Gopher(protocol.Protocol):
             self.post(int(data.split(":")[1]))
         elif re.match(r"^workshop:(\d+)\r\n$", data):
             self.workshop(int(data.split(":")[1]))
+        elif data == 'cfp\r\n':
+            self.cfp()
         else:
             print("???")
 
