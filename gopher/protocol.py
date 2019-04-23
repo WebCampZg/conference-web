@@ -4,12 +4,13 @@ from blog.models import Post
 from config.utils import get_active_event
 from django.contrib.sites.models import Site
 from django.template.loader import render_to_string
+from django.utils.html import strip_tags
+from django.utils.text import wrap
+from gopher.ascii_art import header
 from pages.models import Page
 from talks.models import Talk
-from textwrap import wrap
 from twisted.internet import protocol
 from workshops.models import Workshop
-from gopher.ascii_art import header
 
 site = Site.objects.get_current()
 domain = site.domain.split(":")[0]
@@ -34,10 +35,9 @@ class Gopher(protocol.Protocol):
         self.transport.write(b"\r\n")
 
     def write_text(self, text):
-        for line in text.splitlines():
-            for segment in wrap(line, 80):
-                self.write_line(segment)
-            self.write_line("")
+        wrapped_text = wrap(strip_tags(text), 80)
+        for line in wrapped_text.splitlines():
+            self.write_line(line)
 
     def get_cfp(self):
         cfp = event.get_cfp()
@@ -106,12 +106,9 @@ class Gopher(protocol.Protocol):
 
     def cfp(self):
         cfp = self.get_cfp()
-        if cfp:
-            self.write_line(f"# {cfp.title}")
-            self.write_line("")
-            self.write_text(cfp.announcement)
-        else:
-            self.write_line("No active calls for paper.")
+        markdown = render_to_string('cfp/cfp_announcement.md', {"cfp": cfp})
+        for line in markdown.splitlines():
+            self.write_line(line)
 
     def main_menu(self):
         has_workshops = event.workshops.filter(published=True).exists()
