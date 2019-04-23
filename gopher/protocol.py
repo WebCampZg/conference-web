@@ -80,35 +80,34 @@ class Gopher(protocol.Protocol):
             title = f"[{post.created_at.date()}] {post.title}"
             self.file_item(title, f"post:{post.pk}")
 
-    def page(self, page_id):
-        page = Page.objects.get(pk=page_id)
-        markdown = render_to_string('pages/page.md', {"page": page})
+    def write_markdown_template(self, template, context):
+        markdown = render_to_string(template, context)
         for line in markdown.splitlines():
             self.write_line(line)
+
+    def page(self, page_id):
+        self.write_markdown_template('pages/page.md', {
+            "page": Page.objects.get(pk=page_id)
+        })
 
     def talk(self, talk_id):
-        talk = Talk.objects.get(pk=talk_id)
-        markdown = render_to_string('talks/talk.md', {"talk": talk})
-        for line in markdown.splitlines():
-            self.write_line(line)
+        self.write_markdown_template('talks/talk.md', {
+            "talk": Talk.objects.get(pk=talk_id)
+        })
 
     def post(self, post_id):
-        post = Post.objects.get(pk=post_id)
-        markdown = render_to_string('blog/post.md', {"post": post})
-        for line in markdown.splitlines():
-            self.write_line(line)
+        self.write_markdown_template('blog/post.md', {
+            "post": Post.objects.get(pk=post_id)
+        })
 
     def workshop(self, workshop_id):
-        workshop = Workshop.objects.get(pk=workshop_id)
-        markdown = render_to_string('workshops/workshop.md', {"workshop": workshop})
-        for line in markdown.splitlines():
-            self.write_line(line)
+        self.write_markdown_template('workshops/workshop.md', {
+            "workshop": Workshop.objects.get(pk=workshop_id)
+        })
 
     def cfp(self):
         cfp = self.get_cfp()
-        markdown = render_to_string('cfp/cfp_announcement.md', {"cfp": cfp})
-        for line in markdown.splitlines():
-            self.write_line(line)
+        self.write_markdown_template('cfp/cfp_announcement.md', {"cfp": cfp})
 
     def main_menu(self):
         has_workshops = event.workshops.filter(published=True).exists()
