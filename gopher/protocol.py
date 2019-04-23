@@ -71,6 +71,7 @@ class Gopher(protocol.Protocol):
 
     def write_markdown_template(self, template, context):
         markdown = render_to_string(template, context)
+
         for line in markdown.splitlines():
             self.write_line(line)
 
@@ -108,7 +109,7 @@ class Gopher(protocol.Protocol):
             self.write_line(line)
 
         if cfp:
-            self.menu_item("Call for papers", "cfp")
+            self.file_item("Call for papers", "cfp")
 
         self.menu_item("Pages", "pages")
         if has_news:
