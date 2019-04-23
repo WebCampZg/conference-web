@@ -44,20 +44,9 @@ class Gopher(protocol.Protocol):
         if cfp and (cfp.is_active() or cfp.is_pending()):
             return cfp
 
-    def list_pages(self):
-        pages = []
-        for page in Page.objects.filter(published=True):
-            pages.append((page.title, f"page:{page.pk}"))
-
-        cfp = self.get_cfp()
-        if cfp:
-            pages.append((cfp.title, "cfp"))
-
-        return sorted(pages)
-
     def pages_menu(self):
-        for title, id in self.list_pages():
-            self.file_item(title, id)
+        for page in Page.objects.filter(published=True).order_by('title'):
+            self.file_item(page.title, f"page:{page.pk}")
 
     def talks_menu(self):
         for talk in event.talks.prefetch_related('applicants__user'):
@@ -113,9 +102,13 @@ class Gopher(protocol.Protocol):
         has_workshops = event.workshops.filter(published=True).exists()
         has_talks = event.talks.exists()
         has_news = event.posts.exists()
+        cfp = self.get_cfp()
 
         for line in header.splitlines():
             self.write_line(line)
+
+        if cfp:
+            self.menu_item("Call for papers", "cfp")
 
         self.menu_item("Pages", "pages")
         if has_news:
