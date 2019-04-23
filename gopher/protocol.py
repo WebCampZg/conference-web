@@ -9,6 +9,7 @@ from talks.models import Talk
 from textwrap import wrap
 from twisted.internet import protocol
 from workshops.models import Workshop
+from gopher.ascii_art import header
 
 site = Site.objects.get_current()
 domain = site.domain.split(":")[0]
@@ -116,6 +117,9 @@ class Gopher(protocol.Protocol):
         has_workshops = event.workshops.filter(published=True).exists()
         has_talks = event.talks.exists()
         has_news = event.posts.exists()
+
+        for line in header.splitlines():
+            self.write_line(line)
 
         self.menu_item("Pages", "pages")
         if has_news:
