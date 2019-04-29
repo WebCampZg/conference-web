@@ -51,7 +51,7 @@ class InviteAdmin(admin.ModelAdmin):
 
     def link(self, obj, foo=None):
         path = reverse('application_create')
-        url = "{}?token={}".format(path, obj.token)
+        url = "{}?invite_token={}".format(path, obj.token)
         return mark_safe('<a href="{}">{}</a>'.format(url, url))
 
 
