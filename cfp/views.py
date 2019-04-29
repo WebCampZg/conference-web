@@ -1,4 +1,3 @@
-from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.http.response import Http404, HttpResponseForbidden
@@ -72,7 +71,6 @@ class PaperApplicationCreateView(PaperApplicationBaseView, CreateView):
         If invite_token is specified in the URL, return the corresponding Invite.
         """
         invite_token = request.GET.get('invite_token')
-
         if not invite_token or not is_uuid(invite_token):
             return None
 
@@ -81,6 +79,9 @@ class PaperApplicationCreateView(PaperApplicationBaseView, CreateView):
             user=request.user, token=invite_token, cfp__event=event).first()
 
     def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return self.handle_no_permission()
+
         invite = self.get_invite(request)
         self.cfp = invite.cfp if invite else get_active_cfp()
 
