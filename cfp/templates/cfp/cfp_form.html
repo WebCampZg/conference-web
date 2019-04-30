@@ -21,7 +21,7 @@
 
 <hr />
 
-<form method="post" enctype="multipart/form-data">
+<form id="cfp-form" method="post" enctype="multipart/form-data">
     {% csrf_token %}
 
     <h1 class="red-dash">Application</h1>
@@ -73,4 +73,15 @@
         {% endif %}
     </button>
 </form>
+{% endblock %}
+
+{% block script %}
+<script>
+$(document).ready(function () {
+    // Disable button on form submit to prevent duplicates
+    $("#cfp-form").submit(function (event) {
+        $("#cfp-form button[type='submit']").prop("disabled", true);
+    });
+});
+</script>
 {% endblock %}
