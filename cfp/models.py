@@ -146,7 +146,7 @@ class PaperApplication(Timestampable):
     title = models.CharField(
         max_length=255,
         verbose_name=_('Title'),
-        help_text=_('The title of your talk. Keep it short and catchy. [Public]'))
+        help_text=_('The title of your talk. Keep it short and catchy. 50 characters max. [Public]'))
 
     about = models.TextField(
         max_length=140,
