@@ -5,10 +5,10 @@ SPONSOR_TYPES = Choices(
     ('lanyard', 'LANYARD', 'Lanyard Sponsor'),
     ('track', 'TRACK', 'Track Sponsor'),
     ('foodanddrinks', 'FOOD_AND_DRINKS', 'Food & Drinks Sponsor'),
+    ('lounge', 'LOUNGE', 'Lounge Sponsor'),
     ('standard', 'STANDARD', 'Standard Sponsor'),
     ('supporter', 'SUPPORTER', 'Supporter Sponsor'),
     ('mainmedia', 'MAIN_MEDIA', 'Main Media Sponsor'),
     ('media', 'MEDIA', 'Media sponsors'),
     ('video', 'VIDEO', 'Video sponsors'),
 )
-
