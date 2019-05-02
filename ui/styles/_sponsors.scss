@@ -36,15 +36,15 @@
     }
 
     &.track img {
-        max-height: 6rem;
+        max-width: 22rem;
     }
 
     &.foodanddrinks img {
-        max-height: 5rem;
+        max-width: 11rem;
     }
 
     &.standard img {
-        max-height: 4rem;
+        max-height: 2.5rem;
     }
 
     &.supporter img {
@@ -52,12 +52,11 @@
     }
 
     // Tweaks for specific logos
-    .nsoft img {
-        max-height: 5rem;
+    .agent-cash img {
+        max-width: 20rem;
     }
-
-    .column {
-        text-align: center;
-        margin-bottom: 2rem;
+    .microblink img,
+    .vumedi img {
+        max-width: 14rem;
     }
 }

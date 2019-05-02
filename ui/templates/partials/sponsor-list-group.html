@@ -1,5 +1,5 @@
 {% for sponsor in sponsors %}
-    <div class="column sponsor-list-item {{ sponsor.slug }}">
+    <div class="column text-center {{ sponsor.slug }}">
         <a href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
             <img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }}" />
         </a>
