@@ -68,13 +68,14 @@ class CallForPapersView(ViewAuthMixin, DetailView):
     model = CallForPaper
     template_name = 'dashboard/call_for_papers.html'
 
-    def get_durations(self, applications):
-        durations = (applications
+    def get_types(self, applications):
+        types = (applications
             .order_by()
-            .values('duration')
+            .values('type')
             .annotate(count=Count('*')))
 
-        return [["{} min".format(d['duration']), d['count']] for d in durations]
+        caption = PaperApplication.TYPE_CAPTIONS.get
+        return [[caption(t['type']), t['count']] for t in types]
 
     def get_sexes(self, applications):
         sexes = (applications
@@ -122,7 +123,7 @@ class CallForPapersView(ViewAuthMixin, DetailView):
             "rated_percentage": rated_percentage,
             "average_score": average_score,
             "distribution": get_votes_distribution(votes),
-            "durations": self.get_durations(applications),
+            "types": self.get_types(applications),
             "sexes": self.get_sexes(applications),
             "levels": self.get_levels(applications),
         })

@@ -132,6 +132,15 @@ class PaperApplication(Timestampable):
         (TYPE_WORKSHOP_FULL, 'Workshop (full day)'),
     )
 
+    # Shorter captions
+    TYPE_CAPTIONS = {
+        TYPE_TALK_SHORT: 'Short talk',
+        TYPE_TALK_LONG: 'Long talk',
+        TYPE_KEYNOTE: 'Keynote',
+        TYPE_WORKSHOP_HALF: 'Half Workshop',
+        TYPE_WORKSHOP_FULL: 'Full Workshop',
+    }
+
     TALK_TYPES = (TYPE_KEYNOTE, TYPE_TALK_LONG, TYPE_TALK_SHORT)
     WORKSHOP_TYPES = (TYPE_WORKSHOP_HALF, TYPE_WORKSHOP_FULL)
 
@@ -226,6 +235,10 @@ class PaperApplication(Timestampable):
     @property
     def is_for_workshop(self):
         return self.type in self.WORKSHOP_TYPES
+
+    @property
+    def short_type(self):
+        return self.TYPE_CAPTIONS.get(self.type)
 
 
 class Invite(models.Model):

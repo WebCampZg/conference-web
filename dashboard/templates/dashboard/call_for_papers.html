@@ -17,7 +17,7 @@
 
 {% block morescript %}
 <script type="text/javascript">
-    var durations = {{ durations|jsonify }};
+    var types = {{ types|jsonify }};
     var sexes = {{ sexes|jsonify }};
     var levels = {{ levels|jsonify }};
 </script>
@@ -46,7 +46,7 @@
             "searching": false,
         });
 
-        chart('durations-chart', 'Durations', durations);
+        chart('types-chart', 'Types', types);
         chart('sexes-chart', 'Applicants', sexes);
         chart('levels-chart', 'Levels', levels);
     });
@@ -66,13 +66,13 @@
 
     <div class="callout">
         <div class="row">
-            <div class="small-4 columns">
-                <div class="cfp-chart" id="durations-chart"></div>
+            <div class="small-6 columns">
+                <div class="cfp-chart" id="types-chart"></div>
             </div>
-            <div class="small-4 columns">
+            <div class="small-3 columns">
                 <div class="cfp-chart" id="sexes-chart"></div>
             </div>
-            <div class="small-4 columns">
+            <div class="small-3 columns">
                 <div class="cfp-chart" id="levels-chart"></div>
             </div>
         </div>
@@ -117,7 +117,7 @@
                     <td>
                         <a href="{% url 'dashboard:application_detail' pk=application.id %}">{{ application.title }}</a>
                     </td>
-                    <td>{{ application.duration }} min</td>
+                    <td>{{ application.short_type }}</td>
                     <td>{{ application.skill_level }}</td>
                     {% if votes %}
                         <td class="text-center">
