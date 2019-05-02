@@ -27,6 +27,10 @@
 .sponsor-list {
     margin-top: 2rem;
 
+    img {
+        margin-top: 1rem;
+    }
+
     &.diamond img {
         max-height: 10rem;
     }
@@ -36,11 +40,11 @@
     }
 
     &.track img {
-        max-width: 22rem;
+        max-width: 17rem;
     }
 
     &.foodanddrinks img {
-        max-width: 11rem;
+        max-width: 12rem;
     }
 
     &.standard img {
@@ -52,11 +56,13 @@
     }
 
     // Tweaks for specific logos
-    .agent-cash img {
+    .trikoder img {
         max-width: 20rem;
     }
-    .microblink img,
-    .vumedi img {
-        max-width: 14rem;
+    .dobarkod img {
+        max-width: 16rem;
+    }
+    .ecxio img {
+        max-width: 10rem;
     }
 }
