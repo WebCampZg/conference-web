@@ -57,7 +57,6 @@ dist:
 css:
 	sassc \
 		--sourcemap \
-		--style compressed \
 		--load-path=. \
 		--load-path=sources/plex/scss/ \
 		--load-path=sources/foundation/scss \
