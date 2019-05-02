@@ -9,7 +9,7 @@ class SponsorAdmin(admin.ModelAdmin):
     list_display = ('name', 'type', 'is_active', 'order')
     list_filter = ('is_active', 'type',)
     ordering = ('-is_active', 'type', 'order')
-
+    search_fields = ('name',)
 
 admin.site.register(Sponsor, SponsorAdmin)
 
