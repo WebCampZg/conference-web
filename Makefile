@@ -36,7 +36,7 @@ sources:
 		-o sources/jquery/jquery.min.js --location --create-dirs
 	curl https://code.jquery.com/jquery-$(JQUERY_VERSION).min.map \
 		-o sources/jquery/jquery.min.map --location --create-dirs
-	curl https://github.com/Aerolab/blockrain.js/blob/gh-pages/dist/blockrain.jquery.min.js \
+	curl https://raw.githubusercontent.com/Aerolab/blockrain.js/gh-pages/dist/blockrain.jquery.js \
 		-o sources/blockrain/blockrain.min.js --location --create-dirs
 	unzip sources/tmp/plex.zip -d sources/tmp/plex/
 	unzip sources/tmp/foundation.zip -d sources/tmp/foundation/
