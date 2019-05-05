@@ -1,14 +1,24 @@
 .hero-wrapper {
-    background-color: $yellow;
-    background-position-x: center;
-    // background-repeat: no-repeat;
-    height: 554px;
+  background-color: $yellow;
+  position: relative;
+  height: 554px;
+  width: 100%
+}
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.cover-tetris {
+  height: 100%;
+}
 
-    .hero {
-        max-width: 830px;
-    }
+.hero-banner-wrapper {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
+  transform: translate(-50%, 0%);
+  width: 50%;;
+  text-align: center;
+}
+
+.hero-banner {
+  max-width: 820px;
 }
