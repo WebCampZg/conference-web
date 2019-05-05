@@ -2,11 +2,13 @@
   background-color: $yellow;
   position: relative;
   height: 554px;
-  width: 100%
+  width: 100%;
+  text-align: center;
 }
 
 .cover-tetris {
   height: 100%;
+  max-width: 940px;
 }
 
 .hero-banner-wrapper {
