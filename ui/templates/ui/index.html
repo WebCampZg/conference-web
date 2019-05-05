@@ -5,14 +5,14 @@
 {% block title %}{{ event.title }} - {{ event.tagline }}{% endblock %}
 
 {% block head %}
-<meta name="description"
-      content="WebCamp Zagreb is a technology oriented conference for developers &amp; designers taking place on {{ event.dates_text }} in Zagreb, Croatia.">
+<meta content="WebCamp Zagreb is a technology oriented conference for developers &amp; designers taking place on {{ event.dates_text }} in Zagreb, Croatia."
+      name="description">
 {% endblock %}
 
 {% block og %}
-<meta property="og:title" content="{{ event.title }} - {{ event.tagline }}"/>
-<meta property="og:description"
-      content="WebCamp Zagreb is a technology oriented conference for developers &amp; designers taking place on {{ event.dates_text }} in Zagreb, Croatia."/>
+<meta content="{{ event.title }} - {{ event.tagline }}" property="og:title"/>
+<meta content="WebCamp Zagreb is a technology oriented conference for developers &amp; designers taking place on {{ event.dates_text }} in Zagreb, Croatia."
+      property="og:description"/>
 {% endblock %}
 
 {% block basecontent %}
@@ -33,38 +33,40 @@
 <script>
 
     $(document).ready(function () {
-        $(".hero-wrapper").click(function (e) {
-            var $game = $('#cover-tetris');
-            $game.blockrain({
-                // autoplay: false,
-                // autoplayRestart: true,
-                speed: 20,
-                autoBlockWidth: true,
-                autoBlockSize: 30,
-                // showFieldOnStart: true,
-                theme:
-                    {
-                        background: '#FFDC00', // The main background color.
-                        stroke: '#000000', // Border color for the blocks.
+        var $game = $('#cover-tetris');
+        $game.blockrain({
+            autoplay: true,
+            autoplayRestart: true,
+            speed: 20,
+            autoBlockWidth: true,
+            autoBlockSize: 30,
+            // showFieldOnStart: true,
+            theme:
+                {
+                    background: '#FFDC00', // The main background color.
+                    stroke: '#000000', // Border color for the blocks.
 
-                        // // The following are the colors of each piece
-                        blocks: {
-                            line: '#FEFEFE',
-                            square: '#CACACA',
-                            arrow: '#FA4748',
-                            rightHook: '#7FDBFF',
-                            leftHook: '#9013FD',
-                            rightZag: '#4A4A4A',
-                            leftZag: '#00C200'
-                        }
+                    // // The following are the colors of each piece
+                    blocks: {
+                        line: '#FEFEFE',
+                        square: '#CACACA',
+                        arrow: '#FA4748',
+                        rightHook: '#7FDBFF',
+                        leftHook: '#9013FD',
+                        rightZag: '#4A4A4A',
+                        leftZag: '#00C200'
                     }
-            });
-
-            $game.blockrain('start');
-
+                }
         });
-    });
 
+        $("#click-tetris").click(function (e) {
+            $game.blockrain('autoplay', false);
+            $game.blockrain('controls', true);
+            $game.blockrain('restart');
+             $("#click-tetris").hide();
+        });
+
+    });
 
 </script>
 {% endblock %}
