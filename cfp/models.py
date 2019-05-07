@@ -204,19 +204,6 @@ class PaperApplication(Timestampable):
             self.title, self.applicant, self.duration, self.cfp_id)
 
     @property
-    def next(self):
-        return PaperApplication.objects.filter(cfp=self.cfp, id__gt=self.id).order_by('id').first()
-
-    @property
-    def prev(self):
-        return PaperApplication.objects.filter(cfp=self.cfp, id__lt=self.id).order_by('-id').first()
-
-    @property
-    def ordinal(self):
-        """The ordinal number of the application within it's CFP"""
-        return PaperApplication.objects.filter(cfp=self.cfp, id__lt=self.id).count() + 1
-
-    @property
     def has_talk(self):
         return hasattr(self, "talk")
 

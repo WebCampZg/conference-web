@@ -205,18 +205,18 @@ $(document).keydown(function(e) {
 
     <div class="row">
         <div class="columns">
-            {% if application.prev %}
-                <a href="{% url 'dashboard:application_detail' pk=application.prev.pk %}" id="prev_application">
-                    &laquo;&nbsp;{{ application.prev.title }}</a>
+            {% if prev %}
+                <a href="{% url 'dashboard:application_detail' pk=prev.pk %}" id="prev_application">
+                    &laquo;&nbsp;{{ prev.title }}</a>
             {% endif %}
         </div>
         <div class="columns text-center">
-            {{ application.ordinal }} / {{ application.cfp.application_count }}
+            {{ ordinal }} / {{ count }}
         </div>
         <div class="columns text-right">
-            {% if application.next %}
-                <a href="{% url 'dashboard:application_detail' pk=application.next.pk %}" id="next_application">
-                    {{ application.next.title }}&nbsp;&raquo;
+            {% if next %}
+                <a href="{% url 'dashboard:application_detail' pk=next.pk %}" id="next_application">
+                    {{ next.title }}&nbsp;&raquo;
                 </a>
             {% endif %}
         </div>

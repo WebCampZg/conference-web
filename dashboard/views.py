@@ -11,11 +11,12 @@ from django.urls import reverse
 from django.db.models import Count, Q, Avg, StdDev
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-from django.views.generic import View, DetailView, TemplateView, ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import View, DetailView, TemplateView, ListView
 from django.views.generic.edit import ModelFormMixin, ProcessFormView
 
 from cfp.models import CallForPaper, PaperApplication, Applicant
-from dashboard.forms import CommentForm
+from dashboard.forms import CommentForm, ApplicationFilterForm
 from dashboard.models import Comment, Vote as CommitteeVote
 from dashboard.utils import get_votes_distribution
 from events.models import Event, Ticket
@@ -104,9 +105,14 @@ class CallForPapersView(ViewAuthMixin, DetailView):
         applications = (self.get_object().applications
             .prefetch_related('applicant', 'applicant__user', 'skill_level', 'talk')
             .order_by('pk'))
+
+        types = self.request.session.get("dashboard_application_types_filter")
+        if types:
+            applications = applications.filter(type__in=types)
+
         application_count = applications.count()
 
-        votes = self.request.user.committee_votes.filter(application__cfp=self.object)
+        votes = self.request.user.committee_votes.filter(application__in=applications)
         vote_count = votes.count()
 
         rated_percentage = 100 * vote_count / application_count \
@@ -114,6 +120,8 @@ class CallForPapersView(ViewAuthMixin, DetailView):
 
         average_score = sum(v.score for v in votes) / vote_count \
             if vote_count else None
+
+        filter_form = ApplicationFilterForm(initial=dict(types=types))
 
         ctx.update({
             "applications": applications,
@@ -126,15 +134,37 @@ class CallForPapersView(ViewAuthMixin, DetailView):
             "types": self.get_types(applications),
             "sexes": self.get_sexes(applications),
             "levels": self.get_levels(applications),
+            "filter_form": filter_form,
         })
 
         return ctx
+
+
+class SaveApplicationFilterView(ViewAuthMixin, View):
+    def post(self, request, *args, **kwargs):
+        filter_form = ApplicationFilterForm(data=request.POST)
+        redirect_to = request.POST.get('next', reverse('dashboard:dashboard'))
+
+        if filter_form.is_valid():
+            types = filter_form.data.getlist("types")
+            request.session["dashboard_application_types_filter"] = types
+
+        return HttpResponseRedirect(redirect_to)
 
 
 class ApplicationDetailView(ViewAuthMixin, DetailView):
     model = PaperApplication
     template_name = 'dashboard/application.html'
     context_object_name = 'application'
+
+    def get_queryset(self):
+        applications = super().get_queryset()
+
+        types = self.request.session.get("dashboard_application_types_filter")
+        if types:
+            applications = applications.filter(type__in=types)
+
+        return applications
 
     def get_context_data(self, **kwargs):
         application = self.get_object()
@@ -157,6 +187,12 @@ class ApplicationDetailView(ViewAuthMixin, DetailView):
             count=Count('*'),
         )
 
+        qs = self.get_queryset()
+        prev = qs.filter(id__lt=application.id).order_by('-id').first()
+        next_ = qs.filter(id__gt=application.id).order_by('id').first()
+        count = qs.count()
+        ordinal = qs.filter(id__lt=application.id).count() + 1
+
         ctx = super(ApplicationDetailView, self).get_context_data(**kwargs)
         ctx.update({
             "comments": comments,
@@ -167,6 +203,10 @@ class ApplicationDetailView(ViewAuthMixin, DetailView):
             "committee_votes_avg": aggregates['avg'],
             "committee_votes_stdev": aggregates['stdev'],
             "committee_votes_count": aggregates['count'],
+            "prev": prev,
+            "next": next_,
+            "count": count,
+            "ordinal": ordinal,
         })
         return ctx
 

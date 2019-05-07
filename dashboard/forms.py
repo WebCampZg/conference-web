@@ -1,5 +1,7 @@
 from django import forms
+from django.forms.widgets import CheckboxSelectMultiple
 
+from cfp.models import PaperApplication
 from dashboard.models import Comment
 
 
@@ -29,3 +31,12 @@ class CommentForm(forms.ModelForm):
             raise forms.ValidationError("Either text or a link must be populated.")
 
         return cleaned_data
+
+
+class ApplicationFilterForm(forms.Form):
+    types = forms.MultipleChoiceField(
+        choices=PaperApplication.TYPES,
+        widget=CheckboxSelectMultiple(),
+        required=False,
+        label="",
+    )

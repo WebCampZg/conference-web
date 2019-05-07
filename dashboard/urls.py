@@ -6,6 +6,7 @@ app_name = 'dashboard'
 
 urlpatterns = [
     path('', views.DashboardView.as_view(), name='dashboard'),
+    path('save_filter/', views.SaveApplicationFilterView.as_view(), name='save_filter'),
     path('cfp/<int:pk>/', views.CallForPapersView.as_view(), name='cfp_detail'),
     path('cfp/<int:pk>/scoring/', views.ScoringView.as_view(), name='cfp_scoring'),
     path('applications/<int:pk>/', views.ApplicationDetailView.as_view(), name='application_detail'),
