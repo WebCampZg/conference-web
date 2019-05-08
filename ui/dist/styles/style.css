@@ -5152,20 +5152,23 @@ span.icon {
 
 .newsletter {
   background-color: #7FDBFF;
-  color: #FEFEFE;
+  color: #0A0A0A;
   text-align: center;
   padding: 5rem 0; }
   .newsletter h2 {
     margin-bottom: 3rem; }
+  .newsletter label {
+    font-weight: bold;
+    font-size: 1rem; }
 
 /* Large and up */
 @media print, screen and (min-width: 64em) {
-  .newsletter input {
-    height: 4rem; }
-    .newsletter input[type='email'] {
-      padding-left: 2rem; }
-    .newsletter input[type='submit'] {
-      font-size: 20px; } }
+  .newsletter input[type='email'] {
+    height: 4rem;
+    padding-left: 2rem; }
+  .newsletter input[type='submit'] {
+    height: 4rem;
+    font-size: 20px; } }
 
 .posts {
   background-color: #F7F7F7;

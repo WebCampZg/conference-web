@@ -1,11 +1,16 @@
 .newsletter {
     background-color: $blue;
-    color: $white;
+    color: $black;
     text-align: center;
     padding: 5rem 0;
 
     h2 {
         margin-bottom: 3rem;
+    }
+
+    label {
+        font-weight: bold;
+        font-size: 1rem;
     }
 }
 
@@ -13,13 +18,13 @@
 @include breakpoint(large) {
     .newsletter {
         input {
-            height: 4rem;
-
             &[type='email'] {
+                height: 4rem;
                 padding-left: 2rem;
             }
 
             &[type='submit'] {
+                height: 4rem;
                 font-size: 20px;
             }
         }
