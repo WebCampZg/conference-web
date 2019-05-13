@@ -117,6 +117,14 @@ class AudienceSkillLevel(models.Model):
         ordering = ['pk', ]
 
 
+class PaperApplicationQuerySet(models.QuerySet):
+    def talks(self):
+        return self.filter(type__in=PaperApplication.TALK_TYPES)
+
+    def workshops(self):
+        return self.filter(type__in=PaperApplication.WORKSHOP_TYPES)
+
+
 class PaperApplication(Timestampable):
     TYPE_KEYNOTE = 'keynote'
     TYPE_TALK_LONG = 'talk_long'
@@ -198,6 +206,8 @@ class PaperApplication(Timestampable):
 
     class Meta:
         ordering = ['title', ]
+
+    objects = PaperApplicationQuerySet.as_manager()
 
     def __str__(self):
         return '{} - {} - {} min (CFP #{})'.format(
