@@ -210,8 +210,7 @@ class PaperApplication(Timestampable):
     objects = PaperApplicationQuerySet.as_manager()
 
     def __str__(self):
-        return '{} - {} - {} min (CFP #{})'.format(
-            self.title, self.applicant, self.duration, self.cfp_id)
+        return f"{self.title} - {self.applicant}"
 
     @property
     def has_talk(self):
