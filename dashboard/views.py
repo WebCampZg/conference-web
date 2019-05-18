@@ -157,15 +157,6 @@ class ApplicationDetailView(ViewAuthMixin, DetailView):
     template_name = 'dashboard/application.html'
     context_object_name = 'application'
 
-    def get_queryset(self):
-        applications = super().get_queryset()
-
-        types = self.request.session.get("dashboard_application_types_filter")
-        if types:
-            applications = applications.filter(type__in=types)
-
-        return applications
-
     def get_context_data(self, **kwargs):
         application = self.get_object()
         user = self.request.user
@@ -187,11 +178,17 @@ class ApplicationDetailView(ViewAuthMixin, DetailView):
             count=Count('*'),
         )
 
-        qs = self.get_queryset()
-        prev = qs.filter(id__lt=application.id).order_by('-id').first()
-        next_ = qs.filter(id__gt=application.id).order_by('id').first()
-        count = qs.count()
-        ordinal = qs.filter(id__lt=application.id).count() + 1
+        # Other applications in the same CFP
+        applications = self.get_queryset().filter(cfp=application.cfp)
+
+        types = self.request.session.get("dashboard_application_types_filter")
+        if types:
+            applications = applications.filter(type__in=types)
+
+        prev = applications.filter(id__lt=application.id).order_by('-id').first()
+        next_ = applications.filter(id__gt=application.id).order_by('id').first()
+        count = applications.count()
+        ordinal = applications.filter(id__lt=application.id).count() + 1
 
         ctx = super(ApplicationDetailView, self).get_context_data(**kwargs)
         ctx.update({
