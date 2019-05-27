@@ -20,6 +20,7 @@ from dashboard.forms import CommentForm, ApplicationFilterForm
 from dashboard.models import Comment, Vote as CommitteeVote
 from dashboard.utils import get_votes_distribution
 from events.models import Event, Ticket
+from labels.models import Label
 from people.models import TShirtSize, User
 from talks.models import Talk
 from voting.models import CommunityVote
@@ -190,6 +191,9 @@ class ApplicationDetailView(ViewAuthMixin, DetailView):
         count = applications.count()
         ordinal = applications.filter(id__lt=application.id).count() + 1
 
+        applied_labels = application.labels.all()
+        available_labels = Label.objects.exclude(pk__in=applied_labels)
+
         ctx = super(ApplicationDetailView, self).get_context_data(**kwargs)
         ctx.update({
             "comments": comments,
@@ -204,8 +208,32 @@ class ApplicationDetailView(ViewAuthMixin, DetailView):
             "next": next_,
             "count": count,
             "ordinal": ordinal,
+            "applied_labels": applied_labels,
+            "available_labels": available_labels,
         })
         return ctx
+
+
+class ApplicationAddLabelView(ViewAuthMixin, View):
+    def post(self, request, *args, **kwargs):
+        application = get_object_or_404(PaperApplication, **kwargs)
+        label = get_object_or_404(Label, name=request.POST.get('label'))
+
+        application.labels.add(label)
+
+        success_url = reverse("dashboard:application_detail", args=[application.pk])
+        return HttpResponseRedirect(success_url)
+
+
+class ApplicationRemoveLabelView(ViewAuthMixin, View):
+    def post(self, request, *args, **kwargs):
+        application = get_object_or_404(PaperApplication, pk=kwargs.get('pk'))
+        label = get_object_or_404(Label, pk=kwargs.get('label_id'))
+
+        application.labels.remove(label)
+
+        success_url = reverse("dashboard:application_detail", args=[application.pk])
+        return HttpResponseRedirect(success_url)
 
 
 class ApplicantDetailView(ViewAuthMixin, DetailView):

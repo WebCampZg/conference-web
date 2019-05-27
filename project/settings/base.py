@@ -81,6 +81,7 @@ INSTALLED_APPS = (
     'events',
     'gopher',
     'jobs',
+    'labels',
     'pages',
     'people',
     'schedule',

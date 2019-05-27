@@ -1,0 +1,27 @@
+{% extends 'dashboard/base.html' %}
+
+{% load webcamp %}
+
+{% block title %}
+  Delete label: {{ label.name }}
+{% endblock %}
+
+{% block content %}
+
+  <h1>Delete label: {{ label.name }}</h1>
+
+  <p>Are you sure you want to delete this label?</p>
+
+  <form method="post">
+      {% csrf_token %}
+
+      <div class="button-group">
+        <button type="submit" class="alert button">
+          {% icon "solid/check" %} Delete
+        </button>
+        <a href="{% url 'dashboard:label-list' %}" class="yellow button">
+          {% icon "solid/times" %} Cancel
+        </a>
+      </div>
+  </form>
+{% endblock %}

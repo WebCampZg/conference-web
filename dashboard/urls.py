@@ -1,3 +1,4 @@
+from labels import views as labels_views
 from . import views
 
 from django.urls import path, include
@@ -10,6 +11,8 @@ urlpatterns = [
     path('cfp/<int:pk>/', views.CallForPapersView.as_view(), name='cfp_detail'),
     path('cfp/<int:pk>/scoring/', views.ScoringView.as_view(), name='cfp_scoring'),
     path('applications/<int:pk>/', views.ApplicationDetailView.as_view(), name='application_detail'),
+    path('applications/<int:pk>/labels/add/', views.ApplicationAddLabelView.as_view(), name='application_add_label'),
+    path('applications/<int:pk>/labels/remove/<int:label_id>/', views.ApplicationRemoveLabelView.as_view(), name='application_remove_label'),
     path('applicants/<int:pk>/', views.ApplicantDetailView.as_view(), name='applicant_detail'),
 
     path('event/<int:event_id>/', include([
@@ -28,5 +31,12 @@ urlpatterns = [
         path('create/', views.CommentCreateView.as_view(), name='comment-create'),
         path('<int:pk>/update/', views.CommentUpdateView.as_view(), name='comment-update'),
         path('<int:pk>/delete/', views.CommentDeleteView.as_view(), name='comment-delete'),
-    ]))
+    ])),
+
+    # Labels
+    path('labels/', include([
+        path('', labels_views.LabelListView.as_view(), name='label-list'),
+        path('create/', labels_views.LabelCreateView.as_view(), name='label-create'),
+        path('<int:pk>/delete/', labels_views.LabelDeleteView.as_view(), name='label-delete'),
+    ])),
 ]

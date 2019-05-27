@@ -4932,6 +4932,8 @@ ol.list-upper-roman {
     color: #FEFEFE; }
     .button.alert:hover {
       color: #d8d8d8; }
+  .button.tiny {
+    text-transform: uppercase; }
 
 .dashboard.row.column, .dashboard.row.columns,
 .dashboard hr {

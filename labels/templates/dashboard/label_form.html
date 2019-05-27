@@ -1,0 +1,29 @@
+{% extends 'dashboard/base.html' %}
+
+{% load webcamp %}
+
+{% block title %}
+  {% if label %}Edit label: {{ label }}{% else %}Create label{% endif %}
+{% endblock %}
+
+{% block content %}
+
+  <h1>{% if label %}Edit label: {{ label }}{% else %}Create label{% endif %}</h1>
+
+  {{ form.errors }}
+
+  <form method="post">
+      {% csrf_token %}
+
+      {{ form }}
+
+      <div class="button-group">
+        <button type="submit" class="green button">
+          {% icon "regular/save" %} Save
+        </button>
+        <a href="{% url 'dashboard:label-list' %}" class="yellow button">
+          {% icon "solid/times" %} Cancel
+        </a>
+      </div>
+  </form>
+{% endblock %}

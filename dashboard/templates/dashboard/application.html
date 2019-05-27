@@ -63,6 +63,47 @@ $(document).keydown(function(e) {
                     <span class="label green">Travel expenses</span>
                 {% endif %}
             </p>
+
+            <div>
+                {% if applied_labels %}
+                {% for label in applied_labels %}
+                    <span
+                        class="label"
+                        style="color: {{ label.fg_color }}; background-color: {{ label.bg_color }}"
+                    >
+                        {{ label.name }}
+                        <form method="POST" action="{% url "dashboard:application_remove_label" application.pk label.pk %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button style="color: inherit;" title="Remove label">
+                                {% icon "solid/times" %}
+                            </button>
+                        </form>
+                    </span>
+                {% endfor %}
+                {% endif %}
+
+                <details style="margin-top: 1rem">
+                    <summary style="cursor: pointer">Add label</summary>
+
+                    <form action="{% url "dashboard:application_add_label" application.pk %}" method="POST">
+                        {% csrf_token %}
+                        {% for label in available_labels %}
+                            <input
+                                style="color: {{ label.fg_color }}; background-color: {{ label.bg_color }}"
+                                class="small no-margin button"
+                                type="submit"
+                                name="label"
+                                value="{{ label.name }}"
+                            />
+                        {% empty %}
+                            <p>No labels available. Add some.</p>
+                        {% endfor %}
+                    </form>
+                </details>
+            </div>
+
+            <hr />
+
             <p>{{ application.about|markdown }}</p>
 
             {% if application.about|length > 140 %}

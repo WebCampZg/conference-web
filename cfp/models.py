@@ -204,6 +204,8 @@ class PaperApplication(Timestampable):
 
     exclude = models.BooleanField(default=False)
 
+    labels = models.ManyToManyField("labels.Label", related_name="applications")
+
     class Meta:
         ordering = ['title', ]
 

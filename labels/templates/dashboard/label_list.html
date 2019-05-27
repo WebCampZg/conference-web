@@ -1,0 +1,48 @@
+{% extends 'dashboard/base.html' %}
+
+{% load webcamp %}
+
+{% block content %}
+  <h1>Labels</h1>
+
+  {% if object_list %}
+    <table>
+      <thead>
+        <tr>
+          <th>Label</th>
+          <th>Usage</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for label in object_list %}
+          <tr>
+            <td>
+              <span class="label" style="color: {{ label.fg_color }}; background-color: {{ label.bg_color }}; border: 1px solid DimGray;">
+                {{ label.name }}
+              </span>
+            </td>
+            <td>
+              {% with count=label.applications.count %}
+              Used on {{ count }} application{{ count|pluralize }}.
+              {% endwith %}
+            </td>
+            <td>
+              <a href="{% url 'dashboard:label-delete' label.pk %}" class="tiny alert button no-margin">
+                {% icon "solid/times" %} Delete
+              </a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No labels defined</p>
+  {% endif %}
+
+  <div class="button-group">
+    <a href="{% url 'dashboard:label-create' %}" class="button">
+      {% icon "regular/plus" %} Add label
+    </a>
+  </div>
+{% endblock %}
