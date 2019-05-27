@@ -107,9 +107,17 @@ class CallForPapersView(ViewAuthMixin, DetailView):
             .prefetch_related('applicant', 'applicant__user', 'skill_level', 'talk')
             .order_by('pk'))
 
-        types = self.request.session.get("dashboard_application_types_filter")
-        if types:
-            applications = applications.filter(type__in=types)
+        # Filter by application type
+        filtered_types = self.request.session.get("dashboard_application_types_filter")
+        if filtered_types:
+            applications = applications.filter(type__in=filtered_types)
+
+        # Filter by label
+        filtered_labels = self.request.session.get("dashboard_application_labels_filter", [])
+        filtered_labels = Label.objects.filter(name__in=filtered_labels)
+        label_filter_applied = filtered_labels.exists()
+        if label_filter_applied:
+            applications = applications.filter(labels__in=filtered_labels)
 
         application_count = applications.count()
 
@@ -122,7 +130,7 @@ class CallForPapersView(ViewAuthMixin, DetailView):
         average_score = sum(v.score for v in votes) / vote_count \
             if vote_count else None
 
-        filter_form = ApplicationFilterForm(initial=dict(types=types))
+        type_filter_form = ApplicationFilterForm(initial=dict(types=filtered_types))
 
         ctx.update({
             "applications": applications,
@@ -135,21 +143,45 @@ class CallForPapersView(ViewAuthMixin, DetailView):
             "types": self.get_types(applications),
             "sexes": self.get_sexes(applications),
             "levels": self.get_levels(applications),
-            "filter_form": filter_form,
+            "type_filter_form": type_filter_form,
+            "type_filter_applied": bool(filtered_types),
+            "filtered_labels": filtered_labels.values_list("name", flat=True),
+            "label_filter_applied": label_filter_applied,
+            "labels": Label.objects.all(),
         })
 
         return ctx
 
 
-class SaveApplicationFilterView(ViewAuthMixin, View):
+class SaveApplicationTypeFilterView(ViewAuthMixin, View):
     def post(self, request, *args, **kwargs):
-        filter_form = ApplicationFilterForm(data=request.POST)
-        redirect_to = request.POST.get('next', reverse('dashboard:dashboard'))
+        submit = request.POST.get("submit")
 
-        if filter_form.is_valid():
-            types = filter_form.data.getlist("types")
-            request.session["dashboard_application_types_filter"] = types
+        if submit == "Save":
+            filter_form = ApplicationFilterForm(data=request.POST)
+            if filter_form.is_valid():
+                types = filter_form.data.getlist("types")
+                request.session["dashboard_application_types_filter"] = types
 
+        if submit == "Clear":
+            request.session["dashboard_application_types_filter"] = []
+
+        redirect_to = request.POST.get("next", reverse("dashboard:dashboard"))
+        return HttpResponseRedirect(redirect_to)
+
+
+class SaveApplicationLabelFilterView(ViewAuthMixin, View):
+    def post(self, request, *args, **kwargs):
+        submit = request.POST.get("submit")
+
+        if submit == "Save":
+            label_names = request.POST.getlist("labels")
+            request.session["dashboard_application_labels_filter"] = label_names
+
+        if submit == "Clear":
+            request.session["dashboard_application_labels_filter"] = []
+
+        redirect_to = request.POST.get("next", reverse("dashboard:dashboard"))
         return HttpResponseRedirect(redirect_to)
 
 
@@ -182,9 +214,16 @@ class ApplicationDetailView(ViewAuthMixin, DetailView):
         # Other applications in the same CFP
         applications = self.get_queryset().filter(cfp=application.cfp)
 
+        # Filter by application type
         types = self.request.session.get("dashboard_application_types_filter")
         if types:
             applications = applications.filter(type__in=types)
+
+        # Filter by label
+        filtered_labels = self.request.session.get("dashboard_application_labels_filter", [])
+        filtered_labels = Label.objects.filter(name__in=filtered_labels)
+        if filtered_labels.exists():
+            applications = applications.filter(labels__in=filtered_labels)
 
         prev = applications.filter(id__lt=application.id).order_by('-id').first()
         next_ = applications.filter(id__gt=application.id).order_by('id').first()

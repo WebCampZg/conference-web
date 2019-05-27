@@ -4,146 +4,197 @@
 {% load webcamp %}
 
 {% block head %}
-    <style type="text/css">
-        #applications-table { font-size: smaller }
-        button.rate-application,
-        button.unrate-application { margin-bottom: 0; }
-        tr.selected { background-color: green; }
-        td.voting { white-space: nowrap; }
-        div.cfp-chart { height: 15rem; }
-        #id_types { list-style-type: none; margin: 0; }
-        #id_types input { margin-bottom: 0; }
-        #id_types li { display: inline-block; }
-        #application-type-filter button { margin-top: -0.75rem; }
-    </style>
+  <style type="text/css">
+    #applications-table { font-size: smaller }
+    button.rate-application,
+    button.unrate-application { margin-bottom: 0; }
+    tr.selected { background-color: green; }
+    td.voting { white-space: nowrap; }
+    div.cfp-chart { height: 15rem; }
+    #id_types { list-style-type: none; margin: 0; }
+    #id_types input { margin-bottom: 0; }
+    #id_types li { display: inline-block; }
+    #application-type-filter form { margin-top: .5rem; }
+    #application-type-filter button { margin-top: -0.75rem; }
+    #label-filter form { margin-top: .5rem; }
+    #label-filter button { margin-top: -0.75rem; }
+  </style>
 {% endblock head %}
 
 
 {% block morescript %}
 <script type="text/javascript">
-    var types = {{ types|jsonify }};
-    var sexes = {{ sexes|jsonify }};
-    var levels = {{ levels|jsonify }};
+  var types = {{ types|jsonify }};
+  var sexes = {{ sexes|jsonify }};
+  var levels = {{ levels|jsonify }};
 </script>
 
 <script type="text/javascript">
-    function chart(id, title, data) {
-        Highcharts.chart(id, {
-            chart: { type: 'column' },
-            title: { text: title },
-            series: [{
-                name: 'Talks',
-                data: data,
-                dataLabels: { enabled: true },
-            }],
-            xAxis: { type: 'category' },
-            yAxis: { title: null },
-            legend: { enabled: false },
-            credits: { enabled: false },
-            plotOptions: { column: { color: "#FFDC00"} }
-        });
-    }
-
-    $(document).ready(function () {
-        $("#applications-table").dataTable({
-            "paging": false,
-            "searching": false,
-        });
-
-        chart('types-chart', 'Types', types);
-        chart('sexes-chart', 'Applicants', sexes);
-        chart('levels-chart', 'Levels', levels);
+  function chart(id, title, data) {
+    Highcharts.chart(id, {
+      chart: { type: 'column' },
+      title: { text: title },
+      series: [{
+        name: 'Talks',
+        data: data,
+        dataLabels: { enabled: true },
+      }],
+      xAxis: { type: 'category' },
+      yAxis: { title: null },
+      legend: { enabled: false },
+      credits: { enabled: false },
+      plotOptions: { column: { color: "#FFDC00"} }
     });
+  }
+
+  $(document).ready(function () {
+    $("#applications-table").dataTable({
+      "paging": false,
+      "searching": false,
+    });
+
+    chart('types-chart', 'Types', types);
+    chart('sexes-chart', 'Applicants', sexes);
+    chart('levels-chart', 'Levels', levels);
+  });
 </script>
 {% endblock %}
 
 
 {% block content %}
-    <ul class="breadcrumbs">
-        <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
-        <li>Events</li>
-        <li><a href="{% url 'dashboard:event-detail' event.pk %}">{{ event.title }}</a></li>
-        <li>{{ cfp.title }}</li>
-    </ul>
+  <ul class="breadcrumbs">
+    <li><a href="{% url 'dashboard:dashboard' %}">Dashboard</a></li>
+    <li>Events</li>
+    <li><a href="{% url 'dashboard:event-detail' event.pk %}">{{ event.title }}</a></li>
+    <li>{{ cfp.title }}</li>
+  </ul>
 
-    <h1>{{ object.title }}</h1>
+  <h1>{{ object.title }}</h1>
 
-    <div class="callout">
-        <div class="row">
-            <div class="small-6 columns">
-                <div class="cfp-chart" id="types-chart"></div>
-            </div>
-            <div class="small-3 columns">
-                <div class="cfp-chart" id="sexes-chart"></div>
-            </div>
-            <div class="small-3 columns">
-                <div class="cfp-chart" id="levels-chart"></div>
-            </div>
+  <div class="callout">
+    <div class="row">
+      <div class="small-6 columns">
+        <div class="cfp-chart" id="types-chart"></div>
+      </div>
+      <div class="small-3 columns">
+        <div class="cfp-chart" id="sexes-chart"></div>
+      </div>
+      <div class="small-3 columns">
+        <div class="cfp-chart" id="levels-chart"></div>
+      </div>
+    </div>
+  </div>
+
+  {% if votes %}
+  <div class="callout">
+    <div class="row">
+      <div class="columns shrink">
+        <div class="histogram">
+          {{ distribution|histogram_svg }}
         </div>
+      </div>
+      <div class="columns extend">
+        You have rated {{ vote_count }} out of {{ application_count }} applications or <b>{{ rated_percentage|floatformat:1 }}%</b>.<br/>
+        Average score given is <b>{{ average_score|floatformat:2 }}</b>
+      </div>
     </div>
+  </div>
+  {% endif %}
 
-    {% if votes %}
-    <div class="callout">
+  <div class="callout" id="application-type-filter">
+    <details {% if type_filter_applied %}open{% endif %}>
+      <summary>Filter by application type</summary>
+      <form method="post" action="{% url 'dashboard:save_application_type_filter' %}">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path }}" />
+
         <div class="row">
-            <div class="columns shrink">
-                <div class="histogram">
-                    {{ distribution|histogram_svg }}
-                </div>
+          <div class="column">
+            {{ type_filter_form }}
+          </div>
+          <div class="column shrink">
+            <div class="button-group small">
+              <input type="submit" class="green button no-margin" name="submit" value="Save" />
+              <input type="submit" class="button no-margin" name="submit" value="Clear" />
             </div>
-            <div class="columns extend">
-                You have rated {{ vote_count }} out of {{ application_count }} applications or <b>{{ rated_percentage|floatformat:1 }}%</b>.<br/>
-                Average score given is <b>{{ average_score|floatformat:2 }}</b>
-            </div>
+          </div>
         </div>
-    </div>
-    {% endif %}
+      </form>
+    </details>
+  </div>
 
-    <div class="callout" id="application-type-filter">
-        <details>
-            <summary>Filter by application type</summary>
-            <form method="post" action="{% url 'dashboard:save_filter' %}" style="margin-top: 1rem;">
-                <button type="submit" class="button no-margin float-right">Save</button>
-                {% csrf_token %}
-                {{ filter_form }}
-                <input type="hidden" name="next" value="{{ request.path }}" />
-            </form>
-        </details>
-    </div>
+  <div class="callout" id="label-filter">
+    <details {% if label_filter_applied %}open{% endif %}>
+      <summary>Filter by label</summary>
+      <form method="post" action="{% url 'dashboard:save_application_label_filter' %}">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ request.path }}" />
 
-    <table id="applications-table" class="table hover">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Submitted</th>
-                <th>Speaker</th>
-                <th>Title</th>
-                <th>Duration</th>
-                <th>Level</th>
-                {% if votes %}
-                    <th>My Vote</th>
-                {% endif %}
-            </tr>
-        </thead>
-        <tbody>
-            {% for application in applications %}
-                <tr {% if application.has_talk %}class="blue-bg"{% endif %} data-application-id="{{ application.id }}">
-                    <td>{{ forloop.counter }}</td>
-                    <td class="no-wrap">{{ application.created_at }}</td>
-                    <td>{{ application.applicant }}</td>
-                    <td>
-                        <a href="{% url 'dashboard:application_detail' pk=application.id %}">{{ application.title }}</a>
-                    </td>
-                    <td>{{ application.short_type }}</td>
-                    <td>{{ application.skill_level }}</td>
-                    {% if votes %}
-                        <td class="text-center">
-                            {{ votes|get_item:application.pk|default:"-" }}
-                        </td>
-                    {% endif %}
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+        <div class="row">
+          <div class="column">
+          {% for label in labels %}
+            <label
+              for="id_label_{{ label.pk }}"
+              class="label"
+              style="color: {{ label.fg_color }}; background-color: {{ label.bg_color }}"
+            >
+              <input
+                class="no-margin"
+                type="checkbox"
+                name="labels"
+                id="id_label_{{ label.pk }}"
+                value="{{ label.name }}"
+                {% if label.name in filtered_labels %}checked{% endif %}
+              />
+                {{ label.name }}
+            </label>
+          {% endfor %}
+          </div>
+          <div class="column shrink">
+            <div class="button-group small">
+              <input type="submit" class="green button no-margin" name="submit" value="Save" />
+              <input type="submit" class="button no-margin" name="submit" value="Clear" />
+            </div>
+          </div>
+        </div>
+      </form>
+    </details>
+  </div>
+
+  <table id="applications-table" class="table hover">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Submitted</th>
+        <th>Speaker</th>
+        <th>Title</th>
+        <th>Duration</th>
+        <th>Level</th>
+        {% if votes %}
+          <th>My Vote</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for application in applications %}
+        <tr {% if application.has_talk %}class="blue-bg"{% endif %} data-application-id="{{ application.id }}">
+          <td>{{ forloop.counter }}</td>
+          <td class="no-wrap">{{ application.created_at }}</td>
+          <td>{{ application.applicant }}</td>
+          <td>
+            <a href="{% url 'dashboard:application_detail' pk=application.id %}">{{ application.title }}</a>
+          </td>
+          <td>{{ application.short_type }}</td>
+          <td>{{ application.skill_level }}</td>
+          {% if votes %}
+            <td class="text-center">
+              {{ votes|get_item:application.pk|default:"-" }}
+            </td>
+          {% endif %}
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% endblock %}
 
 
