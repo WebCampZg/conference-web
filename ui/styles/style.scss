@@ -113,6 +113,12 @@ select {
     -webkit-appearance: none !important;
 }
 
+details {
+    summary {
+        cursor: pointer;
+    }
+}
+
 .lead {
     font-style: italic;
 }

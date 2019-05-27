@@ -83,7 +83,7 @@ $(document).keydown(function(e) {
                 {% endif %}
 
                 <details style="margin-top: 1rem">
-                    <summary style="cursor: pointer">Add label</summary>
+                    <summary>Add label</summary>
 
                     <form action="{% url "dashboard:application_add_label" application.pk %}" method="POST">
                         {% csrf_token %}

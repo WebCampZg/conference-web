@@ -11,9 +11,10 @@
         tr.selected { background-color: green; }
         td.voting { white-space: nowrap; }
         div.cfp-chart { height: 15rem; }
-        #id_types { list-style-type: none; margin-left: 0; }
+        #id_types { list-style-type: none; margin: 0; }
         #id_types input { margin-bottom: 0; }
         #id_types li { display: inline-block; }
+        #application-type-filter button { margin-top: -0.75rem; }
     </style>
 {% endblock head %}
 
@@ -97,14 +98,16 @@
     </div>
     {% endif %}
 
-    <div class="callout">
-        <form method="post" action="{% url 'dashboard:save_filter' %}">
-            <button type="submit" class="button no-margin float-right">Save</button>
-            <p>Filter applications by type:</p>
-            {% csrf_token %}
-            {{ filter_form }}
-            <input type="hidden" name="next" value="{{ request.path }}" />
-        </form>
+    <div class="callout" id="application-type-filter">
+        <details>
+            <summary>Filter by application type</summary>
+            <form method="post" action="{% url 'dashboard:save_filter' %}" style="margin-top: 1rem;">
+                <button type="submit" class="button no-margin float-right">Save</button>
+                {% csrf_token %}
+                {{ filter_form }}
+                <input type="hidden" name="next" value="{{ request.path }}" />
+            </form>
+        </details>
     </div>
 
     <table id="applications-table" class="table hover">
