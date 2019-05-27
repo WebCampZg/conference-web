@@ -166,8 +166,8 @@
       <tr>
         <th>#</th>
         <th>Submitted</th>
-        <th>Speaker</th>
-        <th>Title</th>
+        <th>Talk</th>
+        <th>Labels</th>
         <th>Duration</th>
         <th>Level</th>
         {% if votes %}
@@ -180,9 +180,19 @@
         <tr {% if application.has_talk %}class="blue-bg"{% endif %} data-application-id="{{ application.id }}">
           <td>{{ forloop.counter }}</td>
           <td class="no-wrap">{{ application.created_at }}</td>
-          <td>{{ application.applicant }}</td>
           <td>
+            {{ application.applicant }}<br />
             <a href="{% url 'dashboard:application_detail' pk=application.id %}">{{ application.title }}</a>
+          </td>
+          <td>
+            {% for label in application.labels.all %}
+            <span
+              class="label small"
+              style="color: {{ label.fg_color }}; background-color: {{ label.bg_color }}"
+            >
+              {{ label.name }}
+            </span>
+            {% endfor %}
           </td>
           <td>{{ application.short_type }}</td>
           <td>{{ application.skill_level }}</td>

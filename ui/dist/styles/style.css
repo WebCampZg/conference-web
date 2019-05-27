@@ -5448,6 +5448,9 @@ a:not(.button).yellow:visited {
 a:not(.button).yellow:hover {
   color: #e6c600; }
 
+.label.small {
+  font-size: smaller; }
+
 .label.purple {
   background-color: #9013FD;
   color: #FEFEFE; }

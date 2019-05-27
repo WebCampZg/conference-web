@@ -168,6 +168,10 @@ a:not(.button).yellow {
 
 // Labels
 
+.label.small {
+    font-size: smaller;
+}
+
 .label.purple {
     background-color: $purple;
     color: $white;
