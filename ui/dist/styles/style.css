@@ -5017,7 +5017,8 @@ span.icon {
   span.icon svg {
     vertical-align: middle;
     height: 1em;
-    width: auto; }
+    width: auto;
+    fill: currentColor; }
   span.icon.blue svg {
     fill: #7FDBFF; }
   span.icon.red svg {
