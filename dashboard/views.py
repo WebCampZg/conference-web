@@ -104,7 +104,7 @@ class CallForPapersView(ViewAuthMixin, DetailView):
         ctx = super(CallForPapersView, self).get_context_data(**kwargs)
 
         applications = (self.get_object().applications
-            .prefetch_related('applicant', 'applicant__user', 'skill_level', 'talk')
+            .prefetch_related('applicant', 'applicant__user', 'skill_level', 'talk', 'labels')
             .order_by('pk'))
 
         # Filter by application type
