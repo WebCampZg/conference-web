@@ -13,9 +13,11 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.views.generic import View, DetailView, TemplateView, ListView
+from django.views.generic.detail import SingleObjectMixin
 from django.views.generic.edit import ModelFormMixin, ProcessFormView
 
 from cfp.models import CallForPaper, PaperApplication, Applicant
+from cfp.logic import accept_application, unaccept_application
 from dashboard.forms import CommentForm, ApplicationFilterForm
 from dashboard.models import Comment, Vote as CommitteeVote
 from dashboard.utils import get_votes_distribution
@@ -24,6 +26,14 @@ from labels.models import Label
 from people.models import TShirtSize, User
 from talks.models import Talk
 from voting.models import CommunityVote
+
+
+class SuperuserRequiredMixin(AccessMixin):
+    """Verify that the current user is a superuser."""
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
 
 
 class ViewAuthMixin(AccessMixin):
@@ -104,7 +114,14 @@ class CallForPapersView(ViewAuthMixin, DetailView):
         ctx = super(CallForPapersView, self).get_context_data(**kwargs)
 
         applications = (self.get_object().applications
-            .prefetch_related('applicant', 'applicant__user', 'skill_level', 'talk', 'labels')
+            .prefetch_related(
+                'applicant',
+                'applicant__user',
+                'skill_level',
+                'talk',
+                'workshop',
+                'labels'
+            )
             .order_by('pk'))
 
         # Filter by application type
@@ -556,3 +573,26 @@ class ScoringView(ViewAuthMixin, DetailView):
         })
 
         return ctx
+
+
+class ApplicationAcceptView(SuperuserRequiredMixin, SingleObjectMixin, View):
+    model = PaperApplication
+
+    def post(self, request, *args, **kwargs):
+        application = self.get_object()
+        accept_application(application)
+
+        redirect_url = reverse("dashboard:cfp_detail", args=[application.cfp.pk])
+        return HttpResponseRedirect(redirect_url)
+
+
+class ApplicationUnacceptView(SuperuserRequiredMixin, SingleObjectMixin, View):
+    model = PaperApplication
+
+    def post(self, request, *args, **kwargs):
+        application = self.get_object()
+
+        unaccept_application(application)
+
+        redirect_url = reverse("dashboard:cfp_detail", args=[application.cfp.pk])
+        return HttpResponseRedirect(redirect_url)

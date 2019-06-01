@@ -173,11 +173,12 @@
         {% if votes %}
           <th>My Vote</th>
         {% endif %}
+        <th></th>
       </tr>
     </thead>
     <tbody>
       {% for application in applications %}
-        <tr {% if application.has_talk %}class="blue-bg"{% endif %} data-application-id="{{ application.id }}">
+        <tr {% if application.has_instance %}class="blue-bg"{% endif %} data-application-id="{{ application.id }}">
           <td>{{ forloop.counter }}</td>
           <td class="no-wrap">{{ application.created_at }}</td>
           <td>
@@ -201,10 +202,42 @@
               {{ votes|get_item:application.pk|default:"-" }}
             </td>
           {% endif %}
+
+          <td>
+            <div class="tiny no-margin button-group">
+              {% if request.user.is_superuser %}
+                {% if application.has_instance %}
+                  <form action="{% url 'dashboard:application-unaccept' application.pk %}" method="post">
+                    {% csrf_token %}
+                    <button class="alert button">
+                      {% icon "solid/times" %}
+                    </button>
+                  </form>
+                {% else %}
+                  <form action="{% url 'dashboard:application-accept' application.pk %}" method="post">
+                    {% csrf_token %}
+                    <button class="green button">
+                      {% icon "solid/check" %}
+                    </button>
+                  </form>
+                {% endif %}
+              {% endif %}
+
+              {% if application.has_talk %}
+                <a class="button" href="{% url 'talks_view_talk' application.talk.slug %}">
+                  {% icon "regular/eye" %}
+                </a>
+              {% endif %}
+
+              {% if application.has_workshop %}
+                <a class="button" href="{% url 'workshops_view_workshop' application.workshop.slug %}">
+                  {% icon "regular/eye" %}
+                </a>
+              {% endif %}
+            </div>
+          </td>
         </tr>
       {% endfor %}
     </tbody>
   </table>
 {% endblock %}
-
-

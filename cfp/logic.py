@@ -1,6 +1,7 @@
 from cfp.choices import TALK_DURATIONS
 from cfp.models import PaperApplication
 from django.utils.text import slugify
+from django.db import transaction
 from talks.models import Talk
 from workshops.models import Workshop
 
@@ -15,7 +16,7 @@ def get_talk_duration(application_type):
     if application_type == PaperApplication.TYPE_TALK_SHORT:
         return TALK_DURATIONS.MIN_25
 
-    raise ValueError(f"Unknown application type: {type}")
+    raise ValueError(f"Unknown application type: {application_type}")
 
 
 def get_workshop_duration(application_type):
@@ -25,9 +26,10 @@ def get_workshop_duration(application_type):
     if application_type == PaperApplication.TYPE_WORKSHOP_FULL:
         return 8
 
-    raise ValueError(f"Unknown application type: {type}")
+    raise ValueError(f"Unknown application type: {application_type}")
 
 
+@transaction.atomic
 def create_talk(application):
     is_keynote = application.type == PaperApplication.TYPE_KEYNOTE
 
@@ -48,6 +50,7 @@ def create_talk(application):
     return talk
 
 
+@transaction.atomic
 def create_workshop(application):
     workshop = Workshop.objects.create(
         event=application.cfp.event,
@@ -58,7 +61,6 @@ def create_workshop(application):
         abstract=application.abstract,
         skill_level=application.skill_level,
         duration_hours=get_workshop_duration(application.type),
-        published=False,
     )
 
     workshop.applicants.add(application.applicant)
@@ -69,14 +71,25 @@ def create_workshop(application):
 def accept_application(application):
     """
     Creates a Talk or a Workshop instance from a given PaperApplication.
+    (idempotent)
     """
-    assert not application.has_talk
-    assert not application.has_workshop
-
     if application.is_for_talk:
-        return create_talk(application)
+        if application.has_talk:
+            return application.talk
+        else:
+            return create_talk(application)
 
     if application.is_for_workshop:
-        return create_workshop(application)
+        if application.has_workshop:
+            return application.workshop
+        else:
+            return create_workshop(application)
 
-    raise ValueError(f"Unknown application type: {type}")
+
+def unaccept_application(application):
+    """
+    Deletes the Talk or Workshop created from this PaperApplication.
+    (idempotent)
+    """
+    if application.has_instance:
+        application.instance.delete()

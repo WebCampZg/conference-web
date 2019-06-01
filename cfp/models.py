@@ -227,6 +227,19 @@ class PaperApplication(Timestampable):
         return self.has_talk or self.has_workshop
 
     @property
+    def instance(self):
+        """
+        Return the talk or workshop instance or None if neither exists.
+        """
+        assert self.is_for_talk or self.is_for_workshop
+
+        if self.is_for_talk and self.has_talk:
+            return self.talk
+
+        if self.is_for_workshop and self.has_workshop:
+            return self.workshop
+
+    @property
     def is_for_talk(self):
         return self.type in self.TALK_TYPES
 

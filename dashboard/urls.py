@@ -24,6 +24,12 @@ urlpatterns = [
         path('community-vote/', views.CommunityVoteView.as_view(), name='community-vote'),
     ])),
 
+    # Application related
+    path('applications/<int:pk>/', include([
+        path('accept/', views.ApplicationAcceptView.as_view(), name='application-accept'),
+        path('unaccept/', views.ApplicationUnacceptView.as_view(), name='application-unaccept'),
+    ])),
+
     # Ajax views
     path('applications/rate/', views.ApplicationRateView.as_view(), name='application_rate'),
     path('applications/unrate/', views.ApplicationUnrateView.as_view(), name='application_unrate'),
