@@ -11,11 +11,6 @@
     tr.selected { background-color: green; }
     td.voting { white-space: nowrap; }
     div.cfp-chart { height: 15rem; }
-    #id_types { list-style-type: none; margin: 0; }
-    #id_types input { margin-bottom: 0; }
-    #id_types li { display: inline-block; }
-    #application-type-filter form { margin-top: .5rem; }
-    #application-type-filter button { margin-top: -0.75rem; }
     #label-filter form { margin-top: .5rem; }
     #label-filter button { margin-top: -0.75rem; }
   </style>
@@ -101,27 +96,7 @@
   </div>
   {% endif %}
 
-  <div class="callout" id="application-type-filter">
-    <details {% if type_filter_applied %}open{% endif %}>
-      <summary>Filter by application type</summary>
-      <form method="post" action="{% url 'dashboard:save_application_type_filter' %}">
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ request.path }}" />
-
-        <div class="row">
-          <div class="column">
-            {{ type_filter_form }}
-          </div>
-          <div class="column shrink">
-            <div class="button-group small">
-              <input type="submit" class="green button no-margin" name="submit" value="Save" />
-              <input type="submit" class="button no-margin" name="submit" value="Clear" />
-            </div>
-          </div>
-        </div>
-      </form>
-    </details>
-  </div>
+  {% include "dashboard/partials/type_filter_form.html" %}
 
   <div class="callout" id="label-filter">
     <details {% if label_filter_applied %}open{% endif %}>

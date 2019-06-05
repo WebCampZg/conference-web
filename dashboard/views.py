@@ -536,19 +536,23 @@ class ScoringView(ViewAuthMixin, DetailView):
     def get_context_data(self, **kwargs):
         ctx = super().get_context_data(**kwargs)
 
-        voter_ids = (
-            CommitteeVote.objects
-                         .filter(application__cfp=self.object)
-                         .values_list('user_id', flat=True)
-                         .distinct())
+        voter_ids = (CommitteeVote.objects
+             .filter(application__cfp=self.object)
+             .values_list('user_id', flat=True)
+             .distinct())
 
         voters = User.objects.filter(pk__in=voter_ids).order_by('first_name')
 
         applications = (self.object.applications
-                            .prefetch_related('applicant', 'applicant__user',
-                                              'skill_level', 'talk', 'committee_votes')
-                            .annotate(vote_count=Count('committee_votes'))
-                            .order_by('pk'))
+            .prefetch_related('applicant', 'applicant__user',
+                              'skill_level', 'talk', 'committee_votes')
+            .annotate(vote_count=Count('committee_votes'))
+            .order_by('pk'))
+
+        # Filter by application type
+        filtered_types = self.request.session.get("dashboard_application_types_filter")
+        if filtered_types:
+            applications = applications.filter(type__in=filtered_types)
 
         for application in applications:
             application.processed_votes = []
@@ -565,11 +569,14 @@ class ScoringView(ViewAuthMixin, DetailView):
             application.mean = statistics.mean(scores) if scores else None
             application.stdev = statistics.stdev(scores) if len(scores) > 1 else None
 
+        type_filter_form = ApplicationFilterForm(initial=dict(types=filtered_types))
+
         application_count = applications.count()
 
         ctx.update({
             "applications": applications,
             "voters": self.get_voters_with_stats(voters, application_count),
+            "type_filter_form": type_filter_form,
         })
 
         return ctx
