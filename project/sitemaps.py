@@ -25,14 +25,14 @@ class StaticViewSitemap(sitemaps.Sitemap):
 sitemaps = {
     'static': StaticViewSitemap,
     'pages': GenericSitemap({
-        'queryset': Page.objects.all(),
+        'queryset': Page.objects.filter(published=True),
     }),
     'news': GenericSitemap({
-        'queryset': Post.objects.all(),
+        'queryset': Post.objects.none(),
         'date_field': 'updated_at',
     }),
     'talks': GenericSitemap({
-        'queryset': Talk.objects.all(),
+        'queryset': Talk.objects.none(),
         'date_field': 'updated_at',
     }),
 }
