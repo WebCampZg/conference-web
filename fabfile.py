@@ -9,6 +9,7 @@ REMOTE_BIN = "/home/webcamp/.virtualenvs/conference-web/bin/"
 
 
 def deploy():
+    local("git push")
     with cd(PROJECT_HOME):
         run("git pull")
         run(REMOTE_BIN + "pip install -r requirements/prod.txt")
