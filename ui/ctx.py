@@ -136,6 +136,12 @@ def team(request):
             "job": "Workshops"
         },
         {
+            "name": "Tomo Šala",
+            "image": "images/team/tomo.jpg",
+            "twitter": "HcsOmot",
+            "job": "Workshops"
+        },
+        {
             "name": "Zoran Antolović",
             "image": "images/team/zoka.jpg",
             "twitter": "zoran_antolovic",
