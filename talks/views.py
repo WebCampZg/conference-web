@@ -14,12 +14,6 @@ def list_talks(request):
         'sponsor',
     ).order_by('-keynote', 'title')
 
-    # Temporary hack to let only admins & committee members see the talks
-    user = request.user
-    permitted = user.is_authenticated and (user.is_superuser or user.is_talk_committee_member())
-    if not permitted:
-        talks = event.talks.none()
-
     return render(request, 'talks/list_talks.html', {
         "talks": talks,
     })
