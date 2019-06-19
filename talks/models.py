@@ -46,6 +46,19 @@ class Talk(Timestampable):
         image = self.image()
         return image.url if image else static("images/placeholder.png")
 
+    def update_from_application(self):
+        """
+        Copies over the talk details from it's application.
+
+        Used when the user updates the application, to reflect the changes on
+        the talk. Does not change the slug to keep the link the same, this
+        should be done manually if desired.
+        """
+        self.title = self.application.title
+        self.about = self.application.about
+        self.abstract = self.application.abstract
+        self.skill_level = self.application.skill_level
+
     @property
     def speaker_names(self):
         return ", ".join(a.full_name for a in self.applicants.all())
