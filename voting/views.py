@@ -30,7 +30,7 @@ def _get_applications_for_voting(event):
         .filter(cfp__event=event)
         .filter(type=PaperApplication.TYPE_TALK_SHORT)
         .filter(talk__isnull=True)  # skip already selected talks
-        .filter(exclude=True)
+        .filter(exclude=False)
         .prefetch_related('applicant', 'applicant__user', 'applicant__user__groups')
         .order_by('title'))
 
