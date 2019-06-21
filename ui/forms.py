@@ -23,3 +23,7 @@ class SignupForm(forms.Form):
         user.twitter = self.cleaned_data['twitter']
         user.tshirt_size = self.cleaned_data['tshirt_size']
         user.save()
+
+
+class ImageWidget(forms.ClearableFileInput):
+    template_name = 'ui/forms/image_input.html'

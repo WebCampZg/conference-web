@@ -1,5 +1,6 @@
 from django import forms
 from cfp.models import PaperApplication, Applicant
+from ui.forms import ImageWidget
 
 
 class PaperApplicationForm(forms.ModelForm):
@@ -101,4 +102,5 @@ class ApplicantForm(forms.ModelForm):
             'about': forms.Textarea(attrs={'rows': 4, 'maxlength': 140}),
             'biography': forms.Textarea(attrs={'rows': 8}),
             'speaker_experience': forms.Textarea(attrs={'rows': 8}),
+            'image': ImageWidget()
         }

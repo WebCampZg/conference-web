@@ -1,0 +1,13 @@
+{% comment %}
+Overrides `django/forms/templates/django/forms/widgets/clearable_file_input.html`
+to show the current image alongside the option to change it.
+{% endcomment %}
+
+{% if widget.is_initial %}
+{{ widget.initial_text }}: <a href="{{ widget.value.url }}">{{ widget.value }}</a>
+<br /><img src="{{ widget.value.url }}" class="thumbnail" style="max-width: 400px"/>
+{% if not widget.required %}
+<input type="checkbox" name="{{ widget.checkbox_name }}" id="{{ widget.checkbox_id }}">
+<label for="{{ widget.checkbox_id }}">{{ widget.clear_checkbox_label }}</label>{% endif %}<br>
+{{ widget.input_text }}:{% endif %}
+<input type="{{ widget.type }}" name="{{ widget.name }}"{% include "django/forms/widgets/attrs.html" %}>
