@@ -8,10 +8,8 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 
-from cfp.choices import TALK_DURATIONS
 from cfp.models import PaperApplication
 from config.utils import get_site_config, get_active_event
-from talks.models import Talk
 from events.models import Ticket
 
 from .models import CommunityVote
@@ -28,12 +26,11 @@ def _get_ticket_by_code(event, ticket_code):
 
 
 def _get_applications_for_voting(event):
-    already_picked = Talk.objects.filter(event=event).values_list('pk', flat=True)
-
     return (PaperApplication.objects
-        .filter(cfp__event=event, duration=TALK_DURATIONS.MIN_25)
-        .exclude(exclude=True)
-        .exclude(id__in=already_picked)
+        .filter(cfp__event=event)
+        .filter(type=PaperApplication.TYPE_TALK_SHORT)
+        .filter(talk__isnull=True)  # skip already selected talks
+        .filter(exclude=True)
         .prefetch_related('applicant', 'applicant__user', 'applicant__user__groups')
         .order_by('title'))
 
@@ -52,8 +49,8 @@ def voting(request, ticket_code=None):
         return HttpResponseRedirect(reverse('voting_index'))
 
     # Don't allow voting for tickets other than Early bird
-    # TODO: Hardcoded logic for 2018, consider a better solution
-    if ticket and ticket.category not in ["Early Bird", "Sponsor"]:
+    # TODO: Hardcoded logic for 2019, consider a better solution
+    if ticket and "early bird" not in ticket.category.lower():
         msg = "Only Early Bird tickets are eligible to vote.".format(ticket_code)
         messages.add_message(request, messages.ERROR, msg)
         return HttpResponseRedirect(reverse('voting_index'))
