@@ -64,7 +64,7 @@ class Talk(Timestampable):
         return ", ".join(a.full_name for a in self.applicants.all())
 
     def __str__(self):
-        return '{} - {}'.format(
+        return '{}: {}'.format(
             self.speaker_names,
             self.title
         )
