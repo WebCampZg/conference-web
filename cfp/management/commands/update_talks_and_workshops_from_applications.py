@@ -40,4 +40,8 @@ class Command(BaseCommand):
             talk.update_from_application()
             talk.save()
 
+        for workshop in workshops:
+            workshop.update_from_application()
+            workshop.save()
+
         print("Done.")
