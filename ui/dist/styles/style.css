@@ -5255,6 +5255,8 @@ span.icon {
     max-width: 16rem; }
   .sponsor-list .ecxio img {
     max-width: 10rem; }
+  .sponsor-list .deegloo img {
+    max-height: 2.5rem; }
 
 .talk-short img {
   width: 100%; }
