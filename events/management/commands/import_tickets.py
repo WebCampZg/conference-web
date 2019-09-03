@@ -52,7 +52,7 @@ class Command(BaseCommand):
         created_tickets = []
         for item in data:
             code, ticket_data = self.parse_ticket_data(item)
-            ticket, created = Ticket.objects.update_or_create(
+            ticket, created = Ticket.objects.all_with_revoked().update_or_create(
                 code=code, event=event, defaults=ticket_data)
 
             if created:
