@@ -49,6 +49,15 @@ class Event(Permalinkable):
         return self.title
 
 
+class TicketManager(models.Manager):
+    def get_queryset(self):
+        """By default don't return revoked tickets"""
+        return super().get_queryset().filter(revoked=False)
+
+    def all_with_revoked(self):
+        return super().get_queryset()
+
+
 class Ticket(models.Model):
     EARLY_BIRD = "Early bird tickets"
     FREE = "Free tickets"
@@ -79,6 +88,9 @@ class Ticket(models.Model):
     purchased_at = models.DateTimeField()
     used_at = models.DateTimeField(blank=True, null=True)
     invite_sent_at = models.DateTimeField(blank=True, null=True)
+    revoked = models.BooleanField(default=False)
+
+    objects = TicketManager()
 
     @property
     def full_name(self):

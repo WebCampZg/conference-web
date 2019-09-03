@@ -56,7 +56,7 @@ class Command(BaseCommand):
                 code=code, event=event, defaults=ticket_data)
 
             if created:
-                print("Created ticket #%s" % str(ticket))
+                print("Created", ticket)
                 created_tickets.append(ticket)
 
         if created_tickets:
@@ -89,6 +89,14 @@ class Command(BaseCommand):
         if country == 'Croatia':
             country = 'HR'
 
+        ticket_status = item.get('ticket_status')
+        if ticket_status == "1":
+            revoked = False
+        elif ticket_status == "-1":
+            revoked = True
+        else:
+            raise ValueError("Unknown value for ticket_status: `{ticket_status}`")
+
         return ticket_code, {
             "email": email,
             "user": user,
@@ -103,6 +111,7 @@ class Command(BaseCommand):
             "used_at": used_at,
             "dietary_preferences": custom_fields.get('Dietary preferences'),
             "tshirt_size": tshirt,
+            "revoked": revoked,
         }
 
     def parse_custom_fields(self, item):
