@@ -1,4 +1,8 @@
-<td>
+<td
+    {# hacky way to get talks fill two slots, not ideal #}
+    {% if talk.slug == "python-asyncawait-unraveled" %}rowspan="2"{% endif %}
+    {% if talk.slug == "parsing-from-first-principles" %}rowspan="2"{% endif %}
+>
     {% if talk %}
     <a href="{% url 'talks_view_talk' slug=talk.slug %}">
         <span>

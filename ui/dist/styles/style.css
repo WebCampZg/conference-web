@@ -5205,10 +5205,10 @@ span.icon {
   max-height: 3.5rem; }
 
 .schedule .schedule-table td {
-  width: 45%; }
+  border-left: 1px solid WhiteSmoke; }
 
 .schedule .schedule-table td:first-child {
-  width: 10%;
+  min-width: 6rem;
   text-align: center; }
 
 .schedule .schedule-table .spacer {

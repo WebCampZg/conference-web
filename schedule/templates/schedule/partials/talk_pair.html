@@ -1,9 +1,8 @@
 {% load schedule_tags %}
 
-{% with left_talk=schedule_talks|find_talk:left right_talk=schedule_talks|find_talk:right %}
 <tr>
-    <td class="Schedule-time Schedule-spacer">{{ time }}</td>
-    {% include "schedule/partials/talk.html" with talk=left_talk %}
-    {% include "schedule/partials/talk.html" with talk=right_talk %}
+    <td>{{ time }}</td>
+    {% for talk in schedule_talks|find_talks:slugs %}
+        {% include "schedule/partials/talk.html" with talk=talk %}
+    {% endfor %}
 </tr>
-{% endwith %}

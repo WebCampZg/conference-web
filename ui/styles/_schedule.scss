@@ -5,10 +5,11 @@
 
     .schedule-table {
         td {
-            width: 45%;
+            border-left: 1px solid WhiteSmoke;
         }
+
         td:first-child {
-            width: 10%;
+            min-width: 6rem;
             text-align: center;
         }
 
