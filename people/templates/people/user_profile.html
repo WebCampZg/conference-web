@@ -1,118 +1,114 @@
-{% extends 'ui/page.html' %}
+{% extends 'ui/base.html' %}
 
 {% load webcamp markdown_deux_tags %}
 
 {% block title %}Profile{% endblock %}
 
-{% block head %}
-<style type="text/css">
-    th { width: 30%; }
-    .speaker-info th { vertical-align: top  }
-</style>
-{% endblock %}
+{% block basecontent %}
+<section class="container">
+  <h1>Account</h1>
 
-{% block content %}
+  <table>
+    <tbody>
+      <tr>
+        <th>Name</th>
+        <td>{{ user.get_full_name }}</td>
+      </tr>
+      <tr>
+        <th>Email</th>
+        <td>{{ user.email }}</td>
+      </tr>
+      <tr>
+        <th>T-shirt size</th>
+        <td>{{ user.tshirt_size }}</td>
+      </tr>
+      <tr>
+        <th>{% icon "brands/github" %} Github</th>
+        <td>
+          {% if user.github %}
+            <span class="gray">https://github.com/</span>{{ user.github }}
+          {% else %}
+            -
+          {% endif %}
+        </td>
+      </tr>
+      <tr>
+        <th>{% icon "brands/twitter" %} Twitter</th>
+        <td>
+          {% if user.twitter %}
+            <span class="gray">https://twitter.com/</span>{{ user.twitter }}
+          {% else %}
+            -
+          {% endif %}
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-    <h1 class="red-dash">Account_</h1>
+  <a href="{% url 'user_profile_update' %}" class="btn btn-primary">
+    Edit account
+  </a>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Name</th>
-                <td>{{ user.get_full_name }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ user.email }}</td>
-            </tr>
-            <tr>
-                <th>T-shirt size</th>
-                <td>{{ user.tshirt_size }}</td>
-            </tr>
-            <tr>
-                <th>{% icon "brands/github" %} Github</th>
-                <td>
-                    {% if user.github %}
-                        <span class="gray">https://github.com/</span>{{ user.github }}
-                    {% else %}
-                        -
-                    {% endif %}
-                </td>
-            </tr>
-            <tr>
-                <th>{% icon "brands/twitter" %} Twitter</th>
-                <td>
-                    {% if user.twitter %}
-                        <span class="gray">https://twitter.com/</span>{{ user.twitter }}
-                    {% else %}
-                        -
-                    {% endif %}
-                </td>
-            </tr>
-        </tbody>
-    </table>
+  <a href="{% url 'account_logout' %}" class="btn btn-default">
+    Log out
+  </a>
+</section>
 
-    <a href="{% url 'user_profile_update' %}" class="button">Edit account</a>
-    <a href="{% url 'account_logout' %}" class="green button">Log out</a>
+<hr class="gray" />
 
-    <hr />
+<section class="container">
+  <h2 class="yellow-dash">Submitted_talks_</h2>
 
-    <h2 class="yellow-dash">Submitted_talks_</h2>
-
-    {% for application in user.get_applications %}
-        <div class="">
-            <h5>
-                <a href="{% url 'application_update' application.pk %}">
-                    {{ application.title }}
-                </a>
-            </h5>
-
-            <p>{{ application.about }}</p>
-        </div>
-    {% empty %}
-        <p>You don't have any submitted talks.</p>
-    {% endfor %}
-
-    {% if cfp.is_active %}
-    <p style="margin-top: 2rem;">
-        <a class="button" href="{% url "application_create" %}">
-            Submit a talk
+  {% for application in user.get_applications %}
+    <div class="callout">
+      <h3>
+        <a href="{% url 'application_update' application.pk %}">
+          {{ application.title }}
         </a>
-    </p>
-    {% endif %}
+      </h3>
 
-    <hr />
+      <p>{{ application.about }}</p>
 
-    <h2 class="green-dash">Speaker_profile_</h2>
+      <p class="gray no-margin">
+        Submitted: {{ application.created_at }}</small>
+      </p>
+    </div>
+  {% empty %}
+    <p>You don't have any submitted talks.</p>
+  {% endfor %}
 
-    {% with applicant=user.get_applicant  %}
-    {% if applicant %}
-        <p><em>This is a preview of your speaker profile, as will appear online if a talk of yours is accepted. Make it awesome.</em></p>
+  {% if cfp.is_active %}
+  <p>
+    <a class="btn btn-primary" href="{% url "application_create" %}">
+      Submit a talk
+    </a>
+  </p>
+  {% endif %}
+</section>
 
-        <div class="callout">
+<hr class="gray" />
 
-        <div class="row">
-            <div class="small-12 medium-4 columns">
-                <img class="thumbnail" src="{{ MEDIA_URL }}{{ applicant.image }}" alt="{{ user.full_name }}">
-            </div>
-            <div class="small-12 medium-8 columns">
-                <p>{{ applicant.about }}</p>
+<section class="container">
+  <h2 class="green-dash">Speaker_profile_</h2>
 
-                {{ applicant.biography|markdown }}
+  {% with applicant=user.get_applicant  %}
+  {% if applicant %}
+    <p><em>This is a preview of your speaker profile, as will appear online if a talk of yours is accepted. Make it awesome.</em></p>
 
-                {% include "talks/partials/speaker-links.html" %}
-            </div>
-        </div>
-        </div>
+    <div class="callout">
+      {% include "talks/partials/speaker.html" %}
+    </div>
 
-        <h3>Experience <small>(visible only to organizers)</small></h3>
-        {{ applicant.speaker_experience|markdown }}
+    <h3>Experience <small>(visible only to organizers)</small></h3>
+    {{ applicant.speaker_experience|markdown }}
 
-        <a href="{% url 'applicant_update' %}" class="yellow button">Edit profile</a>
-    {% else %}
-        <p>You don't have a speaker profile yet. One will be created when you submit your first talk.</p>
+    <a href="{% url 'applicant_update' %}" class="yellow button">Edit profile</a>
+  {% else %}
+    <p>You don't have a speaker profile yet. One will be created when you submit your first talk.</p>
 
-        <a href="{% url 'applicant_update' %}" class="yellow button">Create profile</a>
-    {% endif %}
-    {% endwith %}
+    <a href="{% url 'applicant_update' %}" class="yellow button">Create profile</a>
+  {% endif %}
+  {% endwith %}
+</section>
+
 {% endblock %}

@@ -35,8 +35,10 @@
         {% include "partials/header.html" %}
     {% endblock %}
 
+    <hr class="h2" />
+
     {% if messages %}
-    <div class="row column">
+    <div class="container">
         <ul class="callout">
             {% for message in messages %}
             <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>
@@ -50,18 +52,6 @@
     {% block basecontent %}{% endblock %}
 
     {% include "partials/footer.html" %}
-
-    <script src="{% static "scripts/jquery.min.js" %}"></script>
-    <script src="{% static "scripts/foundation.min.js" %}"></script>
-    <script type="text/javascript">
-        $(document).foundation();
-        $(document).ready(function () {
-            $("[data-scroll-to-top]").click(function (e) {
-                e.preventDefault();
-                $("html, body").animate({ scrollTop: 0 }, "slow");
-            });
-        });
-    </script>
 
     {% block script %}{% endblock %}
 </body>

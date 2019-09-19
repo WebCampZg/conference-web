@@ -1,0 +1,11 @@
+.label {
+    display: inline-block;
+    color: $white;
+    background-color: $black;
+    padding: 0.1rem 0.5rem;
+
+    &.yellow {
+        color: $black;
+        background-color: $yellow;
+    }
+}

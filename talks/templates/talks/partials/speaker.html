@@ -1,12 +1,14 @@
 {% load markdown_deux_tags %}
 
-<div class="row">
-    <div class="hide-for-small medium-3 columns">
+<div class="speaker-details">
+    <div class="speaker-image">
         <img src="{{ MEDIA_URL }}{{ applicant.image }}" alt="Photo of {{ applicant.user.get_full_name }}" />
     </div>
 
-    <div class="small-12 medium-8 columns">
-        <h3>{{ applicant.user.get_full_name }}</h3>
+    <div class="speaker-data">
+        <h2>{{ applicant.user.get_full_name }}</h2>
+
+        <p><em>{{ applicant.about }}</em></p>
 
         {{ applicant.biography|markdown }}
 

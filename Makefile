@@ -63,11 +63,11 @@ css:
 		--load-path=. \
 		--load-path=sources/plex/scss/ \
 		--load-path=sources/foundation/scss \
-		ui/styles/style.scss \
+		ui/styles_v2/style.scss \
 		ui/dist/styles/style.css
 
 css-watch:
 	make css
 	@while true; do \
-		inotifywait -qre close_write ui/styles; make css; \
+		inotifywait -qre close_write ui/styles_v2; make css; \
 	done

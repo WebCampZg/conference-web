@@ -5,74 +5,69 @@
 {% block title %}Schedule - {{ event.extended_title }}{% endblock %}
 
 {% block head %}
-    <meta name="description" content="{{ event.extended_title }} talks schedule. 2 days, 2 tracks, 2 keynote speakers and 28 talks at {{ event.title }} for web devs & designers.">
-
-    <style type="text/css">
-        .row.column {
-            max-width: 80rem;
-        }
-    </style>
-
+  <meta name="description" content="{{ event.extended_title }} talks schedule. 2 days, 2 tracks, 2 keynote speakers and 28 talks at {{ event.title }} for web devs & designers.">
 {% endblock %}
 
 {% block og %}
-    <meta property="og:title" content="Schedule - {{ event.extended_title }}" />
-    <meta property="og:description" content="{{ event.extended_title }} talks schedule. 2 days, 2 tracks, 2 keynote speakers and 28 talks at {{ event.title }} for web devs & designers." />
+  <meta property="og:title" content="Schedule - {{ event.extended_title }}" />
+  <meta property="og:description" content="{{ event.extended_title }} talks schedule. 2 days, 2 tracks, 2 keynote speakers and 28 talks at {{ event.title }} for web devs & designers." />
 {% endblock %}
 
 {% block content %}
-    <section class="schedule">
-        <h1 class="red-dash">Schedule_</h1>
+  <section class="schedule">
+    <h1>Schedule</h1>
 
-        <h3>Friday, October 11th</h3>
-        <table id="schedule-day-1" class="schedule-table hover unstriped scroll">
-            <thead>
-                {% include "schedule/partials/header.html" %}
-            </thead>
-            <tbody>
-                {% include "schedule/partials/spacer.html" with time="08:30" text="Doors open" %}
-                {% include "schedule/partials/spacer.html" with time="10:00" text="Opening word" %}
-                {% include "schedule/partials/keynote.html" with time="10:15" slug="the-top-work-skills-you-need-in-the-21st-century" %}
-                {% include "schedule/partials/spacer.html" with time="11:15" text="Division break" %}
-                {% include "schedule/partials/talk_pair.html" with time="11:35" slugs="how-to-teach-your-computer-to-play-guitar,drawing-the-line-between-3rd-party-and-custom-code,the-platform-is-dead-long-live-the-platform" %}
-                {% include "schedule/partials/talk_pair.html" with time="12:10" slugs="using-neuroscience-to-become-a-better-developer,color-the-shadow-ruler-of-ux,developing-hybrid-cloudnative-applications" %}
-                {% include "schedule/partials/talk_pair.html" with time="13:05" slugs="git-rebase-i-head25,accessible-javascript-patterns,one-implementation-to-rule-them-all" %}
-                {% include "schedule/partials/lunch.html" with time="13:30" %}
-                {% include "schedule/partials/talk_pair.html" with time="15:00" slugs="privilege-as-a-technical-debt,raising-24-million-to-build-an-open-source-skynet,lobbying-with-elixir-real-time-liveview-and-otp" %}
-                {% include "schedule/partials/talk_pair.html" with time="15:35" slugs="fixing-authentication-and-authorization,building-an-art-gallery-in-the-browser,move-fast-move-correctly" %}
-                {% include "schedule/partials/spacer.html" with time="16:20" text="Break" %}
-                {% include "schedule/partials/talk_pair.html" with time="16:50" slugs="no-product-to-test-yet-no-problem,self-portraits-in-javascript,inspecting-iptv-for-fun-and-no-profit" %}
-                {% include "schedule/partials/talk_pair.html" with time="17:25" slugs="conducting-humane-code-reviews,magical-land-of-asts-with-babel-plugins,nix-for-developers-and-ops" %}
-                {% include "schedule/partials/talk_pair.html" with time="18:00" slugs="passwords-are-so-1990,design-handover-tips-tricks" %}
-                {% include "schedule/partials/spacer.html" with time="18:25" text="End of day" %}
-            </tbody>
-        </table>
+    <h3>Friday, October 11th</h3>
 
-        <hr />
+    <table id="schedule-day-1">
+      <thead>
+        {% include "schedule/partials/header.html" %}
+      </thead>
+      <tbody>
+        {% include "schedule/partials/spacer.html" with time="08:30" text="Doors open" %}
+        {% include "schedule/partials/spacer.html" with time="10:00" text="Opening word" %}
+        {% include "schedule/partials/keynote.html" with time="10:15" slug="the-top-work-skills-you-need-in-the-21st-century" %}
+        {% include "schedule/partials/spacer.html" with time="11:15" text="Division break" %}
+        {% include "schedule/partials/talk_pair.html" with time="11:35" slugs="how-to-teach-your-computer-to-play-guitar,drawing-the-line-between-3rd-party-and-custom-code,the-platform-is-dead-long-live-the-platform" %}
+        {% include "schedule/partials/talk_pair.html" with time="12:10" slugs="using-neuroscience-to-become-a-better-developer,color-the-shadow-ruler-of-ux,developing-hybrid-cloudnative-applications" %}
+        {% include "schedule/partials/talk_pair.html" with time="13:05" slugs="git-rebase-i-head25,accessible-javascript-patterns,one-implementation-to-rule-them-all" %}
+        {% include "schedule/partials/lunch.html" with time="13:30" %}
+        {% include "schedule/partials/talk_pair.html" with time="15:00" slugs="privilege-as-a-technical-debt,raising-24-million-to-build-an-open-source-skynet,lobbying-with-elixir-real-time-liveview-and-otp" %}
+        {% include "schedule/partials/talk_pair.html" with time="15:35" slugs="fixing-authentication-and-authorization,building-an-art-gallery-in-the-browser,move-fast-move-correctly" %}
+        {% include "schedule/partials/spacer.html" with time="16:20" text="Break" %}
+        {% include "schedule/partials/talk_pair.html" with time="16:50" slugs="no-product-to-test-yet-no-problem,self-portraits-in-javascript,inspecting-iptv-for-fun-and-no-profit" %}
+        {% include "schedule/partials/talk_pair.html" with time="17:25" slugs="conducting-humane-code-reviews,magical-land-of-asts-with-babel-plugins,nix-for-developers-and-ops" %}
+        {% include "schedule/partials/talk_pair.html" with time="18:00" slugs="passwords-are-so-1990,design-handover-tips-tricks" %}
+        {% include "schedule/partials/spacer.html" with time="18:25" text="End of day" %}
+      </tbody>
+    </table>
 
-        <h3 class="arrow">Saturday, October 12th</h3>
-        <table id="schedule-day-2" class="schedule-table hover unstriped">
-            <thead>
-                {% include "schedule/partials/header.html" %}
-            </thead>
-            <tbody>
-                {% include "schedule/partials/spacer.html" with time="08:30"    text="Doors open" %}
-                {% include "schedule/partials/spacer.html" with time="10:00"    text="Opening word" %}
-                {% include "schedule/partials/keynote.html" with time="10:15"   slug="the-737-max-human-factors-in-complex-systems" %}
-                {% include "schedule/partials/spacer.html" with time="11:15"    text="Division break" %}
-                {% include "schedule/partials/talk_pair.html" with time="11:35" slugs="just-go-for-it-the-story-of-dance-matjs,webassembly-binary-in-plain-english,python-asyncawait-unraveled" %}
-                {% include "schedule/partials/talk_pair.html" with time="12:10" slugs="from-conversation-to-software,a-lean-approach-to-design-system" %}
-                {% include "schedule/partials/talk_pair.html" with time="13:05" slugs="secure-your-code-injections-and-logging,react-native-and-pwa-a-tale-of-two-architectures,data-race-detection" %}
-                {% include "schedule/partials/lunch.html" with time="13:30" %}
-                {% include "schedule/partials/talk_pair.html" with time="15:00" slugs="automating-dynamic-malware-analysis,leadership-lessons-from-building-a-remote-team,parsing-from-first-principles" %}
-                {% include "schedule/partials/talk_pair.html" with time="15:35" slugs="building-a-gameboy-emulator-with-elixir-and-scenic,share-your-client-code-like-a-boss" %}
-                {% include "schedule/partials/spacer.html" with time="16:20"    text="Break" %}
-                {% include "schedule/partials/talk_pair.html" with time="16:50" slugs="oauth-2-a-closer-look,leveraging-anxiety-with-product-design" %}
-                {% include "schedule/partials/talk_pair.html" with time="17:25" slugs="load-balancing-nodejs-in-production,images-can-do-that" %}
-                {% include "schedule/partials/spacer.html" with time="17:50"    text="Closing word" %}
-                {% include "schedule/partials/drinkup.html" with time="18:10" %}
-            </tbody>
-        </table>
+    <hr />
 
-    </section>
+    <h3 class="arrow">Saturday, October 12th</h3>
+
+    <table id="schedule-day-2">
+      <thead>
+        {% include "schedule/partials/header.html" %}
+      </thead>
+      <tbody>
+        {% include "schedule/partials/spacer.html" with time="08:30"  text="Doors open" %}
+        {% include "schedule/partials/spacer.html" with time="10:00"  text="Opening word" %}
+        {% include "schedule/partials/keynote.html" with time="10:15"   slug="the-737-max-human-factors-in-complex-systems" %}
+        {% include "schedule/partials/spacer.html" with time="11:15"  text="Division break" %}
+        {% include "schedule/partials/talk_pair.html" with time="11:35" slugs="just-go-for-it-the-story-of-dance-matjs,webassembly-binary-in-plain-english,python-asyncawait-unraveled" %}
+        {% include "schedule/partials/talk_pair.html" with time="12:10" slugs="from-conversation-to-software,a-lean-approach-to-design-system" %}
+        {% include "schedule/partials/talk_pair.html" with time="13:05" slugs="secure-your-code-injections-and-logging,react-native-and-pwa-a-tale-of-two-architectures,data-race-detection" %}
+        {% include "schedule/partials/lunch.html" with time="13:30" %}
+        {% include "schedule/partials/talk_pair.html" with time="15:00" slugs="automating-dynamic-malware-analysis,leadership-lessons-from-building-a-remote-team,parsing-from-first-principles" %}
+        {% include "schedule/partials/talk_pair.html" with time="15:35" slugs="building-a-gameboy-emulator-with-elixir-and-scenic,share-your-client-code-like-a-boss" %}
+        {% include "schedule/partials/spacer.html" with time="16:20"  text="Break" %}
+        {% include "schedule/partials/talk_pair.html" with time="16:50" slugs="oauth-2-a-closer-look,leveraging-anxiety-with-product-design" %}
+        {% include "schedule/partials/talk_pair.html" with time="17:25" slugs="load-balancing-nodejs-in-production,images-can-do-that" %}
+        {% include "schedule/partials/spacer.html" with time="17:50"  text="Closing word" %}
+        {% include "schedule/partials/drinkup.html" with time="18:10" %}
+      </tbody>
+    </table>
+
+  </section>
 {% endblock %}

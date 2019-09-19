@@ -4,28 +4,24 @@
 
 {% block content %}
     <section>
-        <h1 class="red-dash">Edit_profile_</h1>
+        <h1>Edit profile</h1>
 
-        <form method="post" class="Form Form--beta">{% csrf_token %}
+        <form method="post">
+            {% csrf_token %}
             <fieldset>
-                {% if form.errors %}
-                <div class="alert callout">
-                    <div class="Passage">
-                        <p>Please fix the errors below:</p>
-                        {{form.non_field_errors}}
-                    </div>
-                </div>
+                {% if form.non_field_errors %}
+                  <div>{{ form.non_field_errors }}</div>
                 {% endif %}
 
                 {% include "partials/form-field.html" with field=form.email field_type="text" %}
                 {% include "partials/form-field.html" with field=form.first_name field_type="text" %}
                 {% include "partials/form-field.html" with field=form.last_name field_type="text" %}
                 {% include "partials/form-field.html" with field=form.tshirt_size field_type="text" %}
-                {% include "partials/form-field.html" with field=form.github field_type="text" vanity_field="github" %}
-                {% include "partials/form-field.html" with field=form.twitter field_type="text" vanity_field="twitter" %}
+                {% include "partials/form-field.html" with field=form.github field_type="text" vanity_field="brands/github" %}
+                {% include "partials/form-field.html" with field=form.twitter field_type="text" vanity_field="brands/twitter" %}
 
-                <button type="submit" class="green button">Save</button>
-                <a href="{% url 'user_profile' %}" class="button">Cancel</a>
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a href="{% url 'user_profile' %}" class="btn btn-default">Cancel</a>
             </fieldset>
         </form>
     </section>

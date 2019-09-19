@@ -1,21 +1,17 @@
 {% if talks %}
-<div class="talk-grid">
-    <div class="row column">
-        <h1 class="blue-dash">Talks_</h1>
+<div class="container">
+  <h1>Talks</h1>
 
-        <div class="row" data-equalizer data-equalize-on="medium">
-            {% for talk in talks %}
-                <div class="small-12 medium-4 columns">
-                    {% include "talks/partials/random-talk.html" %}
-                </div>
-            {% endfor %}
-        </div>
+  <div class="block-grid">
+    {% for talk in talks %}
+      {% include "talks/partials/random-talk.html" %}
+    {% endfor %}
+  </div>
 
-        <div class="archive text-center">
-            <a href="{% url 'talks_list_talks' %}">
-                all_talks
-            </a>
-        </div>
-    </div>
+  <div class="text-center">
+    <a href="{% url 'talks_list_talks' %}">
+      all_talks
+    </a>
+  </div>
 </div>
 {% endif %}

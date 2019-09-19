@@ -1,80 +1,55 @@
 {% load static webcamp %}
 
-{# Navbar for large screens #}
-<div class="nav-bar show-for-large">
-    <a class="logo{% if is_frontpage %} frontpage{% endif %}" href="{% url 'ui_index' %}"></a>
+<div class="container">
+  <header class="main-header">
+    <a class="header-logo" href="{% url 'ui_index' %}">
+      <img src="{% static 'images/2019/logo_black.svg' %}" alt="">
+    </a>
 
-    <div class="nav-left">
-    </div>
-
-    <div class="nav-links">
-        <div class="green pounding heart">&lt;3</div>
-        {% for name, link in navigation %}
-            <div class="link"><a href="{{ link }}">{{ name }}</a></div>
-        {% endfor %}
-    </div>
-
-    <div class="nav-right no-wrap">
-        {% if user.is_talk_committee_member %}
-            <a href="/dashboard/" class="tickets">
-                Dashboard
-            </a>
-        {% else %}
-            <a href="/tickets/" class="tickets">
-                Buy tickets
-            </a>
-        {% endif %}
-        {% if user.is_authenticated %}
-            <a href="{% url 'user_profile' %}">
-                {% icon "solid/user-alt" %}&nbsp;{{user.get_full_name}}
-            </a>
-        {% else %}
-            <a href="{% url 'account_login' %}?next={{ request.path }}" class="arrow login">
-                Login
-            </a>
-        {% endif %}
-    </div>
-</div>
-
-{# Navbar for small and medium screens #}
-<div class="mobile-nav-bar hide-for-large">
-    <div class="row align-middle">
-        <div class="columns">
-            <a href="{% url 'ui_index' %}">
-                <img src="{% static "images/wczg2017_logo_mobile.svg" %}">
-            </a>
-        </div>
-        <div class="columns shrink">
-            <a data-toggle="mobile-nav-menu">
-                <img src="{% static "images/hamburger.svg" %}">
-            </a>
-        </div>
-    </div>
-</div>
-
-<div id="mobile-nav-menu" class="hide hide-for-large" data-toggler=".hide">
-    <div class="mobile-nav-links">
-        <ul class="vertical menu align-center">
-            <li class="text-center red">&lt;3</li>
-            {% for name, link in navigation %}
-                <li><a href="{{ link }}">{{ name }}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    <div class="mobile-nav-buttons">
-        <a href="/tickets/">
-            Buy Tickets
+    <div class="header-middle">
+      <div>
+        <a class="terminal-prompt" href="{% url 'ui_index' %}">
+          WebCamp Zagreb 2019
         </a>
-        {% if user.is_authenticated %}
+        <div class="float-right hide-for-small">
+          {% if user.is_authenticated %}
             <a href="{% url 'user_profile' %}">
-                Profile
+              {% icon "solid/user-alt" %}&nbsp;{{user.get_full_name}}
             </a>
-        {% else %}
+          {% else %}
             <a href="{% url 'account_login' %}?next={{ request.path }}">
-                Login
+              Login
             </a>
-        {% endif %}
-    </div>
-</div>
+          {% endif %}
+        </div>
+        <p>Technology oriented conference for developers &amp; designers.</p>
+      </div>
 
+      <details class="small-nav show-for-small">
+        <summary>Menu</summary>
+        <nav>
+          {% for name, link in navigation %}
+            <a class="menu-item" href="{{ link }}">{{ name }}</a>
+          {% endfor %}
+        </nav>
+        <div class="account">
+          {% if user.is_authenticated %}
+            <a href="{% url 'user_profile' %}">
+              {% icon "solid/user-alt" %}&nbsp;{{user.get_full_name}}
+            </a>
+          {% else %}
+            <a href="{% url 'account_login' %}?next={{ request.path }}">
+              Login
+            </a>
+          {% endif %}
+        </div>
+      </details>
+
+      <nav class="large-nav">
+        {% for name, link in navigation %}
+          <a class="menu-item" href="{{ link }}">{{ name }}</a>
+        {% endfor %}
+      </nav>
+    </div>
+  </header>
+</div>

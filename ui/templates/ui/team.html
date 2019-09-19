@@ -4,37 +4,19 @@
 
 {% block title %}The Team - {{ event.extended_title }}{% endblock %}
 
-{% block head %}
-<style type="text/css">
-    .flex-center {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    .flex-center img {
-        width: 80%;
-        height: auto;
-    }
-    .ug-link {
-        display: block;
-        margin: 1rem 0;
-    }
-</style>
-{% endblock %}
-
 {% block content %}
-<div class="row column">
-    <h1 class="red-dash">The_team_</h1>
+<div class="container">
+    <h1>The team</h1>
 
     <p>WebCamp Zagreb is organized by a dedicated team of volunteers.</p>
 
     <p>If you are interested in joining the herd, <a href="mailto:info@webcampzg.org">give us a shout</a>.</p>
 
-    <div class="row">
+    <div class="team-members">
         {% for member in team %}
-        <div class="small-12 medium-3 columns text-center">
-            <img class="thumbnail" src="{% static member.image %}" alt="{{ member.name }}" />
-            <p>
+        <div>
+            <img src="{% static member.image %}" alt="{{ member.name }}" />
+            <p class="text-center">
                 <b>{{ member.name }}</b><br />
                 {% if member.twitter %}
                     {% icon "brands/twitter" %}
@@ -51,11 +33,11 @@
 
     <p>Talks submitted to WebCamp Zagreb are reviewed and selected by a group of your peers with various areas of expertise.</p>
 
-    <div class="row">
+    <div class="team-members">
         {% for member in committee %}
-        <div class="small-12 medium-3 columns text-center">
-            <img class="thumbnail" src="{% static member.image %}" alt="{{ member.name }}" />
-            <p>
+        <div>
+            <img src="{% static member.image %}" alt="{{ member.name }}" />
+            <p class="text-center">
                 <b>{{ member.name }}</b><br />
                 {% if member.twitter %}
                     {% icon "brands/twitter" %}
@@ -67,19 +49,19 @@
     </div>
     {% endif %}
 
-    <h2 class="yellow-dash" id="user-groups">User_groups_</h2>
+    <h2 id="user-groups">User groups</h2>
 
     <p>We support and are supported by local user groups.</p>
 
-    <div class="row" data-equalizer data-equalize-on="medium" class="usergroups" align-middle>
+    <div class="user-groups">
     {% for group in usergroups %}
-        <div class="small-6 medium-3 columns text-center">
+        <div class="user-group">
             <a href="{{ group.webpage_url }}" title="{{ group.name }}">
-                <div class="flex-center" data-equalizer-watch>
+                <div class="text-center">
                     <img src="{{ MEDIA_URL }}{{ group.image }}" alt="{{ group.name }} logo" />
                 </div>
             </a>
-            <a class="ug-link" href="{{ group.webpage_url }}" title="{{ group.name }}">
+            <a href="{{ group.webpage_url }}" title="{{ group.name }}">
                 {{ group.name }}
             </a>
         </div>

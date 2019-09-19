@@ -37,6 +37,10 @@ def venue(request):
     return render(request, 'ui/venue.html')
 
 
+def timeline(request):
+    return render(request, 'ui/timeline.html')
+
+
 def signup_success(request):
     return render(request, 'account/signup-success.html')
 

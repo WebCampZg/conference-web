@@ -1,11 +1,13 @@
 {% extends "ui/base.html" %}
 
 {% block basecontent %}
-    <div class="row column">
+    <div class="container">
         <div class="content">
             {% block content %}{% endblock %}
         </div>
     </div>
+
+    <hr />
 
     {% block below_content %}
         {% include "partials/newsletter.html" %}

@@ -1,33 +1,26 @@
 {% load webcamp %}
 
-<div class="workshop-grid-item">
-
+<div class="grid-item">
+  <div class="grid-item-image">
     <a href="{% url 'workshops_view_workshop' slug=workshop.slug %}">
-        <div class="workshop-photo" style="background-image: url('{{ workshop.image_url }}')"></div>
+      <img src="{{ workshop.image_url }}">
     </a>
+  </div>
 
-    <div class="workshop-data" data-equalizer-watch>
-
-        {% if workshop.applicants.exist %}
-        <div class="speaker">
-            {{ workshop.applicant_names|join:"<br />" }}
-        </div>
-        {% endif %}
-        <div class="workshop-title">
-            <a href="{% url 'workshops_view_workshop' slug=workshop.slug %}">
-                {{ workshop.title }}
-            </a>
-        </div>
+  <div class="grid-item-data">
+    <div class="speaker">
+      {{ workshop.speaker_names }}
     </div>
 
-    <div class="workshop-meta">
-        <div class="row">
-            <div class="columns text-center">
-                {{ workshop.duration_hours|floatformat }}h
-            </div>
-            <div class="columns text-center">
-                {{ workshop.price }}kn
-            </div>
-        </div>
-    </div>
+    <h3>
+      <a href="{% url 'workshops_view_workshop' slug=workshop.slug %}">
+        {{ workshop.title }}
+      </a>
+    </h3>
+  </div>
+
+  <div class="grid-item-meta">
+      <div class="text-center gray">{{ workshop.price }}kn</div>
+      <div class="text-center">{{ workshop.duration_hours|floatformat }}h</div>
+  </div>
 </div>

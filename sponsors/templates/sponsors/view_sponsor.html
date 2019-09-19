@@ -6,66 +6,64 @@
 {% block title %}{{ sponsor.name }} - Sponsors - {{ event.extended_title }}{% endblock %}
 
 {% block og %}
-    <meta property="og:title" content="{{ sponsor.name }} - Sponsor" />
+  <meta property="og:title" content="{{ sponsor.name }} - Sponsor" />
 {% endblock %}
 
 {% block og_image %}
-    <meta property="og:image" content="{{ base_url }}{{ sponsor.image.url }}" />
+  <meta property="og:image" content="{{ base_url }}{{ sponsor.image.url }}" />
 {% endblock %}
 
 {% block content %}
 <div class="sponsor">
-    {% if user.is_superuser %}
-        <a class="green button float-right" href="{% url 'admin:sponsors_sponsor_change' sponsor.pk %}">
-            Edit sponsor
-        </a>
-    {% endif %}
+  {% if user.is_superuser %}
+    <a class="btn btn-default float-right" href="{% url 'admin:sponsors_sponsor_change' sponsor.pk %}">
+      Edit sponsor
+    </a>
+  {% endif %}
 
+  <article class="sponsor-details">
     <p>
-        <span class="yellow label">
-            {% if sponsor.type == 'diamond' %}
-            Diamond sponsor
-            {% elif sponsor.type == 'lanyard' %}
-            Lanyard sponsor
-            {% elif sponsor.type == 'track' %}
-            Track sponsor
-            {% elif sponsor.type == 'standard' %}
-            Standard sponsor
-            {% elif sponsor.type == 'supporter' %}
-            Supporter
-            {% elif sponsor.type == 'foodanddrinks' %}
-            Food &amp; drinks sponsor
-            {% elif sponsor.type == 'video' %}
-            Video sponsor
-            {% endif %}
-        </span>
+      {% if sponsor.type == 'diamond' %}
+        <span class="yellow label">Diamond sponsor</span>
+      {% elif sponsor.type == 'lanyard' %}
+        <span class="yellow label">Lanyard sponsor</span>
+      {% elif sponsor.type == 'track' %}
+        <span class="yellow label">Track sponsor</span>
+      {% elif sponsor.type == 'standard' %}
+        <span class="yellow label">Standard sponsor</span>
+      {% elif sponsor.type == 'supporter' %}
+        <span class="yellow label">Supporter</span>
+      {% elif sponsor.type == 'foodanddrinks' %}
+        <span class="yellow label">Food &amp; drinks sponsor</span>
+      {% elif sponsor.type == 'video' %}
+        <span class="yellow label">Video sponsor</span>
+      {% endif %}
     </p>
 
     <div style="clear:both"></div>
 
-    <div class="row">
-        <div class="small-12 medium-4 columns">
-            <figure class="Sponsor-logoWrap">
-                <img src="{{ MEDIA_URL }}{{ sponsor.image }}" alt="{{ sponsor.name }} logo" class="Sponsor-logo" />
-            </figure>
-        </div>
-        <div class="small-12 medium-8 columns">
-            <strong class="Sponsor-name">{{ sponsor.name }}</strong>
-            <div class="Sponsor-body">
-                <div class="Passage">
-                    {{ sponsor.about|markdown:"trusted" }}
-                </div>
-            </div>
-            <div class="Sponsor-meta">
-                <a href="{{ sponsor.url }}" target="_blank">Visit the {{ sponsor.name }} homepage</a>
-            </div>
-        </div>
+    <div class="sponsor-grid">
+      <img class="sponsor-logo"
+           src="{{ MEDIA_URL }}{{ sponsor.image }}"
+           alt="{{ sponsor.name }} logo" />
+
+      <div>
+        <h1>{{ sponsor.name }}</h1>
+
+        {{ sponsor.about|markdown:"trusted" }}
+
+        <a href="{{ sponsor.url }}" target="_blank">
+          Visit {{ sponsor.name }} homepage
+        </a>
+      </div>
     </div>
 
     {% if jobs %}
-        <hr />
-        <h2>Available job positions</h2>
-        {% include "partials/jobs.html" with jobs=jobs %}
+      <hr />
+      <h2>Available job positions</h2>
+      {% include "partials/jobs.html" with jobs=jobs %}
     {% endif %}
+
+  </article>
 </div>
 {% endblock %}

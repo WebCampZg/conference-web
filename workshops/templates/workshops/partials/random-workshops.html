@@ -1,21 +1,17 @@
 {% if workshops %}
-<div class="workshops-grid">
-    <div class="row column">
-        <h1 class="yellow-dash">Workshops_</h1>
+<div class="container">
+  <h1>Workshops</h1>
 
-        <div class="row" data-equalizer data-equalize-on="medium">
-            {% for workshop in workshops %}
-                <div class="small-12 medium-4 columns">
-                    {% include "workshops/partials/random-workshop.html" %}
-                </div>
-            {% endfor %}
-        </div>
+  <div class="block-grid">
+    {% for workshop in workshops %}
+      {% include "workshops/partials/random-workshop.html" %}
+    {% endfor %}
+  </div>
 
-        <div class="archive text-center">
-            <a href="{% url 'workshops_list_workshops' %}">
-                all_workshops
-            </a>
-        </div>
-    </div>
+  <div class="text-center">
+    <a href="{% url 'workshops_list_workshops' %}">
+      all_workshops
+    </a>
+  </div>
 </div>
 {% endif %}

@@ -1,7 +1,53 @@
 {% load webcamp %}
 
-<b>{{ talk.starts_at|date:"l, Y-m-d @ H:i" }}</b><br />
-<span class="purple">&gt; </span>
-Skill level: {{ talk.skill_level|skill_level }}<br />
-<span class="purple">&gt; </span>
-Duration: <em class="gray">{{ talk.duration }} min</em>
+{% if talk.starts_at %}
+<p class="no-margin">
+    <b>{{ talk.starts_at|date:"l, Y-m-d @ H:i" }}</b>
+</p>
+
+{% endif %}
+
+<ul class="talk-attributes">
+    <li>
+        Skill level: {{ talk.skill_level|skill_level }}
+    </li>
+
+    {% if talk.duration %}
+    <li>
+        Duration: <em>{{ talk.duration }} min</em>
+    </li>
+    {% endif %}
+
+    {% if talk.duration_hours %}
+    <li>
+        Duration: <em>{{ talk.duration_hours|floatformat }}h</em>
+    </li>
+    {% endif %}
+
+    {% if talk.price %}
+    <li>
+        Price: <em>{{ talk.price|floatformat }}kn</em>
+    </li>
+    {% endif %}
+
+    {% if talk.sponsor %}
+    <li>
+        Sponsored by
+        <a href="{% url 'sponsors_view_sponsor' slug=talk.sponsor.slug %}">
+            {{ talk.sponsor.name }}
+        </a>
+    </li>
+    {% endif %}
+
+    {% if talk.is_community_chosen %}
+    <li>
+        Chosen by the <em>community vote</em>
+    </li>
+    {% endif %}
+
+    {% if talk.keynote %}
+    <li>
+        <b>Keynote</b>
+    </li>
+    {% endif %}
+</ul>

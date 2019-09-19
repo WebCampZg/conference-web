@@ -16,10 +16,11 @@
 
 {% block content %}
     {% if user.is_superuser %}
-        <a class="button float-right" href="{% url 'admin:pages_page_change' page.pk %}">Edit page</a>
+        <a class="btn btn-default btn-small float-right"
+           href="{% url 'admin:pages_page_change' page.pk %}">Edit page</a>
     {% endif %}
 
-    <h1 class="red-dash">{{ page.title.split|join:"_" }}_</h1>
+    <h1>{{ page.title }}</h1>
 
     {{ page.content|pages_substitute|markdown:"trusted" }}
 {% endblock %}

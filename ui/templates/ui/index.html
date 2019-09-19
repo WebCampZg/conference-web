@@ -16,58 +16,16 @@
 {% endblock %}
 
 {% block basecontent %}
-{% include "partials/hero.html" %}
-{# {% include "partials/tickets.html" %} #}
-{% include "partials/news.html" %}
-{# {% include "partials/keynotes.html" %} #}
-{% include "talks/partials/random-talks.html" %}
-{% include "workshops/partials/random-workshops.html" %}
-{% include "partials/newsletter.html" %}
-{% include "partials/sponsors.html" %}
-{% include "partials/user-groups.html" %}
-{% endblock %}
-
-{% block script %}
-
-<script src="static/scripts/blockrain.min.js"></script>
-<script>
-
-    $(document).ready(function () {
-        var $game = $('#cover-tetris');
-        $game.blockrain({
-            // autoplay: true,
-            onStart: function(){$("#click-tetris").hide();},
-            autoplayRestart: true,
-            speed: 20,
-            autoBlockWidth: true,
-            autoBlockSize: 30,
-            showFieldOnStart: false,
-            theme:
-                {
-                    background: '#ffe811', // The main background color.
-                    stroke: '#000000', // Border color for the blocks.
-                    backgroundGrid: '#FFDC00', // You can draw a small background grid as well.
-                    // // The following are the colors of each piece
-                    blocks: {
-                        line: '#FEFEFE',
-                        square: '#CACACA',
-                        arrow: '#FA4748',
-                        rightHook: '#7FDBFF',
-                        leftHook: '#9013FD',
-                        rightZag: '#4A4A4A',
-                        leftZag: '#00C200'
-                    }
-                }
-        });
-
-        $("#click-tetris").click(function (e) {
-            $game.blockrain('autoplay', false);
-            $game.blockrain('controls', true);
-            $game.blockrain('restart');
-            $("#click-tetris").hide();
-        });
-
-    });
-
-</script>
+    {% include "partials/hero.html" %}
+    {% include "partials/news.html" %}
+    <hr />
+    {% include "talks/partials/random-talks.html" %}
+    <hr />
+    {% include "workshops/partials/random-workshops.html" %}
+    <hr />
+    {% include "partials/newsletter.html" %}
+    <hr />
+    {% include "partials/sponsors.html" %}
+    <hr />
+    {% include "partials/user-groups.html" %}
 {% endblock %}

@@ -14,9 +14,8 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="red-dash">Workshops_</h1>
+    <h1>Workshops</h1>
 
-    {% comment %}
     <p>This year we present you only with the finest, hand-picked, locally
         sourced, gluten-free and organic workshops. Tickets are limited so don't
         waste time and get them while they're hot.</p>
@@ -28,10 +27,9 @@
         <a href="/venue/">Plaza Event Centar</a>.</p>
 
     <hr />
-    {% endcomment %}
 
     {% for workshop in workshops %}
-        {% include "workshops/partials/workshop.html" with workshop=workshop %}
+        {% include "talks/partials/talk.html" with talk=workshop %}
         {% if not forloop.last %}
             <hr />
         {% endif %}

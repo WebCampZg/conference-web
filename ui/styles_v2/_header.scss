@@ -1,0 +1,66 @@
+.main-header {
+    font-size: 16px;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1rem;
+    margin-top: 2rem;
+    align-content: baseline;
+
+    .header-middle {
+        .terminal-prompt {
+            font-weight: bold;
+        }
+
+        p {
+            margin-top: 0.5rem;
+        }
+    }
+
+    .header-logo {
+        display: none;
+    }
+
+    .small-nav {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: .3rem;
+
+        summary {
+            font-size: 1.2rem;
+        }
+
+        nav {
+            margin-top: 0.6rem;
+        }
+    }
+
+
+    .large-nav {
+        display: none;
+    }
+}
+
+@media (min-width: $medium-breakpoint) {
+    .main-header {
+        grid-template-columns: 8rem 1fr;
+
+        .header-logo {
+            display: block;
+        }
+
+        .account {
+            text-align: right;
+        }
+
+        .large-nav {
+            display: flex;
+            flex-wrap: wrap;
+            grid-gap: 1rem;
+        }
+
+        .small-nav {
+            display: none;
+        }
+    }
+}

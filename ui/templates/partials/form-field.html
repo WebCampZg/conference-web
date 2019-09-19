@@ -3,7 +3,7 @@
 {% if field.is_hidden %}
     {{ field }}
 {% else %}
-<div>
+<div class="form-group">
     <label for="{{ field.id_for_label }}">
         {% if vanity_field %}
             {% icon vanity_field %}
@@ -16,10 +16,8 @@
         {% endif %}
     </label>
 
-    <div class="form-field">
-        <div class="{% if field.errors %} is-invalid {% endif %}">
-            {{ field }}
-        </div>
+    <div class="form-field{% if field.errors %} is-invalid{% endif %}">
+        {{ field }}
 
         {% for error in field.errors %}
             <p class="form-field-error">{{ error }}</p>

@@ -13,6 +13,7 @@ urlpatterns = [
     path('', views.index, name="ui_index"),
     path('team/', views.team, name="team"),
     path('venue/', views.venue, name="venue"),
+    path('timeline/', views.timeline, name="timeline"),
     path('signup/success/', views.signup_success),
 
     path('admin/', admin.site.urls),

@@ -1,4 +1,4 @@
-{% extends 'ui/page.html' %}
+{% extends 'ui/base.html' %}
 
 {% load webcamp markdown_deux_tags %}
 
@@ -22,15 +22,14 @@
     <meta property="og:image:height" content="{{ talk.application.applicant.image.height }}" />
 {% endblock %}
 
-{% block content %}
-    <article class="talk-detail">
-        <h2 class="red-dash">{{ talk.title }}</h2>
+{% block basecontent %}
+<article class="talk-detail">
+    <div class="container">
+        <h1>{{ talk.title }}</h1>
 
         <p class="excerpt">{{ talk.about }}</p>
 
         {{ talk.abstract|markdown }}
-
-        {% include "talks/partials/flags.html" %}
 
         <p>{% include "talks/partials/attributes.html" %}</p>
 
@@ -62,10 +61,13 @@
         {% if talk.youtube_id %}
             {{ talk.youtube_id|embed_youtube }}
         {% endif %}
+    </div>
+    <hr />
 
-        <hr />
+    <div class="container">
         {% for applicant in talk.applicants.all %}
             {% include "talks/partials/speaker.html" with applicant=applicant %}
         {% endfor %}
-    </article>
+    </div>
+</article>
 {% endblock %}

@@ -3,36 +3,37 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<section class="Account">
-    <h1 class="red-dash">Login_</h1>
+<section>
+  <h1>Login</h1>
 
-    <form action="." method="post">{% csrf_token %}
-        <fieldset>
-            {% if form.non_field_errors %}
-            <div class="Form-errors">
-                <div class="Passage">
-                    {{ form.non_field_errors }}
-                </div>
-            </div>
-            {% endif %}
+  <form action="." method="post">{% csrf_token %}
+    <fieldset>
+      {% if form.non_field_errors %}
+        <div>{{ form.non_field_errors }}</div>
+      {% endif %}
 
-            {% include "partials/form-field.html" with field=form.login  field_type="text" %}
-            {% include "partials/form-field.html" with field=form.password  field_type="text" %}
+      {% include "partials/form-field.html" with field=form.login  field_type="text" %}
+      {% include "partials/form-field.html" with field=form.password  field_type="text" %}
 
-            {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-            {% endif %}
+      {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
 
-            <label for="remember_me" class="Togglable">
-                <input id="remember_me" type="checkbox" name="remember" value="0" />
-                Remember me
-            </label>
+      <div class="form-group">
+      <label for="remember_me">
+        <input id="remember_me" type="checkbox" name="remember" value="0" />
+        Remember me
+      </label>
+      </div>
 
-            <button type="submit" class="button">Login</button>
+      <button class="btn btn-default" type="submit" role="button">
+        Login
+      </button>
 
-            <p><a href="{% url 'account_reset_password' %}">Forgot password?</a></p>
-            <p><a href="{% url 'account_signup' %}">Don't have an account yet? Sign up here!</a></p>
-        </fieldset>
-    </form>
+    </fieldset>
+  </form>
+
+  <p><a href="{% url 'account_reset_password' %}">Forgot password?</a></p>
+  <p><a href="{% url 'account_signup' %}">Don't have an account yet? Sign up here!</a></p>
 </section>
 {% endblock %}

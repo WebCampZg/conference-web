@@ -1,33 +1,35 @@
 {% load static %}
 
 <article class="talk-short">
-    <div class="row">
-        <div class="show-for-medium medium-3 columns">
-            <a href="{% url 'talks_view_talk' slug=talk.slug %}">
-            <img src="{{ talk.image_url }}"
-                 alt="Photo for talk {{ talk }}" />
+    <div>
+        <a href="{{ talk.get_absolute_url }}">
+        <img src="{{ talk.image_url }}"
+             alt="Photo for talk {{ talk }}" />
+        </a>
+    </div>
+
+    <div>
+        {% if talk.applicants.exists %}
+        <p class="speaker">
+            <span>Speaker{% if talk.applicants.count > 1 %}s{% endif %}:</span>
+            <strong>{{ talk.speaker_names }}</strong>
+        </p>
+        {% endif %}
+
+        <h3>
+            <a href="{{ talk.get_absolute_url }}">
+                {{ talk.title }}
             </a>
-        </div>
+        </h3>
 
-        <div class="small-12 medium-9 columns">
-            {% if talk.applicants.exists %}
-            <p>
-                <span>Speaker{% if talk.applicants.count > 1 %}s{% endif %}:</span>
-                <strong>{{ talk.speaker_names }}</strong>
-            </p>
-            {% endif %}
+        <p>{{ talk.about }}</p>
 
-            <h3>
-                <a href="{% url 'talks_view_talk' slug=talk.slug %}">
-                    {{ talk.title }}
-                </a>
-            </h3>
+        {% include "talks/partials/attributes.html" %}
 
-            {% include "talks/partials/flags.html" %}
-
-            <p>{{ talk.about }}</p>
-
-            <p>{% include "talks/partials/attributes.html" %}</p>
-        </div>
+        {% if talk.sold_out %}
+            <div class="callout alert">
+                Tickets for this workshop are SOLD OUT
+            </div>
+        {% endif %}
     </div>
 </article>

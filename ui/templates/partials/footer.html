@@ -1,85 +1,67 @@
 {% load static %}
 {% load webcamp %}
-<div class="footer">
-    <div class="row column">
-        <div class="text-center">
-            {% comment %}
-            <a href="/tickets/" class="yellow xlarge button">
-                BUY TICKETS
-            </a>
-            &nbsp;
-            {% endcomment %}
 
-            <a href="{{ links.sponsors_pdf }}" class="green xlarge button">
-                SPONSOR WEBCAMP
-            </a>
-        </div>
+<hr />
 
-        <hr />
-
-        <div class="row footer-row">
-            <div class="small-12 medium-3 columns">
-                <div class="logo">
-                    <img src="{% static "images/2019/logo_gray.svg" %}" />
-                </div>
-            </div>
-
-            <div class="small-12 medium-3 columns">
-                <div class="row footer-nav">
-                    {% for batch in footer_links|split:2 %}
-                        <div class="small-12 large-6 columns">
-                        {% for name, link in batch %}
-                            <p>
-                                <a href="{{ link }}">{{ name|upper }}</a>
-                            </p>
-                        {% endfor %}
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-
-            <div class="small-12 medium-3 columns">
-                <p>SOCIAL MEDIA</p>
-                <div class="row">
-                    <div class="small-12 large-6 columns">
-                        <p><a href="{{ links.facebook }}">facebook</a></p>
-                        <p><a href="{{ links.twitter }}">twitter</a></p>
-                        <p><a href="{{ links.youtube }}">youtube</a></p>
-                    </div>
-                    <div class="small-12 large-6 columns">
-                        <p><a href="{{ links.linkedin }} ">linkedin</a></p>
-                        <p><a href="{{ links.github }} ">github</a></p>
-                        <p><a href="{{ links.google_plus }} ">google+</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="small-12 medium-3 columns scroll-to-top">
-                <a data-scroll-to-top href="#">
-                    <img src="{% static "images/scroll-up.svg" %}" />
-                    <br />
-                    <span>back_to_top</span>
-                </a>
-            </div>
-        </div>
-
-        <hr />
-
-        <p class="text-center">
-            <span class="green">&lt;3</span>
-            &copy;
-            WebCamp Zagreb 2012
-            <span class="blue">:</span>
-            {% now "Y" %}
-            <span class="green">&lt;3</span>
-        </p>
-
-        <p class="text-center">
-            Contact us at <a href="mailto:info@webcampzg.org">info@webcampzg.org</a>
-        </p>
-
-        <p class="text-center">
-            Check out how we handle your data in our <a href="/privacy-policy/">Privacy policy</a>
-        </p>
+<footer>
+  <div class="container">
+    <div class="text-center">
+      <a href="/tickets/" class="btn btn-default">
+        BUY TICKETS
+      </a>
+      &nbsp;
+      <a href="{{ links.sponsors_pdf }}" class="btn btn-primary">
+        SPONSOR WEBCAMP
+      </a>
     </div>
-</div>
+  </div>
+
+  <div class="container">
+    <hr />
+
+    <div class="footer-grid">
+      <img src="{% static "images/2019/logo_gray.svg" %}" />
+
+      <div>
+        <h4>PAGES</h4>
+        <ul class="no-margin">
+          {% for name, link in footer_links %}
+            <li><a href="{{ link }}">{{ name }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div>
+        <h4>SOCIAL MEDIA</h4>
+        <ul class="no-margin">
+          <li><a href="{{ links.facebook }}">Facebook</a></li>
+          <li><a href="{{ links.github }}">GitHub</a></li>
+          <li><a href="{{ links.linkedin }}">Linkedin</a></li>
+          <li><a href="{{ links.twitter }}">Twitter</a></li>
+          <li><a href="{{ links.youtube }}">Youtube</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="gray" />
+
+  <div class="container">
+    <p class="text-center">
+      <span class="green">&lt;3</span>
+      &copy;
+      WebCamp Zagreb 2012
+      <span class="blue">:</span>
+      {% now "Y" %}
+      <span class="green">&lt;3</span>
+    </p>
+
+    <p class="text-center">
+      Contact us at <a href="mailto:info@webcampzg.org">info@webcampzg.org</a>
+    </p>
+
+    <p class="text-center">
+      Check out how we handle your data in our <a href="/privacy-policy/">Privacy policy</a>
+    </p>
+  </div>
+</footer>

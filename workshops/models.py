@@ -30,6 +30,10 @@ class Workshop(models.Model):
     def approximate_euro_price(self):
         return int(self.price / 7.5) if self.price else None
 
+    @property
+    def speaker_names(self):
+        return ", ".join(a.full_name for a in self.applicants.all())
+
     def applicant_names(self):
         return [a.full_name for a in self.applicants.all()]
 

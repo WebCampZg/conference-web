@@ -1,6 +1,9 @@
 {% if talk.sponsor or talk.is_community_chosen or talk.keynote %}
 <p>
     {% if talk.sponsor %}
+        <div class="terminal-prompt">
+            Sponsored by {{ talk.sponsor.name }}
+        </div>
         <span class="green label" title="This talk is sponsored by {{ talk.sponsor.name }}">
             Sponsored
         </span>

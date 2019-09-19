@@ -1,0 +1,152 @@
+{% extends 'ui/page.html' %}
+
+{% block title %}Timeline - {{ event.extended_title }}{% endblock %}
+
+{% block content %}
+<h1>Conference timeline</h1>
+
+<p>These are pivotal dates for {{ event.title }} conference.</p>
+
+<div class="terminal-timeline">
+  <div class="terminal-card">
+    <header>2019-04-01</header>
+    <div>
+      <ul class="no-margin">
+        <li>Call for sponsors</li>
+      </ul>
+    </div>
+  </div>
+  <div class="terminal-card">
+    <header>2019-05-01</header>
+    <div>
+      <ul class="no-margin">
+        <li>Early bird tickets start</li>
+        <li>Call for papers starts</li>
+      </ul>
+    </div>
+  </div>
+  <div class="terminal-card">
+    <header>2019-05-31</header>
+    <div>
+      <ul class="no-margin">
+        <li>Call for papers ends</li>
+      </ul>
+    </div>
+  </div>
+  <div class="terminal-card">
+    <header>2019-06-07</header>
+    <div>
+      <ul class="no-margin">
+        <li>Talk committee meeting, talks are selected</li>
+      </ul>
+    </div>
+  </div>
+  <div class="terminal-card">
+    <header>2019-06-19</header>
+    <div>
+      <ul class="no-margin">
+        <li>Speakers announced, rejection emails sent</li>
+      </ul>
+    </div>
+  </div>
+  <div class="terminal-card">
+    <header>2019-06-23</header>
+    <div>
+      <ul class="no-margin">
+        <li>Early bird tickets end</li>
+      </ul>
+    </div>
+  </div>
+  <div class="terminal-card">
+    <header>2019-06-24</header>
+    <div>
+      <ul class="no-margin">
+        <li>Regular tickets start</li>
+        <li>Community vote starts</li>
+      </ul>
+    </div>
+  </div>
+  <div class="terminal-card">
+    <header>2019-06-30</header>
+    <div>
+      <ul class="no-margin">
+        <li>Community vote ends</li>
+      </ul>
+    </div>
+  </div>
+  <div class="terminal-card">
+    <header>2019-07-08</header>
+    <div>
+      <ul class="no-margin">
+        <li>Community speakers announced</li>
+      </ul>
+    </div>
+  </div>
+  <div class="terminal-card">
+    <header>2019-09-15</header>
+    <div>
+      <ul class="no-margin">
+        <li>Regular tickets end</li>
+      </ul>
+    </div>
+  </div>
+  <div class="terminal-card">
+    <header>2019-09-16</header>
+    <div>
+      <ul class="no-margin">
+        <li>Late bird tickets start (no swag)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="terminal-card">
+    <header>2019-09-28</header>
+    <div>
+      <ul class="no-margin">
+        <li>Speaker training, day 1</li>
+      </ul>
+    </div>
+  </div>
+  <div class="terminal-card">
+    <header>2019-09-29</header>
+    <div>
+      <ul class="no-margin">
+        <li>Speaker training, day 2</li>
+      </ul>
+    </div>
+  </div>
+  <div class="terminal-card">
+    <header>2019-10-09</header>
+    <div>
+      <ul class="no-margin">
+        <li>WebCamp Zagreb 2019 Workshops, day 1</li>
+      </ul>
+    </div>
+  </div>
+  <div class="terminal-card">
+    <header>2019-10-10</header>
+    <div>
+      <ul class="no-margin">
+        <li>WebCamp Zagreb 2019 Workshops, day 2</li>
+        <li>Speakers dinner</li>
+      </ul>
+    </div>
+  </div>
+  <div class="terminal-card">
+    <header>2019-10-11</header>
+    <div>
+      <ul class="no-margin">
+        <li>WebCamp Zagreb 2019 Conference, day 1</li>
+      </ul>
+    </div>
+  </div>
+  <div class="terminal-card">
+    <header>2019-10-12</header>
+    <div>
+      <ul class="no-margin">
+        <li>WebCamp Zagreb 2019 Conference, day 2</li>
+        <li>WebCamp Drinkup</li>
+      </ul>
+    </div>
+  </div>
+</div>
+{%endblock %}

@@ -10,12 +10,10 @@
 
 {% block content %}
     <section>
-        <h1 class="red-dash">Jobs_</h1>
+        <h1>Jobs</h1>
 
         {% if jobs %}
-        <div class="Jobs">
-            {% include "partials/jobs.html" with jobs=jobs show_sponsor_name="true" %}
-        </div>
+            {% include "partials/jobs.html" with jobs=jobs %}
         {% else %}
             <p><em>No jobs have been published so far. Check back soon.</em></p>
         {% endif %}

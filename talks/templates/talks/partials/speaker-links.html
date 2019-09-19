@@ -1,13 +1,15 @@
 {% load webcamp %}
 
-{% if applicant.user.github %}
-<a href="https://github.com/{{ applicant.user.github }}">
-    {% icon "brands/github-square" scale=4 %}
-</a>
-{% endif %}
+<div class="speaker-links">
+    {% if applicant.user.github %}
+    <a href="https://github.com/{{ applicant.user.github }}">
+        {% icon "brands/github-square" scale=1 %} Github
+    </a>
+    {% endif %}
 
-{% if applicant.user.twitter %}
-<a href="https://twitter.com/{{ applicant.user.twitter }}">
-    {% icon "brands/twitter-square" scale=4 %}
-</a>
-{% endif %}
+    {% if applicant.user.twitter %}
+    <a href="https://twitter.com/{{ applicant.user.twitter }}">
+        {% icon "brands/twitter-square" scale=1 %} Twitter
+    </a>
+    {% endif %}
+</div>

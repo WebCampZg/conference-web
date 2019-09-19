@@ -20,9 +20,10 @@ def navigation(request):
             ("Timeline", "/timeline/"),
             ("Workshops", reverse('workshops_list_workshops')),
             ("Talks", reverse('talks_list_talks')),
-            # ("Schedule", reverse('schedule_list_schedule')),
+            ("Schedule", reverse('schedule_list_schedule')),
             ("News", reverse('blog_list_posts')),
-            # ("Jobs", reverse('jobs_list_jobs')),
+            ("Jobs", reverse('jobs_list_jobs')),
+            ("Tickets", "/tickets/"),
             ("Code", "/code/"),
             ("Team", "/team/"),
         ]

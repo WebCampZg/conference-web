@@ -1,0 +1,15 @@
+// Media queries
+$medium-breakpoint: 640px;
+$large-breakpoint: 1024px;
+
+@media (max-width: $medium-breakpoint) {
+    .hide-for-small {
+        display: none;
+    }
+}
+
+@media (min-width: $medium-breakpoint) {
+    .show-for-small {
+        display: none;
+    }
+}

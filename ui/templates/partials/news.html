@@ -1,31 +1,36 @@
 {% if posts %}
-<div class="posts">
-    <div class="row column">
-        <h1 class="red-dash">Latest_news_</h1>
+<div class="container">
+  <h1>Latest news</h1>
 
-        <div class="row" data-equalizer data-equalize-on="medium">
-        {% for post in posts %}
-            <div class="small-12 medium-4 columns">
-                <div class="post" data-equalizer-watch>
-                    <time class="gray" datetime="{{ post.created_at|date:"c" }}">
-                        {{ post.created_at|date }}
-                    </time>
+  <div class="block-grid">
+  {% for post in posts %}
+    <div class="grid-item">
+      <div class="grid-item-data">
+        <h3>
+          <a href="{% url 'blog_view_post' slug=post.slug %}">{{ post.title }}</a>
+        </h3>
 
-                    <h3>
-                        <a href="{% url 'blog_view_post' slug=post.slug %}">{{ post.title }}</a>
-                        {% if post.is_sponsored %}
-                            <span class="label">Sponsored</span>
-                        {% endif %}
-                    </h3>
+        <p>{{ post.lead|safe }}</p>
+      </div>
 
-                    <p>{{ post.lead|safe }}</p>
-                </div>
-            </div>
-        {% endfor %}
+      <div class="grid-item-meta">
+        <div>
+          <time class="gray" datetime="{{ post.created_at|date:"c" }}">
+            {{ post.created_at|date }}
+          </time>
         </div>
-        <div class="archive text-center">
-            <a href="{% url 'blog_list_posts' %}">view_archive</a>
+        <div>
+          {% if post.is_sponsored %}
+            Sponsored
+          {% endif %}
         </div>
+      </div>
     </div>
+  {% endfor %}
+  </div>
+
+  <div class="text-center">
+    <a href="{% url 'blog_list_posts' %}">view_archive</a>
+  </div>
 </div>
 {% endif %}

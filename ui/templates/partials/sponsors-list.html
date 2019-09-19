@@ -1,43 +1,43 @@
 {% if sponsors.diamond %}
-<div class="row align-center align-middle small-up-1 sponsor-list diamond">
+<div class="sponsor-list diamond">
     {% include "partials/sponsor-list-group.html" with sponsors=sponsors.diamond %}
 </div>
 {% endif %}
 
 {% if sponsors.lanyard %}
-<div class="row align-center align-middle small-up-1 sponsor-list lanyard">
+<div class="sponsor-list lanyard">
     {% include "partials/sponsor-list-group.html" with sponsors=sponsors.lanyard %}
 </div>
 {% endif %}
 
 {% if sponsors.track %}
-<div class="row align-center align-middle small-up-1 medium-up-1 large-up-3 sponsor-list track">
+<div class="sponsor-list track">
     {% include "partials/sponsor-list-group.html" with sponsors=sponsors.track %}
 </div>
 {% endif %}
 
 {% if sponsors.foodanddrinks or sponsors.lounge %}
-<div class="row align-center align-middle small-up-1 medium-up-3 sponsor-list foodanddrinks lounge">
+<div class="sponsor-list foodanddrinks">
     {% include "partials/sponsor-list-group.html" with sponsors=sponsors.foodanddrinks %}
     {% include "partials/sponsor-list-group.html" with sponsors=sponsors.lounge %}
 </div>
 {% endif %}
 
 {% if sponsors.standard %}
-<div class="row align-center align-middle small-up-1 medium-up-4 sponsor-list standard">
+<div class="sponsor-list standard">
     {% include "partials/sponsor-list-group.html" with sponsors=sponsors.standard %}
 </div>
 {% endif %}
 
 {% if sponsors.supporter %}
-<div class="row align-center align-middle small-up-2 medium-up-6 sponsor-list supporter">
+<div class="sponsor-list supporter">
     {% include "partials/sponsor-list-group.html" with sponsors=sponsors.supporter %}
 </div>
 {% endif %}
 
 {% if sponsors.video %}
 <div class="text-center">Video powered by:</div>
-<div class="row align-center align-middle small-up-1 sponsor-list video">
+<div class="sponsor-list video">
     {% include "partials/sponsor-list-group.html" with sponsors=sponsors.video %}
 </div>
 {% endif %}

@@ -1,0 +1,111 @@
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.green {
+    color: $green;
+}
+
+.purple {
+    color: $purple;
+}
+
+.gray {
+    color: #808080;
+}
+
+.red {
+    color: $red;
+}
+
+.yellow {
+    color: $yellow;
+}
+
+.no-margin {
+    margin: 0;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+// Dashes
+
+@mixin dash($color) {
+    &::before {
+        content: "_";
+        padding-right: .5rem;
+        color: $color;
+        font-weight: normal;
+    }
+}
+
+.dash {
+    @include dash("inherit");
+}
+
+.red-dash {
+    @include dash($red);
+}
+
+.yellow-dash {
+    @include dash($yellow);
+}
+
+.green-dash {
+    @include dash($green);
+}
+
+.blue-dash {
+    @include dash($blue);
+}
+
+// Skill level lables
+
+.skill-level {
+    filter: drop-shadow(1px 1px 0 gray);
+    white-space: nowrap;
+
+    &.elementary {
+        fill: $green;
+        color: $green;
+    }
+    &.intermediate {
+        fill: $yellow;
+        color: $yellow;
+    }
+    &.advanced {
+        fill: $red;
+        color: $red;
+    }
+}
+
+.newsletter .inputs {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: .3rem;
+    margin-bottom: 1rem;
+}
+
+@media (min-width: 650px) {
+    .newsletter .inputs {
+        grid-template-columns: 4fr 1fr;
+    }
+}

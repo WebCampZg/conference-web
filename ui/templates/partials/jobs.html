@@ -2,31 +2,22 @@
 
 {% for job in jobs %}
 <div class="job callout">
-    <div class="job-toggler" data-toggle="job-{{ job.id }}">
-
-        <div class="row">
-            <div class="medium-7 small-12 columns">
-                <h3>{{ job.title }}</h3>
-            </div>
-            <div class="medium-4 small-12 columns">
-                <img src="{{ MEDIA_URL }}{{ job.sponsor.image }}" />
-            </div>
-            <div class="medium-1 show-for-medium columns">
-                {% icon "regular/plus" %}
-            </div>
-        </div>
+  <div class="job-header">
+    <div>
+      <h2>{{ job.title }}</h2>
+      <p>Location: {{ job.location }}</p>
     </div>
+    <img src="{{ MEDIA_URL }}{{ job.sponsor.image }}" />
+  </div>
 
-    <div id="job-{{ job.id }}" class="hide" data-toggler=".hide">
-        <p>Location: {{ job.location }}</p>
+  <details>
+    <summary>Show details</summary>
 
-        {{ job.text|markdown:"trusted" }}
+    {{ job.text|markdown:"trusted" }}
 
-        <div class="text-center">
-            <a href="{{ job.url }}" class="green button">
-                View on {{ job.sponsor.name }}&nbsp;web!
-            </a>
-        </div>
-    </div>
+    <a href="{{ job.url }}" class="btn btn-primary btn-ghost">
+      View on {{ job.sponsor.name }}&nbsp;web!
+    </a>
+  </details>
 </div>
 {% endfor %}
