@@ -9,7 +9,7 @@
     <div class="header-middle">
       <div>
         <a class="terminal-prompt" href="{% url 'ui_index' %}">
-          WebCamp Zagreb 2019
+          {{ event.title }}
         </a>
         <div class="float-right hide-for-small">
           {% if user.is_authenticated %}
@@ -22,7 +22,10 @@
             </a>
           {% endif %}
         </div>
-        <p>Technology oriented conference for developers &amp; designers.</p>
+        <p>
+          Technology oriented conference for developers &amp; designers.<br />
+          {{ event.dates_text }} in Zagreb, Croatia
+        </p>
       </div>
 
       <details class="small-nav show-for-small">

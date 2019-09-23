@@ -1,15 +1,5 @@
-<div class="usergroups-wrapper">
-    <div class="row column">
-        <h1 class="green-dash">Organized_by_</h1>
+<div class="container">
+  <h1>Organized by</h1>
 
-        <div class="usergroups-list">
-        {% for group in usergroups %}
-            <div class="usergroup {{ group.slug }}">
-                <a href="{{ group.webpage_url }}" title="{{ group.name }}">
-                    <img src="{{ MEDIA_URL }}{{ group.image }}" alt="{{ group.name }} logo" />
-                </a>
-            </div>
-        {% endfor %}
-        </div>
-    </div>
+  {% include "usergroups/usergroups-grid.html" %}
 </div>

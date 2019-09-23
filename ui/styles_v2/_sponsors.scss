@@ -1,26 +1,19 @@
 .sponsor-list {
-    display: grid;
-    justify-items: center;
-    align-items: center; // ???
-    grid-gap: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 1rem;
 
     .sponsor {
-        border: 1px dotted black;
+        padding: 0.5rem 1rem;
         width: 100%;
-
-        a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            width: 100%;
-        }
-
+        text-align: center;
     }
 
-    &.diamond .sponsor { max-width: 30rem; }
-    &.lanyard .sponsor { max-width: 30rem; }
+    &.diamond .sponsor img { max-width: 25rem; }
+    &.lanyard .sponsor img { max-width: 22rem; }
+    &.standard .sponsor img { max-width: 8rem; max-height: 3rem; }
+    &.supporter .sponsor img { max-width: 7rem; max-height: 3rem; }
 
     &.track {
         grid-template-columns: repeat(3, 1fr);

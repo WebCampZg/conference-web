@@ -53,19 +53,8 @@
 
     <p>We support and are supported by local user groups.</p>
 
-    <div class="user-groups">
-    {% for group in usergroups %}
-        <div class="user-group">
-            <a href="{{ group.webpage_url }}" title="{{ group.name }}">
-                <div class="text-center">
-                    <img src="{{ MEDIA_URL }}{{ group.image }}" alt="{{ group.name }} logo" />
-                </div>
-            </a>
-            <a href="{{ group.webpage_url }}" title="{{ group.name }}">
-                {{ group.name }}
-            </a>
-        </div>
-    {% endfor %}
+    {% include "usergroups/usergroups-grid.html" %}
+
     </div>
 </div>
 {% endblock %}

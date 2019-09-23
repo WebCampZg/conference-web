@@ -46,6 +46,13 @@
     white-space: nowrap;
 }
 
+.img-link {
+    &:hover, &:active {
+        color: inherit;
+        background-color: inherit;
+    }
+}
+
 // Dashes
 
 @mixin dash($color) {

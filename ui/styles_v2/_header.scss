@@ -56,7 +56,9 @@
         .large-nav {
             display: flex;
             flex-wrap: wrap;
-            grid-gap: 1rem;
+            justify-content: flex-start;
+            grid-column-gap: 2rem;
+            grid-row-gap: 0.5rem;
         }
 
         .small-nav {
