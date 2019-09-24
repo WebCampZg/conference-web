@@ -5012,7 +5012,8 @@ select {
   text-align: center; }
 
 .hero-banner {
-  max-width: 820px; }
+  max-width: 820px;
+  width: 100%; }
 
 span.icon {
   display: inline-block; }
