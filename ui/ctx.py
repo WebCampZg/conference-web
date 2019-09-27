@@ -91,7 +91,6 @@ def webcamp(request):
             "youtube": "https://www.youtube.com/user/WebCampZg",
             "linkedin": "https://www.linkedin.com/company-beta/6397140/",
             "github": "https://github.com/webcampzg",
-            "google_plus": "https://plus.google.com/+WebcampzgOrgHR",
         },
         "webcamp": {
             "og_image": {
