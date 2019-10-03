@@ -1,5 +1,5 @@
 {% for sponsor in sponsors %}
     <a class="sponsor sponsor-{{ sponsor.slug }} img-link" href="{% url 'sponsors_view_sponsor' slug=sponsor.slug %}">
-        <img src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }}" />
+        <img class="desaturate" src="{{MEDIA_URL}}{{ sponsor.image }}" alt="{{ sponsor.name }}" />
     </a>
 {% endfor %}

@@ -53,6 +53,10 @@
     }
 }
 
+img.desaturate {
+    filter: grayscale(100%);
+}
+
 // Dashes
 
 @mixin dash($color) {

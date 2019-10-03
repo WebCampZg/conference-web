@@ -1561,6 +1561,9 @@ span.icon {
   color: inherit;
   background-color: inherit; }
 
+img.desaturate {
+  filter: grayscale(100%); }
+
 .dash::before {
   content: "_";
   padding-right: .5rem;
@@ -1670,8 +1673,8 @@ footer .footer-grid {
 .main-header {
   font-size: 16px;
   display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 1rem;
+  grid-template-columns: 4rem 1fr;
+  grid-gap: 2rem;
   margin-top: 2rem;
   align-content: baseline; }
   .main-header .header-middle .terminal-prompt {
@@ -1679,33 +1682,38 @@ footer .footer-grid {
   .main-header .header-middle p {
     margin-top: 0.5rem; }
   .main-header .header-logo {
+    display: block; }
+
+.below-header {
+  font-size: 16px; }
+  .below-header .small-nav {
     display: none; }
-  .main-header .small-nav {
+  .below-header .large-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    grid-column-gap: 2rem;
+    grid-row-gap: 0.5rem; }
+
+@media (max-width: 640px) {
+  .main-header {
+    grid-template-columns: 1fr; }
+    .main-header .header-logo {
+      display: none; }
+    .main-header .account {
+      text-align: right; }
+  .below-header .large-nav {
+    display: none; }
+  .below-header .small-nav {
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: .3rem; }
-    .main-header .small-nav summary {
+    .below-header .small-nav summary {
       font-size: 1.2rem; }
-    .main-header .small-nav nav {
+    .below-header .small-nav nav {
       margin-top: 0.6rem; }
-  .main-header .large-nav {
-    display: none; }
-
-@media (min-width: 640px) {
-  .main-header {
-    grid-template-columns: 8rem 1fr; }
-    .main-header .header-logo {
-      display: block; }
-    .main-header .account {
-      text-align: right; }
-    .main-header .large-nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-      grid-column-gap: 2rem;
-      grid-row-gap: 0.5rem; }
-    .main-header .small-nav {
-      display: none; } }
+      .below-header .small-nav nav a {
+        display: block; } }
 
 .hero {
   display: grid;

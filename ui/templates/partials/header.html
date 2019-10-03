@@ -3,7 +3,7 @@
 <div class="container">
   <header class="main-header">
     <a class="header-logo" href="{% url 'ui_index' %}">
-      <img src="{% static 'images/2019/logo_black.svg' %}" alt="">
+      <img src="{% static 'images/2020/heart_square_black.svg' %}" alt="{{ event }}">
     </a>
 
     <div class="header-middle">
@@ -27,32 +27,37 @@
           {{ event.dates_text }} in Zagreb, Croatia
         </p>
       </div>
+    </div>
+  </header>
 
-      <details class="small-nav show-for-small">
-        <summary>Menu</summary>
-        <nav>
-          {% for name, link in navigation %}
-            <a class="menu-item" href="{{ link }}">{{ name }}</a>
-          {% endfor %}
-        </nav>
-        <div class="account">
-          {% if user.is_authenticated %}
-            <a href="{% url 'user_profile' %}">
-              {% icon "solid/user-alt" %}&nbsp;{{user.get_full_name}}
-            </a>
-          {% else %}
-            <a href="{% url 'account_login' %}?next={{ request.path }}">
-              Login
-            </a>
-          {% endif %}
-        </div>
-      </details>
-
-      <nav class="large-nav">
+  <div class="below-header">
+    {# Navigation for small screens #}
+    <details class="small-nav show-for-small">
+      <summary>☰ Menu</summary>
+      <nav>
         {% for name, link in navigation %}
           <a class="menu-item" href="{{ link }}">{{ name }}</a>
         {% endfor %}
+
+        {% if user.is_authenticated %}
+          <a href="{% url 'user_profile' %}">
+            {% icon "solid/user-alt" %}&nbsp;{{user.get_full_name}}
+          </a>
+        {% else %}
+          <a href="{% url 'account_login' %}?next={{ request.path }}">
+            Login
+          </a>
+        {% endif %}
       </nav>
-    </div>
-  </header>
+    </details>
+
+    {# Navigation for large screens #}
+    <nav class="large-nav">
+      {% for name, link in navigation %}
+        <a class="menu-item" href="{{ link }}">{{ name }}</a>
+      {% endfor %}
+      {# In case the menu wraps, forces the wrapped row to be left-aligned. #}
+      <div style="flex-grow: 1"></div>
+    </nav>
+  </div>
 </div>

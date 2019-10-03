@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   height="144"
+   width="117"
+   id="svg937"
+   version="1.1"
+   viewBox="0 0 117 144">
+  <metadata
+     id="metadata941">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Asset 2</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs871">
+    <style
+       id="style869">.cls-1{fill:#231f20;}.cls-2{fill:#fff;}.cls-3{fill:#010101;}</style>
+  </defs>
+  <title
+     id="title873">Asset 2</title>
+  <polygon
+     transform="translate(-27,-27)"
+     id="polygon879"
+     points="62.62,153 72,153 72,144 81,144 81,135 81,126 90,126 90,117 107.62,99 126,99 126,63 108,63 108,45 45,45 45,108 45,153 53.62,153 "
+     class="cls-2"
+     style="opacity:1;stop-opacity:1" />
+  <rect
+     id="rect881"
+     height="9"
+     width="9"
+     y="18"
+     x="108"
+     class="cls-1"
+     style="opacity:1;stop-opacity:1" />
+  <rect
+     id="rect883"
+     height="9"
+     width="9"
+     y="9"
+     x="99"
+     class="cls-1"
+     style="opacity:1;stop-opacity:1" />
+  <polygon
+     transform="translate(-27,-27)"
+     id="polygon885"
+     points="126,27 116.62,27 108,27 108,63 117,63 117,36 126,36 "
+     class="cls-1"
+     style="opacity:1;stop-opacity:1" />
+  <polygon
+     transform="translate(-27,-27)"
+     id="polygon887"
+     points="35.62,171 63,171 63,162 36,162 36,36 108,36 108,27 27,27 27,72 27,171 "
+     class="cls-3"
+     style="opacity:1;stop-opacity:1" />
+  <polygon
+     transform="translate(-27,-27)"
+     id="polygon889"
+     points="144,63 144,54 134.62,54 108,54 108,63 135,63 135,90 144,90 "
+     class="cls-3"
+     style="opacity:1;stop-opacity:1" />
+  <polygon
+     transform="translate(-27,-27)"
+     id="polygon891"
+     points="144,171 144,162 144,108 135,108 135,162 98.62,162 81,162 81,171 98.62,171 134.62,171 "
+     class="cls-3"
+     style="opacity:1;stop-opacity:1" />
+  <rect
+     id="rect893"
+     height="9"
+     width="9"
+     y="63"
+     x="36"
+     class="cls-2"
+     style="opacity:1;stop-opacity:1" />
+  <polygon
+     transform="translate(-27,-27)"
+     id="polygon895"
+     points="90,144 90,153 116.62,153 126,153 126,126 126,117 117,117 117,126 108,126 108,135 99,135 99,144 "
+     class="cls-1"
+     style="opacity:1;stop-opacity:1" />
+  <polygon
+     transform="translate(-27,-27)"
+     id="polygon897"
+     points="81,81 71.62,81 63,81 63,90 72,90 72,99 63,99 63,90 54,90 54,99 54,108 63,108 63,117 72,117 72,126 81,126 81,135 90,135 90,126 99,126 99,117 108,117 108,108 117,108 117,99 117,90 108,90 108,81 98.62,81 90,81 90,90 81,90 "
+     class="cls-1"
+     style="opacity:1;stop-opacity:1" />
+</svg>
