@@ -19,7 +19,16 @@
 
     .header-logo {
         display: block;
-        // padding-right: 3rem;
+
+        &:active, &:hover {
+            background: none;
+        }
+
+        svg:hover {
+            #polygon897 {
+                fill: $red;
+            }
+        }
     }
 }
 

@@ -3,7 +3,8 @@
 <div class="container">
   <header class="main-header">
     <a class="header-logo" href="{% url 'ui_index' %}">
-      <img src="{% static 'images/2020/heart_square_black.svg' %}" alt="{{ event }}">
+      {% include "partials/logo.svg" %}
+      {# <img src="{% static 'images/2020/heart_square_black.svg' %}" alt="{{ event }}"> #}
     </a>
 
     <div class="header-middle">

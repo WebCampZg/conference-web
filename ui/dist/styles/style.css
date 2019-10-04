@@ -1697,6 +1697,10 @@ footer .footer-grid {
     margin-top: 0.5rem; }
   .main-header .header-logo {
     display: block; }
+    .main-header .header-logo:active, .main-header .header-logo:hover {
+      background: none; }
+    .main-header .header-logo svg:hover #polygon897 {
+      fill: #FA4748; }
 
 .below-header {
   font-size: 16px; }
