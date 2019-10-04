@@ -1617,6 +1617,20 @@ img.desaturate {
   .newsletter .inputs {
     grid-template-columns: 4fr 1fr; } }
 
+ul.breadcrumbs {
+  margin-bottom: .2rem; }
+  ul.breadcrumbs li {
+    display: inline-block; }
+    ul.breadcrumbs li::after {
+      content: ">";
+      color: #999; }
+    ul.breadcrumbs li:first-child {
+      padding-left: 0; }
+      ul.breadcrumbs li:first-child::after {
+        content: ""; }
+    ul.breadcrumbs li:last-child {
+      color: #999; }
+
 .label {
   display: inline-block;
   color: #FEFEFE;
@@ -1863,6 +1877,10 @@ ul.talk-attributes {
 @media (min-width: 800px) {
   .user-groups {
     grid-template-columns: repeat(4, 1fr); } }
+
+:root {
+  --font-stack: "IBM Plex Mono", Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  --mono-font-stack: "IBM Plex Mono", Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif; }
 
 h1 {
   display: block;

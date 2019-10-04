@@ -2,7 +2,6 @@
 $font-prefix: '/static/fonts';
 @import 'mono/index';
 
-
 // Framework
 @import "terminal";
 
@@ -23,10 +22,10 @@ $font-prefix: '/static/fonts';
 @import "team";
 
 // Settings
-// :root {
-//   --font-stack: "IBM Plex", Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-//   --mono-font-stack: "IBM Plex", Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
-// }
+:root {
+  --font-stack: "IBM Plex Mono", Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+  --mono-font-stack: "IBM Plex Mono", Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+}
 
 // Tweaks
 h1 {

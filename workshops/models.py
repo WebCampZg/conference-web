@@ -34,6 +34,10 @@ class Workshop(models.Model):
     def speaker_names(self):
         return ", ".join(a.full_name for a in self.applicants.all())
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('workshops_view_workshop', args=[self.slug])
+
     def applicant_names(self):
         return [a.full_name for a in self.applicants.all()]
 

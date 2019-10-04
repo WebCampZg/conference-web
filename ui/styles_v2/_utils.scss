@@ -120,3 +120,30 @@ img.desaturate {
         grid-template-columns: 4fr 1fr;
     }
 }
+
+// Breadcrumbs
+
+ul.breadcrumbs {
+    margin-bottom: .2rem;
+
+    li {
+        display: inline-block;
+
+        &::after {
+            content: ">";
+            color: #999;
+        }
+
+        &:first-child {
+            padding-left: 0;
+            &::after {
+                content: "";
+            }
+        }
+
+        &:last-child {
+            color: #999;
+        }
+
+    }
+}
