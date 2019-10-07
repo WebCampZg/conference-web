@@ -1,17 +1,15 @@
 {% load schedule_tags %}
 
 {% with talk=schedule_talks|find_talk:slug  %}
-<tr>
+<tr class="keynote">
     <td>{{ time }}</td>
-    <td colspan="3" class="text-center">
+    <td colspan="3">
         <a href="{% url 'talks_view_talk' slug=talk.slug %}">
             {{ talk.title }}
-            <span class="yellow label">Keynote</span>
-            <br />
-            <span style="font-weight: normal">
-                {{ talk.speaker_names }}
-            </span>
         </a>
+        <span class="yellow label">Keynote</span>
+        <br />
+        {{ talk.speaker_names }}
     </td>
 </tr>
 {% endwith %}

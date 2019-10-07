@@ -8,4 +8,14 @@
         color: $black;
         background-color: $yellow;
     }
+    &.green {
+        background-color: $green;
+    }
+    &.purple {
+        background-color: $purple;
+    }
+    &.blue {
+        color: $black;
+        background-color: $blue;
+    }
 }

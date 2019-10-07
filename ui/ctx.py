@@ -23,8 +23,8 @@ def navigation(request):
             ("Schedule", reverse('schedule_list_schedule')),
             ("News", reverse('blog_list_posts')),
             ("Jobs", reverse('jobs_list_jobs')),
-            ("Tickets", "/tickets/"),
-            ("Code", "/code/"),
+            # ("Tickets", "/tickets/"),
+            # ("Code", "/code/"),
             ("Team", "/team/"),
         ]
     }

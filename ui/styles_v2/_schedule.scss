@@ -1,0 +1,13 @@
+.schedule {
+    tr > th, tr > td {
+        border-color: $light-gray;
+    }
+    tr.spacer, tr.lunch {
+        background-color: $light-gray;
+    }
+    tr.spacer, tr.keynote, tr.lunch, tr.drinkup {
+        td {
+            text-align: center;
+        }
+    }
+}

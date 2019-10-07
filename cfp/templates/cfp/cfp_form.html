@@ -24,9 +24,8 @@
 <form id="cfp-form" method="post" enctype="multipart/form-data">
     {% csrf_token %}
 
-    <h1 class="red-dash">Application</h1>
-
     <fieldset>
+        <legend>Application</legend>
         {% include "partials/form-field.html" with field=form.type  %}
         {% include "partials/form-field.html" with field=form.title  %}
         {% include "partials/form-field.html" with field=form.about  %}
@@ -40,9 +39,8 @@
 
     <hr />
 
-    <h1 id="speaker-profile" class="green-dash">Speaker profile</h1>
-
     <fieldset>
+        <legend>Speaker profile</legend>
         {% include "partials/form-field.html" with field=form.about_applicant %}
         {% include "partials/form-field.html" with field=form.biography %}
         {% include "partials/form-field.html" with field=form.company_name %}

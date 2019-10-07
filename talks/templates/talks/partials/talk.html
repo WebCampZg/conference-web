@@ -25,11 +25,5 @@
         <p>{{ talk.about }}</p>
 
         {% include "talks/partials/attributes.html" %}
-
-        {% if talk.sold_out %}
-            <div class="callout alert">
-                Tickets for this workshop are SOLD OUT
-            </div>
-        {% endif %}
     </div>
 </article>

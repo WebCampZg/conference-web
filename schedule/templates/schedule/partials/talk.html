@@ -5,19 +5,15 @@
 >
     {% if talk %}
     <a href="{% url 'talks_view_talk' slug=talk.slug %}">
-        <span>
-            {{ talk.title }}
-            {% if talk.sponsor %}
-                <span class="blue label">Sponsored</span>
-            {% endif %}
-            {% if talk.is_community_chosen %}
-                <span class="yellow label">Community</span>
-            {% endif %}
-        </span>
-        <br />
-        <span class="normal">
-            {{ talk.speaker_names }}
-        </span>
+        {{ talk.title }}
     </a>
+    <br />
+    {{ talk.speaker_names }}
+    {% if talk.sponsor %}
+        <span class="blue label">Sponsored</span>
+    {% endif %}
+    {% if talk.is_community_chosen %}
+        <span class="green label">Community</span>
+    {% endif %}
     {% endif %}
 </td>

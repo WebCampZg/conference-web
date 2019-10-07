@@ -1,4 +1,4 @@
-{% extends 'ui/page.html' %}
+{% extends 'ui/base.html' %}
 
 {% load schedule_tags %}
 
@@ -13,7 +13,8 @@
   <meta property="og:description" content="{{ event.extended_title }} talks schedule. 2 days, 2 tracks, 2 keynote speakers and 28 talks at {{ event.title }} for web devs & designers." />
 {% endblock %}
 
-{% block content %}
+{% block basecontent %}
+<div class="container wide">
   <section class="schedule">
     <h1>Schedule</h1>
 
@@ -70,4 +71,9 @@
     </table>
 
   </section>
+</div>
+
+<hr />
+
+{% include "partials/newsletter.html" %}
 {% endblock %}

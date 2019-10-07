@@ -19,10 +19,10 @@
 {% block content %}
     {% if cfp %}
         {% if user.is_superuser %}
-            <a class="button float-right" href="{% url 'admin:cfp_callforpaper_change' cfp.pk %}">Edit</a>
+            <a class="btn btn-primary float-right" href="{% url 'admin:cfp_callforpaper_change' cfp.pk %}">Edit</a>
         {% endif %}
 
-        <h1 class="red-dash">{{ cfp.title }}</h1>
+        <h1>{{ cfp.title }}</h1>
 
         {{ cfp.announcement|markdown:"trusted" }}
 
@@ -30,13 +30,11 @@
 
         {% if cfp.is_active %}
             <p>This call for papers ends on <b>{{ cfp.end_date|date }}</b>.</p>
-            <div class="text-center">
-                <a href="{% url 'application_create' %}" class="large green button">Submit a talk</a>
-            </div>
+            <a href="{% url 'application_create' %}" class="btn btn-primary btn-ghost">Submit a talk</a>
         {% elif cfp.is_pending %}
-            <h3 class="yellow-dash">The call for papers opens on {{ cfp.begin_date|date }}</h2>
+            <h2>The call for papers opens on {{ cfp.begin_date|date }}</h2>
         {% else %}
-            <h3 class="yellow-dash">The CFP is now closed.</h3>
+            <h2>The CFP is now closed.</h2>
         {% endif %}
     {% else %}
         <h1>Call for papers</h1>
