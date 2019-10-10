@@ -158,6 +158,11 @@ def team(request):
             "twitter": "monorkin",
             "job": "Speakers"
         },
+        {
+            "name": "Petra Malezija",
+            "image": "images/team/petra.jpeg",
+            "job": "Volunteers"
+        },
     ]
 
     committee = [
