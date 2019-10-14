@@ -1,6 +1,6 @@
 {% extends 'ui/page.html' %}
 
-{% load webcamp markdown_deux_tags %}
+{% load webcamp markdown_deux_tags dashboard %}
 
 {% block title %}Profile{% endblock %}
 
@@ -68,6 +68,21 @@
             </h5>
 
             <p>{{ application.about }}</p>
+
+            {% if application.has_talk and application.talk.surveyscore %}
+            {% with score=application.talk.surveyscore %}
+                <h3>User feedback</h3>
+                <p>Here you can se what users thought of your talk. Be warned, the feedback was anonymous and the users can be harsh. The data is based on our exit survey where users could rate each talk they attended 1 to 5.</p>
+                <details>
+                    <summary><b>Click to show scores</b></summary>
+                    <div style="width: 12rem; margin-top: 1rem;">
+                        {{ score.distribution|histogram_svg }}
+                    </div>
+                    {{ score.average|floatformat:1 }} average,
+                    {{ score.count }} votes
+                </details>
+            {% endwith %}
+            {% endif %}
         </div>
     {% empty %}
         <p>You don't have any submitted talks.</p>
