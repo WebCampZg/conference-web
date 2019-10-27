@@ -69,15 +69,16 @@ def test_GET_create_application(user, applicant, client, active_cfp):
 @pytest.mark.django_db
 def test_GET_create_application_when_cfp_is_inactive(user, applicant, client, past_cfp):
     url = reverse('application_create')
+    login_url = reverse('account_login')
 
-    # Forbidden when not logged in
+    # When not logged in redirects to login form
     response = client.get(url)
     content = response.content.decode(response.charset)
 
-    assert response.status_code == 403
-    assert "Call for proposals is not active" in content
+    assert response.status_code == 302
+    assert response.url == f"{login_url}?next={url}"
 
-    # Also forbidden when logged in
+    # Forbidden when logged in
     client.login(username=user.email, password='webcamp')
     response = client.get(url)
     content = response.content.decode(response.charset)
@@ -185,13 +186,13 @@ def test_accept_application(user, applicant, client, active_cfp):
     assert isinstance(instance4, Workshop)
     assert instance4.applicants.get() == pa4.applicant
     assert instance4.duration_hours == 4
-    assert not instance4.published
+    assert instance4.published
 
     instance5 = accept_application(pa5)
     assert isinstance(instance5, Workshop)
     assert instance5.applicants.get() == pa5.applicant
     assert instance5.duration_hours == 8
-    assert not instance5.published
+    assert instance5.published
 
     try:
         accept_application(pa1)

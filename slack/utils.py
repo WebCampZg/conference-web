@@ -1,24 +1,12 @@
 import requests
 
 from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
-
-
-def _get_from_settings(key):
-    value = getattr(settings, key, None)
-
-    if not value:
-        raise ImproperlyConfigured("{} setting not set.".format(key))
-
-    return value
-
-
-def get_notifications_webhook():
-    return _get_from_settings('SLACK_NOTIFICATIONS_WEBHOOK')
 
 
 def post_notification(title, text, footer=None, fallback=None):
-    url = get_notifications_webhook()
+    url = getattr(settings, 'SLACK_NOTIFICATIONS_WEBHOOK', None)
+    if not url:
+        return
 
     default_fallback = "\n".join([title, text])
 
