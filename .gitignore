@@ -85,3 +85,6 @@ share/
 
 # sources for css
 /sources
+
+# direnv
+.envrc
