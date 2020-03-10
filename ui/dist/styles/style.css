@@ -4992,28 +4992,9 @@ select {
   appearance: none; }
 
 .hero-wrapper {
-  background-color: #FFDC00;
-  position: relative;
-  height: 554px;
-  width: 100%; }
-
-.cover-tetris {
-  height: 100%;
-  max-width: 940px;
-  margin: 0 auto; }
-
-.hero-banner-wrapper {
-  position: absolute;
-  z-index: 10;
-  top: 0;
-  right: 0;
-  transform: translate(-50%, 0%);
-  width: 50%;
-  text-align: center; }
-
-.hero-banner {
-  max-width: 820px;
-  width: 100%; }
+  background-color: #FFDC00; }
+  .hero-wrapper .hero {
+    max-width: 830px; }
 
 span.icon {
   display: inline-block; }

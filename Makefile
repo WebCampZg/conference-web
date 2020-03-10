@@ -4,7 +4,7 @@ SETTINGS=--settings=$(PROJECT_NAME).settings.test
 
 PLEX_VERSION=1.3.1
 FOUNDATION_VERSION=6.5.3
-JQUERY_VERSION=3.3.1
+JQUERY_VERSION=3.4.1
 
 .PHONY: test clean lint sync-media css css-watch
 
@@ -36,8 +36,6 @@ sources:
 		-o sources/jquery/jquery.min.js --location --create-dirs
 	curl https://code.jquery.com/jquery-$(JQUERY_VERSION).min.map \
 		-o sources/jquery/jquery.min.map --location --create-dirs
-	curl https://raw.githubusercontent.com/Aerolab/blockrain.js/gh-pages/dist/blockrain.jquery.js \
-		-o sources/blockrain/blockrain.min.js --location --create-dirs
 	unzip sources/tmp/plex.zip -d sources/tmp/plex/
 	unzip sources/tmp/foundation.zip -d sources/tmp/foundation/
 	mv sources/tmp/plex/Web sources/plex
@@ -54,7 +52,6 @@ dist:
 	cp sources/foundation/dist/js/foundation.min.js.map ui/dist/scripts
 	cp sources/jquery/jquery.min.js ui/dist/scripts
 	cp sources/jquery/jquery.min.map ui/dist/scripts
-	cp sources/blockrain/blockrain.min.js ui/dist/scripts
 	make css
 
 css:
